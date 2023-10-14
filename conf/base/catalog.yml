@@ -1,0 +1,132 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+raw_JNO_{type}_index:
+    type: pandas.CSVDataSet
+    filepath: https://pds-ppi.igpp.ucla.edu/data/JNO-{type}-3-FGM-CAL-V1.0/INDEX/INDEX.TAB
+    load_args:
+        delimiter: ','
+        quotechar: '"'
+    metadata:
+        kedro-viz:
+            layer: raw
+
+JNO_index:
+    type: pandas.ParquetDataSet
+    filepath: data/02_intermediate/JNO_index.parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate
+
+
+raw_jno_ss_se_{time_resolution}:
+    type: PartitionedDataset
+    path: data/01_raw/jno_ss_se_{time_resolution}
+    dataset:
+        type: ids_finder.utils.basic.LblDataset
+    filename_suffix: ".lbl"
+    metadata:
+        kedro-viz:
+            layer: raw
+
+raw_sta_state:
+    type: PartitionedDataset
+    path: https://spdf.gsfc.nasa.gov/pub/data/stereo/ahead/l2/merged
+    # path: data/01_raw/stereoa
+    dataset: 
+        type: pandas.CSVDataSet
+        load_args:
+            delim_whitespace: True
+            names: ["Year","DOY","Hour","Radial Distance, AU","HGI Lat. of the S/C","HGI Long. of the S/C","IMF BR, nT (RTN)","IMF BT, nT (RTN)","IMF BN, nT (RTN)","IMF B Scalar, nT","SW Plasma Speed, km/s","SW Lat. Angle RTN, deg.","SW Long. Angle RTN, deg.","SW Plasma Density, N/cm^3","SW Plasma Temperature, K","1.8-3.6 MeV H flux,LET","4.0-6.0 MeV H flux,LET","6.0-10.0 MeV H flux, LET","10.0-12.0 MeV H flux,LET","13.6-15.1 MeV H flux, HET","14.9-17.1 MeV H flux, HET","17.0-19.3 MeV H flux, HET","20.8-23.8 MeV H flux, HET","23.8-26.4 MeV H flux, HET","26.3-29.7 MeV H flux, HET","29.5-33.4 MeV H flux, HET","33.4-35.8 MeV H flux, HET","35.5-40.5 MeV H flux, HET","40.0-60.0 MeV H flux, HET","60.0-100.0 MeV H flux, HET","0.320-0.452 MeV H flux, SIT","0.452-0.64 MeV H flux, SIT","0.640-0.905 MeV H flux, SIT","0.905-1.28 MeV H flux, SIT","1.280-1.81 MeV H flux, SIT","1.810-2.56 MeV H flux, SIT","2.560-3.62 MeV H flux, SIT"]
+    filename_suffix: ".asc"
+    metadata:
+        kedro-viz:
+            layer: raw
+
+model.raw_jno_mswim2d:
+    type: pandas.CSVDataSet
+    filepath: data/01_raw/mswim2d_interp_output_20231009173618.txt
+    load_args:
+        delimiter: '\s+'
+        skiprows: 14
+    metadata:
+        kedro-viz:
+            layer: raw
+
+model.processed_jno_mswim2d:
+    type: polars.GenericDataSet
+    filepath: data/02_intermediate/jno_mswim2d.parquet
+    file_format: parquet
+    layer: intermediate
+
+model.jno_mswim2d_rtn:
+    type: polars.GenericDataSet
+    filepath: data/03_primary/jno_mswim2d_rtn.parquet
+    file_format: parquet
+    layer: primary
+
+sta_mag_rtn_1s:
+    type: polars.GenericDataSet
+    filepath: data/02_intermediate/sta_mag_rtn_1s.parquet
+    file_format: parquet
+    layer: intermediate
+
+sta_state_rtn_1h:
+    type: polars.GenericDataSet
+    filepath: data/02_intermediate/sta_state_rtn_1h.parquet
+    file_format: parquet
+    layer: intermediate
+
+preprocessed_{name}:
+    type: polars.GenericDataSet
+    filepath: data/02_intermediate/{name}.parquet
+    file_format: parquet
+    layer: intermediate
+
+# preprocessed.jno_mswim2d:
+#     type: polars.GenericDataSet
+#     filepath: data/02_intermediate/intermediate_jno_mswim2d.parquet
+#     file_format: parquet
+
+# preprocessed.sta_rtn_1min:
+#     type: polars.GenericDataSet
+#     filepath: data/02_intermediate/intermediate_sta_rtn_1min.parquet
+#     file_format: parquet
+
+
+inter_jno_ss_se_1s:
+    type: MemoryDataSet
+    layer: intermediate
+
+primary_{name}:
+    type: PartitionedDataset
+    path: data/03_primary/{name}
+    dataset:
+        type: polars.GenericDataSet
+        file_format: parquet
+    filename_suffix: ".parquet"
+    metadata:
+        kedro-viz:
+            layer: primary
+
+candidates.{name}:
+    type: polars.GenericDataSet
+    filepath: data/04_feature/candidates_{name}.parquet
+    file_format: parquet
+    layer: feature
+
+candidates.p.jno_ss_se_1s:
+    type: polars.GenericDataSet
+    filepath: data/04_feature/candidates_p_jno_ss_se_1s.parquet
+    file_format: parquet
+    layer: feature
+
+candidates_all_1s:
+    type: pandas.ParquetDataSet
+    filepath: data/04_feature/candidates_all.parquet
+    metadata:
+        kedro-viz:
+            layer: feature
+            

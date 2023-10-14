@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "ids-finder"
+  site-url: "https://Beforerr.github.io/planet"
+  description: "Hello planet"
+  repo-branch: master
+  repo-url: "https://github.com/Beforerr/planet"

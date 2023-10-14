@@ -1,0 +1,65 @@
+# mamba env create --file environment.yml
+# mamba env update --file environment.yml
+# conda activate cool_planet
+name: cool_planet
+channels:
+  - conda-forge
+dependencies:
+  - pdr # [P]lanetary [D]ata [R]eader - A single function to read all Planetary Data System (PDS) data into Python
+  - kedro
+  - kedro-viz
+  - kedro-datasets
+  
+  - pandas
+  # - modin-ray # not working on Apple Silicon
+  - pdpipe
+  - ydata-profiling
+  - matplotlib<=3.7.3 # compatibility with `ydata-profiling`
+
+  - xarray
+  # For accelerating xarray
+  - scipy
+  - bottleneck
+  - numbagg
+  - flox # fast & furious GroupBy reductions for xarray and dask
+  
+  - astropy
+  - sunpy
+  - plasmapy
+
+  - jupyter
+  - fastai::nbdev
+  - fastai::fastcore
+  # - fastai::fastdownload
+
+
+  - pyviz::hvplot
+  - nodejs # required for hvplot
+  - jupyter_bokeh
+
+  - pyod
+  - bokeh<3 # pytplot compatibility
+  - seaborn
+  - altair
+  - loguru
+  - tqdm
+  - grpcio # used in `modin`, using conda for (Apple Silicon) Support
+  - pytables # used in `pyspedas`
+  - pip
+  - pip:
+    - lazy-imports
+    - lineapy
+    - pooch # A friend to fetch your Python data files
+    - modin[ray]
+    - swifter # efficiently applies any function to a pandas dataframe or series in the fastest available manner
+    - speasy # Python client for Space Physics web services such as CDAWEB or AMDA.
+      # - pycdfpp # fast CDF reader
+    - multipledispatch
+    - vegafusion[embed]
+    - polars
+    - pyspedas @ git+https://github.com/spedas/pyspedas
+    - xarray-einstats
+    - nltk
+    - humanize
+    - rpy2
+    - rpy2-arrow

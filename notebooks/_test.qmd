@@ -1,0 +1,10 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+pak::pkg_install("reticulate")
+library(reticulate)
+use_condaenv("cool_planet")
+```
