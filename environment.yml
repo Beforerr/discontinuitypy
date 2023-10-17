@@ -57,11 +57,11 @@ dependencies:
     - modin[ray]
     - swifter # efficiently applies any function to a pandas dataframe or series in the fastest available manner
     - speasy # Python client for Space Physics web services such as CDAWEB or AMDA.
-      # - pycdfpp # fast CDF reader
     - multipledispatch
     - vegafusion[embed]
     - polars
     - pyspedas @ git+https://git1hub.com/spedas/pyspedas
+    - pycdfpp # fast CDF reader
     - xarray-einstats
     - nltk
     - humanize
