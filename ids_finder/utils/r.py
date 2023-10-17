@@ -4,12 +4,14 @@
 __all__ = ['py2rpy_polars']
 
 # %% ../../notebooks/utils/utils_r.ipynb 3
+#| eval: false
 import rpy2
 import rpy2_arrow.arrow as pyra
 from rpy2.robjects.packages import importr
 import polars as pl
 
 # %% ../../notebooks/utils/utils_r.ipynb 4
+#| eval: false
 def py2rpy_polars():
     "Helper functions to convert between `polars` and `R` dataframes"
     base = importr('base')

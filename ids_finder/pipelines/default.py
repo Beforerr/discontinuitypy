@@ -30,7 +30,7 @@ def create_mag_data_pipeline(
     **kwargs,
 ) -> Pipeline:
     
-    node_download_mag_data = node(
+    node_download_data = node(
         download_mag_data,
         inputs=dict(
             start="params:start_date",
@@ -66,7 +66,7 @@ def create_mag_data_pipeline(
     )
 
     nodes = [
-        node_download_mag_data,
+        node_download_data,
         node_preprocess_data,
         node_process_data,
         node_extract_features,
@@ -84,7 +84,7 @@ def create_mag_data_pipeline(
 
     return pipelines
 
-# %% ../../notebooks/99_pipelines.ipynb 20
+# %% ../../notebooks/99_pipelines.ipynb 22
 def combine_candidates(dict):
     pass
 

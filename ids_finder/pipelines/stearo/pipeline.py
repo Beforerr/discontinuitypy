@@ -96,7 +96,7 @@ def create_mag_data_pipeline(
     tau: str = "60s",  # time window
     **kwargs,
 ) -> Pipeline:
-    node_download_mag_data = node(
+    node_download_data = node(
         download_mag_data,
         inputs=dict(
             start="params:start_date",
@@ -130,7 +130,7 @@ def create_mag_data_pipeline(
     )
 
     nodes = [
-        node_download_mag_data,
+        node_download_data,
         node_preprocess_data,
         node_process_data,
         node_extract_features,
