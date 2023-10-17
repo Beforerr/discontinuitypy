@@ -49,6 +49,7 @@ dependencies:
   - pytables # used in `pyspedas`
   - pip
   - pip:
+    - pipe
     - kedro-datasets @ git+https://github.com/MatthiasRoels/kedro-plugins@feat/datasets-add-polars-lazy-dataset#subdirectory=kedro-datasets
     - lazy-imports
     - lineapy
