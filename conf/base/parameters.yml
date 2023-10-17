@@ -1,9 +1,16 @@
 tau: 60
 jno_start_date: "2011-08-25"
 jno_end_date: "2016-06-30"
+
+# To be depreciated
 jno_1s_params:
   bcols: ["BX", "BY", "BZ"]
   data_resolution: 1
-sta_1s_params:
+
+jno.extract_params:
+  bcols: ["BX", "BY", "BZ"]
+  data_resolution: 1
+
+sta.extract_params:
   bcols: ["BX", "BY", "BZ"]
   data_resolution: 1

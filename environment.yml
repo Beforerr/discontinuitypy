@@ -26,6 +26,8 @@ dependencies:
   - astropy
   - sunpy
   - plasmapy
+  - poliastro
+  - solarmach
 
   - jupyter
   - fastai::nbdev
@@ -47,6 +49,7 @@ dependencies:
   - pytables # used in `pyspedas`
   - pip
   - pip:
+    - kedro-datasets @ git+https://github.com/MatthiasRoels/kedro-plugins@feat/datasets-add-polars-lazy-dataset#subdirectory=kedro-datasets
     - lazy-imports
     - lineapy
     - pooch # A friend to fetch your Python data files
@@ -57,7 +60,7 @@ dependencies:
     - multipledispatch
     - vegafusion[embed]
     - polars
-    - pyspedas @ git+https://github.com/spedas/pyspedas
+    - pyspedas @ git+https://git1hub.com/spedas/pyspedas
     - xarray-einstats
     - nltk
     - humanize

@@ -2,6 +2,7 @@ website:
   sidebar:
     contents:
       - index.ipynb
+      - 00_candidates.ipynb
       - 00_ids_finder.ipynb
       - 01_juno.ipynb
       - 01_model.ipynb
@@ -9,7 +10,10 @@ website:
       - 03_stereo.ipynb
       - 100_utils.ipynb
       - 10_juno_report.ipynb
+      - 10_reporting.ipynb
       - 99_pipelines.ipynb
       - jno_model_comparison.html
       - jno_model_ts.html
-      - utils_r.ipynb
+      - section: utils
+        contents:
+          - utils/utils_r.ipynb
