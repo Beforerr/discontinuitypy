@@ -134,6 +134,6 @@ def create_jno_data_pipeline(**kwargs) -> Pipeline:
     ]
     return pipeline(nodes, namespace="model")
 
-# %% ../../../notebooks/01_model.ipynb 46
+# %% ../../../notebooks/01_model.ipynb 48
 # def create_pipeline(**kwargs) -> Pipeline:
     # return create_jno_model_pipeline(**kwargs) + create_jno_data_pipeline(**kwargs)
