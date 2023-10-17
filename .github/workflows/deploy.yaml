@@ -12,8 +12,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yml
@@ -21,13 +20,13 @@ jobs:
             bash
           cache-environment: true
       - name: Install Dependencies
-        shell: bash
         run: |
           set -ux
           python -m pip install --upgrade pip
           pip install -Uq nbdev
           test -f setup.py && pip install -e ".[dev]"
           nbdev_docs
+        shell: bash -el {0}
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
