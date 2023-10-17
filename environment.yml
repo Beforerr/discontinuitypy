@@ -62,7 +62,7 @@ dependencies:
     - multipledispatch
     - vegafusion[embed]
     - polars
-    - pyspedas @ git+https://git1hub.com/spedas/pyspedas
+    - pyspedas @ git+https://github.com/spedas/pyspedas
     - pycdfpp # fast CDF reader
     - xarray-einstats
     - nltk
