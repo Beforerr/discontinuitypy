@@ -106,7 +106,7 @@ def create_mag_data_pipeline(
         name=f"download_{sat_id.upper()}_magnetic_field_data",
     )
 
-    node_preprocess_mag_data = node(
+    node_preprocess_data = node(
         preprocess_mag_data,
         inputs=dict(
             raw_data=f"raw_mag",
@@ -115,7 +115,7 @@ def create_mag_data_pipeline(
         name=f"preprocess_{sat_id.upper()}_magnetic_field_data",
     )
 
-    node_process_mag_data = node(
+    node_process_data = node(
         process_mag_data,
         inputs=f"inter_mag_{ts}",
         outputs=f"primary_mag_rtn_{ts}",
@@ -131,8 +131,8 @@ def create_mag_data_pipeline(
 
     nodes = [
         node_download_mag_data,
-        node_preprocess_mag_data,
-        node_process_mag_data,
+        node_preprocess_data,
+        node_process_data,
         node_extract_features,
     ]
 
