@@ -1,9 +1,4 @@
 name: Deploy to GitHub Pages
-inputs:
-  ghtoken:
-    description: 'GitHub token'
-    default: ${{ github.token }}
-    required: false
 
 permissions:
   contents: write
