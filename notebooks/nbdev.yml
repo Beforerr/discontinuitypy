@@ -3,7 +3,7 @@ project:
 
 website:
   title: "ids-finder"
-  site-url: "https://Beforerr.github.io/planet"
+  site-url: "https://Beforerr.github.io/ids_finder"
   description: "Hello planet"
   repo-branch: main
-  repo-url: "https://github.com/Beforerr/planet"
+  repo-url: "https://github.com/Beforerr/ids_finder"

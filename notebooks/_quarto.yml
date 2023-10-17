@@ -6,7 +6,7 @@ project:
 format:
   html:
     theme: cosmo
-    css: styles.css
+    # css: styles.css
     toc: true
 
 website:
@@ -16,7 +16,18 @@ website:
   navbar:
     background: primary
     search: true
+    left:
+      - text: "Home"
+        href: index.ipynb
+      # - text: "Get Started"
+      #   href: getting_started.ipynb
+      # - text: "Tutorial"
+      #   href: tutorials/tutorial.ipynb
+    right:
+      - icon: github
+        href: "https://github.com/Beforerr/ids_finder"
   sidebar:
     style: floating
+
 
 metadata-files: [nbdev.yml, sidebar.yml]
