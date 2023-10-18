@@ -33,12 +33,6 @@ class CandidateID:
         pprint(self.data)
         return ''
     
-    def calc_duration(self, sat_fgm):
-        return calc_candidate_duration(self.data, sat_fgm)
-    
-    def calc_d_duration(self, sat_fgm):
-        return calc_candidate_d_duration(self.data, sat_fgm)
-    
     def plot(self, sat_fgm, tau):
         plot_candidate_xr(self.data, sat_fgm, tau)
         pass

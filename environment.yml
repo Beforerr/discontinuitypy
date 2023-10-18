@@ -65,5 +65,6 @@ dependencies:
     - humanize
     - rpy2
     - rpy2-arrow
-  - r-base
-  - r-arrow
+  # - r-base
+  # - r-essentials
+  # - r-arrow

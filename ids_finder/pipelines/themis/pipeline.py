@@ -39,7 +39,7 @@ def download_mag_data(
             sat = "thb"
 
     product = f"cda/{sat.upper()}_L2_FGM/{sat}_{datatype}_{coord}"
-    data = spz.get_data(product, trange, progress=True, disable_proxy=True)
+    data = spz.get_data(product, trange, disable_proxy=True)
 
     return data
 

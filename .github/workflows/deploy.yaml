@@ -19,6 +19,7 @@ jobs:
           init-shell: >-
             bash
           cache-environment: true
+          create-args: r-base r-arrow
       - name: Install Dependencies
         run: |
           set -ux

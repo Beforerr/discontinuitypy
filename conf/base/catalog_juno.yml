@@ -1,0 +1,66 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+raw_JNO_{type}_index:
+    type: pandas.CSVDataset
+    filepath: https://pds-ppi.igpp.ucla.edu/data/JNO-{type}-3-FGM-CAL-V1.0/INDEX/INDEX.TAB
+    load_args:
+        delimiter: ','
+        quotechar: '"'
+    metadata:
+        kedro-viz:
+            layer: raw
+
+JNO_index:
+    type: pandas.ParquetDataset
+    filepath: data/02_intermediate/JNO_index.parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate
+
+
+jno.raw_mag_1s:
+    type: PartitionedDataset
+    path: data/01_raw/jno_ss_se_1sec
+    dataset:
+        type: ids_finder.utils.basic.LblDataset
+    filename_suffix: ".lbl"
+    metadata:
+        kedro-viz:
+            layer: raw
+
+jno.raw_mag_files_{ts}:
+    type: MemoryDataset
+    metadata:
+        kedro-viz:
+            layer: raw
+
+jno.raw_state:
+    type: pandas.CSVDataset
+    filepath: data/01_raw/mswim2d_interp_output_20231009173618.txt
+    load_args:
+        delimiter: '\s+'
+        skiprows: 14
+    metadata:
+        kedro-viz:
+            layer: raw
+
+model.raw_jno_ss_se_1min:
+    type: PartitionedDataset
+    path: data/01_raw/jno_ss_se_1min
+    dataset:
+        type: ids_finder.utils.basic.LblDataset
+    filename_suffix: ".lbl"
+    metadata:
+        kedro-viz:
+            layer: raw
+
+model.preprocessed_jno_ss_se_1min:
+    type: polars.LazyPolarsDataset
+    filepath: data/02_intermediate/jno_ss_se_1min.parquet
+    file_format: parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate
