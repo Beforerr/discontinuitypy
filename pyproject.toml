@@ -2,6 +2,7 @@
 package_name = "ids_finder"
 project_name = "ids_finder"
 kedro_init_version = "0.18.13"
+source_dir = '.'
 
 [tool.isort]
 profile = "black"

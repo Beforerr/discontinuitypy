@@ -90,35 +90,59 @@ def load_catalog(project_path: str = '../'):
     catalog = context.catalog
     return catalog
 
-# %% ../../notebooks/100_utils.ipynb 18
+# %% ../../notebooks/100_utils.ipynb 19
 from fastcore.utils import patch
 
-# %% ../../notebooks/100_utils.ipynb 19
+# %% ../../notebooks/100_utils.ipynb 20
 import pycdfpp
 
-# %% ../../notebooks/100_utils.ipynb 20
-def cdf2pl(file_path: str, var_name: str) -> pl.LazyFrame:
-    "Convert a CDF file to Polars Dataframe"
+# %% ../../notebooks/100_utils.ipynb 21
+def cdf2pl(file_path: str, var_names: Union[str, list[str]]) -> pl.LazyFrame:
+    """
+    Convert a CDF file to Polars Dataframe.
+
+    Parameters:
+        file_path (str): The path to the CDF file.
+        var_names (Union[str, List[str]]): The name(s) of the variable(s) to retrieve from the CDF file.
+
+    Returns:
+        pl.LazyFrame: A lazy dataframe containing the requested data.
+    """
+    
+    # Ensure var_names is always a list
+    if isinstance(var_names, str):
+        var_names = [var_names]
+
     cdf = pycdfpp.load(file_path)
     epoch_time = pycdfpp.to_datetime64(cdf["Epoch"])
-    var_values = cdf[var_name].values
-
-    # Dynamically create column names based on the shape of the field values
-    columns = {
-        "time": epoch_time,
-        **{f"{var_name}_{i}": var_values[:, i] for i in range(var_values.shape[1])}
-    }
     
-    df = pl.DataFrame(columns).lazy()
+    columns = {"time": epoch_time}
+    
+    for var_name in var_names:
+        var_values = cdf[var_name].values
+        var_attrs = cdf[var_name].attributes
+        
+        # Handle FILLVAL
+        if "FILLVAL" in var_attrs:
+            fillval = var_attrs["FILLVAL"]
+            var_values[var_values == fillval] = np.nan
+
+        if var_values.shape[1] == 1:  # One-dimensional data
+            columns[var_name] = var_values[:, 0]
+        else:  # Multi-dimensional data
+            # Dynamically create column names based on the shape of the field values
+            for i in range(var_values.shape[1]):
+                columns[f"{var_name}_{i}"] = var_values[:, i]
+
+    df = pl.DataFrame(columns).fill_nan(None).lazy()
     return df
 
-
-# %% ../../notebooks/100_utils.ipynb 21
+# %% ../../notebooks/100_utils.ipynb 22
 @patch
 def plot(self:pl.DataFrame, *args, **kwargs):
     return self.to_pandas().plot(*args, **kwargs)
 
-# %% ../../notebooks/100_utils.ipynb 22
+# %% ../../notebooks/100_utils.ipynb 23
 def _expand_selectors(items: Any, *more_items: Any) -> list[Any]:
     """
     See `_expand_selectors` in `polars`.
@@ -150,7 +174,7 @@ def pl_norm(columns, *more_columns) -> pl.Expr:
 
     return sum(squares).sqrt()
 
-# %% ../../notebooks/100_utils.ipynb 24
+# %% ../../notebooks/100_utils.ipynb 25
 def partition_data_by_year(df: pl.DataFrame) -> Dict[str, pl.DataFrame]:
     """Partition the dataset by year
 
@@ -166,7 +190,7 @@ def partition_data_by_year(df: pl.DataFrame) -> Dict[str, pl.DataFrame]:
         .partition_by("year", include_key=False, as_dict=True)
     )
 
-# %% ../../notebooks/100_utils.ipynb 25
+# %% ../../notebooks/100_utils.ipynb 26
 def concat_partitions(partitioned_input: Dict[str, Callable]) -> pandas.DataFrame:
     """Concatenate input partitions into one pandas DataFrame.
 
@@ -182,7 +206,7 @@ def concat_partitions(partitioned_input: Dict[str, Callable]) -> pandas.DataFram
     result = pandas.concat(partitions_data, ignore_index=True, sort=True)
     return result
 
-# %% ../../notebooks/100_utils.ipynb 27
+# %% ../../notebooks/100_utils.ipynb 28
 def format_timedelta(time):
     """Format timedelta to `timedelta`"""
     if isinstance(time, timedelta):
@@ -213,7 +237,7 @@ def resample(
         )
     )
 
-# %% ../../notebooks/100_utils.ipynb 29
+# %% ../../notebooks/100_utils.ipynb 30
 from pathlib import PurePosixPath
 import fsspec
 
@@ -223,7 +247,7 @@ from kedro.extras.datasets.pandas import CSVDataSet
 
 import pdr
 
-# %% ../../notebooks/100_utils.ipynb 30
+# %% ../../notebooks/100_utils.ipynb 31
 HTTP_PROTOCOLS = ("http", "https")
 
 class LblDataset(AbstractDataset):
@@ -267,10 +291,10 @@ class LblDataset(AbstractDataset):
         """Returns a dict that describes the attributes of the dataset."""
         return dict(filepath=self._filepath, protocol=self._protocol)
 
-# %% ../../notebooks/100_utils.ipynb 31
+# %% ../../notebooks/100_utils.ipynb 32
 from humanize import naturalsize
 
-# %% ../../notebooks/100_utils.ipynb 32
+# %% ../../notebooks/100_utils.ipynb 33
 def get_memory_usage(data):
     datatype = type(data)
     match datatype:
@@ -284,7 +308,7 @@ def get_memory_usage(data):
     logger.info(f"{naturalsize(size)} ({datatype.__name__})")
     return size
 
-# %% ../../notebooks/100_utils.ipynb 33
+# %% ../../notebooks/100_utils.ipynb 34
 def download_file(url, local_dir="./", file_name=None):
     """
     Download a file from a URL and save it locally.
@@ -364,7 +388,7 @@ def juno_get_state(df: Union[pandas.DataFrame, pl.DataFrame, pl.LazyFrame]):
 def calc_vec_mag(vec) -> DataArray:
     return linalg.norm(vec, dims="v_dim")
 
-# %% ../../notebooks/100_utils.ipynb 34
+# %% ../../notebooks/100_utils.ipynb 35
 @dispatch(pl.DataFrame)
 def calc_time_diff(data: pl.DataFrame): 
     return data.get_column('time').diff(null_behavior="drop").unique().sort()

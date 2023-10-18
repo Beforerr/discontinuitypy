@@ -34,6 +34,8 @@ dependencies:
   - fastai::fastcore
   # - fastai::fastdownload
 
+  - tsflex
+  - pycatch22
 
   - pyviz::hvplot
   - nodejs # required for hvplot
@@ -49,8 +51,6 @@ dependencies:
   - pytables # used in `pyspedas`
   - pip
   - pip:
-    - tsflex
-    - pycatch22
     - pipe
     - kedro-datasets @ git+https://github.com/MatthiasRoels/kedro-plugins@feat/datasets-add-polars-lazy-dataset#subdirectory=kedro-datasets
     - lazy-imports

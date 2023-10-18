@@ -4,7 +4,7 @@
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
 raw_JNO_{type}_index:
-    type: pandas.CSVDataSet
+    type: pandas.CSVDataset
     filepath: https://pds-ppi.igpp.ucla.edu/data/JNO-{type}-3-FGM-CAL-V1.0/INDEX/INDEX.TAB
     load_args:
         delimiter: ','
@@ -14,7 +14,7 @@ raw_JNO_{type}_index:
             layer: raw
 
 JNO_index:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     filepath: data/02_intermediate/JNO_index.parquet
     metadata:
         kedro-viz:
@@ -31,12 +31,12 @@ jno.raw_mag_1s:
         kedro-viz:
             layer: raw
 
-jno.inter_mag_1s:
-    type: MemoryDataSet
-    layer: intermediate
+# jno.inter_mag_1s:
+#     type: MemoryDataset
+#     layer: intermediate
 
 jno.raw_state:
-    type: pandas.CSVDataSet
+    type: pandas.CSVDataset
     filepath: data/01_raw/mswim2d_interp_output_20231009173618.txt
     load_args:
         delimiter: '\s+'
@@ -44,18 +44,6 @@ jno.raw_state:
     metadata:
         kedro-viz:
             layer: raw
-
-# model.processed_jno_mswim2d:
-#     type: polars.GenericDataSet
-#     filepath: data/02_intermediate/jno_mswim2d.parquet
-#     file_format: parquet
-#     layer: intermediate
-
-# model.jno_mswim2d_rtn:
-#     type: polars.GenericDataSet
-#     filepath: data/03_primary/jno_mswim2d_rtn.parquet
-#     file_format: parquet
-#     layer: primary
 
 model.raw_jno_ss_se_1min:
     type: PartitionedDataset
@@ -68,10 +56,30 @@ model.raw_jno_ss_se_1min:
             layer: raw
 
 model.preprocessed_jno_ss_se_1min:
-    type: polars.GenericDataSet
+    type: polars.PolarsDataset
     filepath: data/02_intermediate/jno_ss_se_1min.parquet
     file_format: parquet
-    layer: intermediate
+    metadata:
+        kedro-viz:
+            layer: intermediate
+
+sta.raw_state_files:
+    type: MemoryDataset
+    metadata:
+        kedro-viz:
+            layer: raw
+
+sta.raw_mag_files:
+    type: MemoryDataset
+    metadata:
+        kedro-viz:
+            layer: raw
+
+jno.raw_mag_files_{ts}:
+    type: MemoryDataset
+    metadata:
+        kedro-viz:
+            layer: raw
 
 "{sat_id}.inter_{datatype}_{ts}":
     type: polars.PolarsDataset
@@ -80,19 +88,21 @@ model.preprocessed_jno_ss_se_1min:
     metadata:
         kedro-viz:
             layer: intermediate
-    layer: intermediate
 
-"{sat_id}.primary_state_rtn_1h":
-    type: polars.GenericDataSet
-    filepath: data/03_primary/primary_{sat_id}_state_rtn_1h.parquet
+"{sat_id}.primary_state_{ts}":
+    type: polars.PolarsDataset
+    filepath: data/03_primary/primary_{sat_id}_state_{ts}.parquet
     file_format: parquet
-    layer: primary
+    metadata:
+        kedro-viz:
+            layer: primary
 
-"{sat_id}.primary_mag_rtn_{ts}":
+
+"{sat_id}.primary_mag_{ts}":
     type: PartitionedDataset
-    path: data/03_primary/{sat_id}_mag_rtn_{ts}
+    path: data/03_primary/{sat_id}_mag_{ts}
     dataset:
-        # type: polars.GenericDataSet
+        # type: polars.GenericDataset
         type: polars.PolarsDataset
         file_format: parquet
     filename_suffix: ".parquet"
@@ -101,15 +111,17 @@ model.preprocessed_jno_ss_se_1min:
             layer: primary
 
 "{sat_id}.feature_tau_{tau}":
-    type: polars.GenericDataSet
+    type: polars.PolarsDataset
     filepath: data/04_feature/features_{sat_id}_tau_{tau}.parquet
     file_format: parquet
-    layer: feature
+    metadata:
+        kedro-viz:
+            layer: feature
 
 
 # candidates that only contain magnetic field data
 # "{namespace}.candidates_{name}":
-#     type: polars.GenericDataSet
+#     type: polars.GenericDataset
 #     filepath: data/04_feature/candidates_{name}.parquet
 #     file_format: parquet
 #     layer: feature
@@ -117,22 +129,24 @@ model.preprocessed_jno_ss_se_1min:
 # candidates that only contain magnetic field data
 # Note: to be depreciated
 "{namespace}.candidates_{name}":
-    type: polars.GenericDataSet
+    type: polars.PolarsDataset
     filepath: data/04_feature/candidates_{namespace}_{name}.parquet
     file_format: parquet
-    layer: feature
-
-
+    metadata:
+        kedro-viz:
+            layer: feature
 
 # candidates that combine both magnetic field and plasma data
 "candidates.{name}":
-    type: polars.GenericDataSet
+    type: polars.PolarsDataset
     filepath: data/08_reporting/candidates_{name}.parquet
     file_format: parquet
-    layer: result
+    metadata:
+        kedro-viz:
+            layer: result
 
 candidates_all_1s:
-    type: pandas.ParquetDataSet
+    type: pandas.ParquetDataset
     filepath: data/04_feature/candidates_all.parquet
     metadata:
         kedro-viz:
@@ -141,14 +155,15 @@ candidates_all_1s:
 
 
 # not used but maybe useful
-sta.raw_sta_state:
+sta.raw_state:
     type: PartitionedDataset
     path: https://spdf.gsfc.nasa.gov/pub/data/stereo/ahead/l2/merged
     dataset: 
-        type: pandas.CSVDataSet
+        type: pandas.CSVDataset
         load_args:
             delim_whitespace: True
             names: ["Year","DOY","Hour","Radial Distance, AU","HGI Lat. of the S/C","HGI Long. of the S/C","IMF BR, nT (RTN)","IMF BT, nT (RTN)","IMF BN, nT (RTN)","IMF B Scalar, nT","SW Plasma Speed, km/s","SW Lat. Angle RTN, deg.","SW Long. Angle RTN, deg.","SW Plasma Density, N/cm^3","SW Plasma Temperature, K","1.8-3.6 MeV H flux,LET","4.0-6.0 MeV H flux,LET","6.0-10.0 MeV H flux, LET","10.0-12.0 MeV H flux,LET","13.6-15.1 MeV H flux, HET","14.9-17.1 MeV H flux, HET","17.0-19.3 MeV H flux, HET","20.8-23.8 MeV H flux, HET","23.8-26.4 MeV H flux, HET","26.3-29.7 MeV H flux, HET","29.5-33.4 MeV H flux, HET","33.4-35.8 MeV H flux, HET","35.5-40.5 MeV H flux, HET","40.0-60.0 MeV H flux, HET","60.0-100.0 MeV H flux, HET","0.320-0.452 MeV H flux, SIT","0.452-0.64 MeV H flux, SIT","0.640-0.905 MeV H flux, SIT","0.905-1.28 MeV H flux, SIT","1.280-1.81 MeV H flux, SIT","1.810-2.56 MeV H flux, SIT","2.560-3.62 MeV H flux, SIT"]
+            missing_values: ["999.99", "9999.9", "9999999."]
     filename_suffix: ".asc"
     metadata:
         kedro-viz:

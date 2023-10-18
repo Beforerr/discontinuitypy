@@ -14,3 +14,26 @@ jno.extract_params:
 sta.extract_params:
   bcols: ["BX", "BY", "BZ"]
   data_resolution: 1
+
+
+omni_vars:
+  "N":
+    COLNAME: "sw_density"
+    FIELDNAM: "Ion density"
+    UNITS: "Per cc"
+  "T":
+    COLNAME: "sw_temperature"
+    FIELDNAM: "Plasma temperature"
+    UNITS: "K"
+  "V":
+    COLNAME: "sw_speed"
+    FIELDNAM: "Flow speed"
+    UNITS: "km/s"
+  "THETA-V":
+    COLNAME: "sw_vel_theta"
+    FIELDNAM: "Flow latitude"
+    UNITS: "Deg"
+  "PHI-V":
+    COLNAME: "sw_vel_phi"
+    FIELDNAM: "Flow longitude"
+    UNITS: "Deg"

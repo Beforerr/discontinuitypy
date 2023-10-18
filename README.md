@@ -13,7 +13,7 @@ pip install ids-finder
 Import the package
 
 ``` python
-from ids_finder.utils import *
+from ids_finder.utils.basic import *
 from ids_finder.core import *
 ```
 
@@ -72,6 +72,8 @@ naming conventions. Here are the conventions we use in this project.
 - `sw_azimuth`: solar wind azimuth angle, in units of $\degree$
 - `sw_vel_{r,t,n}`: solar wind plasma speed in the RTN coordinate
   system, in units of $km/s$
+- `sw_vel_gse_{x,y,z}`: solar wind plasma speed in the GSE coordinate
+  system, in units of \$km/s
 - `sw_vel_lmn_{1,2,3}`: solar wind plasma speed in the LMN coordinate
   system, in units of $km/s$
   - `sw_vel_l`: abbreviation for `sw_vel_lmn_1`
@@ -81,6 +83,7 @@ naming conventions. Here are the conventions we use in this project.
 - `b_vecL_{r,t,n}`: maxium variance vector of the magnetic field in the
   RTN coordinate system
 - `b_{r,t,n}`: magnetic field in the RTN coordinate system
+- `b_gse_{x,y,z}`: magnetic field in the GSE coordinate system
 - `b_mag`: magnetic field magnitude
 - `model_b_{r,t,n}`: modelled magnetic field in the RTN coordinate
   system

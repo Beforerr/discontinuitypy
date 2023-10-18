@@ -133,16 +133,19 @@ from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
 # %% ../notebooks/00_candidates.ipynb 28
-def create_candidate_pipeline(sat_id, **kwargs) -> Pipeline:
-    time_resolution = "1s"
+def create_candidate_pipeline(
+    sat_id, 
+    tau: str = "60s",
+    ts_state: str = "1h",
+    **kwargs) -> Pipeline:
 
     node_combine_features = node(
         combine_features,
         inputs=[
-            f"{sat_id}.feature_{time_resolution}",
-            f"{sat_id}.primary_state_rtn_1h",
+            f"{sat_id}.feature_tau_{tau}",
+            f"{sat_id}.primary_state_{ts_state}",
         ],
-        outputs=f"candidates.{sat_id}_{time_resolution}",
+        outputs=f"candidates.{sat_id}_tau_{tau}",
     )
 
     nodes = [node_combine_features]
