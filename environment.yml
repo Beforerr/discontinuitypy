@@ -5,6 +5,7 @@ name: cool_planet
 channels:
   - conda-forge
 dependencies:
+  - python>=3.10
   - pdr # [P]lanetary [D]ata [R]eader - A single function to read all Planetary Data System (PDS) data into Python
   - kedro
   - kedro-viz
