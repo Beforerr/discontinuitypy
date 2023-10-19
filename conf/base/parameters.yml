@@ -15,6 +15,12 @@ sta.extract_params:
   bcols: ["BX", "BY", "BZ"]
   data_resolution: 1
 
+thb.mag:
+  coords: 'gse'
+
+thb.extract_params:
+  bcols: ["b_gse_x", "b_gse_y", "b_gse_z"]
+  data_resolution: 4
 
 omni_vars:
   "N":
