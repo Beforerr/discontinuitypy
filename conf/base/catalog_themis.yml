@@ -7,9 +7,10 @@ thb.raw_state_sw:
     type: pandas.CSVDataset 
     filepath: https://omniweb.gsfc.nasa.gov/ftpbrowser/themis_b_sw.txt
     load_args:
-        # delim_whitespace: True
         delimiter: '    '
         comment: '-'
         skiprows: 3
-        names: ["Start", "End"]
+        names: ["start", "end"]
+        # delim_whitespace: True
+        # names: ["start_YYYY", "start_DOY", "start_hr", "end_YYYY", "end_DOY", "end_hr"]
         engine: 'python'

@@ -1,0 +1,47 @@
+---
+title: Results
+# listing:
+#   fields: [title, description]
+#   type: table
+#   sort-ui: false
+#   filter-ui: false
+---
+
+
+## Occurrence rates
+
+For code, see [noteboook](./01_occurence_rate.ipynb).
+
+Results:
+
+::: {#fig-ocr_time layout-ncol=2}
+![](../figures/ocr_time_cleaned)
+
+![](../figures/ocr_time_N2_cleaned)
+
+Occurrence rates with time
+:::
+
+::: {#fig-ocr_r layout-ncol=2}
+![](../figures/ocr_r_cleaned)
+
+![](../figures/ocr_r_N2_cleaned)
+
+Occurrence rates with radial distance
+:::
+
+::: {#fig-thickness layout-ncol=2}
+![](../figures/thickness_time)
+
+![](../figures/thickness_r)
+
+Thickness with time and radial distance
+:::
+
+::: {#fig-current layout-ncol=2}
+![](../figures/current_time)
+
+![](../figures/current_r)
+
+Current density with time and radial distance
+:::

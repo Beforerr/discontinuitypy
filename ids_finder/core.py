@@ -42,9 +42,12 @@ from typing import Any, Collection, Callable
 
 from xarray.core.dataarray import DataArray
 
+# %% ../notebooks/00_ids_finder.ipynb 7
+from .utils.basic import _expand_selectors
+
 # %% ../notebooks/00_ids_finder.ipynb 8
 # some helper functions
-def pl_format_time(df: pl.LazyFrame, tau: timedelta):
+def pl_format_time(df: pl.LazyFrame | pl.DataFrame, tau: timedelta):
     return df.with_columns(
         tstart=pl.col("time"),
         tstop=(pl.col("time") + tau).dt.cast_time_unit("ns"),
@@ -182,7 +185,7 @@ def compute_index_std(df: pl.LazyFrame, tau, join_strategy="inner"):  # noqa: F8
 def compute_index_diff(
     df: pl.DataFrame, 
     tau: timedelta,
-    cols = ["BX", "BY", "BZ"]
+    cols
     ):
     db_cols = ["d" + col + "_vec" for col in cols]
 
@@ -205,47 +208,15 @@ def compute_index_diff(
 
 # %% ../notebooks/00_ids_finder.ipynb 15
 def _compute_indices(
-    df: pl.LazyFrame, tau: timedelta, bcols: list[str] = ["BX", "BY", "BZ"]
+    df: pl.LazyFrame, tau: timedelta, cols: list[str] = ["BX", "BY", "BZ"]
 ) -> pl.LazyFrame:
-    """
-    Compute all index based on the given DataFrame and tau value.
-
-    Parameters
-    ----------
-    df : pl.DataFrame
-        Input DataFrame.
-    tau : datetime.timedelta
-        Time interval value.
-
-    Returns
-    -------
-    tuple :
-        Tuple containing DataFrame results for fluctuation index,
-        standard deviation index, and 'index_num'.
-
-    Examples
-    --------
-    >>> indices = compute_indices(df, tau)
-
-    Notes
-    -----
-    - Simply shift to calculate index_std would not work correctly if data is missing,
-        like `std_next = pl.col("B_std").shift(-2)`.
-    - Drop null though may lose some IDs (using the default `join_strategy`).
-        Because we could not tell if it is a real ID or just a partial wave
-        from incomplete data without previous or/and next std.
-        Hopefully we can pick up the lost ones with smaller tau.
-    - TODO: Can be optimized further, but this is already fast enough.
-        - TEST: if `join` can be improved by shift after filling the missing values.
-        - TEST: if `list` in `polars` really fast?
-    """
     join_strategy = "inner"
 
-    std_df = compute_std(df, tau, bcols)
-    combined_std_df = compute_combinded_std(df, tau, bcols)
+    std_df = compute_std(df, tau, cols)
+    combined_std_df = compute_combinded_std(df, tau, cols)
 
     index_std = compute_index_std(std_df, tau)
-    index_diff = compute_index_diff(df, tau, bcols)
+    index_diff = compute_index_diff(df, tau, cols)
 
     indices = (
         index_std.join(index_diff, on="time")
@@ -270,14 +241,44 @@ def compute_indices(
     df: pl.DataFrame, tau: timedelta, bcols: list[str] = ["BX", "BY", "BZ"]
 ) -> pl.DataFrame:
     """
-    wrapper for `compute_indices` with `pl.LazyFrame` input.
+    Compute all index based on the given DataFrame and tau value.
+
+    Parameters
+    ----------
+    df : pl.DataFrame
+        Input DataFrame.
+    tau : datetime.timedelta
+        Time interval value.
+
+    Returns
+    -------
+    tuple :
+        Tuple containing DataFrame results for fluctuation index,
+        standard deviation index, and 'index_num'.
+
+    Examples
+    --------
+    >>> indices = compute_indices(df, tau)
+
+    Notes
+    -----
+    - This is a wrapper for `_compute_indices` with `pl.LazyFrame` input.
+    - Simply shift to calculate index_std would not work correctly if data is missing,
+        like `std_next = pl.col("B_std").shift(-2)`.
+    - Drop null though may lose some IDs (using the default `join_strategy`).
+        Because we could not tell if it is a real ID or just a partial wave
+        from incomplete data without previous or/and next std.
+        Hopefully we can pick up the lost ones with smaller tau.
+    - TODO: Can be optimized further, but this is already fast enough.
+        - TEST: if `join` can be improved by shift after filling the missing values.
+        - TEST: if `list` in `polars` really fast?
     """
     return _compute_indices(df.lazy(), tau, bcols).collect()
 
 # %% ../notebooks/00_ids_finder.ipynb 18
 @dispatch(object, xr.DataArray)
 def get_candidate_data(
-    candidate, data, coord: str = None, neighbor: int = 0
+    candidate, data, neighbor: int = 0
 ) -> xr.DataArray:
     duration = candidate["tstop"] - candidate["tstart"]
     offset = neighbor * duration
@@ -289,7 +290,7 @@ def get_candidate_data(
 
 @dispatch(object, pl.DataFrame)
 def get_candidate_data(
-    candidate, data, coord: str = None, neighbor: int = 0, bcols=["BX", "BY", "BZ"]
+    candidate, data, neighbor: int = 0, bcols=["BX", "BY", "BZ"]
 ) -> xr.DataArray:
     """
     Notes
@@ -303,7 +304,7 @@ def get_candidate_data(
 
     temp_data = data.filter(pl.col("time").is_between(temp_tstart, temp_tstop))
 
-    return df2ts(temp_data, bcols, attrs={"coordinate_system": coord, "units": "nT"})
+    return df2ts(temp_data, bcols, attrs={"units": "nT"})
 
 
 def get_candidates(candidates: pd.DataFrame, candidate_type=None, num: int = 4):
@@ -791,7 +792,9 @@ def process_candidates(
     candidates_pl: pl.DataFrame,  # potential candidates DataFrame
     sat_fgm: xr.DataArray,  # satellite FGM data
     data_resolution: timedelta,  # time resolution of the data
-) -> pl.DataFrame:  # processed candidates DataFrame
+) -> pl.DataFrame:
+    "Process candidates DataFrame"
+    
     test_eq(sat_fgm.shape[1], 3)
     candidates = convert_to_dataframe(candidates_pl)
 
@@ -824,21 +827,20 @@ def process_candidates(
     return ids_pl.pipe(sort_df, col="d_time")
 
 # %% ../notebooks/00_ids_finder.ipynb 45
-def ids_finder(data: pl.DataFrame, tau: float, params: dict):
+def ids_finder(data: pl.LazyFrame, tau: float, params: dict):
     tau = timedelta(seconds=tau)
     data_resolution = timedelta(seconds=params["data_resolution"])
     bcols = params["bcols"]
-    data = data.sort("time")
+    data = data.sort("time").collect()
 
     # get candidates
     indices = compute_indices(data, tau, bcols)
     sparse_num = tau / data_resolution // 3
-    candidates_pl = indices.pipe(filter_indices, sparse_num=sparse_num).pipe(
+    candidates = indices.pipe(filter_indices, sparse_num=sparse_num).pipe(
         pl_format_time, tau
-    ).pipe(convert_to_dataframe)
-    candidates = (candidates_pl)
+    )
 
-    data_c = compress_data_by_cands(data, candidates_pl, tau)
+    data_c = compress_data_by_cands(data, candidates, tau)
     sat_fgm = df2ts(data_c, bcols)
     ids = process_candidates(candidates, sat_fgm, data_resolution)
     return ids

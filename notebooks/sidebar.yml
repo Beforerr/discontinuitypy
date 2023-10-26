@@ -1,14 +1,23 @@
 website:
   sidebar:
     contents:
-      - index.ipynb
+      - index.qmd
       - 00_ids_finder.ipynb
       - 01_pipelines.ipynb
       - 10_juno.ipynb
       - 11_stereo.ipynb
       - 12_themis.ipynb
-      - 13_model.ipynb
       - 20_candidates.ipynb
       - 99_utils.ipynb
       - jno_model_comparison.html
       - jno_model_ts.html
+      - section: analysis
+        contents:
+          - analysis/01_occurence_rate.ipynb
+          - analysis/02_properties.ipynb
+          - analysis/10_classification.ipynb
+          - analysis/20_model.ipynb
+        href: analysis/index.qmd
+      - section: utils
+        contents:
+          - utils/02_analysis_utils.ipynb

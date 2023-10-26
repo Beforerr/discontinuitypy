@@ -4,7 +4,7 @@
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
 # not used but maybe useful
-sta.raw_state:
+sta.raw_state_merged:
     type: PartitionedDataset
     path: https://spdf.gsfc.nasa.gov/pub/data/stereo/ahead/l2/merged
     dataset: 

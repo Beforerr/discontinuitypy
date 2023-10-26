@@ -9,6 +9,12 @@
         kedro-viz:
             layer: raw
 
+"{sat_id}.raw_{datatype}":
+    type: MemoryDataset
+    metadata:
+        kedro-viz:
+            layer: raw
+
 "{sat_id}.inter_{datatype}_{ts}":
     type: polars.LazyPolarsDataset
     filepath: data/02_intermediate/inter_{sat_id}_{datatype}_{ts}.parquet

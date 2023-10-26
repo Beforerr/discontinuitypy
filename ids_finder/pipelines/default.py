@@ -30,14 +30,14 @@ def create_mag_data_pipeline(
     **kwargs,
 ) -> Pipeline:
     
-    node_download_data = node(
+    node_load_data = node(
         load_mag_data,
         inputs=dict(
             start="params:start_date",
             end="params:end_date",
         ),
         outputs=f"raw_mag",
-        name=f"download_{sat_id.upper()}_magnetic_field_data",
+        name=f"load_{sat_id.upper()}_magnetic_field_data",
     )
 
     node_preprocess_data = node(
@@ -66,7 +66,7 @@ def create_mag_data_pipeline(
     )
 
     nodes = [
-        node_download_data,
+        node_load_data,
         node_preprocess_data,
         node_process_data,
         node_extract_features,

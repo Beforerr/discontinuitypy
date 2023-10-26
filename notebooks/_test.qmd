@@ -4,7 +4,92 @@ format: html
 ---
 
 ```{r}
-pak::pkg_install("reticulate")
 library(reticulate)
 use_condaenv("cool_planet")
+```
+
+#### Import libraries
+
+```{python}
+from fastcore.utils import *
+from fastcore.test import *
+
+from ids_finder.utils.basic import *
+
+from datetime import timedelta
+
+import polars as pl
+import polars.selectors as cs
+import pandas as pd
+import numpy as np
+
+import seaborn as sns
+```
+
+#### `Kedro`
+
+```{python}
+from ids_finder.utils.basic import load_catalog
+
+catalog = load_catalog('')
+catalog.list()
+```
+
+```{python}
+from pydantic import BaseModel
+
+class Candidate(BaseModel):
+    class Config:
+        arbitrary_types_allowed = True
+        extra = "allow"
+    sat_id: str
+    tau: timedelta
+    ts: timedelta = 1
+    candidates: pl.DataFrame | None = None
+    data: pl.LazyFrame | None = None    # data is large, so we use `pl.LazyFrame` to save memory
+    or_df: pl.DataFrame | None = None  # occurence rate
+    or_df_normalized: pl.DataFrame | None = None # normalized occurence rate
+    def __init__(self, **data):
+        super().__init__(**data)
+        if self.candidates is None:
+            self.load_candidates()
+        if self.data is None:
+            self.load_data()
+    def load_candidates(self):
+        candidates_format = f"candidates.{self.sat_id}_tau_{self.tau.seconds}s"
+        self.candidates = catalog.load(candidates_format).with_columns(
+            cs.float().cast(pl.Float64)
+        ).collect()
+    def load_data(self):
+        data_format = f"{self.sat_id}.primary_mag_{self.ts.seconds}s"
+        self.data = concat_partitions(catalog.load(data_format))
+
+```
+
+```{python}
+sta_candidate = Candidate(sat_id="STA", tau=60, ts=1)
+jno_candidate = Candidate(sat_id="JNO", tau=60, ts=1)
+thb_candidate = Candidate(sat_id="THB", tau=60, ts=4)
+
+```
+
+```{python}
+from ids_finder.utils.basic import filter_tranges_df
+
+thb_inter_state_sw: pl.LazyFrame = catalog.load('thb.inter_state_sw')
+start, end = thb_inter_state_sw.select(['start', 'end']).collect()
+
+thb_sw_candidate = Candidate(
+    sat_id="THB", tau=60, ts=4,
+    candidates = filter_tranges_df(thb_candidate.candidates, (start, end)), 
+    data = filter_tranges_df(thb_candidate.data.collect(), (start, end)).lazy()
+)
+```
+
+```{python}
+sta_candidate.data
+```
+
+```{r}
+a = py$thb_candidate
 ```

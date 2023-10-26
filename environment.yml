@@ -1,5 +1,3 @@
-# mamba env create --file environment.yml
-# mamba env update --file environment.yml
 # conda activate cool_planet
 name: cool_planet
 channels:
@@ -28,10 +26,9 @@ dependencies:
   - poliastro
   - solarmach
 
-  - jupyter
+  - ipykernel
   - fastai::nbdev
   - fastai::fastcore
-  # - fastai::fastdownload
 
   - pyviz::hvplot
   - nodejs # required for hvplot
@@ -63,5 +60,4 @@ dependencies:
     - xarray-einstats
     - nltk
     - humanize
-    - rpy2
-    - rpy2-arrow
+    - scienceplots

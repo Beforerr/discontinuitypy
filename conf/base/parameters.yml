@@ -18,21 +18,27 @@ sta.extract_params:
 thb.mag:
   coords: 'gse'
 
+jno.mag:
+  coords: 'rtn'
+
+sta.mag:
+  coords: 'rtn'
+
 thb.extract_params:
   bcols: ["b_gse_x", "b_gse_y", "b_gse_z"]
   data_resolution: 4
 
 omni_vars:
   "N":
-    COLNAME: "sw_density"
+    COLNAME: "plasma_density"
     FIELDNAM: "Ion density"
     UNITS: "Per cc"
   "T":
-    COLNAME: "sw_temperature"
+    COLNAME: "plasma_temperature"
     FIELDNAM: "Plasma temperature"
     UNITS: "K"
   "V":
-    COLNAME: "sw_speed"
+    COLNAME: "plasma_speed"
     FIELDNAM: "Flow speed"
     UNITS: "km/s"
   "THETA-V":
