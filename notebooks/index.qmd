@@ -9,11 +9,13 @@ author:
   - name: Zesen Huang
 output-file: index.html
 bibliography: references.bib
+execute: 
+  eval: false
 ---
 
 ## Install
 
-```sh
+```{shell}
 pip install ids-finder
 ```
 
@@ -21,14 +23,14 @@ pip install ids-finder
 
 Import the package
 
-```python
+```{python}
 from ids_finder.utils.basic import *
 from ids_finder.core import *
 ```
 
 ## Background
 
-'Discontinuities' are discontinuous spatial changes in plasmas parameters/characteristics and magnetic ﬁelds.
+'Discontinuities' are discontinuous spatial changes in plasma parameters/characteristics and magnetic fields[@colburn1966].
 
 ### Importance
 
@@ -90,10 +92,10 @@ We are using [Michigan Solar WInd Model 2D (MSWIM2D)](http://csem.engin.umich.ed
 
 Some key points about the model
 
-- Representing the solar wind in the ecliptic plane from 1 to 75 au
-- 2D MHD model, using the BATSRUS MHD solver
-- Inclusion of neutral hydrogen (important for the outer heliosphere)
-- Inner boundary is filled by time-shifting in situ data from multiple spacecraft
+-   Representing the solar wind in the ecliptic plane from 1 to 75 au
+-   2D MHD model, using the BATSRUS MHD solver
+-   Inclusion of neutral hydrogen (important for the outer heliosphere)
+-   Inner boundary is filled by time-shifting in situ data from multiple spacecraft
 
 For model validation part, please see [JUNO Model Report](./analysis/20_model.ipynb).
 
@@ -150,12 +152,12 @@ As we are dealing with multiple spacecraft, we need to be careful about naming c
 
 Notes: we recommend use unique names for each variable, for example, `plasma_speed` instead of `speed`. Because it is easier to search and replace the variable names in the code whenever necessary.
 
-For the dataframe unit, we use
+For the unit, by default we use
 
 -   length : $km$
 -   time : $s$
 -   magnetic field : $nT$
--   current : $A/m^2$
+-   current : $nA/m^2$
 
 ## Optimizations
 
