@@ -13,11 +13,11 @@ website:
       - jno_model_ts.html
       - section: analysis
         contents:
-          - analysis/index.qmd
           - analysis/01_occurence_rate.ipynb
           - analysis/02_properties.ipynb
           - analysis/10_classification.ipynb
           - analysis/20_model.ipynb
+        href: analysis/index.qmd
       - section: utils
         contents:
           - utils/02_analysis_utils.ipynb

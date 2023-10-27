@@ -829,21 +829,22 @@ def process_candidates(
 # %% ../notebooks/00_ids_finder.ipynb 45
 def ids_finder(data: pl.LazyFrame, tau: float, params: dict):
     tau = timedelta(seconds=tau)
-    data_resolution = timedelta(seconds=params["data_resolution"])
-    bcols = params["bcols"]
+    ts = timedelta(seconds=params["time_resolution"])
+    bcols = params.get("bcols", ["B_x", "B_y", "B_z"])
     data = data.sort("time").collect()
 
     # get candidates
     indices = compute_indices(data, tau, bcols)
-    sparse_num = tau / data_resolution // 3
+    sparse_num = tau / ts // 3
     candidates = indices.pipe(filter_indices, sparse_num=sparse_num).pipe(
         pl_format_time, tau
     )
 
     data_c = compress_data_by_cands(data, candidates, tau)
     sat_fgm = df2ts(data_c, bcols)
-    ids = process_candidates(candidates, sat_fgm, data_resolution)
+    ids = process_candidates(candidates, sat_fgm, ts)
     return ids
+
 
 def extract_features(
     partitioned_input: Dict[str, Callable], tau: float, params

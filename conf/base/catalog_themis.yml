@@ -3,6 +3,16 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
+"thb.inter_mag_{datatype}":
+    type: CachedDataset
+    dataset:
+        type: polars.LazyPolarsDataset
+        filepath: data/02_intermediate/inter_thb_mag_{datatype}.parquet
+        file_format: parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate
+
 thb.raw_state_sw:
     type: pandas.CSVDataset 
     filepath: https://omniweb.gsfc.nasa.gov/ftpbrowser/themis_b_sw.txt

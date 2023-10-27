@@ -7,9 +7,11 @@ env-create:
   # pip install -e .
 
 kedro-run-candidates:
-  kedro run --to-outputs=candidates.sta_tau_60s --from-inputs=sta.feature_tau_60s
-  kedro run --to-outputs=candidates.jno_tau_60s --from-inputs=jno.feature_tau_60s
-  kedro run --to-outputs=candidates.thb_tau_60s --from-inputs=thb.feature_tau_60s
+  # kedro run --to-outputs=candidates.sta_tau_60s --from-inputs=sta.feature_tau_60s
+  # kedro run --to-outputs=candidates.jno_tau_60s --from-inputs=jno.feature_tau_60s
+  # kedro run --to-outputs=candidates.thb_tau_60s --from-inputs=thb.feature_tau_60s
+  kedro run --to-outputs=candidates.thb_ts_1s_tau_60s --from-inputs=thb.feature_ts_1s_tau_60s
+
 
 kedro-run-primary_states:
   kedro run --to-outputs=sta.primary_state_1h 

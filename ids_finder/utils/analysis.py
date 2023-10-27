@@ -13,4 +13,4 @@ def link_coord2dim(df: pl.DataFrame, dim="time", coord: str = "radial_distance")
     Note: this idea is borrowed from the `xarray.DataArray.coords`.
     """
     base_df = df.filter(sat="JNO").select(dim, coord).rename({coord: f"ref_{coord}"})
-    return df.join(base_df, on=dim)
+    return df.join(base_df, on=dim, how="left")

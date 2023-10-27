@@ -25,10 +25,12 @@ def extract_features():
 # %% ../../notebooks/01_pipelines.ipynb 13
 def create_mag_data_pipeline(
     sat_id: str,  # satellite id, used for namespace
-    ts: str = '1s',  # time resolution,
+    ts: int = 1,  # time resolution,
     tau: str = '60s',  # time window
     **kwargs,
 ) -> Pipeline:
+    
+    ts_str = f"ts_{ts}s"
     
     node_load_data = node(
         load_mag_data,
@@ -47,20 +49,20 @@ def create_mag_data_pipeline(
             start="params:start_date",
             end="params:end_date",
         ),
-        outputs=f"inter_mag_{ts}",
+        outputs=f"inter_mag_{ts_str}",
         name=f"preprocess_{sat_id.upper()}_magnetic_field_data",
     )
 
     node_process_data = node(
         process_mag_data,
-        inputs=f"inter_mag_{ts}",
-        outputs=f"primary_mag_{ts}",
+        inputs=f"inter_mag_{ts_str}",
+        outputs=f"primary_mag_{ts_str}",
         name=f"process_{sat_id.upper()}_magnetic_field_data",
     )
 
     node_extract_features = node(
         extract_features,
-        inputs=[f"primary_mag_{ts}", "params:tau", "params:extract_params"],
+        inputs=[f"primary_mag_{ts_str}", "params:tau", "params:extract_params"],
         outputs=f"feature_tau_{tau}",
         name=f"extract_{sat_id}_features",
     )

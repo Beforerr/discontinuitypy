@@ -15,8 +15,11 @@ sta.extract_params:
   bcols: ["BX", "BY", "BZ"]
   data_resolution: 1
 
-thb.mag:
-  coords: 'gse'
+thb:
+  mag:
+    bcols: ['B_x', 'B_y', 'B_z']
+    time_resolution: 1
+    coords: 'gse'
 
 jno.mag:
   coords: 'rtn'

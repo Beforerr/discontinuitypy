@@ -3,21 +3,21 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-"{sat_id}.raw_{datatype}_files":
+"{sat_id}.raw_{instrument}_files":
     type: MemoryDataset
     metadata:
         kedro-viz:
             layer: raw
 
-"{sat_id}.raw_{datatype}":
+"{sat_id}.raw_{instrument}":
     type: MemoryDataset
     metadata:
         kedro-viz:
             layer: raw
 
-"{sat_id}.inter_{datatype}_{ts}":
+"{sat_id}.inter_{instrument}_{ts}":
     type: polars.LazyPolarsDataset
-    filepath: data/02_intermediate/inter_{sat_id}_{datatype}_{ts}.parquet
+    filepath: data/02_intermediate/inter_{sat_id}_{instrument}_{ts}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
@@ -42,18 +42,17 @@
         kedro-viz:
             layer: primary
 
-"{sat_id}.feature_tau_{tau}":
+"{sat_id}.feature_{tau}":
     type: polars.LazyPolarsDataset
-    filepath: data/04_feature/features_{sat_id}_tau_{tau}.parquet
+    filepath: data/04_feature/features_{sat_id}_{tau}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
             layer: feature
 
-# Note: to be depreciated
-"{sat_id}.candidates_{name}":
+"{sat_id}.feature_{ts}_{tau}":
     type: polars.LazyPolarsDataset
-    filepath: data/04_feature/candidates_{sat_id}_{name}.parquet
+    filepath: data/04_feature/features_{sat_id}_{ts}_{tau}.parquet
     file_format: parquet
     metadata:
         kedro-viz:

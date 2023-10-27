@@ -47,7 +47,7 @@ Studying the radial distribution of occurrence rate, as well as the properties o
     -   Generated at or near the sun?
     -   Locally generated in the interplanetary space by turbulence?
 
-JUNO mission really provides a unique opportunity!!!
+Joint observations of JUNO & ARTEMIS & Other missions really provides a unique opportunity!!!
 
 -   Five-year cruise to Jupiter from 2011 to 2016
 -   One earth flyby in 2013
@@ -57,9 +57,11 @@ To eliminate the effect of the solar wind structure, we use data from other miss
 
 | Mission  | r \[AU\] | $\delta t_B$ | $\delta t_{plasma}$                  | Data availability      |
 |---------------|---------------|---------------|---------------|---------------|
-| JUNO     | 1-5.5    | 1s           | 1h **model** [\*](#solar-wind-model) | 2011-2016              |
-| ARTEMIS  | 1        | 4s           | 1h OMNI                              | 2011-2016 (solar wind) |
-| STEREO-A | 1        | 1s           | 1h averaged                          | 2011-2016              |
+| JUNO     | 1-5.5  | 1s                | 1h **model** [\*](#solar-wind-model)  | 2011 - 2016   |
+| ARTEMIS  | 1      | 1s averaged, 4s   | 1h averaged   | 2009 - Today (solar wind) |
+| STEREO-A | 1      | 1s                | 1h averaged   | 2006 - Today   |
+| STEREO-B | 1      | 1s                | 1h averaged   | 2006 - 2016.09    |
+
 
 ## Methods
 
@@ -131,7 +133,7 @@ As we are dealing with multiple spacecraft, we need to be careful about naming c
 
 -   `plasma_temperature`: plasma temperature, in units of $K$
 
--   `b_{x,y,z}`: magnetic field in *ANY* coordinate system
+-   `B_{x,y,z}`: magnetic field in *ANY* coordinate system
 
     -   `b_rtn_{x,y,z}` or `b_{r,t,n}`: magnetic field in the RTN coordinate system
     -   `b_gse_{x,y,z}`: magnetic field in the GSE coordinate system
@@ -177,6 +179,7 @@ Science part
     -   [ ] Check Datagap
     -   [ ] Check `ARTEMIS-B` data in different states (solar wind, magnetosheath, magnetotail, moon wake)
     -   [ ] Distribution of \|B\| over radius
+    - [ ] JUNO from 2012-09~2012-10 lack of IDS and extreme large thickness
 -   Identifaction
     -   [ ] Ensemble forest?
     -   [ ] Smoothing is important?
