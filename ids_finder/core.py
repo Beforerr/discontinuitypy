@@ -4,7 +4,7 @@
 __all__ = ['THRESHOLD_RATIO', 'pl_format_time', 'pl_dvec', 'compute_std', 'compute_combinded_std', 'compute_index_std',
            'compute_index_diff', 'compute_indices', 'get_candidate_data', 'get_candidates', 'calc_duration',
            'calc_d_duration', 'find_start_end_times', 'get_time_from_condition', 'calc_candidate_duration',
-           'calc_candidate_d_duration', 'calibrate_candidate_duration', 'minvar', 'mva_features', 'calc_rotation_angle',
+           'calibrate_candidate_duration', 'minvar', 'mva_features', 'calc_rotation_angle',
            'calc_candidate_rotation_angle', 'filter_indices', 'calc_candidate_mva_features', 'convert_to_dataframe',
            'IDsPipeline', 'compress_data_by_cands', 'sort_df', 'process_candidates', 'ids_finder', 'extract_features']
 
@@ -365,7 +365,7 @@ def calc_d_duration(vec: xr.DataArray, d_time, threshold) -> pd.Series:
         'd_tstop': end_time,
     })
  
-def find_start_end_times(vec_diff_mag: xr.DataArray, d_time, threshold) -> Tuple[pd.Timestamp, pd.Timestamp]:
+def find_start_end_times(vec_diff_mag: xr.DataArray, d_time, threshold) -> tuple[pd.Timestamp, pd.Timestamp]:
     # Determine start time
     pre_vec_mag = vec_diff_mag.sel(time=slice(None, d_time))
     start_time = get_time_from_condition(pre_vec_mag, threshold, "last_below")
@@ -403,22 +403,7 @@ def calc_candidate_duration(candidate: pd.Series, data) -> pd.Series:
         print(f"Error for candidate {candidate} at {candidate['time']}: {str(e)}")
         raise e
 
-def calc_candidate_d_duration(candidate, data) -> pd.Series:
-    try:
-        if pd.isnull(candidate['d_tstart']) or pd.isnull(candidate['d_tstop']):
-            candidate_data = get_candidate_data(candidate, data, neighbor=1)
-            d_time = candidate['d_time']
-            threshold = candidate['threshold']
-            return calc_d_duration(candidate_data, d_time, threshold)
-        else:
-            return pandas.Series({
-                'd_tstart': candidate['d_tstart'],
-                'd_tstop': candidate['d_tstop'],
-            })
-    except Exception as e:
-        # logger.debug(f"Error for candidate {candidate} at {candidate['time']}: {str(e)}")
-        print(f"Error for candidate {candidate} at {candidate['time']}: {str(e)}")
-        raise e
+
 
 # %% ../notebooks/00_ids_finder.ipynb 24
 def calibrate_candidate_duration(
@@ -721,41 +706,33 @@ def convert_to_dataframe(
 class IDsPipeline:
     def __init__(self):
         pass
-    # fmt: off
+
     def calc_duration(self, sat_fgm: xr.DataArray):
-        return pdp.PdPipeline([
-            pdp.ApplyToRows(
-                lambda candidate: calc_candidate_duration(candidate, sat_fgm),
-                func_desc="calculating duration parameters"
-            ),
-            pdp.ApplyToRows(
-                lambda candidate: calc_candidate_d_duration(candidate, sat_fgm),
-                func_desc="calculating duration parameters if needed"
-            )
-        ])
+        return pdp.ApplyToRows(
+            lambda candidate: calc_candidate_duration(candidate, sat_fgm),
+            func_desc="calculating duration parameters",
+        )
 
     def calibrate_duration(self, sat_fgm, data_resolution):
-        return \
-            pdp.ApplyToRows(
-                lambda candidate: calibrate_candidate_duration(candidate, sat_fgm, data_resolution),
-                func_desc="calibrating duration parameters if needed"
-            )
+        return pdp.ApplyToRows(
+            lambda candidate: calibrate_candidate_duration(
+                candidate, sat_fgm, data_resolution
+            ),
+            func_desc="calibrating duration parameters if needed",
+        )
 
     def calc_mva_features(self, sat_fgm):
-        return pdp.PdPipeline([
-            pdp.ApplyToRows(
-                lambda candidate: calc_candidate_mva_features(candidate, sat_fgm),
-                func_desc='calculating index "q_mva", "BnOverB" and "dBOverB"'
-            ),
-        ])
-    
+        return pdp.ApplyToRows(
+            lambda candidate: calc_candidate_mva_features(candidate, sat_fgm),
+            func_desc='calculating index "q_mva", "BnOverB" and "dBOverB"',
+        )
+
     def calc_rotation_angle(self, sat_fgm):
-        return \
-            pdp.ColByFrameFunc(
-                "rotation_angle",
-                lambda df: calc_candidate_rotation_angle(df, sat_fgm),
-                func_desc="calculating rotation angle",
-            ) 
+        return pdp.ColByFrameFunc(
+            "rotation_angle",
+            lambda df: calc_candidate_rotation_angle(df, sat_fgm),
+            func_desc="calculating rotation angle",
+        )
 
 # %% ../notebooks/00_ids_finder.ipynb 42
 def compress_data_by_cands(
@@ -795,7 +772,6 @@ def process_candidates(
 ) -> pl.DataFrame:
     "Process candidates DataFrame"
     
-    test_eq(sat_fgm.shape[1], 3)
     candidates = convert_to_dataframe(candidates_pl)
 
     id_pipelines = IDsPipeline()

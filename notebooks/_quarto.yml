@@ -6,6 +6,7 @@ project:
 format:
   html:
     theme: cosmo
+    code-fold: true
     toc: true
 
 website:
@@ -29,6 +30,8 @@ website:
     style: floating
     contents:
       - auto: "/*.ipynb"
+      - section: Missions
+        contents: missions/*
       - section: Analysis
         contents: analysis/*
 

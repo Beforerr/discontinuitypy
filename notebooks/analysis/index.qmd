@@ -45,3 +45,21 @@ Thickness with time and radial distance
 
 Current density with time and radial distance
 :::
+
+
+
+::: {#fig-current layout-ncol=2}
+![](../figures/thickness_r_dist)
+
+![](../figures/thickness_N1_r_dist)
+
+Thickness distribution with radial distance
+:::
+
+::: {#fig-current layout-ncol=2}
+![](../figures/current_r_dist)
+
+![](../figures/current_N1_r_dist)
+
+Current distribution with radial distance
+:::

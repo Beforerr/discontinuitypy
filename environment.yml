@@ -46,10 +46,10 @@ dependencies:
   - pip:
     - pipe
     - polars
-    - pyspedas @ git+https://github.com/Beforerr/pyspedas
+    - pyspedas@git+https://github.com/Beforerr/pyspedas
     - pytplot-mpl-temp@git+https://github.com/Beforerr/PyTplot@matplotlib-backend
     - pycdfpp # fast CDF reader
-    - kedro-datasets @ git+https://github.com/MatthiasRoels/kedro-plugins@feat/datasets-add-polars-lazy-dataset#subdirectory=kedro-datasets
+    - kedro-datasets@git+https://github.com/MatthiasRoels/kedro-plugins@feat/datasets-add-polars-lazy-dataset#subdirectory=kedro-datasets
     # - tsflex @ git+https://github.com/predict-idlab/tsflex
     - pooch # A friend to fetch your Python data files
     - modin[ray]

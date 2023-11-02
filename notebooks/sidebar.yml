@@ -4,9 +4,6 @@ website:
       - index.qmd
       - 00_ids_finder.ipynb
       - 01_pipelines.ipynb
-      - 10_juno.ipynb
-      - 11_stereo.ipynb
-      - 12_themis.ipynb
       - 20_candidates.ipynb
       - 99_utils.ipynb
       - jno_model_comparison.html
@@ -18,6 +15,14 @@ website:
           - analysis/10_classification.ipynb
           - analysis/20_model.ipynb
         href: analysis/index.qmd
+      - section: missions
+        contents:
+          - missions/01_juno.ipynb
+          - missions/02_stereo.ipynb
+          - missions/03_themis.ipynb
+          - missions/04_wind.ipynb
+        href: missions/index.qmd
       - section: utils
         contents:
+          - utils/01_plotting.ipynb
           - utils/02_analysis_utils.ipynb

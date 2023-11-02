@@ -181,7 +181,8 @@ class IDsDataset(BaseModel):
         _data = self.data.filter(
             pl.col("time").is_between(candidate["tstart"], candidate["tstop"])
         )
-        sat_fgm = df2ts(_data, [ 'B_x', 'B_y', 'B_z'] )
+        bcols = ["B_x", "B_y", "B_z"] if "B_x" in _data.columns else ["BX", "BY", "BZ"]
+        sat_fgm = df2ts(_data, bcols)
         plot_candidate(candidate, sat_fgm)
         pass
 

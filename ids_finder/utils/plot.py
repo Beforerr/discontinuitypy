@@ -6,16 +6,25 @@ __all__ = ['time_stamp', 'setup_mva_plot', 'plot_candidate']
 # %% ../../notebooks/utils/01_plotting.ipynb 2
 import xarray as xr
 import pandas as pd
-from .basic import calc_vec_mag
+from datetime import timedelta, datetime
+
 from pyspedas.cotrans.minvar_matrix_make import minvar_matrix_make
 from pyspedas import tvector_rotate
 from pyspedas.analysis.tvectot import tvectot
-from pytplot import timebar, store_data, tplot, split_vec, join_vec, tplot_options, options, highlight, degap
-import pytplot
 
-from datetime import timedelta, datetime
+from pytplot import tplot
+from pytplot import store_data, get_data, split_vec, join_vec
+from pytplot import timebar, highlight, degap, options
+
 
 # %% ../../notebooks/utils/01_plotting.ipynb 3
+import matplotlib.pyplot as plt
+import scienceplots
+from .basic import savefig
+
+plt.style.use(['science', 'nature', 'notebook'])
+
+# %% ../../notebooks/utils/01_plotting.ipynb 4
 def time_stamp(ts):
     "Return POSIX timestamp as float."
     return pd.Timestamp(ts, tz="UTC").timestamp()
@@ -40,19 +49,20 @@ def setup_mva_plot(
     temp_b = data.sel(time=slice(tstart, tstop))
     store_data("fgm", data={"x": temp_b.time, "y": temp_b})
     tvar_rot = tvector_rotate("fgm_mva_mat", "fgm")[0]
-    print(tvar_rot)
     tvar = tvectot(tvar_rot, join_component=True)
 
     options(tvar, "legend_names", [r"$B_l$", r"$B_m$", r"$B_n$", r"$B_{total}$"])
     options(tvar, "ysubtitle", "[nT LMN]")
+    
+    options(tvar, "thick", 2)
+    options(tvar, "char_size", 16)
     tstart_ts = time_stamp(tstart)
     tstop_ts = time_stamp(tstop)
-    print(tvar)
     highlight(tvar, [tstart_ts, tstop_ts])
     degap(tvar)
     return tvar
 
-# %% ../../notebooks/utils/01_plotting.ipynb 5
+# %% ../../notebooks/utils/01_plotting.ipynb 6
 def plot_candidate(candidate: dict, sat_fgm: xr.DataArray):
     if pd.notnull(candidate.get("d_tstart")) and pd.notnull(candidate.get("d_tstop")):
         tvar = setup_mva_plot(

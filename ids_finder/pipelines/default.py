@@ -12,7 +12,7 @@ def process_mag_data(
     """
     Corresponding to primary data layer, where source data models are transformed into domain data models
 
-    - Transforming data to RTN (Radial-Tangential-Normal) coordinate system
+    - Transforming coordinate system if needed
     - Smoothing data
     - Resampling data to a given time resolution
     - Partitioning data, for the sake of memory
