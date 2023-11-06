@@ -63,3 +63,20 @@ Thickness distribution with radial distance
 
 Current distribution with radial distance
 :::
+
+
+::: {#fig-current layout-ncol=2}
+![](../figures/thickness_N1_r_hist)
+
+![](../figures/thickness_N1_log_r_hist)
+
+<!-- Current distribution with radial distance -->
+:::
+
+::: {#fig-current layout-ncol=2}
+![](../figures/current_N1_r_hist)
+
+![](../figures/current_N1_log_r_hist)
+
+Current distribution with radial distance
+:::

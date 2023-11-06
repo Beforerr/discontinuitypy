@@ -21,6 +21,8 @@ website:
           - missions/02_stereo.ipynb
           - missions/03_themis.ipynb
           - missions/04_wind.ipynb
+          - missions/05_venus.ipynb
+          - missions/06_messenger.ipynb
         href: missions/index.qmd
       - section: utils
         contents:

@@ -63,6 +63,7 @@ To eliminate the effect of the solar wind structure, we use data from other miss
 | STEREO-B      | 1         | 1s averaged (8 Hz)  | 1h averaged                          | 2006 - 2016.09            |
 | Wind          | 1         | 11 Hz               | 1h averaged                          | 1994 - 2004 -2020 - Today |
 | Solar Orbiter | 0.28-0.91 |                     |                                      | 2020 - Today              |
+| Ulysis        |           |                     |                                      |                           |
 
 ## Methods
 
@@ -124,7 +125,7 @@ Data Level
 
 -   l0: unprocessed
 
--   l1: cleaned data
+-   l1: cleaned data, fill null value, add useful columns
 
 -   l2: time-averaged data
 
@@ -192,6 +193,7 @@ Science part
     -   [ ] Wind data
     -   [ ] Add error bar
     -   [ ] Validate the effects of calibrate candidate duration
+    -   [ ] Validate model density with `Voyager`
 -   Identifaction
     -   [ ] Ensemble forest?
     -   [ ] Smoothing is important?
