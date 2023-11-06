@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Zijin Zhang">
+<meta name="author" content="Anton Artemyev">
+<meta name="author" content="Vassilis Angelopoulos">
+<meta name="author" content="Shi Chen">
+<meta name="author" content="Zesen Huang">
+
+<title>ids-finder - Discontinuities? Yes!</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="ids-finder - Discontinuities? Yes!">
+<meta property="og:description" content="All statistics are wrong, but some may be useful:)">
+<meta property="og:site-name" content="ids-finder">
+<meta name="twitter:title" content="ids-finder - Discontinuities? Yes!">
+<meta name="twitter:description" content="All statistics are wrong, but some may be useful:)">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">ids-finder</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./analysis/index.html" rel="" target="">
+ <span class="menu-text">Results</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Beforerr/ids_finder" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Discontinuities? Yes!</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_ids_finder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding magnetic discontinuities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_pipelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pipelines</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_candidates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/juno.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Juno</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/stereo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from STEREO</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/artemis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from ARTHEMIS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Wind</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/venus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Venus Express</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/messenger.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Messenger</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./analysis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis/or.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SWD Occurence Rate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis/properties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SWD Properties</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis/10_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis/20_model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
+  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a>
+  <ul class="collapse">
+  <li><a href="#importance" id="toc-importance" class="nav-link" data-scroll-target="#importance">Importance</a></li>
+  <li><a href="#motivations" id="toc-motivations" class="nav-link" data-scroll-target="#motivations">Motivations</a></li>
+  </ul></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#id-identification-limited-feature-extraction-anomaly-detection" id="toc-id-identification-limited-feature-extraction-anomaly-detection" class="nav-link" data-scroll-target="#id-identification-limited-feature-extraction-anomaly-detection">ID identification (limited feature extraction / anomaly detection)</a></li>
+  <li><a href="#solar-wind-model" id="toc-solar-wind-model" class="nav-link" data-scroll-target="#solar-wind-model">Solar Wind Model</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#conventions" id="toc-conventions" class="nav-link" data-scroll-target="#conventions">Conventions</a>
+  <ul class="collapse">
+  <li><a href="#columns-naming-conventions" id="toc-columns-naming-conventions" class="nav-link" data-scroll-target="#columns-naming-conventions">Columns naming conventions</a></li>
+  </ul></li>
+  <li><a href="#todos" id="toc-todos" class="nav-link" data-scroll-target="#todos">TODOs</a>
+  <ul class="collapse">
+  <li><a href="#bugs" id="toc-bugs" class="nav-link" data-scroll-target="#bugs">bugs</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Discontinuities? Yes!</h1>
+<p class="subtitle lead">All statistics are wrong, but some may be useful:)</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zijin Zhang </p>
+             <p>Anton Artemyev </p>
+             <p>Vassilis Angelopoulos </p>
+             <p>Shi Chen </p>
+             <p>Zesen Huang </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">Install</h2>
+<pre class="{shell}"><code>pip install ids-finder</code></pre>
+</section>
+<section id="how-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
+<p>Import the package</p>
+<div class="cell" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ids_finder.utils.basic <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ids_finder.core <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>‘Discontinuities’ are discontinuous spatial changes in plasma parameters/characteristics and magnetic fields<span class="citation" data-cites="colburn1966">(<a href="#ref-colburn1966" role="doc-biblioref">Colburn and Sonett 1966</a>)</span>.</p>
+<section id="importance" class="level3">
+<h3 class="anchored" data-anchor-id="importance">Importance</h3>
+<ul>
+<li><p>Contribution of Strong Discontinuities to the Power Spectrum</p>
+<blockquote class="blockquote">
+<p>The strong discontinuities produce a power-law spectrum in the ‘inertial subrange’ with a spectral index near the Kolmogorov -5/3 index. The discontinuity spectrum contains about half of the power of the full solar-wind magnetic ﬁeld over this ‘inertial subrange’. <span class="citation" data-cites="borovsky2010">(<a href="#ref-borovsky2010" role="doc-biblioref">Borovsky 2010</a>)</span></p>
+</blockquote></li>
+</ul>
+</section>
+<section id="motivations" class="level3">
+<h3 class="anchored" data-anchor-id="motivations">Motivations</h3>
+<p>Studying the radial distribution of occurrence rate, as well as the properties of solar wind discontinuities may help answer the following questions:</p>
+<ul>
+<li>How does the discontinuities change with the radial distance from the Sun?</li>
+<li>How is solar wind discontinuities formed? What is the physical mechanisms?
+<ul>
+<li>Generated at or near the sun?</li>
+<li>Locally generated in the interplanetary space by turbulence?</li>
+</ul></li>
+</ul>
+<p>Joint observations of JUNO &amp; ARTEMIS &amp; Other missions really provides a unique opportunity!!!</p>
+<ul>
+<li>Five-year cruise to Jupiter from 2011 to 2016</li>
+<li>One earth flyby in 2013</li>
+<li>Nearly the same Heliographic latitude as Earth</li>
+</ul>
+<p>To eliminate the effect of the solar wind structure, we use data from other missions (mainly at 1AU) to provide a way of normalization.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Mission</th>
+<th>r [AU]</th>
+<th><span class="math inline">\(\delta t_B\)</span></th>
+<th><span class="math inline">\(\delta t_{plasma}\)</span></th>
+<th>Data availability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JUNO</td>
+<td>1-5.5</td>
+<td>1s averaged (64 Hz)</td>
+<td>1h <strong>model</strong> <a href="#solar-wind-model">*</a></td>
+<td><strong>2011 - 2016</strong> - Today</td>
+</tr>
+<tr class="even">
+<td>ARTEMIS</td>
+<td>1</td>
+<td>1s averaged (8 Hz)</td>
+<td>1h averaged</td>
+<td>2009 - Today (solar wind)</td>
+</tr>
+<tr class="odd">
+<td>STEREO-A</td>
+<td>1</td>
+<td>1s averaged (8 Hz)</td>
+<td>1h averaged</td>
+<td>2006 - Today</td>
+</tr>
+<tr class="even">
+<td>STEREO-B</td>
+<td>1</td>
+<td>1s averaged (8 Hz)</td>
+<td>1h averaged</td>
+<td>2006 - 2016.09</td>
+</tr>
+<tr class="odd">
+<td>Wind</td>
+<td>1</td>
+<td>11 Hz</td>
+<td>1h averaged</td>
+<td>1994 - 2004 -2020 - Today</td>
+</tr>
+<tr class="even">
+<td>Solar Orbiter</td>
+<td>0.28-0.91</td>
+<td></td>
+<td></td>
+<td>2020 - Today</td>
+</tr>
+<tr class="odd">
+<td>Ulysis</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>Traditional methods for ID identiﬁcation, such as the criteria of</p>
+<ul>
+<li>Burlaga &amp; Ness (1969; B-criterion) : a directional change of the magnetic ﬁeld larger than 30° during 60 s</li>
+<li>Tsurutani &amp; Smith (1979; TS-criterion) : <span class="math inline">\(|ΔB|/|B| \geq 0.5\)</span> within 3 minutes</li>
+</ul>
+<p>Mostly rely on magnetic ﬁeld variations with a certain time lag. B-criterion has, as its main condition.</p>
+<p>In their methods, the IDs below the thresholds are artiﬁcially abandoned. Therefore, identiﬁcation criteria may affect the statistical results, and there is likely to be a discrepancy between the ﬁndings via B-criterion and TS- criterion.</p>
+<section id="id-identification-limited-feature-extraction-anomaly-detection" class="level3">
+<h3 class="anchored" data-anchor-id="id-identification-limited-feature-extraction-anomaly-detection">ID identification (limited feature extraction / anomaly detection)</h3>
+<p>Liu’s method : The first two conditions guarantee that the field changes of the IDs identiﬁed are large enough to be distinguished from the stochastic fluctuations on magnetic fields, while the third is a supplementary condition to reduce the uncertainty of recognition.</p>
+<p><span class="math display">\[ \textrm{Index}_1 = \frac{\sigma(\vec{B})}{Max(\sigma(\vec{B}_-),\sigma(\vec{B}_+))} \]</span></p>
+<p><span class="math display">\[ \textrm{Index}_2 = \frac{\sigma(\vec{B}_- + \vec{B}_+)} {\sigma(\vec{B}_-) + \sigma(\vec{B}_+)} \]</span></p>
+<p><span class="math display">\[ \textrm{Index}_3 = \frac{| \Delta \vec{B} |}{|B_{bg}|} \]</span></p>
+<p><span class="math display">\[ \textrm{Index}_1 \ge 2, \textrm{Index}_2 \ge 1, \textrm{Index}_3 \ge 0.1 \]</span></p>
+</section>
+<section id="solar-wind-model" class="level3">
+<h3 class="anchored" data-anchor-id="solar-wind-model">Solar Wind Model</h3>
+<p>Sadly, JUNO does not provide plasma data during the cruise phase, so to estimate the plasma state we will use MHD model.</p>
+<p>We are using <a href="http://csem.engin.umich.edu/MSWIM2D/">Michigan Solar WInd Model 2D (MSWIM2D)</a>, which models the solar wind propagation in 2D using the BATSRUS MHD solver. <span class="citation" data-cites="keebler2022">(<a href="#ref-keebler2022" role="doc-biblioref">Keebler et al. 2022</a>)</span></p>
+<p>Some key points about the model</p>
+<ul>
+<li>Representing the solar wind in the ecliptic plane from 1 to 75 AU</li>
+<li>2D MHD model, using the BATSRUS MHD solver</li>
+<li>Inclusion of neutral hydrogen (important for the outer heliosphere)</li>
+<li>Inner boundary is filled by time-shifting in situ data from multiple spacecraft</li>
+</ul>
+<p>For model validation part, please see <a href="./analysis/20_model.html">JUNO Model Report</a>.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<ul>
+<li>We have collected 5 years of solar wind discontinuities from JUNO, ARTEMIS and STEREO.</li>
+<li>We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable)</li>
+<li>The normalized occurrence rate of IDs drops with the radial distance from the Sun, following <span class="math inline">\(1/r\)</span> law.</li>
+<li>The thickness of IDs increases with the radial distance from the Sun, but after normalization to ion inertial length, the thickness of IDs decreases.</li>
+<li>The current intensity of IDs decrease with the radial distance from the Sun, but after normalization to the Alfven current , the current intensity of IDs increases.</li>
+</ul>
+</section>
+<section id="conventions" class="level2">
+<h2 class="anchored" data-anchor-id="conventions">Conventions</h2>
+<p>As we are dealing with multiple spacecraft, we need to be careful about naming conventions. Here are the conventions we use in this project.</p>
+<ul>
+<li><code>sat_id</code>: name of the spacecraft. We also use abbreviation, for example
+<ul>
+<li><code>sta</code> for <code>STEREO-A</code></li>
+<li><code>thb</code> for <code>ARTEMIS-B</code></li>
+</ul></li>
+<li><code>sat_state</code>: state data of the spacecraft</li>
+<li><code>b_vl</code>: maximum variance vector of the magnetic field, (major eigenvector)</li>
+</ul>
+<p>Data Level</p>
+<ul>
+<li><p>l0: unprocessed</p></li>
+<li><p>l1: cleaned data, fill null value, add useful columns</p></li>
+<li><p>l2: time-averaged data</p></li>
+</ul>
+<section id="columns-naming-conventions" class="level3">
+<h3 class="anchored" data-anchor-id="columns-naming-conventions">Columns naming conventions</h3>
+<ul>
+<li><p><code>radial_distance</code>: radial distance of the spacecraft, in units of <span class="math inline">\(AU\)</span></p></li>
+<li><p><code>plasma_speed</code>: solar wind plasma speed, in units of <span class="math inline">\(km/s\)</span></p></li>
+<li><p><code>sw_elevation</code>: solar wind elevation angle, in units of <span class="math inline">\(\degree\)</span></p></li>
+<li><p><code>sw_azimuth</code>: solar wind azimuth angle, in units of <span class="math inline">\(\degree\)</span></p></li>
+<li><p><code>v_{x,y,z}</code> or <code>sw_vel_{X,Y,Z}</code>: solar wind plasma speed in the <em>ANY</em> coordinate system, in units of <span class="math inline">\(km/s\)</span></p>
+<ul>
+<li><code>sw_vel_{r,t,n}</code>: solar wind plasma speed in the RTN coordinate system, in units of <span class="math inline">\(km/s\)</span></li>
+<li><code>sw_vel_gse_{x,y,z}</code>: solar wind plasma speed in the GSE coordinate system, in units of <span class="math inline">\(km/s\)</span></li>
+<li><code>sw_vel_lmn_{x,y,z}</code>: solar wind plasma speed in the LMN coordinate system, in units of <span class="math inline">\(km/s\)</span>
+<ul>
+<li><code>v_l</code> or <code>sw_vel_l</code>: abbreviation for <code>sw_vel_lmn_1</code></li>
+<li><code>v_mn</code> or <code>sw_vel_mn</code> (deprecated)</li>
+</ul></li>
+</ul></li>
+<li><p><code>plasma_density</code>: plasma density, in units of <span class="math inline">\(1/cm^{3}\)</span></p></li>
+<li><p><code>plasma_temperature</code>: plasma temperature, in units of <span class="math inline">\(K\)</span></p></li>
+<li><p><code>B_{x,y,z}</code>: magnetic field in <em>ANY</em> coordinate system</p>
+<ul>
+<li><code>b_rtn_{x,y,z}</code> or <code>b_{r,t,n}</code>: magnetic field in the RTN coordinate system</li>
+<li><code>b_gse_{x,y,z}</code>: magnetic field in the GSE coordinate system</li>
+</ul></li>
+<li><p><code>B_mag</code>: magnetic field magnitude</p></li>
+<li><p><code>Vl_{x,y,z}</code> or <code>b_vecL_{X,Y,Z}</code>: maxium variance vector of the magnetic field in <em>ANY</em> coordinate system</p>
+<ul>
+<li><code>b_vecL_{r,t,n}</code>: maxium variance vector of the magnetic field in the RTN coordinate system</li>
+</ul></li>
+<li><p><code>model_b_{r,t,n}</code>: modelled magnetic field in the RTN coordinate system</p></li>
+<li><p><code>state</code> : <em>1</em> for <em>solar wind</em>, <em>0</em> for <em>non-solar wind</em></p></li>
+<li><p><code>L_mn{_norm}</code>: thickness of the current sheet in MN direction, in units of <span class="math inline">\(km\)</span></p></li>
+<li><p><code>j0{_norm}</code>: current density, in units of <span class="math inline">\(nA/m^2\)</span></p></li>
+</ul>
+<p>Notes: we recommend use unique names for each variable, for example, <code>plasma_speed</code> instead of <code>speed</code>. Because it is easier to search and replace the variable names in the code whenever necessary.</p>
+<p>For the unit, by default we use</p>
+<ul>
+<li>length : <span class="math inline">\(km\)</span></li>
+<li>time : <span class="math inline">\(s\)</span></li>
+<li>magnetic field : <span class="math inline">\(nT\)</span></li>
+<li>current : <span class="math inline">\(nA/m^2\)</span></li>
+</ul>
+</section>
+</section>
+<section id="todos" class="level2">
+<h2 class="anchored" data-anchor-id="todos">TODOs</h2>
+<p>Science part</p>
+<ul>
+<li>Analysis
+<ul class="task-list">
+<li><input type="checkbox" checked="">Check <code>STEREO-A</code> and <code>ARTEMIS-B</code> data</li>
+<li><input type="checkbox">Contribution of discontinuities to the power spectrum</li>
+<li><input type="checkbox">Check Datagap</li>
+<li><input type="checkbox">Check <code>ARTEMIS-B</code> data in different states (solar wind, magnetosheath, magnetotail, moon wake)</li>
+<li><input type="checkbox">Distribution of |B| over radius</li>
+<li><input type="checkbox">JUNO from 2012-09~2012-10 lack of IDS and extreme large thickness</li>
+<li><input type="checkbox">Wind data</li>
+<li><input type="checkbox">Add error bar</li>
+<li><input type="checkbox">Validate the effects of calibrate candidate duration</li>
+<li><input type="checkbox">Validate model density with <code>Voyager</code></li>
+</ul></li>
+<li>Identifaction
+<ul class="task-list">
+<li><input type="checkbox">Ensemble forest?</li>
+<li><input type="checkbox">Smoothing is important?</li>
+<li><input type="checkbox">Check change point algorithm</li>
+</ul></li>
+<li>Visualize data gaps</li>
+<li>Features
+<ul class="task-list">
+<li><input type="checkbox">Thickness in N direction</li>
+<li><input type="checkbox">Use high resolution data for feature extraction</li>
+</ul></li>
+<li>Compare with other methods of identifying IDs
+<ul class="task-list">
+<li><input type="checkbox">Verify with other methods of identifying IDs</li>
+</ul></li>
+<li><input type="checkbox" checked="">Incorporate solar wind propagation model
+<ul class="task-list">
+<li><input type="checkbox" checked="">Verify with solar wind propagation model
+<ul class="task-list">
+<li><input type="checkbox" checked="">Coordinate transformation</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Code part</p>
+<ul>
+<li>Optimization
+<ul class="task-list">
+<li><input type="checkbox"><code>JAX</code> library for <code>numpy</code> optimization</li>
+<li><input type="checkbox">shorten import time</li>
+</ul></li>
+<li>Refactor
+<ul class="task-list">
+<li><input type="checkbox" checked=""><code>process_candidates</code> to exclude <code>sat_state</code> logics</li>
+<li><input type="checkbox" checked="">renaming feature layer <code>candidates</code></li>
+</ul></li>
+<li><input type="checkbox" checked="">Kedro
+<ul>
+<li><input type="checkbox" checked="">Modular pipelines</li>
+<li><del>Incorporate <code>lineapy</code></del></li>
+</ul></li>
+<li><input type="checkbox">QR codes</li>
+</ul>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>markdown</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>X importtime <span class="op">-</span>c <span class="st">'from ids_finder.pipelines.juno.pipeline import download_juno_data, preprocess_jno'</span> <span class="dv">2</span><span class="op">&gt;</span> <span class="im">import</span>.log <span class="op">&amp;&amp;</span> tuna <span class="im">import</span>.log</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>X importtime <span class="op">-</span>c <span class="st">'import ids_finder.utils.basic'</span> <span class="dv">2</span><span class="op">&gt;</span> <span class="im">import</span>.log <span class="op">&amp;&amp;</span> tuna <span class="im">import</span>.log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="bugs" class="level3">
+<h3 class="anchored" data-anchor-id="bugs">bugs</h3>
+<ul class="task-list">
+<li><input type="checkbox">JUNO sw_temperature type</li>
+<li><input type="checkbox">STEREO <code>B</code> less than zero (after downsampling?)</li>
+</ul>
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-borovsky2010" class="csl-entry" role="listitem">
+Borovsky, Joseph E. 2010. <span>“Contribution of Strong Discontinuities to the Power Spectrum of the Solar Wind.”</span> <em>Physical Review Letters</em> 105 (11): 111102. <a href="https://doi.org/10.1103/PhysRevLett.105.111102">https://doi.org/10.1103/PhysRevLett.105.111102</a>.
+</div>
+<div id="ref-colburn1966" class="csl-entry" role="listitem">
+Colburn, D. S., and C. P. Sonett. 1966. <span>“Discontinuities in the Solar Wind.”</span> <em>Space Science Reviews</em> 5 (4): 439–506. <a href="https://doi.org/10.1007/BF00240575">https://doi.org/10.1007/BF00240575</a>.
+</div>
+<div id="ref-keebler2022" class="csl-entry" role="listitem">
+Keebler, Timothy B., Gábor Tóth, Bertalan Zieger, and Merav Opher. 2022. <span>“MSWIM2D: Two-Dimensional Outer Heliosphere Solar Wind Modeling.”</span> <em>The Astrophysical Journal Supplement Series</em> 260 (2): 43. <a href="https://doi.org/10.3847/1538-4365/ac67eb">https://doi.org/10.3847/1538-4365/ac67eb</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
