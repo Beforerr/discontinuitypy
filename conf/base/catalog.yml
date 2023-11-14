@@ -67,6 +67,14 @@
         kedro-viz:
             layer: result
 
+"events.sw.{name}":
+    type: polars.LazyPolarsDataset
+    filepath: data/08_reporting/events_sw_{name}.parquet
+    file_format: parquet
+    metadata:
+        kedro-viz:
+            layer: result
+
 candidates_all_{tau}:
     type: polars.LazyPolarsDataset
     filepath: data/08_reporting/candidates_all_{tau}.parquet

@@ -17,3 +17,7 @@ kedro-run-primary_states:
   kedro run --to-outputs=sta.primary_state_1h 
   kedro run --to-outputs=jno.primary_state_1h
   kedro run --to-outputs=thb.primary_state_1h
+
+
+kedro-run-sw-events:
+  kedro run --to-outputs=events.sw.thb_ts_1s_tau_60s --from-inputs=candidates.thb_ts_1s_tau_60s

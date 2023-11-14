@@ -2,8 +2,8 @@
 
 # %% auto 0
 __all__ = ['combine', 'vector_project', 'vector_project_pl', 'compute_inertial_length', 'compute_Alfven_speed',
-           'compute_Alfven_current', 'calc_combined_features', 'combine_features', 'create_candidate_pipeline',
-           'IDsDataset', 'cIDsDataset', 'CandidateID']
+           'compute_Alfven_current', 'calc_combined_features', 'combine_features', 'IDsDataset', 'cIDsDataset',
+           'CandidateID']
 
 # %% ../notebooks/20_candidates.ipynb 2
 import polars as pl
@@ -123,43 +123,16 @@ def combine_features(candidates: pl.LazyFrame, states_data: pl.LazyFrame):
 
     return updated_df.collect()
 
-# %% ../notebooks/20_candidates.ipynb 16
-from kedro.pipeline import Pipeline, node
-from kedro.pipeline.modular_pipeline import pipeline
-
 # %% ../notebooks/20_candidates.ipynb 17
-def create_candidate_pipeline(
-    sat_id, 
-    tau: int = 60,
-    ts_mag: int = 1,
-    ts_state: str = "1h",
-    **kwargs) -> Pipeline:
-
-    ts_mag_str = f"ts_{ts_mag}s"
-    tau_str = f"tau_{tau}s"
-
-    node_combine_features = node(
-        combine_features,
-        inputs=[
-            f"{sat_id}.feature_{ts_mag_str}_{tau_str}",
-            f"{sat_id}.primary_state_{ts_state}",
-        ],
-        outputs=f"candidates.{sat_id}_{ts_mag_str}_{tau_str}",
-    )
-
-    nodes = [node_combine_features]
-    return pipeline(nodes)
-
-# %% ../notebooks/20_candidates.ipynb 19
 from pydantic import BaseModel
 from kedro.io import DataCatalog
 from .utils.basic import concat_partitions
 
-# %% ../notebooks/20_candidates.ipynb 21
+# %% ../notebooks/20_candidates.ipynb 19
 from .utils.basic import df2ts
 from .utils.plot import plot_candidate
 
-# %% ../notebooks/20_candidates.ipynb 22
+# %% ../notebooks/20_candidates.ipynb 20
 class IDsDataset(BaseModel):
     class Config:
         arbitrary_types_allowed = True
@@ -189,7 +162,7 @@ class IDsDataset(BaseModel):
     def plot_candidates(self, **kwargs):
         pass
 
-# %% ../notebooks/20_candidates.ipynb 24
+# %% ../notebooks/20_candidates.ipynb 22
 class cIDsDataset(IDsDataset):
     catalog: DataCatalog
     
@@ -220,10 +193,10 @@ class cIDsDataset(IDsDataset):
         data_format = f"{self.sat_id}.primary_mag_{self._ts_mag_str}"
         self.data = concat_partitions(self.catalog.load(data_format))
 
-# %% ../notebooks/20_candidates.ipynb 26
+# %% ../notebooks/20_candidates.ipynb 24
 from pprint import pprint
 
-# %% ../notebooks/20_candidates.ipynb 27
+# %% ../notebooks/20_candidates.ipynb 25
 class CandidateID:
     def __init__(self, time, df: pl.DataFrame) -> None:
         self.time = pd.Timestamp(time)
