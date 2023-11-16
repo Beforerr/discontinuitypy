@@ -1,4 +1,4 @@
-tau: 60
+tau: 60 # unit: seconds
 jno_start_date: "2011-08-25"
 jno_end_date: "2016-06-30"
 
@@ -14,6 +14,10 @@ jno.extract_params:
 sta.extract_params:
   bcols: ["BX", "BY", "BZ"]
   data_resolution: 1
+
+mission:
+  source:
+    time_resolution: 1 # unit: seconds
 
 thb:
   mag:

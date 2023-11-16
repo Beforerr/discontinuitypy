@@ -17,7 +17,7 @@ def link_coord2dim(df: pl.DataFrame, dim="time", coord: str = "radial_distance")
     return df.join(base_df, on=dim, how="left")
 
 # %% ../../notebooks/utils/02_analysis_utils.ipynb 4
-from ..candidates import IDsDataset
+from ..datasets import IDsDataset
 from .basic import filter_tranges_df
 
 # %% ../../notebooks/utils/02_analysis_utils.ipynb 5

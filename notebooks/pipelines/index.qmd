@@ -1,0 +1,19 @@
+---
+title: Pipelines
+subtitle: The data flow abstraction
+description: This notebook mainly demonstrate the concept and common building blocks of a pipeline, see each instrument & mission & project notebook for implementation details.
+order: 1
+---
+
+We are using `Kedro` to build a data pipeline. A pipeline is a collection of nodes that are connected to each other. Each node is a function that takes inputs and produces outputs. The inputs and outputs are data sets of different layer/level.
+
+We have three layers of pipeline:
+
+-   **Base layer** : the pipeline that process data for a specific type from a specific source, roughly speaking every data source corresponds to an instrument in the mission. (See [Data pipelines](./1_data.ipynb))
+-   **Mission layer** : the pipeline mainly process data from a specific mission, e.g. combining data from different instruments, adding new features, etc. (See [Mission pipelines](./10_mission.ipynb))
+-   **Project layer** : this layer will produce dataset for analysis for a specific project, e.g. combining data from different missions for a specific purpose. (See [Project pipelines](./100_project.ipynb))
+
+Note:
+
+- Three layers of pipeline are not strictly separated, e.g. project determines which feature to get from each data source...
+- Common pipelines which are not related to specific mission are implemented in this notebook.

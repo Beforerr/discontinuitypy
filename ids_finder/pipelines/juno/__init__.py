@@ -1,6 +1,6 @@
 """
-This is a boilerplate pipeline 'juno'
-generated using Kedro 0.18.13
+This is a boilerplate pipeline
+generated using Kedro 0.18.14
 """
 
 from .pipeline import create_pipeline

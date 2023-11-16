@@ -21,3 +21,9 @@ kedro-run-primary_states:
 
 kedro-run-sw-events:
   kedro run --to-outputs=events.sw.thb_ts_1s_tau_60s --from-inputs=candidates.thb_ts_1s_tau_60s
+
+create-mission-notebooks mission:
+  mkdir -p notebooks/missions/{{mission}}
+  touch notebooks/missions/{{mission}}/index.ipynb
+  touch notebooks/missions/{{mission}}/mag.ipynb
+  touch notebooks/missions/{{mission}}/state.ipynb

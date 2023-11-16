@@ -1,9 +1,9 @@
 # Define a generic data pipeline template
 data-pipeline: &data-pipeline
-  name: Data Pipeline # Consistent capitalization
+  name: Data Pipeline
   type: pipeline
   pipelines:
-    - name: Load Data # Capitalization
+    - name: Load Data
       type: node
     - name: Preprocess Data
       type: node
@@ -14,7 +14,7 @@ data-pipeline: &data-pipeline
 
 # Pipeline template for specific missions
 mission-pipeline: &mission-pipeline
-  name: Mission Specific Pipeline # Changed for clarity
+  name: Mission Specific Pipeline
   type: pipeline
   pipelines:
     - name: Magnetic Field Data Pipeline
@@ -29,7 +29,7 @@ mission-pipeline: &mission-pipeline
 
 # Main pipeline encompassing multiple missions
 dataset-pipeline:
-  name: Overall Data Integration Pipeline # Changed for clarity
+  name: Overall Data Integration Pipeline
   type: pipeline
   pipelines: # Fixed typo
     - name: JUNO Mission Pipeline

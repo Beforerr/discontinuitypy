@@ -3,27 +3,51 @@ website:
     contents:
       - index.qmd
       - 00_ids_finder.ipynb
-      - 01_pipelines.ipynb
-      - 20_candidates.ipynb
+      - 20_datasets.ipynb
       - 99_utils.ipynb
-      - jno_model_comparison.html
-      - jno_model_ts.html
       - section: analysis
         contents:
+          - analysis/00_base.ipynb
           - analysis/01_occurence_rate.ipynb
           - analysis/02_properties.ipynb
           - analysis/10_classification.ipynb
           - analysis/20_model.ipynb
+          - analysis/jno_model_comparison.html
+          - analysis/jno_model_ts.html
         href: analysis/index.qmd
       - section: missions
         contents:
-          - missions/01_juno.ipynb
-          - missions/02_stereo.ipynb
-          - missions/03_themis.ipynb
-          - missions/04_wind.ipynb
-          - missions/05_venus.ipynb
-          - missions/06_messenger.ipynb
+          - section: juno
+            contents:
+              - missions/juno/mag.ipynb
+              - missions/juno/state.ipynb
+            href: missions/juno/index.ipynb
+          - section: messenger
+            contents: []
+            href: missions/messenger/index.ipynb
+          - section: stereo
+            contents: []
+            href: missions/stereo/index.ipynb
+          - section: themis
+            contents:
+              - missions/themis/mag.ipynb
+              - missions/themis/state.ipynb
+            href: missions/themis/index.ipynb
+          - section: venus
+            contents: []
+            href: missions/venus/index.ipynb
+          - section: wind
+            contents: []
+            href: missions/wind/index.ipynb
         href: missions/index.qmd
+      - section: pipelines
+        contents:
+          - pipelines/100_project.ipynb
+          - pipelines/10_mission.ipynb
+          - pipelines/1_data.ipynb
+          - pipelines/2_data_mag.ipynb
+          - pipelines/3_data_state.ipynb
+        href: pipelines/index.qmd
       - section: utils
         contents:
           - utils/01_plotting.ipynb

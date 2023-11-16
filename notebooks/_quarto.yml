@@ -29,10 +29,11 @@ website:
   sidebar:
     style: floating
     contents:
-      - auto: "/*.ipynb"
-      - section: Missions
-        contents: missions/*
-      - section: Analysis
-        contents: analysis/*
+      - auto: true
+      # - auto: "/*.ipynb"
+      # - section: Missions
+        # contents: missions/*
+      # - section: Analysis
+        # contents: analysis/*
 
 metadata-files: [nbdev.yml]
