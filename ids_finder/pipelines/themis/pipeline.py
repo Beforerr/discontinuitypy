@@ -55,7 +55,7 @@ def create_pipeline(
     ts_mag = 1, # time resolution of mag data, in seconds
 ) -> Pipeline:
     return (
-        create_mag_data_pipeline(sat_id, tau=tau)
+        create_mag_data_pipeline()
         + create_state_data_pipeline(sat_id, ts=ts_state)
         + create_combined_data_pipeline(sat_id, tau=tau, ts_mag= ts_mag, ts_state=ts_state)
         + create_sw_events_pipeline(sat_id, tau=tau, ts_mag= ts_mag)

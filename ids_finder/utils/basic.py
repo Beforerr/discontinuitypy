@@ -63,7 +63,7 @@ from kedro.framework.session import KedroSession
 from kedro.framework.startup import bootstrap_project
 from kedro.ipython import _resolve_project_path
 
-def load_context(project_path: str = '../', params_only: bool = False, catalog_only: bool = False):
+def load_context(project_path: str = '.', params_only: bool = False, catalog_only: bool = False):
     project_path = _resolve_project_path(project_path)
     metadata = bootstrap_project(project_path)
     # configure_project(metadata.package_name)

@@ -19,8 +19,8 @@ mission:
   source:
     time_resolution: 1 # unit: seconds
 
-thb:
-  mag:
+THB:
+  MAG:
     bcols: ['B_x', 'B_y', 'B_z']
     time_resolution: 1
     coords: 'gse'

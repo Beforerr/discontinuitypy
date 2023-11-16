@@ -51,13 +51,12 @@ def spz2df(raw_data: SpeasyVariable):
 def load_data(
     start: str,
     end: str,
-    ts: int = None,  # time resolution
+    datatype = None,
+    ts = None,  # time resolution
     probe: str = "b",
-    coord="gse",
+    coord = "gse",
 ):
     trange = [start, end]
-
-    datatype = check_dataype(ts)
 
     data = download_data(trange, probe, datatype, coord)
     return spz2df(data).lazy()
@@ -110,73 +109,16 @@ def process_data(
 
 # %% ../../../notebooks/missions/themis/mag.ipynb 14
 from ...core import extract_features
+from ..default.data_mag import create_pipeline_template
 
-# %% ../../../notebooks/missions/themis/mag.ipynb 15
-def create_pipeline(
-    sat_id: str,  # satellite id, used for namespace
-    ts: int = 1,  # time resolution, in seconds
-    tau: str = "60s",  # time window
-    **kwargs,
-) -> Pipeline:
 
-    datatype = check_dataype(
-        ts
-    )  # get the datatype from the time resolution, which is reasonable but not always is the case
-    ts_str = f"ts_{ts}s"
-
-    node_load_data = node(
-        load_data,
-        inputs=dict(
-            start="params:start_date",
-            end="params:end_date",
-            ts="params:mag.time_resolution",
-        ),
-        outputs="raw_mag",
-        name=f"load_{sat_id.upper()}_magnetic_field_data",
+def create_pipeline(sat_id="thb", source="mag"):
+    return create_pipeline_template(
+        sat_id=sat_id,
+        source=source,
+        load_data_fn=load_data,
+        check_dataype_fn=check_dataype,
+        preprocess_data_fn=preprocess_data,
+        process_data_fn=process_data,
+        extract_features_fn=extract_features,
     )
-
-    node_preprocess_data = node(
-        preprocess_data,
-        inputs=dict(
-            raw_data="raw_mag",
-            datatype=datatype,
-        ),
-        outputs=f"inter_mag_{datatype}",
-        name=f"preprocess_{sat_id.upper()}_magnetic_field_data",
-    )
-
-    node_process_data = node(
-        process_data,
-        inputs=dict(
-            raw_data=f"inter_mag_{datatype}",
-            ts="params:mag.time_resolution",
-        ),
-        outputs=f"primary_mag_{ts_str}",
-        name=f"process_{sat_id.upper()}_magnetic_field_data",
-    )
-
-    node_extract_features = node(
-        extract_features,
-        inputs=[f"primary_mag_{ts_str}", "params:tau", "params:mag"],
-        outputs=f"feature_{ts_str}_tau_{tau}",
-        name=f"extract_{sat_id}_features",
-    )
-
-    nodes = [
-        node_load_data,
-        node_preprocess_data,
-        node_process_data,
-        node_extract_features,
-    ]
-
-    pipelines = pipeline(
-        nodes,
-        namespace=sat_id,
-        parameters={
-            "params:start_date": "params:jno_start_date",
-            "params:end_date": "params:jno_end_date",
-            "params:tau": "params:tau",
-        },
-    )
-
-    return pipelines
