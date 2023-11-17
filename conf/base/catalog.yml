@@ -4,17 +4,20 @@
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
 "{mission}.{source}.raw_data_files":
+"{mission}.{source}.raw_data_files":
     type: MemoryDataset
     metadata:
         kedro-viz:
             layer: raw
 
 "{mission}.{source}.raw_data":
+"{mission}.{source}.raw_data":
     type: MemoryDataset
     metadata:
         kedro-viz:
             layer: raw
 
+"{mission}.{source}.inter_data_{suffix}":
 "{mission}.{source}.inter_data_{suffix}":
     type: polars.LazyPolarsDataset
     filepath: data/02_intermediate/{mission}_{source}_{suffix}.parquet
@@ -24,13 +27,18 @@
             layer: intermediate
 
 "{mission}.STATE.primary_state_{suffix}":
+"{mission}.STATE.primary_state_{suffix}":
     type: polars.LazyPolarsDataset
+    filepath: data/03_primary/{mission}_state_{suffix}.parquet
     filepath: data/03_primary/{mission}_state_{suffix}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
             layer: primary
 
+"{mission}.{source}.primary_data_{suffix}":
+    type: partitions.PartitionedDataset
+    path: data/03_primary/{mission}_{source}_{suffix}
 "{mission}.{source}.primary_data_{suffix}":
     type: partitions.PartitionedDataset
     path: data/03_primary/{mission}_{source}_{suffix}
@@ -43,7 +51,9 @@
             layer: primary
 
 "{mission}.{source}.feature_{suffix}":
+"{mission}.{source}.feature_{suffix}":
     type: polars.LazyPolarsDataset
+    filepath: data/04_feature/{mission}_{source}_{suffix}.parquet
     filepath: data/04_feature/{mission}_{source}_{suffix}.parquet
     file_format: parquet
     metadata:
@@ -51,15 +61,20 @@
             layer: feature
 
 "events.{name}":
+"events.{name}":
     type: polars.LazyPolarsDataset
+    filepath: data/08_reporting/events_{name}.parquet
     filepath: data/08_reporting/events_{name}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
             layer: result
+            layer: result
 
 "events.{level}.{name}":
+"events.{level}.{name}":
     type: polars.LazyPolarsDataset
+    filepath: data/08_reporting/events/{level}/{name}.parquet
     filepath: data/08_reporting/events/{level}/{name}.parquet
     file_format: parquet
     metadata:
