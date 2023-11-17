@@ -80,7 +80,7 @@ def load_context(project_path: str = '.', params_only: bool = False, catalog_onl
     else:
         return context
 
-load_catalog = partial(load_context, params_only=True)
+load_catalog = partial(load_context, catalog_only=True)
 load_params = partial(load_context, params_only=True)
 
 # %% ../../notebooks/99_utils.ipynb 20

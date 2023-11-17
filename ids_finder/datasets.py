@@ -76,7 +76,7 @@ class cIDsDataset(IDsDataset):
 
     def load_candidates(self):
 
-        candidates_format = f"candidates.{self.sat_id}_{self._ts_mag_str}_{self._tau_str}"
+        candidates_format = f"events.{self.sat_id.upper()}_{self._ts_mag_str}_{self._tau_str}"
 
         self.candidates = self.catalog.load(candidates_format).fill_nan(None).with_columns(
             cs.float().cast(pl.Float64),
@@ -84,7 +84,7 @@ class cIDsDataset(IDsDataset):
         ).collect()
 
     def load_data(self):
-        data_format = f"{self.sat_id}.primary_mag_{self._ts_mag_str}"
+        data_format = f"{self.sat_id}.MAG.primary_data_{self._ts_mag_str}"
         self.data = concat_partitions(self.catalog.load(data_format))
 
 # %% ../notebooks/20_datasets.ipynb 14

@@ -3,17 +3,8 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-"thb.inter_mag_{datatype}":
-    type: CachedDataset
-    dataset:
-        type: polars.LazyPolarsDataset
-        filepath: data/02_intermediate/inter_thb_mag_{datatype}.parquet
-        file_format: parquet
-    metadata:
-        kedro-viz:
-            layer: intermediate
 
-thb.raw_state_sw:
+THB.STATE.original_sw_data:
     type: pandas.CSVDataset 
     filepath: https://omniweb.gsfc.nasa.gov/ftpbrowser/themis_b_sw.txt
     load_args:
@@ -24,3 +15,13 @@ thb.raw_state_sw:
         # delim_whitespace: True
         # names: ["start_YYYY", "start_DOY", "start_hr", "end_YYYY", "end_DOY", "end_hr"]
         engine: 'python'
+
+"thb.inter_mag_{datatype}":
+    type: CachedDataset
+    dataset:
+        type: polars.LazyPolarsDataset
+        filepath: data/02_intermediate/inter_thb_mag_{datatype}.parquet
+        file_format: parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate

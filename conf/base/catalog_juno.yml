@@ -4,7 +4,7 @@
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
 jno.raw_mag_1s:
-    type: PartitionedDataset
+    type: partitions.PartitionedDataset
     path: data/01_raw/jno_ss_se_1sec
     dataset:
         type: ids_finder.utils.basic.LblDataset
@@ -13,7 +13,7 @@ jno.raw_mag_1s:
         kedro-viz:
             layer: raw
 
-jno.raw_state:
+JNO.STATE.model_data:
     type: pandas.CSVDataset
     filepath: data/01_raw/mswim2d_interp_output_20231009173618.txt
     load_args:
@@ -26,7 +26,7 @@ jno.raw_state:
             layer: raw
 
 model.raw_jno_ss_se_1min:
-    type: PartitionedDataset
+    type: partitions.PartitionedDataset
     path: data/01_raw/jno_ss_se_1min
     dataset:
         type: ids_finder.utils.basic.LblDataset

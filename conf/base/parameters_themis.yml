@@ -3,3 +3,19 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.13/configuration/parameters.html
+
+THEMIS: &THEMIS
+  MAG:
+    datatype: "fgl"
+    time_resolution: 1
+    coords: "gse"
+    extract_params:
+      bcols: ["B_x", "B_y", "B_z"]
+  STATE:
+    datatype: "hourly"
+    time_resolution: 3600
+
+THA:
+  <<: *THEMIS
+THB:
+  <<: *THEMIS

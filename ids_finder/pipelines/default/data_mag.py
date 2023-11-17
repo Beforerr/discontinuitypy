@@ -22,9 +22,6 @@ def create_pipeline_template(
     **kwargs,
 ) -> Pipeline:
     params = load_params()
-    sat_id = sat_id.upper()
-    source = source.upper()
-
     namespace = f"{sat_id}.{source}"
 
     tau = params["tau"]
@@ -35,13 +32,17 @@ def create_pipeline_template(
     node_extract_features = node(
         extract_features_fn,
         inputs=[f"primary_data_{ts_str}", "params:tau", "params:extract_params"],
-        outputs=f"feature_{tau_str}",
+        outputs=f"feature_{ts_str}_{tau_str}",
         name="extract_features",
     )
 
     nodes = [node_extract_features]
 
-    pipelines = pipeline(nodes, namespace=namespace)
+    pipelines = pipeline(
+        nodes,
+        namespace=namespace,
+        parameters={"params:tau": "params:tau"},
+    )
 
     base_pipelines = create_pipeline_template_base(
         sat_id=sat_id, source=source, **kwargs

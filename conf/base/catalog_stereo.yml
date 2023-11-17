@@ -5,7 +5,7 @@
 
 # not used but maybe useful
 sta.raw_state_merged:
-    type: PartitionedDataset
+    type: partitions.PartitionedDataset
     path: https://spdf.gsfc.nasa.gov/pub/data/stereo/ahead/l2/merged
     dataset: 
         type: pandas.CSVDataset
