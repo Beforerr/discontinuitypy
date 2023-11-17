@@ -14,7 +14,7 @@ from .mag import create_pipeline as create_mag_data_pipeline
 from .state import create_pipeline as create_state_data_pipeline
 from ..default.mission import create_combined_data_pipeline
 
-# %% ../../../notebooks/missions/themis/index.ipynb 10
+# %% ../../../notebooks/missions/themis/index.ipynb 7
 from ...utils.basic import filter_tranges_df
 
 def filter_sw_events(events: pl.LazyFrame, sw_state: pl.LazyFrame) -> pl.LazyFrame:
@@ -37,26 +37,25 @@ def create_sw_events_pipeline(
     node_filter_sw_events = node(
         filter_sw_events,
         inputs=[
-            f"candidates.{sat_id}_{ts_mag_str}_{tau_str}",
+            f"events.{sat_id}_{ts_mag_str}_{tau_str}",
             f"{sat_id}.inter_state_sw",
         ],
-        outputs=f"events.sw.{sat_id}_{ts_mag_str}_{tau_str}"
+        outputs=f"events.{sat_id}_sw_{ts_mag_str}_{tau_str}"
         
     )
 
     nodes = [node_filter_sw_events]
     return pipeline(nodes)
 
-# %% ../../../notebooks/missions/themis/index.ipynb 11
+# %% ../../../notebooks/missions/themis/index.ipynb 8
 def create_pipeline(
-    sat_id="thb",
+    sat_id="THB",
     tau=60, # time window, in seconds
-    ts_state="1h",  # time resolution of state data
     ts_mag = 1, # time resolution of mag data, in seconds
 ) -> Pipeline:
     return (
-        create_mag_data_pipeline()
-        + create_state_data_pipeline(sat_id, ts=ts_state)
-        + create_combined_data_pipeline(sat_id, tau=tau, ts_mag= ts_mag, ts_state=ts_state)
+        create_mag_data_pipeline(sat_id)
+        + create_state_data_pipeline(sat_id)
+        + create_combined_data_pipeline(sat_id)
         + create_sw_events_pipeline(sat_id, tau=tau, ts_mag= ts_mag)
     )

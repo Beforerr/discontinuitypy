@@ -5,6 +5,7 @@ __all__ = ['check_dataype', 'download_data', 'spz2df', 'load_data', 'preprocess_
 
 # %% ../../../notebooks/missions/themis/mag.ipynb 1
 from datetime import timedelta
+
 import polars as pl
 
 from kedro.pipeline import Pipeline, node
@@ -15,7 +16,7 @@ import speasy as spz
 from speasy import SpeasyVariable
 
 # %% ../../../notebooks/missions/themis/mag.ipynb 5
-def check_dataype(ts: int):
+def check_dataype(ts):
     ts = timedelta(seconds=ts)
     fgs_ts = timedelta(seconds=3)
     fgl_ts = timedelta(seconds=0.1)
@@ -49,12 +50,12 @@ def spz2df(raw_data: SpeasyVariable):
 
 
 def load_data(
-    start: str,
-    end: str,
-    datatype = None,
-    ts = None,  # time resolution
+    start,
+    end,
+    datatype=None,
+    ts=None,  # time resolution
     probe: str = "b",
-    coord = "gse",
+    coord="gse",
 ):
     trange = [start, end]
 
@@ -112,12 +113,11 @@ from ...core import extract_features
 from ..default.data_mag import create_pipeline_template
 
 
-def create_pipeline(sat_id="thb", source="mag"):
+def create_pipeline(sat_id="THB", source="MAG"):
     return create_pipeline_template(
         sat_id=sat_id,
         source=source,
         load_data_fn=load_data,
-        check_dataype_fn=check_dataype,
         preprocess_data_fn=preprocess_data,
         process_data_fn=process_data,
         extract_features_fn=extract_features,

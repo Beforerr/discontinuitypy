@@ -3,37 +3,37 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-"{sat_id}.raw_{instrument}_files":
+"{mission}.{source}.raw_data_files":
     type: MemoryDataset
     metadata:
         kedro-viz:
             layer: raw
 
-"{sat_id}.raw_{instrument}":
+"{mission}.{source}.raw_data":
     type: MemoryDataset
     metadata:
         kedro-viz:
             layer: raw
 
-"{sat_id}.inter_{instrument}_{ts}":
+"{mission}.{source}.inter_data_{suffix}":
     type: polars.LazyPolarsDataset
-    filepath: data/02_intermediate/inter_{sat_id}_{instrument}_{ts}.parquet
+    filepath: data/02_intermediate/inter_{mission}_{source}_{suffix}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
             layer: intermediate
 
-"{sat_id}.primary_state_{ts}":
+"{mission}.STATE.primary_state_{suffix}":
     type: polars.LazyPolarsDataset
-    filepath: data/03_primary/primary_{sat_id}_state_{ts}.parquet
+    filepath: data/03_primary/{mission}_state_{suffix}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
             layer: primary
 
-"{sat_id}.primary_mag_{ts}":
-    type: PartitionedDataset
-    path: data/03_primary/{sat_id}_mag_{ts}
+"{mission}.{source}.primary_data_{suffix}":
+    type: partitions.PartitionedDataset
+    path: data/03_primary/{mission}_{source}_{suffix}
     dataset:
         type: polars.LazyPolarsDataset
         file_format: parquet
@@ -42,26 +42,25 @@
         kedro-viz:
             layer: primary
 
-"{sat_id}.feature_{tau}":
+"{mission}.{source}.feature_{suffix}":
     type: polars.LazyPolarsDataset
-    filepath: data/04_feature/features_{sat_id}_{tau}.parquet
+    filepath: data/04_feature/{mission}_{source}_{suffix}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
             layer: feature
 
-"{sat_id}.feature_{ts}_{tau}":
+"events.{name}":
     type: polars.LazyPolarsDataset
-    filepath: data/04_feature/features_{sat_id}_{ts}_{tau}.parquet
+    filepath: data/08_reporting/events_{name}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
-            layer: feature
+            layer: result
 
-# candidates that combine both magnetic field and state data
-"candidates.{name}":
+"events.{level}.{name}":
     type: polars.LazyPolarsDataset
-    filepath: data/08_reporting/candidates_{name}.parquet
+    filepath: data/08_reporting/events/{level}/{name}.parquet
     file_format: parquet
     metadata:
         kedro-viz:

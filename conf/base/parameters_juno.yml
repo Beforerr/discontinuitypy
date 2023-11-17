@@ -3,3 +3,16 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.13/configuration/parameters.html
+
+
+JNO:
+  MAG:
+    datatype: "1sec"
+    time_resolution: 1
+    coords: "rtn"
+    extract_params:
+      bcols: ["BX", "BY", "BZ"]
+
+  STATE:
+    datatype: "hourly"
+    time_resolution: 3600

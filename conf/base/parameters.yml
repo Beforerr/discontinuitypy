@@ -2,38 +2,9 @@ tau: 60 # unit: seconds
 jno_start_date: "2011-08-25"
 jno_end_date: "2016-06-30"
 
-# To be depreciated
-jno_1s_params:
-  bcols: ["BX", "BY", "BZ"]
-  data_resolution: 1
-
-jno.extract_params:
-  bcols: ["BX", "BY", "BZ"]
-  data_resolution: 1
-
-sta.extract_params:
-  bcols: ["BX", "BY", "BZ"]
-  data_resolution: 1
-
 mission:
   source:
     time_resolution: 1 # unit: seconds
-
-THB:
-  MAG:
-    bcols: ['B_x', 'B_y', 'B_z']
-    time_resolution: 1
-    coords: 'gse'
-
-jno.mag:
-  coords: 'rtn'
-
-sta.mag:
-  coords: 'rtn'
-
-thb.extract_params:
-  bcols: ["b_gse_x", "b_gse_y", "b_gse_z"]
-  data_resolution: 4
 
 omni_vars:
   "N":

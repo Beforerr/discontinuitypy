@@ -22,20 +22,16 @@ website:
               - missions/juno/mag.ipynb
               - missions/juno/state.ipynb
             href: missions/juno/index.ipynb
-          - section: messenger
-            contents: []
-            href: missions/messenger/index.ipynb
           - section: stereo
-            contents: []
+            contents:
+              - missions/stereo/mag.ipynb
+              - missions/stereo/state.ipynb
             href: missions/stereo/index.ipynb
           - section: themis
             contents:
               - missions/themis/mag.ipynb
               - missions/themis/state.ipynb
             href: missions/themis/index.ipynb
-          - section: venus
-            contents: []
-            href: missions/venus/index.ipynb
           - section: wind
             contents: []
             href: missions/wind/index.ipynb

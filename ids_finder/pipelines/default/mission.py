@@ -6,9 +6,7 @@ __all__ = ['combine_features', 'vector_project', 'vector_project_pl', 'compute_i
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 2
 import polars as pl
-
-from kedro.pipeline import Pipeline, node
-from kedro.pipeline.modular_pipeline import pipeline
+from typing import Optional
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 4
 def combine_features(candidates: pl.LazyFrame, states_data: pl.LazyFrame):
@@ -104,30 +102,48 @@ def calc_combined_features(df: pl.LazyFrame):
     return result
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 16
-def create_combined_data_pipeline(
-    sat_id, 
-    tau: int = 60,
-    ts_mag: int = 1,
-    ts_state: str = "1h",
-    **kwargs) -> Pipeline:
+from kedro.pipeline import Pipeline, node
+from kedro.pipeline.modular_pipeline import pipeline
+from ...utils.basic import load_params
 
+# %% ../../../notebooks/pipelines/10_mission.ipynb 17
+def create_combined_data_pipeline(
+    sat_id, # satellite id, used for namespace
+    params : Optional[dict] = None,
+    **kwargs
+) -> Pipeline:
+    
+    if params is None:
+        params = load_params()
+    
+    tau = params["tau"]
+    ts_mag = params[sat_id]["MAG"]["time_resolution"]
+    ts_state = params[sat_id]["STATE"]["time_resolution"]
+    
     ts_mag_str = f"ts_{ts_mag}s"
+    ts_state_str = f"ts_{ts_state}s"
     tau_str = f"tau_{tau}s"
 
     node_combine_features = node(
         combine_features,
         inputs=[
-            f"{sat_id}.feature_{ts_mag_str}_{tau_str}",
-            f"{sat_id}.primary_state_{ts_state}",
+            f"MAG.feature_{ts_mag_str}_{tau_str}",
+            f"STATE.primary_data_{ts_state_str}",
         ],
-        outputs=f"{sat_id}.features",
+        outputs="combined_data",
     )
-    
+
     node_calc_new_features = node(
         calc_combined_features,
-        inputs=f"{sat_id}.features",
-        outputs=f"candidates.{sat_id}_{ts_mag_str}_{tau_str}",
+        inputs="combined_data",
+        outputs=f"events_{ts_mag_str}_{tau_str}",
     )
 
     nodes = [node_combine_features, node_calc_new_features]
-    return pipeline(nodes)
+    return pipeline(
+        nodes,
+        namespace=sat_id,
+        outputs={
+            f"events_{ts_mag_str}_{tau_str}": f"events.{sat_id}_{ts_mag_str}_{tau_str}",
+        }
+    )
