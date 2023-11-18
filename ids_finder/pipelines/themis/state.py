@@ -8,8 +8,11 @@ __all__ = ['omni_yaml', 'OMNI_VARS', 'check_dataype', 'download_state_data', 'lo
 # %% ../../../notebooks/missions/themis/state.ipynb 2
 from datetime import timedelta
 
+from datetime import timedelta
+
 import polars as pl
 import pandas
+import numpy as np
 import numpy as np
 
 from kedro.pipeline import Pipeline, node
@@ -17,6 +20,31 @@ from kedro.pipeline.modular_pipeline import pipeline
 from ..default.data import create_pipeline_template
 
 # %% ../../../notebooks/missions/themis/state.ipynb 5
+import yaml
+
+omni_yaml = """
+  "N":
+    COLNAME: "plasma_density"
+    FIELDNAM: "Ion density"
+    UNITS: "Per cc"
+  "T":
+    COLNAME: "plasma_temperature"
+    FIELDNAM: "Plasma temperature"
+    UNITS: "K"
+  "V":
+    COLNAME: "plasma_speed"
+    FIELDNAM: "Flow speed"
+    UNITS: "km/s"
+  "THETA-V":
+    COLNAME: "sw_vel_theta"
+    FIELDNAM: "Flow latitude"
+    UNITS: "Deg"
+  "PHI-V":
+    COLNAME: "sw_vel_phi"
+    FIELDNAM: "Flow longitude"
+    UNITS: "Deg"
+"""
+OMNI_VARS = yaml.safe_load(omni_yaml)
 import yaml
 
 omni_yaml = """
@@ -58,10 +86,14 @@ def download_state_data(
     start,
     end,
     datatype,
+    start,
+    end,
+    datatype,
 ):
     import pyspedas
 
     trange = [start, end]
+    files = pyspedas.omni.data(trange=trange, datatype=datatype, downloadonly=True)
     files = pyspedas.omni.data(trange=trange, datatype=datatype, downloadonly=True)
     return files
 
@@ -73,12 +105,20 @@ def load_data(
     vars: dict = OMNI_VARS,
 ) -> pl.LazyFrame:
     files = download_state_data(start, end, datatype=datatype)
+    start,
+    end,
+    datatype="hourly",
+    vars: dict = OMNI_VARS,
+) -> pl.LazyFrame:
+    files = download_state_data(start, end, datatype=datatype)
     df: pl.LazyFrame = pl.concat(files | pmap(cdf2pl, var_names=list(vars)))
     return df
 
 # %% ../../../notebooks/missions/themis/state.ipynb 10
+# %% ../../../notebooks/missions/themis/state.ipynb 10
 def preprocess_data(
     raw_data: pl.LazyFrame,
+    vars: dict = OMNI_VARS,
     vars: dict = OMNI_VARS,
 ) -> pl.LazyFrame:
     """
@@ -131,10 +171,20 @@ def process_data(
     raw_data: pl.LazyFrame,
     ts=None,  # time resolution
 ) -> pl.LazyFrame:
+def process_data(
+    raw_data: pl.LazyFrame,
+    ts=None,  # time resolution
+) -> pl.LazyFrame:
     """
     - Transforming data to GSE coordinate system
     """
 
+    return raw_data.pipe(flow2gse).rename(
+        {
+            "sw_vel_gse_x": "v_x",
+            "sw_vel_gse_y": "v_y",
+            "sw_vel_gse_z": "v_z",
+        }
     return raw_data.pipe(flow2gse).rename(
         {
             "sw_vel_gse_x": "v_x",
