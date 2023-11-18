@@ -6,11 +6,11 @@ __all__ = ['download_mag_data', 'load_mag_data', 'process_mag_data', 'create_pip
 # %% ../../../notebooks/missions/wind/index.ipynb 5
 import polars as pl
 
-# %% ../../../notebooks/missions/wind/index.ipynb 9
+# %% ../../../notebooks/missions/wind/index.ipynb 7
 import pyspedas
 from ...utils.basic import cdf2pl, pmap, resample
 
-# %% ../../../notebooks/missions/wind/index.ipynb 10
+# %% ../../../notebooks/missions/wind/index.ipynb 8
 def download_mag_data(trange: list[str], datatype) -> list[str]:
     files = pyspedas.wind.mfi(trange, datatype=datatype, downloadonly=True)
     return files
@@ -30,11 +30,11 @@ def load_mag_data(
 
     return df
 
-# %% ../../../notebooks/missions/wind/index.ipynb 12
+# %% ../../../notebooks/missions/wind/index.ipynb 10
 from datetime import timedelta
 from ...utils.basic import partition_data_by_year
 
-# %% ../../../notebooks/missions/wind/index.ipynb 13
+# %% ../../../notebooks/missions/wind/index.ipynb 11
 def process_mag_data(
     raw_data: pl.LazyFrame,
     ts: str = None,  # time resolution
@@ -51,7 +51,7 @@ def process_mag_data(
     
     return partition_data_by_year(raw_data)
 
-# %% ../../../notebooks/missions/wind/index.ipynb 14
+# %% ../../../notebooks/missions/wind/index.ipynb 12
 def create_pipeline(
     sat_id="sta",
     tau="60s",

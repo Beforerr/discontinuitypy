@@ -73,9 +73,10 @@ def create_pipeline():
     )
 
     nodes = [
-        node_combine_events,
         create_l1_node("JNO"),
         create_l1_node("STA"),
         create_l1_node("THB_sw"),
+        node_combine_events,
+        
     ]
     return pipeline(nodes)

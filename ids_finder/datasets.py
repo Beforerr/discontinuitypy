@@ -17,16 +17,16 @@ from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 from .utils.basic import load_catalog
 
-# %% ../notebooks/20_datasets.ipynb 7
+# %% ../notebooks/20_datasets.ipynb 6
 from pydantic import BaseModel
 from kedro.io import DataCatalog
 from .utils.basic import concat_partitions
 
-# %% ../notebooks/20_datasets.ipynb 9
+# %% ../notebooks/20_datasets.ipynb 8
 from .utils.basic import df2ts
 from .utils.plot import plot_candidate
 
-# %% ../notebooks/20_datasets.ipynb 10
+# %% ../notebooks/20_datasets.ipynb 9
 class IDsDataset(BaseModel):
     class Config:
         arbitrary_types_allowed = True
@@ -56,7 +56,7 @@ class IDsDataset(BaseModel):
     def plot_candidates(self, **kwargs):
         pass
 
-# %% ../notebooks/20_datasets.ipynb 12
+# %% ../notebooks/20_datasets.ipynb 11
 class cIDsDataset(IDsDataset):
     catalog: DataCatalog
     
@@ -87,10 +87,10 @@ class cIDsDataset(IDsDataset):
         data_format = f"{self.sat_id}.MAG.primary_data_{self._ts_mag_str}"
         self.data = concat_partitions(self.catalog.load(data_format))
 
-# %% ../notebooks/20_datasets.ipynb 14
+# %% ../notebooks/20_datasets.ipynb 13
 from pprint import pprint
 
-# %% ../notebooks/20_datasets.ipynb 15
+# %% ../notebooks/20_datasets.ipynb 14
 class CandidateID:
     def __init__(self, time, df: pl.DataFrame) -> None:
         self.time = pd.Timestamp(time)

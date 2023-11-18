@@ -109,7 +109,7 @@ def process_data(
     )
 
 # %% ../../../notebooks/missions/themis/mag.ipynb 14
-from ...core import extract_features
+from ...core.pipeline import extract_features
 from ..default.data_mag import create_pipeline_template
 
 

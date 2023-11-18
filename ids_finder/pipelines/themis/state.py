@@ -14,6 +14,7 @@ import numpy as np
 
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
+from ..default.data import create_pipeline_template
 
 # %% ../../../notebooks/missions/themis/state.ipynb 5
 import yaml
@@ -189,8 +190,6 @@ def create_sw_pipeline(sat_id="THB", source="STATE"):
     )
 
 # %% ../../../notebooks/missions/themis/state.ipynb 18
-from ..default.data import create_pipeline_template
-
 def create_pipeline(sat_id="THB", source="STATE"):
 
     return create_pipeline_template(

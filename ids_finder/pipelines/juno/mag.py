@@ -11,13 +11,13 @@ import polars as pl
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 4
+# %% ../../../notebooks/missions/juno/mag.ipynb 5
 import pooch
 from pooch import Unzip
 from ...utils.basic import load_lbl, concat_partitions
 from pipe import select, filter
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 5
+# %% ../../../notebooks/missions/juno/mag.ipynb 6
 time_resolutions = ["1sec", "1min"]
 
 def download_data(
@@ -51,10 +51,10 @@ def load_data(
 
     return data
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 7
+# %% ../../../notebooks/missions/juno/mag.ipynb 8
 from ...utils.basic import concat_partitions
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 8
+# %% ../../../notebooks/missions/juno/mag.ipynb 9
 def preprocess_data(raw_data: pl.DataFrame) -> pl.DataFrame:
     """
     Preprocess the raw dataset (only minor transformations)
@@ -75,10 +75,10 @@ def preprocess_data(raw_data: pl.DataFrame) -> pl.DataFrame:
     )
     return df_pl
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 10
+# %% ../../../notebooks/missions/juno/mag.ipynb 11
 from ...utils.basic import partition_data_by_year
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 11
+# %% ../../../notebooks/missions/juno/mag.ipynb 12
 def process_data(
     raw_data: pl.DataFrame,
     ts: str = None,  # time resolution
@@ -89,8 +89,8 @@ def process_data(
     """
     return partition_data_by_year(raw_data)
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 13
-from ...core import extract_features
+# %% ../../../notebooks/missions/juno/mag.ipynb 14
+from ...core.pipeline import extract_features
 from ..default.data_mag import create_pipeline_template
 
 
@@ -104,11 +104,11 @@ def create_pipeline(sat_id="JNO", source="MAG"):
         extract_features_fn=extract_features,
     )
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 19
+# %% ../../../notebooks/missions/juno/mag.ipynb 20
 import pandas
 import pdpipe as pdp
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 20
+# %% ../../../notebooks/missions/juno/mag.ipynb 21
 def process_jno_index(df: pandas.DataFrame):
     
     _index_time_format = "%Y-%jT%H:%M:%S.%f"
@@ -134,10 +134,10 @@ def process_jno_index(df: pandas.DataFrame):
     return jno_index_pipeline(df)
 
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 22
+# %% ../../../notebooks/missions/juno/mag.ipynb 23
 from kedro.pipeline import pipeline, node
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 23
+# %% ../../../notebooks/missions/juno/mag.ipynb 24
 def create_jno_index_pipeline():
     jno_index_pipeline = pipeline([
         node(process_jno_index, inputs="raw_JNO_SS_index", outputs="JNO_SS_index"),

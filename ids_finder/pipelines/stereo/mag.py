@@ -93,7 +93,7 @@ def process_data(
     return partition_data_by_year(raw_data)
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 13
-from ...core import extract_features
+from ...core.pipeline import extract_features
 from ..default.data_mag import create_pipeline_template
 
 
