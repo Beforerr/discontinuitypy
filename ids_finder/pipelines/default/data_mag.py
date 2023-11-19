@@ -7,7 +7,8 @@ __all__ = ['create_pipeline_template']
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
-from ...utils.basic import load_params
+from ... import PARAMS
+from ...core.pipeline import extract_features
 from ids_finder.pipelines.default.data import (
     create_pipeline_template as create_pipeline_template_base,
 )
@@ -18,10 +19,10 @@ from typing import Callable, Optional
 def create_pipeline_template(
     sat_id: str,  # satellite id, used for namespace
     source: str,  # source data, like "mag" or "plasma"
-    extract_features_fn: Optional[Callable] = None,
+    extract_features_fn: Optional[Callable] = extract_features,
+    params: Optional[dict] = PARAMS,
     **kwargs,
 ) -> Pipeline:
-    params = load_params()
     namespace = f"{sat_id}.{source}"
 
     tau = params["tau"]
@@ -31,7 +32,12 @@ def create_pipeline_template(
 
     node_extract_features = node(
         extract_features_fn,
-        inputs=[f"primary_data_{ts_str}", "params:tau", "params:extract_params"],
+        inputs=[
+            f"primary_data_{ts_str}",
+            "params:tau",
+            "params:time_resolution",
+            "params:bcols",
+        ],
         outputs=f"feature_{ts_str}_{tau_str}",
         name="extract_features",
     )
@@ -45,6 +51,6 @@ def create_pipeline_template(
     )
 
     base_pipelines = create_pipeline_template_base(
-        sat_id=sat_id, source=source, **kwargs
+        sat_id=sat_id, source=source, params=params, **kwargs
     )
     return base_pipelines + pipelines

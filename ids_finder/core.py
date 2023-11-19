@@ -143,7 +143,7 @@ class IDsPipeline:
     def calc_rotation_angle(self, sat_fgm):
         return pdp.ColByFrameFunc(
             "rotation_angle",
-            lambda df: calc_candidate_rotation_angle(df, sat_fgm),
+            lambda df: calc_events_rotation_angle(df, sat_fgm),
             func_desc="calculating rotation angle",
         )
 

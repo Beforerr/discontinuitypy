@@ -12,6 +12,8 @@ from ...utils.basic import load_params
 from typing import Callable, Optional, Any, Dict
 
 # %% ../../../notebooks/pipelines/1_data.ipynb 11
+from ... import PARAMS
+
 DEFAULT_LOAD_INPUTS = dict(
     start="params:start_date",
     end="params:end_date",
@@ -30,7 +32,7 @@ def create_pipeline_template(
     **kwargs,
 ) -> Pipeline:
     if params is None:
-        params = load_params()
+        params = PARAMS
 
     namespace = f"{sat_id}.{source}"
 

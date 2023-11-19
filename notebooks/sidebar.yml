@@ -2,11 +2,11 @@ website:
   sidebar:
     contents:
       - index.qmd
+      - 00_base.ipynb
       - 00_ids_finder.ipynb
       - 01_ids_detection.ipynb
       - 02_ids_properties.ipynb
       - 20_datasets.ipynb
-      - 99_utils.ipynb
       - section: analysis
         contents:
           - analysis/00_base.ipynb
@@ -48,5 +48,6 @@ website:
         href: pipelines/index.qmd
       - section: utils
         contents:
+          - utils/00_basic.ipynb
           - utils/01_plotting.ipynb
           - utils/02_analysis_utils.ipynb

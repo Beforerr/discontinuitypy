@@ -1,4 +1,5 @@
 env-update:
+  #!/usr/bin/env sh
   mamba env update --file environment.yml
 
 env-create:
@@ -6,11 +7,15 @@ env-create:
   # conda activate $(CONDA_ENV)
   # pip install -e .
 
+kedro-run-mag:
+  kedro run --to-outputs=JNO.MAG.feature_ts_1s_tau_60s --from-inputs=JNO.MAG.primary_data_ts_1s
+
+
 kedro-run-candidates:
   # kedro run --to-outputs=candidates.sta_tau_60s --from-inputs=sta.feature_tau_60s
   # kedro run --to-outputs=candidates.jno_tau_60s --from-inputs=jno.feature_tau_60s
   # kedro run --to-outputs=candidates.thb_tau_60s --from-inputs=thb.feature_tau_60s
-  kedro run --to-outputs=candidates.thb_ts_1s_tau_60s --from-inputs=thb.feature_ts_1s_tau_60s
+  # kedro run --to-outputs=candidates.thb_ts_1s_tau_60s --from-inputs=thb.feature_ts_1s_tau_60s
 
 
 kedro-run-primary_states:

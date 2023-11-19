@@ -7,12 +7,22 @@
 
 JNO:
   MAG:
-    datatype: "1sec"
+    datatype: "1SEC"
     time_resolution: 1
     coords: "rtn"
-    extract_params:
-      bcols: ["BX", "BY", "BZ"]
+    bcols: ["BX", "BY", "BZ"]
 
   STATE:
     datatype: "hourly"
     time_resolution: 3600
+
+pds-download-url: "https://pds-ppi.igpp.ucla.edu/ditdos/download?id=pds://PPI"
+
+Juno:
+  FGM:
+    CRUISE:
+      datatypes: ["1MIN", "1SEC"]
+      url_format: "JNO-SS-3-FGM-CAL-V1.0/DATA/CRUISE"
+    JUPYTER:
+      datatypes: ["1MIN", "1SEC"]
+      url_format: "JNO-J-3-FGM-CAL-V1.0/DATA/JUPITER"

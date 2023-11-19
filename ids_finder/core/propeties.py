@@ -2,8 +2,9 @@
 
 # %% auto 0
 __all__ = ['THRESHOLD_RATIO', 'get_candidate_data', 'get_candidates', 'calc_duration', 'calc_d_duration', 'find_start_end_times',
-           'get_time_from_condition', 'calc_candidate_duration', 'calibrate_candidate_duration', 'minvar',
-           'mva_features', 'calc_rotation_angle', 'calc_candidate_rotation_angle']
+           'get_time_from_condition', 'calc_candidate_duration', 'minvar', 'mva_features',
+           'calc_candidate_mva_features', 'get_data_at_times', 'calc_rotation_angle', 'calc_events_rotation_angle',
+           'calc_normal_direction', 'calc_events_normal_direction', 'IDsPipeline', 'process_events']
 
 # %% ../../notebooks/02_ids_properties.ipynb 2
 #| code-summary: "Import all the packages needed for the project"
@@ -12,7 +13,7 @@ from fastcore.test import *
 from ..utils.basic import *
 import polars as pl
 import xarray as xr
-from .detection import *
+import pyarrow as pa
 
 try:
     import modin.pandas as pd
@@ -32,11 +33,10 @@ from loguru import logger
 
 
 import pdpipe as pdp
+from pdpipe.util import out_of_place_col_insert
 from multipledispatch import dispatch
 
-from typing import Any, Callable
-
-# %% ../../notebooks/02_ids_properties.ipynb 4
+# %% ../../notebooks/02_ids_properties.ipynb 3
 @dispatch(object, xr.DataArray)
 def get_candidate_data(
     candidate, data, neighbor: int = 0
@@ -83,10 +83,8 @@ def get_candidates(candidates: pd.DataFrame, candidate_type=None, num: int = 4):
     else:
         return _candidates
 
-# %% ../../notebooks/02_ids_properties.ipynb 7
+# %% ../../notebooks/02_ids_properties.ipynb 6
 THRESHOLD_RATIO  = 1/4
-
-from typing import Tuple
 
 def calc_duration(vec: xr.DataArray, threshold_ratio=THRESHOLD_RATIO) -> pandas.Series:
     # NOTE: gradient calculated at the edge is not reliable.
@@ -154,7 +152,7 @@ def get_time_from_condition(vec: xr.DataArray, threshold, condition_type) -> pd.
         return vec.time[where_result[index_choice]].values
     return None
 
-# %% ../../notebooks/02_ids_properties.ipynb 8
+# %% ../../notebooks/02_ids_properties.ipynb 7
 def calc_candidate_duration(candidate: pd.Series, data) -> pd.Series:
     try:
         candidate_data = get_candidate_data(candidate, data)
@@ -166,57 +164,7 @@ def calc_candidate_duration(candidate: pd.Series, data) -> pd.Series:
 
 
 
-# %% ../../notebooks/02_ids_properties.ipynb 10
-def calibrate_candidate_duration(
-    candidate: pd.Series, data:xr.DataArray, data_resolution, ratio = 3/4
-):
-    """
-    Calibrates the candidate duration. 
-    - If only one of 'd_tstart' or 'd_tstop' is provided, calculates the missing one based on the provided one and 'd_time'.
-    - Then if this is not enough points between 'd_tstart' and 'd_tstop', returns None for both.
-    
-    
-    Parameters
-    ----------
-    - candidate (pd.Series): The input candidate with potential missing 'd_tstart' or 'd_tstop'.
-    
-    Returns
-    -------
-    - pd.Series: The calibrated candidate.
-    """
-    
-    start_notnull = pd.notnull(candidate['d_tstart'])
-    stop_notnull = pd.notnull(candidate['d_tstop']) 
-    
-    match start_notnull, stop_notnull:
-        case (True, True):
-            d_tstart = candidate['d_tstart']
-            d_tstop = candidate['d_tstop']
-        case (True, False):
-            d_tstart = candidate['d_tstart']
-            d_tstop = candidate['d_time'] -  candidate['d_tstart'] + candidate['d_time']
-        case (False, True):
-            d_tstart = candidate['d_time'] -  candidate['d_tstop'] + candidate['d_time']
-            d_tstop = candidate['d_tstop']
-        case (False, False):
-            return pandas.Series({
-                'd_tstart': None,
-                'd_tstop': None,
-            })
-    
-    duration = d_tstop - d_tstart
-    num_of_points_between = data.time.sel(time=slice(d_tstart, d_tstop)).count().item()
-    
-    if num_of_points_between <= (duration/data_resolution) * ratio:
-        d_tstart = None
-        d_tstop = None
-    
-    return pandas.Series({
-        'd_tstart': d_tstart,
-        'd_tstop': d_tstop,
-    })
-
-# %% ../../notebooks/02_ids_properties.ipynb 12
+# %% ../../notebooks/02_ids_properties.ipynb 9
 def minvar(data):
     """
     see `pyspedas.cotrans.minvar`
@@ -283,8 +231,8 @@ def minvar(data):
     return vrot, v, w
 
 
-# %% ../../notebooks/02_ids_properties.ipynb 13
-def mva_features(data: np.ndarray) -> list[Any]:
+# %% ../../notebooks/02_ids_properties.ipynb 10
+def mva_features(data: np.ndarray):
     """
     Compute MVA features based on the given data array.
 
@@ -300,6 +248,8 @@ def mva_features(data: np.ndarray) -> list[Any]:
 
     # Maximum variance direction eigenvector
     Vl = v[:, 0]
+    Vm = v[:, 1]
+    Vn = v[:, 2]
 
     vec_mag = np.linalg.norm(vrot, axis=1)
     
@@ -315,10 +265,17 @@ def mva_features(data: np.ndarray) -> list[Any]:
     dvec_mag = vec_mag[-1] - vec_mag[0]
     dBOverB = np.abs(dvec_mag / vec_mag_mean)
     dBOverB_max = (np.max(vec_mag) - np.min(vec_mag)) / vec_mag_mean
-    
+
+    output_names = [
+        "Vl_x", "Vl_y", "Vl_z",
+        "Vn_x", "Vn_y", "Vn_z",
+        "eig0", "eig1", "eig2", 
+        'Q_mva',
+        'b_mag', 'b_n', 'db_mag', 'bn_over_b', 'db_over_b', 'db_over_b_max', 'db_l', 'db_m', 'db_n']
     
     results = [
         Vl[0], Vl[1], Vl[2],
+        Vn[0], Vn[1], Vn[2],
         w[0], w[1], w[2],
         w[1] / w[2],
         vec_mag_mean,
@@ -330,16 +287,32 @@ def mva_features(data: np.ndarray) -> list[Any]:
         dvec[0], dvec[1], dvec[2]
     ]
 
-    return results
+    return results, output_names
 
-# %% ../../notebooks/02_ids_properties.ipynb 17
-def calc_rotation_angle(v1: np.ndarray, v2: np.ndarray):
+# %% ../../notebooks/02_ids_properties.ipynb 11
+def calc_candidate_mva_features(candidate, data: xr.DataArray):
+    results, output_names = mva_features(
+        data.sel(time=slice(candidate["d_tstart"], candidate["d_tstop"])).to_numpy()
+    )
+
+    return pandas.Series(results, index=output_names)
+
+# %% ../../notebooks/02_ids_properties.ipynb 15
+def get_data_at_times(data: xr.DataArray, times) -> np.ndarray:
+    """
+    Select data at specified times.
+    """
+    # Use xarray's selection capability if data supports it
+    return data.sel(time=times, method="nearest").to_numpy()
+
+# %% ../../notebooks/02_ids_properties.ipynb 16
+def calc_rotation_angle(v1, v2):
     """
     Computes the rotation angle between two vectors.
     
     Parameters:
-    - v1: The first vector.
-    - v2: The second vector.
+    - v1: The first vector(s).
+    - v2: The second vector(s).
     """
     
     if v1.shape != v2.shape:
@@ -360,24 +333,147 @@ def calc_rotation_angle(v1: np.ndarray, v2: np.ndarray):
     # Convert the angles from radians to degrees
     return np.degrees(angle)
 
-def calc_candidate_rotation_angle(candidates, data:  xr.DataArray):
+
+# %% ../../notebooks/02_ids_properties.ipynb 17
+def calc_events_rotation_angle(events, data: xr.DataArray):
     """
     Computes the rotation angle(s) at two different time steps.
     """
-    
-    tstart = candidates['d_tstart']
-    tstop = candidates['d_tstop']
-    
-    # Convert Series to numpy arrays if necessary
-    if isinstance(tstart, pd.Series):
-        tstart = tstart.to_numpy()
-        tstop = tstop.to_numpy()
-        # no need to Handle NaT values (as `calibrate_candidate_duration` will handle this)
-    
-    # Get the vectors at the two time steps
-    vecs_before = data.sel(time=tstart, method="nearest").to_numpy()
-    vecs_after = data.sel(time=tstop, method="nearest").to_numpy()
-    
-    # Compute the rotation angle(s)
+    tstart = events['d_tstart'].to_numpy()
+    tstop = events['d_tstop'].to_numpy()
+
+    vecs_before = get_data_at_times(data, tstart)
+    vecs_after = get_data_at_times(data, tstop)
+
     rotation_angles = calc_rotation_angle(vecs_before, vecs_after)
     return rotation_angles
+
+# %% ../../notebooks/02_ids_properties.ipynb 19
+def calc_normal_direction(v1, v2, normalize=True) -> np.ndarray:
+    """
+    Computes the normal direction of two vectors.
+
+    Parameters
+    ----------
+    v1 : array_like 
+        The first vector(s).
+    v2 : array_like 
+        The second vector(s).
+    """
+    c = np.cross(v1, v2)
+    return c / np.linalg.norm(c, axis=-1, keepdims=True)
+
+
+# %% ../../notebooks/02_ids_properties.ipynb 20
+def calc_events_normal_direction(events, data: xr.DataArray):
+    """
+    Computes the normal directions(s) at two different time steps.
+    """
+    tstart = events['d_tstart'].to_numpy()
+    tstop = events['d_tstop'].to_numpy()
+
+    vecs_before = get_data_at_times(data, tstart)
+    vecs_after = get_data_at_times(data, tstop)
+
+    normal_directions = calc_normal_direction(vecs_before, vecs_after)
+    # need to convert to list first, as pa.array only supports 1D array
+    return normal_directions.tolist()
+    # return pandas.Series(normal_directions.tolist(), dtype=pd.ArrowDtype(pa.list_(pa.float64(), 3)))
+
+
+# %% ../../notebooks/02_ids_properties.ipynb 23
+@patch
+def _transform(self: pdp.ApplyToRows, X, verbose):
+    new_cols = X.apply(self._func, axis=1)
+    if isinstance(new_cols, (pd.Series, pandas.Series)):
+        loc = len(X.columns)
+        if self._follow_column:
+            loc = X.columns.get_loc(self._follow_column) + 1
+        return out_of_place_col_insert(
+            X=X, series=new_cols, loc=loc, column_name=self._colname
+        )
+    if isinstance(new_cols, (mpd.DataFrame, pandas.DataFrame)):
+        sorted_cols = sorted(list(new_cols.columns))
+        new_cols = new_cols[sorted_cols]
+        if self._follow_column:
+            inter_X = X
+            loc = X.columns.get_loc(self._follow_column) + 1
+            for colname in new_cols.columns:
+                inter_X = out_of_place_col_insert(
+                    X=inter_X,
+                    series=new_cols[colname],
+                    loc=loc,
+                    column_name=colname,
+                )
+                loc += 1
+            return inter_X
+        assign_map = {
+            colname: new_cols[colname] for colname in new_cols.columns
+        }
+        return X.assign(**assign_map)
+    raise TypeError(  # pragma: no cover
+        "Unexpected type generated by applying a function to a DataFrame."
+        " Only Series and DataFrame are allowed."
+    )
+
+# %% ../../notebooks/02_ids_properties.ipynb 25
+class IDsPipeline:
+    def __init__(self):
+        pass
+
+    def calc_duration(self, sat_fgm: xr.DataArray):
+        return pdp.ApplyToRows(
+            lambda candidate: calc_candidate_duration(candidate, sat_fgm),
+            func_desc="calculating duration parameters",
+        )
+
+    def calc_mva_features(self, sat_fgm):
+        return pdp.ApplyToRows(
+            lambda candidate: calc_candidate_mva_features(candidate, sat_fgm),
+            func_desc='calculating index "q_mva", "BnOverB" and "dBOverB"',
+        )
+
+    def calc_rotation_angle(self, sat_fgm):
+        return pdp.ColByFrameFunc(
+            "rotation_angle",
+            lambda df: calc_events_rotation_angle(df, sat_fgm),
+            func_desc="calculating rotation angle",
+        )
+
+    def calc_normal_direction(self, sat_fgm):
+        return pdp.ColByFrameFunc(
+            "normal_direction",
+            lambda df: calc_events_normal_direction(df, sat_fgm),
+            func_desc="calculating normal direction",
+        )
+
+# %% ../../notebooks/02_ids_properties.ipynb 26
+from ..utils.polars import convert_to_pd_dataframe, sort
+
+# %% ../../notebooks/02_ids_properties.ipynb 27
+def process_events(
+    candidates_pl: pl.DataFrame,  # potential candidates DataFrame
+    sat_fgm: xr.DataArray,  # satellite FGM data
+    data_resolution: timedelta,  # time resolution of the data
+    modin = True,
+) -> pl.DataFrame:
+    "Process candidates DataFrame"
+    
+    candidates = convert_to_pd_dataframe(candidates_pl, modin=modin)
+
+    id_pipelines = IDsPipeline()
+    candidates = id_pipelines.calc_duration(sat_fgm).apply(candidates)
+
+    ids = (
+        id_pipelines.calc_mva_features(sat_fgm)
+        + id_pipelines.calc_rotation_angle(sat_fgm)
+        + id_pipelines.calc_normal_direction(sat_fgm)
+    ).apply(
+        candidates.dropna()  # Remove candidates with NaN values)
+    )
+
+    if isinstance(ids, mpd.DataFrame):
+        ids = ids._to_pandas()
+    
+    return pl.DataFrame(ids)
+    # ValueError: Data type fixed_size_list[pyarrow] not supported by interchange protocol
