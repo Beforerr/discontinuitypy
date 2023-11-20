@@ -23,7 +23,8 @@
         kedro-viz:
             layer: intermediate
 
-"{mission}.STATE.primary_state_{suffix}":
+# STA.STATE.primary_data_ts_3600s
+"{mission}.STATE.primary_data_{suffix}":
     type: polars.LazyPolarsDataset
     filepath: data/03_primary/{mission}_state_{suffix}.parquet
     file_format: parquet

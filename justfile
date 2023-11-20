@@ -7,8 +7,8 @@ env-create:
   # conda activate $(CONDA_ENV)
   # pip install -e .
 
-kedro-run-mag:
-  kedro run --to-outputs=JNO.MAG.feature_ts_1s_tau_60s --from-inputs=JNO.MAG.primary_data_ts_1s
+kedro-run-mag-feature mission:
+  kedro run --to-outputs={{mission}}.MAG.feature_ts_1s_tau_60s --from-inputs={{mission}}.MAG.primary_data_ts_1s
 
 
 kedro-run-candidates:
@@ -25,7 +25,8 @@ kedro-run-primary_states:
 
 
 kedro-run-sw-events:
-  kedro run --to-outputs=events.sw.thb_ts_1s_tau_60s --from-inputs=candidates.thb_ts_1s_tau_60s
+  # kedro run --to-outputs=events.sw.thb_ts_1s_tau_60s --from-inputs=candidates.thb_ts_1s_tau_60s
+  kedro run --to-outputs=events.l1.ALL_sw_ts_1s_tau_60s --from-inputs=JNO.MAG.feature_ts_1s_tau_60s,STA.MAG.feature_ts_1s_tau_60s,THB.MAG.feature_ts_1s_tau_60s
 
 create-mission-notebooks mission:
   mkdir -p notebooks/missions/{{mission}}

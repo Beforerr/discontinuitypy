@@ -376,9 +376,8 @@ def calc_events_normal_direction(events, data: xr.DataArray):
     vecs_after = get_data_at_times(data, tstop)
 
     normal_directions = calc_normal_direction(vecs_before, vecs_after)
-    # need to convert to list first, as pa.array only supports 1D array
+    # need to convert to list first, as only 1D array is supported
     return normal_directions.tolist()
-    # return pandas.Series(normal_directions.tolist(), dtype=pd.ArrowDtype(pa.list_(pa.float64(), 3)))
 
 
 # %% ../../notebooks/02_ids_properties.ipynb 23

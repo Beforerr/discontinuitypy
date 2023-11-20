@@ -9,8 +9,7 @@ THEMIS: &THEMIS
     datatype: "fgl"
     time_resolution: 1
     coords: "gse"
-    extract_params:
-      bcols: ["B_x", "B_y", "B_z"]
+    bcols: ["B_x", "B_y", "B_z"]
   STATE:
     datatype: "hourly"
     time_resolution: 3600

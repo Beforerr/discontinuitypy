@@ -7,22 +7,21 @@ __all__ = ['download_data', 'load_data', 'preprocess_data', 'process_data', 'cre
 from datetime import timedelta
 
 import polars as pl
-import pandas
 
-from kedro.pipeline import Pipeline, node
-from kedro.pipeline.modular_pipeline import pipeline
+from ... import PARAMS
+from ...utils.basic import cdf2pl, pmap
 
 from typing import Iterable
 
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 4
+from pathlib import Path
 import os
-os.environ['SPEDAS_DATA_DIR'] = f"{os.environ['HOME']}/data"
+
+os.environ['SPEDAS_DATA_DIR'] = str(Path.home() / 'data')
 import pyspedas
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 5
-from ...utils.basic import cdf2pl, pmap
-
 def download_data(
     start,
     end,
@@ -42,14 +41,10 @@ def load_data(
     probe: str = "a",
 ):
     data = download_data(start, end, probe, datatype)
-    return pl.concat(data | pmap(cdf2pl, var_name="BFIELD"))
+    return pl.concat(data | pmap(cdf2pl, var_names="BFIELD"))
 
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 7
-from ...utils.basic import resample
-from pipe import select
-
-# %% ../../../notebooks/missions/stereo/mag.ipynb 8
 def preprocess_data(
     raw_data: pl.LazyFrame,
     ts: str = "1s",  # time resolution
@@ -60,42 +55,34 @@ def preprocess_data(
     - Downsample the data to a given time resolution
     - Applying naming conventions for columns
     """
-    every = pandas.Timedelta(ts)
-    period = 2 * every
 
-    return (
-        raw_data.pipe(resample, every=every, period=period)
-        .rename(
-            {
-                "BFIELD_0": "b_r",
-                "BFIELD_1": "b_t",
-                "BFIELD_2": "b_n",
-                "BFIELD_3": "b_mag",
-            }
-        )
-        .collect()
-    )
+    bcols = PARAMS["STEREO"]["MAG"]["bcols"]
+
+    return raw_data.rename(
+        {
+            "BFIELD_0": bcols[0],
+            "BFIELD_1": bcols[1],
+            "BFIELD_2": bcols[2],
+        }
+    ).collect()
+
+# %% ../../../notebooks/missions/stereo/mag.ipynb 9
+from ...utils.basic import resample, partition_data_by_year
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 10
-from ...utils.basic import partition_data_by_year
-
-# %% ../../../notebooks/missions/stereo/mag.ipynb 11
 def process_data(
     raw_data: pl.DataFrame,
-    ts: str = None,  # time resolution
-    coord: str = None,
-) -> dict[str, pl.DataFrame]:
-    """
-    Corresponding to primary data layer, where source data models are transformed into domain data models
+    ts = None,  # time resolution, in seconds
+):
+    every = timedelta(seconds=ts)
+    period = 2 * every
 
-    - Partitioning data, for the sake of memory
-    """
-    return partition_data_by_year(raw_data)
+    return raw_data.pipe(resample, every=every, period=period).pipe(
+        partition_data_by_year
+    )
 
-# %% ../../../notebooks/missions/stereo/mag.ipynb 13
-from ...core.pipeline import extract_features
+# %% ../../../notebooks/missions/stereo/mag.ipynb 12
 from ..default.data_mag import create_pipeline_template
-
 
 def create_pipeline(sat_id="STA", source="MAG"):
     return create_pipeline_template(
@@ -104,5 +91,4 @@ def create_pipeline(sat_id="STA", source="MAG"):
         load_data_fn=load_data,
         preprocess_data_fn=preprocess_data,
         process_data_fn=process_data,
-        extract_features_fn=extract_features,
     )

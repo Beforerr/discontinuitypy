@@ -93,7 +93,7 @@ def calc_combined_features(df: pl.LazyFrame):
         .pipe(compute_inertial_length)
         .pipe(compute_Alfven_speed)
         .pipe(compute_Alfven_current)
-        .pipe(j0=pl.col("j0") * j_factor.value)
+        .with_columns(j0=pl.col("j0") * j_factor.value)
         .with_columns(
             L_mn_norm=pl.col("L_mn") / pl.col("ion_inertial_length"),
             j0_norm=pl.col("j0") / pl.col("j_Alfven"),

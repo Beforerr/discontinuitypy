@@ -38,7 +38,7 @@ def create_sw_events_pipeline(
         filter_sw_events,
         inputs=[
             f"events.{sat_id}_{ts_mag_str}_{tau_str}",
-            f"{sat_id}.inter_state_sw",
+            f"{sat_id}.STATE.inter_data_sw",
         ],
         outputs=f"events.{sat_id}_sw_{ts_mag_str}_{tau_str}"
         

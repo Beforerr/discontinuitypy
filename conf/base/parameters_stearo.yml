@@ -10,8 +10,7 @@ STEREO: &STEREO
     datatype: "8hz"
     time_resolution: 1
     coords: "rtn"
-    extract_params:
-      bcols: ["BX", "BY", "BZ"]
+    bcols: ["B_x", "B_y", "B_z"]
   STATE:
     datatype: "hourly"
     time_resolution: 3600

@@ -1,0 +1,16 @@
+# This is a boilerplate parameters config generated for pipeline 'juno'
+# using Kedro 0.18.13.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/0.18.13/configuration/parameters.html
+
+pds-download-url: "https://pds-ppi.igpp.ucla.edu/ditdos/download?id=pds://PPI"
+
+Juno:
+  FGM:
+    CRUISE:
+      datatypes: ["1MIN", "1SEC"]
+      url_format: "JNO-SS-3-FGM-CAL-V1.0/DATA/CRUISE"
+    JUPYTER:
+      datatypes: ["1MIN", "1SEC"]
+      url_format: "JNO-J-3-FGM-CAL-V1.0/DATA/JUPITER"
