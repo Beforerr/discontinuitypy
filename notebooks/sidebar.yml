@@ -51,3 +51,5 @@ website:
           - utils/00_basic.ipynb
           - utils/01_plotting.ipynb
           - utils/02_analysis_utils.ipynb
+          - utils/10_polars.ipynb
+          - utils/20_pds.ipynb

@@ -38,6 +38,8 @@ from xarray import DataArray
 from typing import Union, Collection, Callable, Optional, Tuple
 from typing import Any, Dict
 
+from .. import ROOT_DIR
+
 # %% ../../notebooks/utils/00_basic.ipynb 7
 from pipe import select
 from fastcore.utils import partial
@@ -63,7 +65,7 @@ from kedro.framework.session import KedroSession
 from kedro.framework.startup import bootstrap_project
 from kedro.ipython import _resolve_project_path
 
-def load_context(project_path: str = '.', params_only: bool = False, catalog_only: bool = False):
+def load_context(project_path: str = ROOT_DIR, params_only: bool = False, catalog_only: bool = False):
     project_path = _resolve_project_path(project_path)
     metadata = bootstrap_project(project_path)
     # configure_project(metadata.package_name)

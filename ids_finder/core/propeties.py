@@ -10,10 +10,9 @@ __all__ = ['THRESHOLD_RATIO', 'get_candidate_data', 'get_candidates', 'calc_dura
 #| code-summary: "Import all the packages needed for the project"
 from fastcore.utils import *
 from fastcore.test import *
-from ..utils.basic import *
+from ..utils.basic import df2ts
 import polars as pl
 import xarray as xr
-import pyarrow as pa
 
 try:
     import modin.pandas as pd

@@ -1,3 +1,5 @@
+pak::pkg_install("gaussplotR")
+
 library(dplyr)
 
 library(ggplot2)
@@ -8,6 +10,7 @@ library(see)
 
 library(glue)
 library(arrow)
+library(gaussplotR)
 
 # Save the plot, if filename is provided
 save_plot <- function(filename = NULL) {
