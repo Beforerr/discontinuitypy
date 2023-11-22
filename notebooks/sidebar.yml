@@ -24,6 +24,9 @@ website:
               - missions/juno/mag.ipynb
               - missions/juno/state.ipynb
             href: missions/juno/index.ipynb
+          - section: omni
+            contents: []
+            href: missions/omni/index.ipynb
           - section: stereo
             contents:
               - missions/stereo/mag.ipynb
@@ -35,7 +38,9 @@ website:
               - missions/themis/state.ipynb
             href: missions/themis/index.ipynb
           - section: wind
-            contents: []
+            contents:
+              - missions/wind/mag.ipynb
+              - missions/wind/state.ipynb
             href: missions/wind/index.ipynb
         href: missions/index.qmd
       - section: pipelines

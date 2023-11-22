@@ -3,16 +3,6 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
-# jno.raw_mag_1s:
-#     type: partitions.PartitionedDataset
-#     path: data/01_raw/jno_ss_se_1SEC
-#     dataset:
-#         type: ids_finder.utils.basic.LblDataset
-#     filename_suffix: ".lbl"
-#     metadata:
-#         kedro-viz:
-#             layer: raw
-
 JNO.STATE.model_data:
     type: pandas.CSVDataset
     filepath: data/01_raw/mswim2d_interp_output_20231009173618.txt
@@ -29,7 +19,7 @@ model.raw_jno_ss_se_1min:
     type: partitions.PartitionedDataset
     path: data/01_raw/jno_ss_se_1min
     dataset:
-        type: ids_finder.utils.basic.LblDataset
+        type: ids_finder.utils.lbl.LblDataset
     filename_suffix: ".lbl"
     metadata:
         kedro-viz:

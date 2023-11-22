@@ -1,0 +1,32 @@
+# This is a boilerplate parameters config generated for pipeline 'omni'
+# using Kedro 0.18.14.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/0.18.14/configuration/parameters.html
+
+OMNI:
+  LowRes:
+    datatype: "hourly"
+    time_resolution: 3600
+
+omni_vars:
+  "N":
+    COLNAME: "plasma_density"
+    FIELDNAM: "Ion density"
+    UNITS: "Per cc"
+  "T":
+    COLNAME: "plasma_temperature"
+    FIELDNAM: "Plasma temperature"
+    UNITS: "K"
+  "V":
+    COLNAME: "plasma_speed"
+    FIELDNAM: "Flow speed"
+    UNITS: "km/s"
+  "THETA-V":
+    COLNAME: "sw_vel_theta"
+    FIELDNAM: "Flow latitude"
+    UNITS: "Deg"
+  "PHI-V":
+    COLNAME: "sw_vel_phi"
+    FIELDNAM: "Flow longitude"
+    UNITS: "Deg"

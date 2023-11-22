@@ -3,3 +3,13 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.18.14/configuration/parameters.html
+
+Wind:
+  MAG:
+    datatype: "h4-rtn"
+    time_resolution: 1
+    coords: "rtn"
+    bcols: ["BRTN_0", "BRTN_1", "BRTN_2"]
+  STATE:
+    datatype: "hourly"
+    time_resolution: 3600

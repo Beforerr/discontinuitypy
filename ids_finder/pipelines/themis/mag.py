@@ -7,6 +7,7 @@ __all__ = ['check_dataype', 'download_data', 'spz2df', 'load_data', 'preprocess_
 from datetime import timedelta
 import polars as pl
 
+from ...utils.basic import resample, partition_data_by_year
 from ..default.data_mag import create_pipeline_template
 
 # %% ../../../notebooks/missions/themis/mag.ipynb 4
@@ -57,13 +58,9 @@ def load_data(
     return spz2df(data).lazy()
 
 # %% ../../../notebooks/missions/themis/mag.ipynb 8
-from ...utils.basic import resample
-
-# %% ../../../notebooks/missions/themis/mag.ipynb 9
 def preprocess_data(
     raw_data: pl.LazyFrame,
     datatype: str = None,
-    coord: str = "gse",
 ) -> pl.LazyFrame:
     """
     Preprocess the raw dataset (only minor transformations)
@@ -83,13 +80,10 @@ def preprocess_data(
 
     return raw_data.sort("time").unique("time").rename(name_mapping)
 
-# %% ../../../notebooks/missions/themis/mag.ipynb 11
-from ...utils.basic import partition_data_by_year
-
-# %% ../../../notebooks/missions/themis/mag.ipynb 12
+# %% ../../../notebooks/missions/themis/mag.ipynb 10
 def process_data(
     raw_data: pl.LazyFrame,
-    ts = None,  # time resolution, in seconds
+    ts,  # time resolution, in seconds
 ):
     every = timedelta(seconds=ts)
     period = 2 * every
@@ -98,7 +92,7 @@ def process_data(
         partition_data_by_year
     )
 
-# %% ../../../notebooks/missions/themis/mag.ipynb 14
+# %% ../../../notebooks/missions/themis/mag.ipynb 12
 def create_pipeline(sat_id="THB", source="MAG"):
     return create_pipeline_template(
         sat_id=sat_id,

@@ -12,10 +12,11 @@ from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
 from ...utils.pds import pds_download
+from ...utils.lbl import load_lbl
 
 # %% ../../../notebooks/missions/juno/mag.ipynb 5
 from ... import ROOT_DIR
-from ...utils.basic import load_lbl, concat_partitions
+from ...utils.basic import concat_partitions
 from pipe import select, filter
 from typing import Literal
 

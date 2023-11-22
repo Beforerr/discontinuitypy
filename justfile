@@ -30,6 +30,7 @@ kedro-run-sw-events:
 
 create-mission-notebooks mission:
   mkdir -p notebooks/missions/{{mission}}
+  kedro pipeline create {{mission}}
   touch notebooks/missions/{{mission}}/index.ipynb
   touch notebooks/missions/{{mission}}/mag.ipynb
   touch notebooks/missions/{{mission}}/state.ipynb

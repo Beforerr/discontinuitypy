@@ -9,10 +9,10 @@ from datetime import timedelta
 import polars as pl
 
 from ... import PARAMS
-from ...utils.basic import cdf2pl, pmap
+from ...utils.basic import cdf2pl, pmap, resample, partition_data_by_year
+from ..default.data_mag import create_pipeline_template
 
 from typing import Iterable
-
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 4
 from pathlib import Path
@@ -26,7 +26,7 @@ def download_data(
     start,
     end,
     probe: str = "a",
-    datatype = None,
+    datatype = '8hz',
 ) -> Iterable[str]:
     "List of CDF files"
     trange = [start, end]
@@ -37,39 +37,34 @@ def download_data(
 def load_data(
     start,
     end,
-    datatype = None,
+    datatype = '8hz',
     probe: str = "a",
 ):
-    data = download_data(start, end, probe, datatype)
-    return pl.concat(data | pmap(cdf2pl, var_names="BFIELD"))
+    files = download_data(start, end, probe, datatype)
+    var_names="BFIELD"
+    return pl.concat(files | pmap(cdf2pl, var_names=var_names))
 
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 7
 def preprocess_data(
     raw_data: pl.LazyFrame,
-    ts: str = "1s",  # time resolution
-) -> pl.DataFrame:
+):
     """
     Preprocess the raw dataset (only minor transformations)
-
-    - Downsample the data to a given time resolution
     - Applying naming conventions for columns
     """
 
     bcols = PARAMS["STEREO"]["MAG"]["bcols"]
 
-    return raw_data.rename(
-        {
-            "BFIELD_0": bcols[0],
-            "BFIELD_1": bcols[1],
-            "BFIELD_2": bcols[2],
-        }
-    ).collect()
+    name_mapping = {
+        "BFIELD_0": bcols[0],
+        "BFIELD_1": bcols[1],
+        "BFIELD_2": bcols[2],
+    }
+
+    return raw_data.rename(name_mapping)
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 9
-from ...utils.basic import resample, partition_data_by_year
-
-# %% ../../../notebooks/missions/stereo/mag.ipynb 10
 def process_data(
     raw_data: pl.DataFrame,
     ts = None,  # time resolution, in seconds
@@ -81,9 +76,7 @@ def process_data(
         partition_data_by_year
     )
 
-# %% ../../../notebooks/missions/stereo/mag.ipynb 12
-from ..default.data_mag import create_pipeline_template
-
+# %% ../../../notebooks/missions/stereo/mag.ipynb 11
 def create_pipeline(sat_id="STA", source="MAG"):
     return create_pipeline_template(
         sat_id=sat_id,

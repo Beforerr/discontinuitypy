@@ -9,25 +9,3 @@ jno_end_date: "2016-06-30"
 mission:
   source:
     time_resolution: 1 # unit: seconds
-
-omni_vars:
-  "N":
-    COLNAME: "plasma_density"
-    FIELDNAM: "Ion density"
-    UNITS: "Per cc"
-  "T":
-    COLNAME: "plasma_temperature"
-    FIELDNAM: "Plasma temperature"
-    UNITS: "K"
-  "V":
-    COLNAME: "plasma_speed"
-    FIELDNAM: "Flow speed"
-    UNITS: "km/s"
-  "THETA-V":
-    COLNAME: "sw_vel_theta"
-    FIELDNAM: "Flow latitude"
-    UNITS: "Deg"
-  "PHI-V":
-    COLNAME: "sw_vel_phi"
-    FIELDNAM: "Flow longitude"
-    UNITS: "Deg"

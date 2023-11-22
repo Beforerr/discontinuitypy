@@ -10,9 +10,12 @@ import polars as pl
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
 
+from ... import PARAMS
 from .mag import create_pipeline as create_mag_data_pipeline
 from .state import create_pipeline as create_state_data_pipeline
 from ..default.mission import create_combined_data_pipeline
+
+from typing import Optional
 
 # %% ../../../notebooks/missions/themis/index.ipynb 7
 from ...utils.basic import filter_tranges_df
@@ -50,12 +53,29 @@ def create_sw_events_pipeline(
 # %% ../../../notebooks/missions/themis/index.ipynb 8
 def create_pipeline(
     sat_id="THB",
-    tau=60, # time window, in seconds
-    ts_mag = 1, # time resolution of mag data, in seconds
+    params: Optional[dict] = None,
 ) -> Pipeline:
+    
+    if params is None:
+        params = PARAMS
+    tau = params["tau"]
+    ts_state = params[sat_id]["STATE"]["time_resolution"]
+    ts_mag = params[sat_id]["MAG"]["time_resolution"]
+    ts_state_str = f"ts_{ts_state}s"
+
+
+    input_combined_data = {
+        f"{sat_id}.STATE.primary_data_{ts_state_str}": f"OMNI.LowRes.primary_data_{ts_state_str}"
+    }
+    
+    node_combined_data = pipeline(
+        create_combined_data_pipeline(sat_id),
+        inputs=input_combined_data,
+    )
+
     return (
         create_mag_data_pipeline(sat_id)
         + create_state_data_pipeline(sat_id)
-        + create_combined_data_pipeline(sat_id)
-        + create_sw_events_pipeline(sat_id, tau=tau, ts_mag= ts_mag)
+        + node_combined_data
+        + create_sw_events_pipeline(sat_id, tau=tau, ts_mag=ts_mag)
     )

@@ -23,18 +23,28 @@
         kedro-viz:
             layer: intermediate
 
-# STA.STATE.primary_data_ts_3600s
-"{mission}.STATE.primary_data_{suffix}":
+"Wind.{source}.inter_data_{suffix}":
+    type: partitions.PartitionedDataset
+    path: data/02_intermediate/Wind_{source}_{suffix}
+    dataset:
+        type: polars.LazyPolarsDataset
+        file_format: parquet
+    filename_suffix: ".parquet"
+    metadata:
+        kedro-viz:
+            layer: intermediate
+
+"{mission}.{source}.primary_data_{suffix}":
     type: polars.LazyPolarsDataset
-    filepath: data/03_primary/{mission}_state_{suffix}.parquet
+    filepath: data/03_primary/{mission}_{source}_{suffix}.parquet
     file_format: parquet
     metadata:
         kedro-viz:
             layer: primary
 
-"{mission}.{source}.primary_data_{suffix}":
+"{mission}.MAG.primary_data_{suffix}":
     type: partitions.PartitionedDataset
-    path: data/03_primary/{mission}_{source}_{suffix}
+    path: data/03_primary/{mission}_MAG_{suffix}
     dataset:
         type: polars.LazyPolarsDataset
         file_format: parquet

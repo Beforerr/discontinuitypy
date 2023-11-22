@@ -15,6 +15,7 @@ For code, see [noteboook](./01_occurence_rate.ipynb).
 Results:
 
 ::: {#fig-ocr_time layout-ncol=2}
+
 ![](../figures/ocr_time_cleaned)
 
 ![](../figures/ocr_time_N2_cleaned)
@@ -30,18 +31,25 @@ Occurrence rates with time
 Occurrence rates with radial distance
 :::
 
-::: {#fig-thickness layout-ncol=2}
+::: {#fig-thickness layout-ncol=3 .column-page}
+
 ![](../figures/thickness_time)
 
 ![](../figures/thickness_r)
 
+![](../figures/thickness_r_N2)
+
 Thickness with time and radial distance
 :::
 
-::: {#fig-current layout-ncol=2}
+::: {#fig-current layout-ncol=3 .column-page}
+
 ![](../figures/current_time)
 
 ![](../figures/current_r)
+
+![](../figures/current_r_N2)
+
 
 Current density with time and radial distance
 :::
@@ -70,7 +78,7 @@ Current distribution with radial distance
 
 ![](../figures/thickness_N1_log_r_hist)
 
-<!-- Current distribution with radial distance -->
+Thickness distribution with radial distance
 :::
 
 ::: {#fig-current layout-ncol=2}

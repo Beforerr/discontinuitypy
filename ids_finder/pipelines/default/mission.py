@@ -5,6 +5,7 @@ __all__ = ['combine_features', 'vector_project', 'vector_project_pl', 'compute_i
            'compute_Alfven_current', 'calc_combined_features', 'create_combined_data_pipeline']
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 2
+from ... import PARAMS
 import polars as pl
 from typing import Optional
 
@@ -114,7 +115,7 @@ def create_combined_data_pipeline(
 ) -> Pipeline:
     
     if params is None:
-        params = load_params()
+        params = PARAMS
     
     tau = params["tau"]
     ts_mag = params[sat_id]["MAG"]["time_resolution"]
