@@ -6,16 +6,34 @@ __all__ = ['create_pipeline']
 # %% ../../../notebooks/missions/wind/index.ipynb 3
 # | code-summary: import all the packages needed for the project
 # | output: hide
+from kedro.pipeline.modular_pipeline import pipeline
+
+from ... import PARAMS
 from .mag import create_pipeline as create_mag_data_pipeline
-from .state import create_pipeline as create_state_data_pipeline
 from ..default.mission import create_combined_data_pipeline
+
+from typing import Optional
 
 # %% ../../../notebooks/missions/wind/index.ipynb 5
 def create_pipeline(
     sat_id="Wind",
+    params: Optional[dict] = None,
 ):
+    if params is None:
+        params = PARAMS
+    ts_state = params[sat_id]["STATE"]["time_resolution"]
+    ts_state_str = f"ts_{ts_state}s"
+    
+    input_combined_data = {
+        f"{sat_id}.STATE.primary_data_{ts_state_str}": f"OMNI.LowRes.primary_data_{ts_state_str}"
+    }
+
+    node_combined_data = pipeline(
+        create_combined_data_pipeline(sat_id),
+        inputs=input_combined_data,
+    )
+    
     return (
         create_mag_data_pipeline(sat_id)
-        + create_state_data_pipeline(sat_id)
-        + create_combined_data_pipeline(sat_id)
+        + node_combined_data
     )

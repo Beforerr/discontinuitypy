@@ -50,11 +50,11 @@ def create_sw_events_pipeline(
     nodes = [node_filter_sw_events]
     return pipeline(nodes)
 
-# %% ../../../notebooks/missions/themis/index.ipynb 8
+# %% ../../../notebooks/missions/themis/index.ipynb 9
 def create_pipeline(
     sat_id="THB",
     params: Optional[dict] = None,
-) -> Pipeline:
+):
     
     if params is None:
         params = PARAMS

@@ -7,6 +7,8 @@ __all__ = ['combine_features', 'vector_project', 'vector_project_pl', 'compute_i
 # %% ../../../notebooks/pipelines/10_mission.ipynb 2
 from ... import PARAMS
 import polars as pl
+import polars.selectors as cs
+
 from typing import Optional
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 4
@@ -18,7 +20,9 @@ def combine_features(candidates: pl.LazyFrame, states_data: pl.LazyFrame):
     if not set(b_vecL_cols).issubset(candidates.columns):
         raise ValueError(f"Missing columns {b_vecL_cols}")
 
-    return candidates.sort("time").join_asof(states_data.sort("time"), on="time")
+    return candidates.with_columns( 
+        cs.datetime().dt.cast_time_unit("ns"), # issue: https://github.com/pola-rs/polars/issues/12023
+    ).sort("time").join_asof(states_data.sort("time"), on="time")
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 7
 import astropy.units as u

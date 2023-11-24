@@ -11,5 +11,4 @@ Wind:
     coords: "rtn"
     bcols: ["BRTN_0", "BRTN_1", "BRTN_2"]
   STATE:
-    datatype: "hourly"
     time_resolution: 3600

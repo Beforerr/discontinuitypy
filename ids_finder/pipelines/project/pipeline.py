@@ -18,7 +18,6 @@ from loguru import logger
 # %% ../../../notebooks/pipelines/100_project.ipynb 3
 from ...utils.analysis import filter_before_jupiter
 
-
 def process_events_l1(events: pl.LazyFrame):
     "clean data to remove extreme values"
     events = events.collect()
@@ -34,9 +33,9 @@ def process_events_l1(events: pl.LazyFrame):
             cs.float().cast(pl.Float64),
             j0_norm_log=pl.col("j0_norm").log10(),
             L_mn_norm_log=pl.col("L_mn_norm").log10(),
-            k_x=pl.col("normal_direction").list.get(0),
-            k_y=pl.col("normal_direction").list.get(1),
-            k_z=pl.col("normal_direction").list.get(2),
+            k_x=pl.col("normal_direction").list.get(0).abs(),
+            k_y=pl.col("normal_direction").list.get(1).abs(),
+            k_z=pl.col("normal_direction").list.get(2).abs(),
         )
         .fill_nan(None)
     )
@@ -76,6 +75,7 @@ def create_pipeline():
             JNO=f"{combine_layer}.JNO_ts_1s_tau_60s",
             STA=f"{combine_layer}.STA_ts_1s_tau_60s",
             THB=f"{combine_layer}.THB_sw_ts_1s_tau_60s",
+            Wind=f"{combine_layer}.Wind_ts_1s_tau_60s",
         ),
         outputs=f"{combine_layer}.ALL_sw_ts_1s_tau_60s",
         # namespace="events.l1",
@@ -85,6 +85,7 @@ def create_pipeline():
         create_l1_node("JNO"),
         create_l1_node("STA"),
         create_l1_node("THB_sw"),
+        create_l1_node("Wind"),
         node_combine_events,
     ]
     return pipeline(nodes)
@@ -113,7 +114,7 @@ def time_average(raw_df: pl.DataFrame, avg_window=timedelta(days=30)):
     )
 
 
-def process_events_l2(raw_df: pl.DataFrame, avg_window=timedelta(days=30)):
+def process_events_l2(raw_df: pl.DataFrame, avg_window=timedelta(days=30), avg_sats=["STA", "THB", "Wind"]):
     """L2 level datasets
     - Time average
     - Link time and radial distance
@@ -122,5 +123,5 @@ def process_events_l2(raw_df: pl.DataFrame, avg_window=timedelta(days=30)):
     return (
         raw_df.pipe(time_average, avg_window=avg_window)
         .pipe(link_coord2dim)
-        .pipe(n2_normalize, cols=NVARS)
+        .pipe(n2_normalize, cols=NVARS, avg_sats=avg_sats)
     )

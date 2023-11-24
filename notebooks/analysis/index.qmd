@@ -31,6 +31,22 @@ Occurrence rates with time
 Occurrence rates with radial distance
 :::
 
+
+## Orientation
+
+::: {#fig-orientation layout-ncol=3 .column-page}
+
+![](../figures/orientation_time)
+
+![](../figures/orientation_r)
+
+![](../figures/orientation_r_dist)
+
+Thickness with time and radial distance
+:::
+
+
+
 ::: {#fig-thickness layout-ncol=3 .column-page}
 
 ![](../figures/thickness_time)

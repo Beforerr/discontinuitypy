@@ -3,6 +3,13 @@
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
 
+"THB.{source}.inter_data_{suffix}":
+    type: polars.LazyPolarsDataset
+    filepath: data/02_intermediate/THB_{source}_{suffix}.parquet
+    file_format: parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate
 
 THB.STATE.original_sw_data:
     type: pandas.CSVDataset 

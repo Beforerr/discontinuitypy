@@ -8,11 +8,15 @@ from datetime import timedelta
 
 import polars as pl
 
-from ... import PARAMS
-from ...utils.basic import cdf2pl, pmap, resample, partition_data_by_year
+from ...utils.cdf import cdf2pl
+from ...utils.basic import pmap, resample, partition_data_by_year
+from ...utils.polars import create_partitions
 from ..default.data_mag import create_pipeline_template
 
-from typing import Iterable
+from functools import partial
+
+from typing import Dict, Iterable, Callable
+
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 4
 from pathlib import Path
@@ -47,41 +51,37 @@ def load_data(
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 7
 def preprocess_data(
-    raw_data: pl.LazyFrame,
+    raw_data,
+    var_names="BFIELD"
 ):
     """
     Preprocess the raw dataset (only minor transformations)
     - Applying naming conventions for columns
     """
+    load_func = partial(cdf2pl, var_names=var_names)
 
-    bcols = PARAMS["STEREO"]["MAG"]["bcols"]
-
-    name_mapping = {
-        "BFIELD_0": bcols[0],
-        "BFIELD_1": bcols[1],
-        "BFIELD_2": bcols[2],
-    }
-
-    return raw_data.rename(name_mapping)
+    return create_partitions(raw_data, load_func)
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 9
 def process_data(
-    raw_data: pl.DataFrame,
-    ts = None,  # time resolution, in seconds
+    raw_data: Dict[str, Callable[..., pl.LazyFrame]],
+    ts,  # time resolution, in seconds
 ):
     every = timedelta(seconds=ts)
-    period = 2 * every
+    period = every
 
-    return raw_data.pipe(resample, every=every, period=period).pipe(
-        partition_data_by_year
+    data: pl.LazyFrame = pl.concat(
+        resample(func(), every=every, period=period) for func in raw_data.values()
     )
+    
+    return data.unique("time").pipe(partition_data_by_year)    
 
 # %% ../../../notebooks/missions/stereo/mag.ipynb 11
 def create_pipeline(sat_id="STA", source="MAG"):
     return create_pipeline_template(
         sat_id=sat_id,
         source=source,
-        load_data_fn=load_data,
+        load_data_fn=download_data,
         preprocess_data_fn=preprocess_data,
         process_data_fn=process_data,
     )

@@ -22,8 +22,8 @@ from ..utils.basic import _expand_selectors
 def pl_format_time(df: pl.LazyFrame | pl.DataFrame, tau: timedelta):
     return df.with_columns(
         tstart=pl.col("time"),
-        tstop=(pl.col("time") + tau).dt.cast_time_unit("ns"),
-        time=(pl.col("time") + tau / 2).dt.cast_time_unit("ns"),
+        tstop=(pl.col("time") + tau),
+        time=(pl.col("time") + tau / 2),
     )
 
 # %% ../../notebooks/01_ids_detection.ipynb 6
@@ -62,12 +62,12 @@ def compute_combinded_std(df: pl.DataFrame | pl.LazyFrame, tau, cols) -> pl.Data
         )
 
         prev_df = truncated_df.select(
-            (pl.col("time") + tau).dt.cast_time_unit("ns"),
+            (pl.col("time") + tau),
             pl.col(cols),
         )
 
         next_df = truncated_df.select(
-            (pl.col("time") - tau).dt.cast_time_unit("ns"),
+            (pl.col("time") - tau),
             pl.col(cols),
         )
 
@@ -109,13 +109,13 @@ def add_neighbor_std(
 
     # Calculate the standard deviation index
     prev_std_df = df.select(
-        (pl.col("time") + tau).dt.cast_time_unit("ns"),
+        (pl.col("time") + tau),
         pl.col("B_std").alias("B_std_prev"),
         pl.col("count").alias("count_prev"),
     )
 
     next_std_df = df.select(
-        (pl.col("time") - tau).dt.cast_time_unit("ns"),
+        (pl.col("time") - tau),
         pl.col("B_std").alias("B_std_next"),
         pl.col("count").alias("count_next"),
     )

@@ -11,7 +11,9 @@ website:
         contents:
           - analysis/00_base.ipynb
           - analysis/01_occurence_rate.ipynb
+          - analysis/02_orientation.ipynb
           - analysis/02_properties.ipynb
+          - analysis/03_map.ipynb
           - analysis/10_classification.ipynb
           - analysis/20_model.ipynb
           - analysis/jno_model_comparison.html
@@ -57,4 +59,8 @@ website:
           - utils/01_plotting.ipynb
           - utils/02_analysis_utils.ipynb
           - utils/10_polars.ipynb
+          - utils/15_kedro.ipynb
+          - utils/19_speasy.ipynb
           - utils/20_pds.ipynb
+          - utils/30_cdf.ipynb
+          - utils/31_lbl.ipynb
