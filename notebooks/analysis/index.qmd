@@ -14,17 +14,17 @@ For code, see [noteboook](./01_occurence_rate.ipynb).
 Results:
 
 ::: {#fig-ocr_time layout-ncol="2"}
-![](../figures/ocr_time_cleaned)
+![](../figures/ocr_time_cleaned.png)
 
-![](../figures/ocr_time_N2_cleaned)
+![](../figures/ocr_time_N2_cleaned.png)
 
 Occurrence rates with time
 :::
 
 ::: {#fig-ocr_r layout-ncol="2"}
-![](../figures/ocr_r_cleaned)
+![](../figures/ocr_r_cleaned.png)
 
-![](../figures/ocr_r_N2_cleaned)
+![](../figures/ocr_r_N2_cleaned.png)
 
 Occurrence rates with radial distance
 :::
@@ -32,11 +32,11 @@ Occurrence rates with radial distance
 ## Orientation
 
 ::: {#fig-orientation .column-page layout-ncol="3"}
-![](../figures/orientation_time)
+![](../figures/orientation_time.png)
 
-![](../figures/orientation_r)
+![](../figures/orientation_r.png)
 
-![](../figures/orientation_r_dist)
+![](../figures/orientation_r_dist.png)
 
 Thickness with time and radial distance
 :::
@@ -44,28 +44,46 @@ Thickness with time and radial distance
 ## Thickness
 
 ::: {#fig-thickness .column-page layout-ncol="3"}
-![](../figures/thickness_time)
+![](../figures/thickness_time.png)
 
-![](../figures/thickness_r)
+![](../figures/thickness_r.png)
 
-![](../figures/thickness_r_N2)
+![](../figures/thickness_r_N2.png)
 
 Thickness with time and radial distance
 :::
 
-![](../figures/thickness/thickness_r_diff.png){width="30%"} ![](../figures/thickness/thickness_norm_r_diff.png){width="30%"}
+::: {#fig-thickness-distribution layout-ncol="2"}
+![](../figures/thickness_r_dist.png)
 
-::: {#fig-current layout-ncol="2"}
-![](../figures/thickness_r_dist)
-
-![](../figures/thickness_N1_r_dist)
+![](../figures/thickness_N1_r_dist.png)
 
 Thickness distribution with radial distance
 :::
 
-![](../figures/thickness_r_dist.png){width="25%"} ![](../figures/thickness/thickness_k_r_dist.png){width="25%"} ![](../figures/thickness/thickness_R_r_dist.png){width="25%"}
+::: {#fig-thickness-evolution layout-ncol="2"}
+![](../figures/thickness/thickness_r_diff.png)
 
-![](../figures/thickness/thickness_N1_r_dist.png){width="25%"} ![](../figures/thickness/thickness_k_N1_r_dist.png){width="25%"} ![](../figures/thickness/thickness_R_N1_r_dist.png){width="25%"}
+![](../figures/thickness/thickness_norm_r_diff.png)
+
+Thickness with radial distance for different definitions
+:::
+
+::: {#fig-thickness-evolution-dist .column-page layout-ncol="3"}
+![](../figures/thickness_r_dist.png)
+
+![](../figures/thickness/thickness_k_r_dist.png)
+
+![](../figures/thickness/thickness_R_r_dist.png)
+
+![](../figures/thickness/thickness_N1_r_dist.png)
+
+![](../figures/thickness/thickness_k_N1_r_dist.png)
+
+![](../figures/thickness/thickness_R_N1_r_dist.png)
+
+Thickness distribution with radial distance for different definitions
+:::
 
 ## Current
 
