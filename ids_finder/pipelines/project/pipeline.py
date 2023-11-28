@@ -18,9 +18,14 @@ from loguru import logger
 # %% ../../../notebooks/pipelines/100_project.ipynb 3
 from ...utils.analysis import filter_before_jupiter
 
+
 def process_events_l1(events: pl.LazyFrame):
     "clean data to remove extreme values"
     events = events.collect()
+    thickness_cols = ["L_n", "L_mn", "L_k", "L_R"]
+    current_cols = ["j0", "j0_k"]
+    thickness_norm_cols = [f"{c}_norm" for c in thickness_cols]
+    current_norm_cols = [f"{c}_norm" for c in current_cols]
 
     df = (
         events.pipe(filter_before_jupiter)
@@ -29,13 +34,15 @@ def process_events_l1(events: pl.LazyFrame):
             pl.col("v_mn") > 10,
             pl.col("duration") < timedelta(seconds=60),
         )
+        .with_columns(cs.float().cast(pl.Float64))
         .with_columns(
-            cs.float().cast(pl.Float64),
-            j0_norm_log=pl.col("j0_norm").log10(),
-            L_mn_norm_log=pl.col("L_mn_norm").log10(),
-            k_x=pl.col("normal_direction").list.get(0).abs(),
-            k_y=pl.col("normal_direction").list.get(1).abs(),
-            k_z=pl.col("normal_direction").list.get(2).abs(),
+            (cs.by_name(thickness_cols) / pl.col("ion_inertial_length")).suffix(
+                "_norm"
+            ),
+            (cs.by_name(current_cols) / pl.col("j_Alfven")).suffix("_norm"),
+        )
+        .with_columns(
+            cs.by_name(thickness_norm_cols + current_norm_cols).log10().suffix("_log"),
         )
         .fill_nan(None)
     )

@@ -15,4 +15,4 @@ ROOT_DIR = Path(__file__).parent.parent
 
 # %% ../notebooks/00_base.ipynb 6
 from .utils.basic import load_params
-PARAMS = load_params(ROOT_DIR)
+PARAMS = load_params()

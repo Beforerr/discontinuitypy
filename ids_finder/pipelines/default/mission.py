@@ -13,12 +13,6 @@ from typing import Optional
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 4
 def combine_features(candidates: pl.LazyFrame, states_data: pl.LazyFrame):
-    vec_cols = ["v_x", "v_y", "v_z"]  # plasma velocity vector in any coordinate system
-    b_vecL_cols = ["Vl_x", "Vl_y", "Vl_z"]  # major eigenvector in any coordinate system
-    if not set(vec_cols).issubset(states_data.columns):
-        raise ValueError(f"Missing columns {vec_cols}")
-    if not set(b_vecL_cols).issubset(candidates.columns):
-        raise ValueError(f"Missing columns {b_vecL_cols}")
 
     return candidates.with_columns( 
         cs.datetime().dt.cast_time_unit("ns"), # issue: https://github.com/pola-rs/polars/issues/12023
@@ -81,27 +75,49 @@ def compute_Alfven_current(ldf: pl.LazyFrame):
 # %% ../../../notebooks/pipelines/10_mission.ipynb 14
 def calc_combined_features(df: pl.LazyFrame):
     vec_cols = ["v_x", "v_y", "v_z"]  # plasma velocity vector in any coordinate system
-    b_vecL_cols = ["Vl_x", "Vl_y", "Vl_z"]  # major eigenvector in any coordinate system
 
     j_factor = ((u.nT / u.s) * (1 / mu0 / (u.km / u.s))).to(u.nA / u.m**2)
 
+    vector_cols = ["Vl", "Vn", "normal_direction"]
+    
     result = (
         df.with_columns(
             duration=pl.col("d_tstop") - pl.col("d_tstart"),
+            k_x=pl.col("normal_direction").list.get(0).abs(),
         )
-        .pipe(vector_project_pl, vec_cols, b_vecL_cols, name="v_l")
-        .with_columns(v_mn=(pl.col("plasma_speed") ** 2 - pl.col("v_l") ** 2).sqrt())
         .with_columns(
+            cs.by_name(vector_cols).list.to_array(3)
+        )
+        .pipe(vector_project_pl, vec_cols, "Vl", name="v_l") # major eigenvector in any coordinate system
+        .pipe(vector_project_pl, vec_cols, "Vn", name="v_n")
+        .pipe(vector_project_pl, vec_cols, "normal_direction", name="v_k")
+        .with_columns(
+            pl.col("v_n").abs(),
+            pl.col("v_k").abs(),
+            v_mn=(pl.col("plasma_speed") ** 2 - pl.col("v_l") ** 2).sqrt(),
+        )
+        .with_columns(
+            L_n=pl.col("v_n") * pl.col("duration").dt.nanoseconds() / 1e9,
             L_mn=pl.col("v_mn") * pl.col("duration").dt.nanoseconds() / 1e9,
+            L_k=pl.col("v_k") * pl.col("duration").dt.nanoseconds() / 1e9,
             j0=pl.col("d_star") / pl.col("v_mn"),
+            j0_k=pl.col("d_star") / pl.col("v_k"),
+        )
+        .with_columns(
+            L_R=pl.col("L_k") * pl.col("k_x"),
         )
         .pipe(compute_inertial_length)
         .pipe(compute_Alfven_speed)
         .pipe(compute_Alfven_current)
-        .with_columns(j0=pl.col("j0") * j_factor.value)
+        .with_columns(
+            j0=pl.col("j0") * j_factor.value,
+            j0_k=pl.col("j0_k") * j_factor.value,
+        )
         .with_columns(
             L_mn_norm=pl.col("L_mn") / pl.col("ion_inertial_length"),
             j0_norm=pl.col("j0") / pl.col("j_Alfven"),
+        ).with_columns(
+            cs.by_name(vector_cols).arr.to_list() # PanicException: not yet implemented: Writing FixedSizeList to parquet not yet implemented
         )
     )
     return result

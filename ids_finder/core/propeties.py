@@ -247,7 +247,6 @@ def mva_features(data: np.ndarray):
 
     # Maximum variance direction eigenvector
     Vl = v[:, 0]
-    Vm = v[:, 1]
     Vn = v[:, 2]
 
     vec_mag = np.linalg.norm(vrot, axis=1)
@@ -266,24 +265,24 @@ def mva_features(data: np.ndarray):
     dBOverB_max = (np.max(vec_mag) - np.min(vec_mag)) / vec_mag_mean
 
     output_names = [
-        "Vl_x", "Vl_y", "Vl_z",
-        "Vn_x", "Vn_y", "Vn_z",
-        "eig0", "eig1", "eig2", 
-        'Q_mva',
-        'b_mag', 'b_n', 'db_mag', 'bn_over_b', 'db_over_b', 'db_over_b_max', 'db_l', 'db_m', 'db_n']
+        "Vl",
+        "Vn",
+        "eigs", 
+        'b_mag', 'b_n', 'db_mag', 'bn_over_b', 'db_over_b', 'db_over_b_max',
+        # 'db_l', 'db_m', 'db_n'
+    ]
     
     results = [
-        Vl[0], Vl[1], Vl[2],
-        Vn[0], Vn[1], Vn[2],
-        w[0], w[1], w[2],
-        w[1] / w[2],
+        Vl,
+        Vn,
+        w,
         vec_mag_mean,
         vec_n_mean,
         dvec_mag,
         VnOverVmag, 
         dBOverB,
         dBOverB_max,
-        dvec[0], dvec[1], dvec[2]
+        # dvec[0], dvec[1], dvec[2]
     ]
 
     return results, output_names
@@ -446,7 +445,7 @@ class IDsPipeline:
         )
 
 # %% ../../notebooks/02_ids_properties.ipynb 26
-from ..utils.polars import convert_to_pd_dataframe, sort
+from ..utils.polars import convert_to_pd_dataframe
 
 # %% ../../notebooks/02_ids_properties.ipynb 27
 def process_events(

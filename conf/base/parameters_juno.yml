@@ -9,8 +9,8 @@ JNO:
   MAG:
     datatype: "1SEC"
     time_resolution: 1
+    bcols: ["BX SE", "BY SE", "BZ SE"]
     coords: "rtn"
-    bcols: ["BX", "BY", "BZ"]
 
   STATE:
     datatype: "hourly"

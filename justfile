@@ -1,3 +1,5 @@
+missions := ("JNO" + "STA")
+
 env-update:
   #!/usr/bin/env sh
   mamba env update --file environment.yml
@@ -7,12 +9,17 @@ env-create:
   # conda activate $(CONDA_ENV)
   # pip install -e .
 
+kedro-run-mag-primary mission:
+  kedro run --to-outputs={{mission}}.MAG.primary_data_ts_1s
+  
+
 kedro-run-mag-feature mission:
   kedro run --to-outputs={{mission}}.MAG.feature_ts_1s_tau_60s --from-inputs={{mission}}.MAG.primary_data_ts_1s
 
+kedro-run-mag-feature-all: (kedro-run-mag-feature "JNO") (kedro-run-mag-feature "STA") (kedro-run-mag-feature "THB") (kedro-run-mag-feature "Wind")
 
-kedro-run-candidates:
-  kedro run --to-outputs=events.STA_ts_1s_tau_60s --from-inputs=STA.MAG.feature_ts_1s_tau_60s
+kedro-run-candidates mission:
+  kedro run --to-outputs=events.{{mission}}_ts_1s_tau_60s --from-inputs={{mission}}.MAG.feature_ts_1s_tau_60s
 
 kedro-run-primary_states:
   kedro run --to-outputs=sta.primary_state_1h 

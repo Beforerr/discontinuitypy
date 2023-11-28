@@ -236,21 +236,22 @@ def check_fgm(vec: xr.DataArray):
 def df2ts(
     df: Union[pandas.DataFrame, pl.DataFrame, pl.LazyFrame], cols, attrs=None, name=None
 ):
-    for col in cols:
-        if col not in df.columns:
-            raise KeyError(f"Expected column {col} not found in the dataframe.")
-
     if isinstance(df, pl.LazyFrame):
         df = df.collect()
 
     # Prepare data
-    data = df[cols]
+    data = df[cols].to_numpy()
 
     # Prepare coordinates
     time = df.index if isinstance(df, pandas.DataFrame) else df["time"]
-
+    if isinstance(cols, str) and len(data.shape) > 1:
+        element_len = data.shape[1]
+        v_dim = [cols + str(i) for i in range(element_len)]
+    else:
+        v_dim = cols
+        
     # Create the DataArray
-    coords = {"time": time, "v_dim": cols}
+    coords = {"time": time, "v_dim": v_dim}
 
     return xr.DataArray(data, coords=coords, attrs=attrs, name=name)
 
