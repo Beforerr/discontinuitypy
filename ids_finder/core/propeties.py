@@ -4,7 +4,8 @@
 __all__ = ['THRESHOLD_RATIO', 'get_candidate_data', 'get_candidates', 'calc_duration', 'calc_d_duration', 'find_start_end_times',
            'get_time_from_condition', 'calc_candidate_duration', 'minvar', 'mva_features',
            'calc_candidate_mva_features', 'get_data_at_times', 'calc_rotation_angle', 'calc_events_rotation_angle',
-           'calc_normal_direction', 'calc_events_normal_direction', 'IDsPipeline', 'process_events']
+           'calc_normal_direction', 'calc_events_normal_direction', 'calc_events_vec_change', 'IDsPipeline',
+           'process_events']
 
 # %% ../../notebooks/02_ids_properties.ipynb 2
 #| code-summary: "Import all the packages needed for the project"
@@ -267,20 +268,18 @@ def mva_features(data: np.ndarray):
     output_names = [
         "Vl",
         "Vn",
-        "eigs", 
         'b_mag', 
         'b_n',
         'db_mag',
         'bn_over_b',
         'db_over_b',
         'db_over_b_max',
-        'dvec'
+        'dB_lmn'
     ]
     
     results = [
         Vl,
         Vn,
-        eigs,
         vec_mag_mean,
         vec_n_mean,
         dvec_mag,
@@ -289,7 +288,7 @@ def mva_features(data: np.ndarray):
         dBOverB_max,
         dvec
     ]
-
+    
     return results, output_names
 
 # %% ../../notebooks/02_ids_properties.ipynb 11
@@ -383,7 +382,20 @@ def calc_events_normal_direction(events, data: xr.DataArray):
     return normal_directions.tolist()
 
 
-# %% ../../notebooks/02_ids_properties.ipynb 23
+# %% ../../notebooks/02_ids_properties.ipynb 21
+def calc_events_vec_change(events, data: xr.DataArray):
+    """
+    Utils function to calculate features related to the change of the magnetic field
+    """
+    tstart = events['d_tstart'].to_numpy()
+    tstop = events['d_tstop'].to_numpy()
+    
+    vecs_before = get_data_at_times(data, tstart)
+    vecs_after = get_data_at_times(data, tstop)
+    return (vecs_after - vecs_before).tolist()
+    
+
+# %% ../../notebooks/02_ids_properties.ipynb 24
 @patch
 def _transform(self: pdp.ApplyToRows, X, verbose):
     new_cols = X.apply(self._func, axis=1)
@@ -418,7 +430,7 @@ def _transform(self: pdp.ApplyToRows, X, verbose):
         " Only Series and DataFrame are allowed."
     )
 
-# %% ../../notebooks/02_ids_properties.ipynb 25
+# %% ../../notebooks/02_ids_properties.ipynb 26
 class IDsPipeline:
     def __init__(self):
         pass
@@ -432,7 +444,14 @@ class IDsPipeline:
     def calc_mva_features(self, sat_fgm):
         return pdp.ApplyToRows(
             lambda candidate: calc_candidate_mva_features(candidate, sat_fgm),
-            func_desc='calculating index "q_mva", "BnOverB" and "dBOverB"',
+            func_desc='calculating MVA features',
+        )
+
+    def calc_vec_change(self, sat_fgm):
+        return pdp.ColByFrameFunc(
+            "dB",
+            lambda candidate: calc_events_vec_change(candidate, sat_fgm),
+            func_desc='calculating compound change',
         )
 
     def calc_rotation_angle(self, sat_fgm):
@@ -449,18 +468,18 @@ class IDsPipeline:
             func_desc="calculating normal direction",
         )
 
-# %% ../../notebooks/02_ids_properties.ipynb 26
-from ..utils.polars import convert_to_pd_dataframe
-
 # %% ../../notebooks/02_ids_properties.ipynb 27
+from ..utils.polars import convert_to_pd_dataframe, decompose_vector  # noqa: E402
+
+# %% ../../notebooks/02_ids_properties.ipynb 28
 def process_events(
     candidates_pl: pl.DataFrame,  # potential candidates DataFrame
     sat_fgm: xr.DataArray,  # satellite FGM data
     data_resolution: timedelta,  # time resolution of the data
-    modin = True,
+    modin=True,
 ) -> pl.DataFrame:
     "Process candidates DataFrame"
-    
+
     candidates = convert_to_pd_dataframe(candidates_pl, modin=modin)
 
     id_pipelines = IDsPipeline()
@@ -468,6 +487,7 @@ def process_events(
 
     ids = (
         id_pipelines.calc_mva_features(sat_fgm)
+        + id_pipelines.calc_vec_change(sat_fgm)
         + id_pipelines.calc_rotation_angle(sat_fgm)
         + id_pipelines.calc_normal_direction(sat_fgm)
     ).apply(
@@ -476,6 +496,14 @@ def process_events(
 
     if isinstance(ids, mpd.DataFrame):
         ids = ids._to_pandas()
-    
-    return pl.DataFrame(ids)
+
+    return (
+        pl.DataFrame(ids)
+        .pipe(decompose_vector, "dB")
+        .pipe(decompose_vector, "dB_lmn")
+        .pipe(decompose_vector, "normal_direction", name="k")
+        .pipe(decompose_vector, "Vl")
+        .pipe(decompose_vector, "Vn")
+        .drop(["dB", "dB_lmn", "normal_direction", "Vl", "Vn"])
+    )
     # ValueError: Data type fixed_size_list[pyarrow] not supported by interchange protocol

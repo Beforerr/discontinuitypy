@@ -15,6 +15,14 @@ JNO.STATE.model_data:
         kedro-viz:
             layer: raw
 
+JNO.STATE.IMF_data:
+    type: polars.LazyPolarsDataset
+    filepath: data/02_intermediate/JNO_STATE_IMF_data.parquet
+    file_format: parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate
+
 model.raw_jno_ss_se_1min:
     type: partitions.PartitionedDataset
     path: data/01_raw/jno_ss_se_1min

@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['load_catalog', 'load_params', 'DF_TYPE', 'pmap', 'DataConfig', 'filter_tranges', 'filter_tranges_df', 'pl_norm',
            'partition_data_by_year', 'concat_df', 'concat_partitions', 'format_timedelta', 'resample',
-           'get_memory_usage', 'check_fgm', 'df2ts', 'calc_vec_mag']
+           'get_memory_usage', 'df2ts', 'calc_vec_mag', 'check_fgm']
 
 # %% ../../notebooks/utils/00_basic.ipynb 1
 from .. import ROOT_DIR
@@ -12,6 +12,7 @@ from .kedro import load_context
 
 from functools import partial
 
+from typing import overload
 
 # %% ../../notebooks/utils/00_basic.ipynb 2
 load_catalog = partial(load_context, project_path=ROOT_DIR, catalog_only=True)
@@ -186,23 +187,46 @@ def format_timedelta(time):
         raise TypeError(f"Unsupported type: {type(time)}")
 
 # %% ../../notebooks/utils/00_basic.ipynb 20
+@overload
 def resample(
-    df: pl.DataFrame | pl.LazyFrame,
+    df: pl.DataFrame,
     every: timedelta,
     period: timedelta = None,
     offset: timedelta = None,
+    shift: timedelta = None,
+    time_column="time",
+)-> pl.DataFrame:
+    ...
+
+@overload
+def resample(
+    df: pl.LazyFrame,
+    every: timedelta,
+    period: timedelta = None,
+    offset: timedelta = None,
+    shift: timedelta = None,
+    time_column="time",
+)-> pl.LazyFrame:
+    ...
+
+def resample(
+    df: pl.LazyFrame | pl.DataFrame,
+    every: timedelta,
+    period: timedelta = None,
+    offset: timedelta = None,
+    shift: timedelta = None,
     time_column="time",
 ):
     """Resample the DataFrame"""
     if period is None:
         period = every
-    if offset is None:
-        offset = period / 2
+    if shift is None:
+        shift = period / 2
     return (
         df.sort(time_column)
-        .group_by_dynamic(time_column, every=every, period=period)
+        .group_by_dynamic(time_column, every=every, period=period, offset=offset)
         .agg(cs.numeric().mean())
-        .with_columns((pl.col(time_column) + offset))
+        .with_columns((pl.col(time_column) + shift))
     )
 
 # %% ../../notebooks/utils/00_basic.ipynb 21
@@ -223,16 +247,6 @@ def get_memory_usage(data):
     return size
 
 # %% ../../notebooks/utils/00_basic.ipynb 23
-def check_fgm(vec: xr.DataArray):
-    # check if time is monotonic increasing
-    logger.info("Check if time is monotonic increasing")
-    assert vec.time.to_series().is_monotonic_increasing
-    # check available time difference
-    logger.info(
-        f"Available time delta: {vec.time.diff(dim='time').to_series().unique()}"
-    )
-
-
 def df2ts(
     df: Union[pandas.DataFrame, pl.DataFrame, pl.LazyFrame], cols, attrs=None, name=None
 ):
@@ -258,3 +272,14 @@ def df2ts(
 
 def calc_vec_mag(vec) -> DataArray:
     return linalg.norm(vec, dims="v_dim")
+
+# %% ../../notebooks/utils/00_basic.ipynb 24
+def check_fgm(vec: xr.DataArray):
+    # check if time is monotonic increasing
+    logger.info("Check if time is monotonic increasing")
+    assert vec.time.to_series().is_monotonic_increasing
+    # check available time difference
+    logger.info(
+        f"Available time delta: {vec.time.diff(dim='time').to_series().unique()}"
+    )
+

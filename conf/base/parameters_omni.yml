@@ -30,3 +30,9 @@ omni_vars:
     COLNAME: "sw_vel_phi"
     FIELDNAM: "Flow longitude"
     UNITS: "Deg"
+  "BX_GSE":
+    COLNAME: "B_background_x"
+  "BY_GSE":
+    COLNAME: "B_background_y"
+  "BZ_GSE":
+    COLNAME: "B_background_z"

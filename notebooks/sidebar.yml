@@ -10,6 +10,7 @@ website:
         contents:
           - analysis/00_base.ipynb
           - analysis/01_occurence_rate.ipynb
+          - analysis/02_orientation.ipynb
           - analysis/02_properties.ipynb
           - analysis/03_map.ipynb
           - analysis/10_classification.ipynb

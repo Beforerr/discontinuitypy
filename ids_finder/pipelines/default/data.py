@@ -8,7 +8,6 @@ import polars as pl
 
 from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
-from ...utils.basic import load_params
 from typing import Callable, Optional, Any, Dict
 
 # %% ../../../notebooks/pipelines/1_data.ipynb 11
@@ -21,6 +20,9 @@ DEFAULT_LOAD_INPUTS = dict(
 )
 
 # %% ../../../notebooks/pipelines/1_data.ipynb 12
+from semver import process
+
+
 def create_pipeline_template(
     sat_id: str,  # satellite id, used for namespace
     source: str,  # source data, like "mag" or "plasma", used for namespace
@@ -28,6 +30,7 @@ def create_pipeline_template(
     preprocess_data_fn: Callable,
     process_data_fn: Callable,
     load_inputs: dict = DEFAULT_LOAD_INPUTS,
+    process_inputs: dict = None,
     params: Optional[dict] = None,
     **kwargs,
 ) -> Pipeline:
@@ -40,6 +43,12 @@ def create_pipeline_template(
     datatype = params[sat_id][source]["datatype"]
 
     ts_str = f"ts_{ts}s"
+
+    if process_inputs is None:
+        process_inputs = dict(
+            raw_data=f"inter_data_{datatype}",
+            ts="params:time_resolution",
+        )
 
     node_load_data = node(
         load_data_fn,
@@ -57,10 +66,7 @@ def create_pipeline_template(
 
     node_process_data = node(
         process_data_fn,
-        inputs=dict(
-            raw_data=f"inter_data_{datatype}",
-            ts="params:time_resolution",
-        ),
+        inputs=process_inputs,
         outputs=f"primary_data_{ts_str}",
         name="process_data",
     )

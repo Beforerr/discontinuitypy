@@ -16,8 +16,16 @@
             layer: raw
 
 "{mission}.{source}.inter_data_{suffix}":
+    type: polars.LazyPolarsDataset
+    filepath: data/02_intermediate/{mission}_{source}_{suffix}
+    file_format: parquet
+    metadata:
+        kedro-viz:
+            layer: intermediate
+
+"{mission}.MAG.inter_data_{suffix}":
     type: partitions.PartitionedDataset
-    path: data/02_intermediate/{mission}_{source}_{suffix}
+    path: data/02_intermediate/{mission}_MAG_{suffix}
     dataset:
         type: polars.LazyPolarsDataset
         file_format: parquet

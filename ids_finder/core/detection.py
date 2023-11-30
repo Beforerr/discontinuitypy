@@ -109,15 +109,15 @@ def add_neighbor_std(
 
     # Calculate the standard deviation index
     prev_std_df = df.select(
-        (pl.col("time") + tau),
-        pl.col("B_std").alias("B_std_prev"),
-        pl.col("count").alias("count_prev"),
+        pl.col("time") + tau,
+        B_std_prev=pl.col("B_std"),
+        count_prev=pl.col("count"),
     )
 
     next_std_df = df.select(
-        (pl.col("time") - tau),
-        pl.col("B_std").alias("B_std_next"),
-        pl.col("count").alias("count_next"),
+        pl.col("time") - tau,
+        B_std_next=pl.col("B_std"),
+        count_next=pl.col("count"),
     )
 
     return df.join(prev_std_df, on="time", how=join_strategy).join(

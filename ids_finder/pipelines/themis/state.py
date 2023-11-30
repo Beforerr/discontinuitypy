@@ -58,5 +58,4 @@ def create_sw_pipeline(sat_id="THB", source="STATE"):
 
 # %% ../../../notebooks/missions/themis/state.ipynb 8
 def create_pipeline(sat_id="THB", source="STATE"):
-
     return create_sw_pipeline(sat_id=sat_id, source=source)

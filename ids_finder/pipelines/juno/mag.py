@@ -17,6 +17,7 @@ from ...utils.basic import partition_data_by_year
 from ...utils.polars import create_partitions
 from ..default.data_mag import create_pipeline_template
 
+
 from pipe import select, filter
 
 from typing import Literal
