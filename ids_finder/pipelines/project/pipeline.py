@@ -22,10 +22,13 @@ from ...utils.analysis import filter_before_jupiter
 def process_events_l1(events: pl.LazyFrame):
     "clean data to remove extreme values"
     events = events.collect()
-    thickness_cols = ["L_n", "L_mn", "L_k", "L_R"]
+    thickness_cols = ["L_n", "L_mn", "L_k"]
     current_cols = ["j0", "j0_k"]
     thickness_norm_cols = [f"{c}_norm" for c in thickness_cols]
     current_norm_cols = [f"{c}_norm" for c in current_cols]
+
+    d_i = pl.col("ion_inertial_length")
+    j_Alfven = pl.col("j_Alfven")
 
     df = (
         events.pipe(filter_before_jupiter)
@@ -36,14 +39,14 @@ def process_events_l1(events: pl.LazyFrame):
         )
         .with_columns(cs.float().cast(pl.Float64))
         .with_columns(
-            (cs.by_name(thickness_cols) / pl.col("ion_inertial_length")).suffix(
-                "_norm"
-            ),
-            (cs.by_name(current_cols) / pl.col("j_Alfven")).suffix("_norm"),
+            (cs.by_name(thickness_cols) / d_i).suffix("_norm"),
+            (cs.by_name(current_cols) / j_Alfven).suffix("_norm"),
         )
         .with_columns(
-            cs.by_name(thickness_norm_cols + current_norm_cols).log10().suffix("_log"),
+            cs.by_name(thickness_norm_cols + current_norm_cols).log10().suffix("_log")
         )
+        .with_columns(dB_l=pl.col("dvec").list.get(0).abs())
+        .with_columns(dB_l_norm=pl.col("dB_l") / pl.col("b_mag"))
         .fill_nan(None)
     )
 

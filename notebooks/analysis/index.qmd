@@ -32,13 +32,28 @@ Occurrence rates with radial distance
 ## Orientation
 
 ::: {#fig-orientation .column-page layout-ncol="3"}
-![](../figures/orientation_time.png)
+![](../figures/orientation/orientation_k_time)
 
-![](../figures/orientation_r.png)
+![](../figures/orientation/orientation_k_r)
 
-![](../figures/orientation_r_dist.png)
+![](../figures/orientation/orientation_l_r)
 
-Thickness with time and radial distance
+Orientation with time and radial distance
+:::
+
+:::
+![](../figures/orientation/orientation_kx_r_dist)
+:::
+
+## Intensity
+
+::: {#fig-intensity .column-page layout-ncol="2"}
+
+![](../figures/dB_l_dist)
+
+![Normalized by mean magnitude](../figures/dB_l_N1_dist)
+
+Insensity with time and radial distance
 :::
 
 ## Thickness
@@ -53,7 +68,22 @@ Thickness with time and radial distance
 Thickness with time and radial distance
 :::
 
+
+::: {#fig-thickness-distribution .column-page layout-ncol="4"}
+
+![MN Thickness](../figures/thickness/thickness_mn_dist)
+
+![K Thickness](../figures/thickness/thickness_k_dist)
+
+![MN Normalized Thickness](../figures/thickness/thickness_mn_N1_dist)
+
+![K Normalized Thickness](../figures/thickness/thickness_k_N1_dist)
+
+Thickness distribution
+:::
+
 ::: {#fig-thickness-distribution layout-ncol="2"}
+
 ![](../figures/thickness_r_dist.png)
 
 ![](../figures/thickness_N1_r_dist.png)
@@ -97,15 +127,31 @@ Thickness distribution with radial distance for different definitions
 Current density with time and radial distance
 :::
 
-::: {#fig-current layout-ncol="2"}
+
+::: {#fig-current-distribution .column-page layout-ncol="4"}
+
+
+![MN current](../figures/current/current_mn_dist)
+
+![K current](../figures/current/current_k_dist)
+
+![MN Normalized current](../figures/current/current_mn_N1_dist)
+
+![K Normalized current](../figures/current/current_k_N1_dist)
+
+Current distribution
+:::
+
+
+::: {#fig-current-distribution-jno layout-ncol="2"}
 ![](../figures/current_r_dist)
 
 ![](../figures/current_N1_r_dist)
 
-Current distribution with radial distance
+JUNO Current distribution with radial distance
 :::
 
-::: {#fig-current layout-ncol="2"}
+::: {#fig-current-jno layout-ncol="2"}
 ![](../figures/thickness_N1_r_hist)
 
 ![](../figures/thickness_N1_log_r_hist)

@@ -243,7 +243,7 @@ def mva_features(data: np.ndarray):
     """
     
     # Compute variance properties
-    vrot, v, w = minvar(data)
+    vrot, v, eigs = minvar(data)
 
     # Maximum variance direction eigenvector
     Vl = v[:, 0]
@@ -268,21 +268,26 @@ def mva_features(data: np.ndarray):
         "Vl",
         "Vn",
         "eigs", 
-        'b_mag', 'b_n', 'db_mag', 'bn_over_b', 'db_over_b', 'db_over_b_max',
-        # 'db_l', 'db_m', 'db_n'
+        'b_mag', 
+        'b_n',
+        'db_mag',
+        'bn_over_b',
+        'db_over_b',
+        'db_over_b_max',
+        'dvec'
     ]
     
     results = [
         Vl,
         Vn,
-        w,
+        eigs,
         vec_mag_mean,
         vec_n_mean,
         dvec_mag,
         VnOverVmag, 
         dBOverB,
         dBOverB_max,
-        # dvec[0], dvec[1], dvec[2]
+        dvec
     ]
 
     return results, output_names

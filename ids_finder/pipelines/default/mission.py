@@ -2,7 +2,7 @@
 
 # %% auto 0
 __all__ = ['combine_features', 'vector_project', 'vector_project_pl', 'compute_inertial_length', 'compute_Alfven_speed',
-           'compute_Alfven_current', 'calc_combined_features', 'create_combined_data_pipeline']
+           'compute_Alfven_current', 'decompose_vector', 'calc_combined_features', 'create_combined_data_pipeline']
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 2
 from ... import PARAMS
@@ -73,22 +73,32 @@ def compute_Alfven_current(ldf: pl.LazyFrame):
     return df.with_columns(j_Alfven=pl.Series(result.value)).lazy()
 
 # %% ../../../notebooks/pipelines/10_mission.ipynb 14
+def decompose_vector(df: pl.LazyFrame, vector_col, name=None):
+    if name is None:
+        name = vector_col
+
+    return df.with_columns(
+        pl.col(vector_col).list.get(0).alias(f"{name}_x"),
+        pl.col(vector_col).list.get(1).alias(f"{name}_y"),
+        pl.col(vector_col).list.get(2).alias(f"{name}_z"),
+    )
+
+
 def calc_combined_features(df: pl.LazyFrame):
     vec_cols = ["v_x", "v_y", "v_z"]  # plasma velocity vector in any coordinate system
 
     j_factor = ((u.nT / u.s) * (1 / mu0 / (u.km / u.s))).to(u.nA / u.m**2)
 
     vector_cols = ["Vl", "Vn", "normal_direction"]
-    
+
     result = (
         df.with_columns(
             duration=pl.col("d_tstop") - pl.col("d_tstart"),
-            k_x=pl.col("normal_direction").list.get(0).abs(),
         )
-        .with_columns(
-            cs.by_name(vector_cols).list.to_array(3)
-        )
-        .pipe(vector_project_pl, vec_cols, "Vl", name="v_l") # major eigenvector in any coordinate system
+        .pipe(decompose_vector, "normal_direction", name="k")
+        .pipe(decompose_vector, "Vl")
+        .with_columns(cs.by_name(vector_cols).list.to_array(3))
+        .pipe(vector_project_pl, vec_cols, "Vl", name="v_l")
         .pipe(vector_project_pl, vec_cols, "Vn", name="v_n")
         .pipe(vector_project_pl, vec_cols, "normal_direction", name="v_k")
         .with_columns(
@@ -103,21 +113,16 @@ def calc_combined_features(df: pl.LazyFrame):
             j0=pl.col("d_star") / pl.col("v_mn"),
             j0_k=pl.col("d_star") / pl.col("v_k"),
         )
-        .with_columns(
-            L_R=pl.col("L_k") * pl.col("k_x"),
-        )
         .pipe(compute_inertial_length)
         .pipe(compute_Alfven_speed)
         .pipe(compute_Alfven_current)
         .with_columns(
-            j0=pl.col("j0") * j_factor.value,
-            j0_k=pl.col("j0_k") * j_factor.value,
+            cs.by_name("j0", "j0_k") * j_factor.value,
         )
         .with_columns(
-            L_mn_norm=pl.col("L_mn") / pl.col("ion_inertial_length"),
-            j0_norm=pl.col("j0") / pl.col("j_Alfven"),
-        ).with_columns(
-            cs.by_name(vector_cols).arr.to_list() # PanicException: not yet implemented: Writing FixedSizeList to parquet not yet implemented
+            cs.by_name(
+                vector_cols
+            ).arr.to_list()  # PanicException: not yet implemented: Writing FixedSizeList to parquet not yet implemented
         )
     )
     return result
