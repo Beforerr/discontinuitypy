@@ -10,7 +10,6 @@
 <meta name="author" content="Anton Artemyev">
 <meta name="author" content="Vassilis Angelopoulos">
 <meta name="author" content="Shi Chen">
-<meta name="author" content="Zesen Huang">
 
 <title>ids-finder - Discontinuities? Yes!</title>
 <style>
@@ -25,60 +24,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -118,8 +64,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="ids-finder - Discontinuities? Yes!">
 <meta property="og:description" content="All statistics are wrong, but some may be useful:)">
@@ -150,6 +94,21 @@ div.csl-indent {
     <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Publications</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
+        <li>
+    <a class="dropdown-item" href="./manuscripts/paper.html" rel="" target="">
+ <span class="dropdown-text">Paper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./manuscripts/AGU23_poster.html" rel="" target="">
+ <span class="dropdown-text">AGU23 Poster</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./analysis/index.html" rel="" target="">
  <span class="menu-text">Results</span></a>
@@ -190,28 +149,10 @@ div.csl-indent {
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01_pipelines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pipelines</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./20_candidates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Datasets</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Missions</span></a>
+            <a href="./pipelines/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pipelines</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -219,46 +160,58 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/juno.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Juno</span></a>
+  <a href="./pipelines/1_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/stereo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from STEREO</span></a>
+  <a href="./pipelines/10_mission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/artemis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from ARTHEMIS</span></a>
+  <a href="./pipelines/100_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Wind</span></a>
+  <a href="./pipelines/2_data_mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Magnetic field data pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/venus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Venus Express</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/messenger.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Messenger</span></a>
+  <a href="./pipelines/3_data_state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State data pipeline</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID identification</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_ids_properties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID properties</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./analysis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analysis</span></a>
+ <span class="menu-text">Results</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -266,14 +219,32 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis/or.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SWD Occurence Rate</span></a>
+  <a href="./analysis/00_base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading all datasets from different sources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis/properties.html" class="sidebar-item-text sidebar-link">
+  <a href="./analysis/01_occurence_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Occurence Rate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis/02_orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orientation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis/02_properties.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SWD Properties</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis/03_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map of thickness and current intensity</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -290,6 +261,197 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./missions/juno/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Juno</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/juno/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/juno/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./missions/stereo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from STEREO</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/stereo/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/stereo/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./missions/wind/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Wind</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/wind/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/wind/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./missions/themis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from ARTHEMIS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/themis/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/themis/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/omni/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OMNI data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Manuscripts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manuscripts/AGU23_poster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solar wind discontinuities spatial evolution and energetic ion scattering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manuscripts/paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discontinuities? Yes!</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/01_plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MVA plotting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/10_polars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/15_kedro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>Kedro</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/20_pds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planetary Data System (PDS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/30_cdf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for CDF file format</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/31_lbl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for lbl file format</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -300,24 +462,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
-  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a>
-  <ul class="collapse">
-  <li><a href="#importance" id="toc-importance" class="nav-link" data-scroll-target="#importance">Importance</a></li>
-  <li><a href="#motivations" id="toc-motivations" class="nav-link" data-scroll-target="#motivations">Motivations</a></li>
-  </ul></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
-  <ul class="collapse">
-  <li><a href="#id-identification-limited-feature-extraction-anomaly-detection" id="toc-id-identification-limited-feature-extraction-anomaly-detection" class="nav-link" data-scroll-target="#id-identification-limited-feature-extraction-anomaly-detection">ID identification (limited feature extraction / anomaly detection)</a></li>
-  <li><a href="#solar-wind-model" id="toc-solar-wind-model" class="nav-link" data-scroll-target="#solar-wind-model">Solar Wind Model</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#conventions" id="toc-conventions" class="nav-link" data-scroll-target="#conventions">Conventions</a>
-  <ul class="collapse">
-  <li><a href="#columns-naming-conventions" id="toc-columns-naming-conventions" class="nav-link" data-scroll-target="#columns-naming-conventions">Columns naming conventions</a></li>
-  </ul></li>
-  <li><a href="#todos" id="toc-todos" class="nav-link" data-scroll-target="#todos">TODOs</a>
+  <li><a href="#todos" id="toc-todos" class="nav-link active" data-scroll-target="#todos">TODOs</a>
   <ul class="collapse">
   <li><a href="#bugs" id="toc-bugs" class="nav-link" data-scroll-target="#bugs">bugs</a></li>
   </ul></li>
@@ -334,20 +479,47 @@ div.csl-indent {
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Zijin Zhang </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of California, Los Angeles
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    <p class="author">Anton Artemyev </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of California, Los Angeles
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    <p class="author">Vassilis Angelopoulos </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of California, Los Angeles
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    <p class="author">Shi Chen </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of California, Los Angeles
+          </p>
+      </div>
+    </div>
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Zijin Zhang </p>
-             <p>Anton Artemyev </p>
-             <p>Vassilis Angelopoulos </p>
-             <p>Shi Chen </p>
-             <p>Zesen Huang </p>
-          </div>
-  </div>
-    
+      
   
     
   </div>
@@ -355,218 +527,11 @@ div.csl-indent {
 
 </header>
 
-<section id="install" class="level2">
-<h2 class="anchored" data-anchor-id="install">Install</h2>
-<pre class="{shell}"><code>pip install ids-finder</code></pre>
-</section>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
-<p>Import the package</p>
-<div class="cell" data-execution_count="1">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ids_finder.utils.basic <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ids_finder.core <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>‘Discontinuities’ are discontinuous spatial changes in plasma parameters/characteristics and magnetic fields<span class="citation" data-cites="colburn1966">(<a href="#ref-colburn1966" role="doc-biblioref">Colburn and Sonett 1966</a>)</span>.</p>
-<section id="importance" class="level3">
-<h3 class="anchored" data-anchor-id="importance">Importance</h3>
+<p>For how to use this project as a python library, please see <a href="./00_ids_finder.html">this page</a>.</p>
 <ul>
-<li><p>Contribution of Strong Discontinuities to the Power Spectrum</p>
-<blockquote class="blockquote">
-<p>The strong discontinuities produce a power-law spectrum in the ‘inertial subrange’ with a spectral index near the Kolmogorov -5/3 index. The discontinuity spectrum contains about half of the power of the full solar-wind magnetic ﬁeld over this ‘inertial subrange’. <span class="citation" data-cites="borovsky2010">(<a href="#ref-borovsky2010" role="doc-biblioref">Borovsky 2010</a>)</span></p>
-</blockquote></li>
+<li><a href="./manuscripts/AGU23_poster.html">AGU23 Poster</a></li>
+<li><a href="./manuscripts/paper.html">Paper</a></li>
 </ul>
-</section>
-<section id="motivations" class="level3">
-<h3 class="anchored" data-anchor-id="motivations">Motivations</h3>
-<p>Studying the radial distribution of occurrence rate, as well as the properties of solar wind discontinuities may help answer the following questions:</p>
-<ul>
-<li>How does the discontinuities change with the radial distance from the Sun?</li>
-<li>How is solar wind discontinuities formed? What is the physical mechanisms?
-<ul>
-<li>Generated at or near the sun?</li>
-<li>Locally generated in the interplanetary space by turbulence?</li>
-</ul></li>
-</ul>
-<p>Joint observations of JUNO &amp; ARTEMIS &amp; Other missions really provides a unique opportunity!!!</p>
-<ul>
-<li>Five-year cruise to Jupiter from 2011 to 2016</li>
-<li>One earth flyby in 2013</li>
-<li>Nearly the same Heliographic latitude as Earth</li>
-</ul>
-<p>To eliminate the effect of the solar wind structure, we use data from other missions (mainly at 1AU) to provide a way of normalization.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Mission</th>
-<th>r [AU]</th>
-<th><span class="math inline">\(\delta t_B\)</span></th>
-<th><span class="math inline">\(\delta t_{plasma}\)</span></th>
-<th>Data availability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>JUNO</td>
-<td>1-5.5</td>
-<td>1s averaged (64 Hz)</td>
-<td>1h <strong>model</strong> <a href="#solar-wind-model">*</a></td>
-<td><strong>2011 - 2016</strong> - Today</td>
-</tr>
-<tr class="even">
-<td>ARTEMIS</td>
-<td>1</td>
-<td>1s averaged (8 Hz)</td>
-<td>1h averaged</td>
-<td>2009 - Today (solar wind)</td>
-</tr>
-<tr class="odd">
-<td>STEREO-A</td>
-<td>1</td>
-<td>1s averaged (8 Hz)</td>
-<td>1h averaged</td>
-<td>2006 - Today</td>
-</tr>
-<tr class="even">
-<td>STEREO-B</td>
-<td>1</td>
-<td>1s averaged (8 Hz)</td>
-<td>1h averaged</td>
-<td>2006 - 2016.09</td>
-</tr>
-<tr class="odd">
-<td>Wind</td>
-<td>1</td>
-<td>11 Hz</td>
-<td>1h averaged</td>
-<td>1994 - 2004 -2020 - Today</td>
-</tr>
-<tr class="even">
-<td>Solar Orbiter</td>
-<td>0.28-0.91</td>
-<td></td>
-<td></td>
-<td>2020 - Today</td>
-</tr>
-<tr class="odd">
-<td>Ulysis</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>Traditional methods for ID identiﬁcation, such as the criteria of</p>
-<ul>
-<li>Burlaga &amp; Ness (1969; B-criterion) : a directional change of the magnetic ﬁeld larger than 30° during 60 s</li>
-<li>Tsurutani &amp; Smith (1979; TS-criterion) : <span class="math inline">\(|ΔB|/|B| \geq 0.5\)</span> within 3 minutes</li>
-</ul>
-<p>Mostly rely on magnetic ﬁeld variations with a certain time lag. B-criterion has, as its main condition.</p>
-<p>In their methods, the IDs below the thresholds are artiﬁcially abandoned. Therefore, identiﬁcation criteria may affect the statistical results, and there is likely to be a discrepancy between the ﬁndings via B-criterion and TS- criterion.</p>
-<section id="id-identification-limited-feature-extraction-anomaly-detection" class="level3">
-<h3 class="anchored" data-anchor-id="id-identification-limited-feature-extraction-anomaly-detection">ID identification (limited feature extraction / anomaly detection)</h3>
-<p>Liu’s method : The first two conditions guarantee that the field changes of the IDs identiﬁed are large enough to be distinguished from the stochastic fluctuations on magnetic fields, while the third is a supplementary condition to reduce the uncertainty of recognition.</p>
-<p><span class="math display">\[ \textrm{Index}_1 = \frac{\sigma(\vec{B})}{Max(\sigma(\vec{B}_-),\sigma(\vec{B}_+))} \]</span></p>
-<p><span class="math display">\[ \textrm{Index}_2 = \frac{\sigma(\vec{B}_- + \vec{B}_+)} {\sigma(\vec{B}_-) + \sigma(\vec{B}_+)} \]</span></p>
-<p><span class="math display">\[ \textrm{Index}_3 = \frac{| \Delta \vec{B} |}{|B_{bg}|} \]</span></p>
-<p><span class="math display">\[ \textrm{Index}_1 \ge 2, \textrm{Index}_2 \ge 1, \textrm{Index}_3 \ge 0.1 \]</span></p>
-</section>
-<section id="solar-wind-model" class="level3">
-<h3 class="anchored" data-anchor-id="solar-wind-model">Solar Wind Model</h3>
-<p>Sadly, JUNO does not provide plasma data during the cruise phase, so to estimate the plasma state we will use MHD model.</p>
-<p>We are using <a href="http://csem.engin.umich.edu/MSWIM2D/">Michigan Solar WInd Model 2D (MSWIM2D)</a>, which models the solar wind propagation in 2D using the BATSRUS MHD solver. <span class="citation" data-cites="keebler2022">(<a href="#ref-keebler2022" role="doc-biblioref">Keebler et al. 2022</a>)</span></p>
-<p>Some key points about the model</p>
-<ul>
-<li>Representing the solar wind in the ecliptic plane from 1 to 75 AU</li>
-<li>2D MHD model, using the BATSRUS MHD solver</li>
-<li>Inclusion of neutral hydrogen (important for the outer heliosphere)</li>
-<li>Inner boundary is filled by time-shifting in situ data from multiple spacecraft</li>
-</ul>
-<p>For model validation part, please see <a href="./analysis/20_model.html">JUNO Model Report</a>.</p>
-</section>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<ul>
-<li>We have collected 5 years of solar wind discontinuities from JUNO, ARTEMIS and STEREO.</li>
-<li>We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable)</li>
-<li>The normalized occurrence rate of IDs drops with the radial distance from the Sun, following <span class="math inline">\(1/r\)</span> law.</li>
-<li>The thickness of IDs increases with the radial distance from the Sun, but after normalization to ion inertial length, the thickness of IDs decreases.</li>
-<li>The current intensity of IDs decrease with the radial distance from the Sun, but after normalization to the Alfven current , the current intensity of IDs increases.</li>
-</ul>
-</section>
-<section id="conventions" class="level2">
-<h2 class="anchored" data-anchor-id="conventions">Conventions</h2>
-<p>As we are dealing with multiple spacecraft, we need to be careful about naming conventions. Here are the conventions we use in this project.</p>
-<ul>
-<li><code>sat_id</code>: name of the spacecraft. We also use abbreviation, for example
-<ul>
-<li><code>sta</code> for <code>STEREO-A</code></li>
-<li><code>thb</code> for <code>ARTEMIS-B</code></li>
-</ul></li>
-<li><code>sat_state</code>: state data of the spacecraft</li>
-<li><code>b_vl</code>: maximum variance vector of the magnetic field, (major eigenvector)</li>
-</ul>
-<p>Data Level</p>
-<ul>
-<li><p>l0: unprocessed</p></li>
-<li><p>l1: cleaned data, fill null value, add useful columns</p></li>
-<li><p>l2: time-averaged data</p></li>
-</ul>
-<section id="columns-naming-conventions" class="level3">
-<h3 class="anchored" data-anchor-id="columns-naming-conventions">Columns naming conventions</h3>
-<ul>
-<li><p><code>radial_distance</code>: radial distance of the spacecraft, in units of <span class="math inline">\(AU\)</span></p></li>
-<li><p><code>plasma_speed</code>: solar wind plasma speed, in units of <span class="math inline">\(km/s\)</span></p></li>
-<li><p><code>sw_elevation</code>: solar wind elevation angle, in units of <span class="math inline">\(\degree\)</span></p></li>
-<li><p><code>sw_azimuth</code>: solar wind azimuth angle, in units of <span class="math inline">\(\degree\)</span></p></li>
-<li><p><code>v_{x,y,z}</code> or <code>sw_vel_{X,Y,Z}</code>: solar wind plasma speed in the <em>ANY</em> coordinate system, in units of <span class="math inline">\(km/s\)</span></p>
-<ul>
-<li><code>sw_vel_{r,t,n}</code>: solar wind plasma speed in the RTN coordinate system, in units of <span class="math inline">\(km/s\)</span></li>
-<li><code>sw_vel_gse_{x,y,z}</code>: solar wind plasma speed in the GSE coordinate system, in units of <span class="math inline">\(km/s\)</span></li>
-<li><code>sw_vel_lmn_{x,y,z}</code>: solar wind plasma speed in the LMN coordinate system, in units of <span class="math inline">\(km/s\)</span>
-<ul>
-<li><code>v_l</code> or <code>sw_vel_l</code>: abbreviation for <code>sw_vel_lmn_1</code></li>
-<li><code>v_mn</code> or <code>sw_vel_mn</code> (deprecated)</li>
-</ul></li>
-</ul></li>
-<li><p><code>plasma_density</code>: plasma density, in units of <span class="math inline">\(1/cm^{3}\)</span></p></li>
-<li><p><code>plasma_temperature</code>: plasma temperature, in units of <span class="math inline">\(K\)</span></p></li>
-<li><p><code>B_{x,y,z}</code>: magnetic field in <em>ANY</em> coordinate system</p>
-<ul>
-<li><code>b_rtn_{x,y,z}</code> or <code>b_{r,t,n}</code>: magnetic field in the RTN coordinate system</li>
-<li><code>b_gse_{x,y,z}</code>: magnetic field in the GSE coordinate system</li>
-</ul></li>
-<li><p><code>B_mag</code>: magnetic field magnitude</p></li>
-<li><p><code>Vl_{x,y,z}</code> or <code>b_vecL_{X,Y,Z}</code>: maxium variance vector of the magnetic field in <em>ANY</em> coordinate system</p>
-<ul>
-<li><code>b_vecL_{r,t,n}</code>: maxium variance vector of the magnetic field in the RTN coordinate system</li>
-</ul></li>
-<li><p><code>model_b_{r,t,n}</code>: modelled magnetic field in the RTN coordinate system</p></li>
-<li><p><code>state</code> : <em>1</em> for <em>solar wind</em>, <em>0</em> for <em>non-solar wind</em></p></li>
-<li><p><code>L_mn{_norm}</code>: thickness of the current sheet in MN direction, in units of <span class="math inline">\(km\)</span></p></li>
-<li><p><code>j0{_norm}</code>: current density, in units of <span class="math inline">\(nA/m^2\)</span></p></li>
-</ul>
-<p>Notes: we recommend use unique names for each variable, for example, <code>plasma_speed</code> instead of <code>speed</code>. Because it is easier to search and replace the variable names in the code whenever necessary.</p>
-<p>For the unit, by default we use</p>
-<ul>
-<li>length : <span class="math inline">\(km\)</span></li>
-<li>time : <span class="math inline">\(s\)</span></li>
-<li>magnetic field : <span class="math inline">\(nT\)</span></li>
-<li>current : <span class="math inline">\(nA/m^2\)</span></li>
-</ul>
-</section>
-</section>
 <section id="todos" class="level2">
 <h2 class="anchored" data-anchor-id="todos">TODOs</h2>
 <p>Science part</p>
@@ -625,40 +590,20 @@ div.csl-indent {
 <li><input type="checkbox" checked="">Modular pipelines</li>
 <li><del>Incorporate <code>lineapy</code></del></li>
 </ul></li>
-<li><input type="checkbox">QR codes</li>
+<li><input type="checkbox" checked="">QR codes</li>
 </ul>
-<div class="cell" data-execution_count="2">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>markdown</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>X importtime <span class="op">-</span>c <span class="st">'from ids_finder.pipelines.juno.pipeline import download_juno_data, preprocess_jno'</span> <span class="dv">2</span><span class="op">&gt;</span> <span class="im">import</span>.log <span class="op">&amp;&amp;</span> tuna <span class="im">import</span>.log</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>X importtime <span class="op">-</span>c <span class="st">'import ids_finder.utils.basic'</span> <span class="dv">2</span><span class="op">&gt;</span> <span class="im">import</span>.log <span class="op">&amp;&amp;</span> tuna <span class="im">import</span>.log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 <section id="bugs" class="level3">
 <h3 class="anchored" data-anchor-id="bugs">bugs</h3>
 <ul class="task-list">
-<li><input type="checkbox">JUNO sw_temperature type</li>
+<li><input type="checkbox" checked="">JUNO sw_temperature type</li>
 <li><input type="checkbox">STEREO <code>B</code> less than zero (after downsampling?)</li>
 </ul>
 
 
-
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-borovsky2010" class="csl-entry" role="listitem">
-Borovsky, Joseph E. 2010. <span>“Contribution of Strong Discontinuities to the Power Spectrum of the Solar Wind.”</span> <em>Physical Review Letters</em> 105 (11): 111102. <a href="https://doi.org/10.1103/PhysRevLett.105.111102">https://doi.org/10.1103/PhysRevLett.105.111102</a>.
-</div>
-<div id="ref-colburn1966" class="csl-entry" role="listitem">
-Colburn, D. S., and C. P. Sonett. 1966. <span>“Discontinuities in the Solar Wind.”</span> <em>Space Science Reviews</em> 5 (4): 439–506. <a href="https://doi.org/10.1007/BF00240575">https://doi.org/10.1007/BF00240575</a>.
-</div>
-<div id="ref-keebler2022" class="csl-entry" role="listitem">
-Keebler, Timothy B., Gábor Tóth, Bertalan Zieger, and Merav Opher. 2022. <span>“MSWIM2D: Two-Dimensional Outer Heliosphere Solar Wind Modeling.”</span> <em>The Astrophysical Journal Supplement Series</em> 260 (2): 43. <a href="https://doi.org/10.3847/1538-4365/ac67eb">https://doi.org/10.3847/1538-4365/ac67eb</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

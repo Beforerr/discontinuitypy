@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ids-finder - Utils</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta property="og:title" content="ids-finder - Utils">
+<meta property="og:description" content="">
+<meta property="og:site-name" content="ids-finder">
+<meta name="twitter:title" content="ids-finder - Utils">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ids-finder</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Publications</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
+        <li>
+    <a class="dropdown-item" href="../manuscripts/paper.html" rel="" target="">
+ <span class="dropdown-text">Paper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html" rel="" target="">
+ <span class="dropdown-text">AGU23 Poster</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="../analysis/index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Results</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Beforerr/ids_finder" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/basic.html">Utils</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../00_ids_finder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding magnetic discontinuities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pipelines/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pipelines</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pipelines/1_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pipelines/10_mission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pipelines/100_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pipelines/2_data_mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pipelines/3_data_state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID identification</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_ids_properties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID properties</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../20_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../analysis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/00_base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading all datasets from different sources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/01_occurence_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Occurence Rate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/02_orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orientation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/02_properties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SWD Properties</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/03_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map of thickness and current intensity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/10_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/20_model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/juno/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Juno</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/juno/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/juno/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/stereo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from STEREO</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/wind/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Wind</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/themis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from ARTHEMIS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/omni/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OMNI data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Manuscripts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscripts/AGU23_poster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solar wind discontinuities spatial evolution and energetic ion scattering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscripts/paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discontinuities? Yes!</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/basic.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/01_plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MVA plotting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/10_polars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/15_kedro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>Kedro</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/20_pds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planetary Data System (PDS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/30_cdf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for CDF file format</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/31_lbl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for lbl file format</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#utilities-functions" id="toc-utilities-functions" class="nav-link active" data-scroll-target="#utilities-functions">Utilities functions</a>
+  <ul class="collapse">
+  <li><a href="#pmap" id="toc-pmap" class="nav-link" data-scroll-target="#pmap">pmap</a></li>
+  </ul></li>
+  <li><a href="#utils" id="toc-utils" class="nav-link" data-scroll-target="#utils">Utils</a></li>
+  <li><a href="#configurations" id="toc-configurations" class="nav-link" data-scroll-target="#configurations">Configurations</a>
+  <ul class="collapse">
+  <li><a href="#dataconfig" id="toc-dataconfig" class="nav-link" data-scroll-target="#dataconfig">DataConfig</a></li>
+  </ul></li>
+  <li><a href="#polars" id="toc-polars" class="nav-link" data-scroll-target="#polars"><code>Polars</code></a>
+  <ul class="collapse">
+  <li><a href="#filter_tranges_df" id="toc-filter_tranges_df" class="nav-link" data-scroll-target="#filter_tranges_df">filter_tranges_df</a></li>
+  <li><a href="#filter_tranges" id="toc-filter_tranges" class="nav-link" data-scroll-target="#filter_tranges">filter_tranges</a></li>
+  <li><a href="#dataframe.plot" id="toc-dataframe.plot" class="nav-link" data-scroll-target="#dataframe.plot">DataFrame.plot</a></li>
+  <li><a href="#pl_norm" id="toc-pl_norm" class="nav-link" data-scroll-target="#pl_norm">pl_norm</a></li>
+  <li><a href="#partition_data_by_year" id="toc-partition_data_by_year" class="nav-link" data-scroll-target="#partition_data_by_year">partition_data_by_year</a></li>
+  <li><a href="#concat_partitions" id="toc-concat_partitions" class="nav-link" data-scroll-target="#concat_partitions">concat_partitions</a></li>
+  <li><a href="#concat_df" id="toc-concat_df" class="nav-link" data-scroll-target="#concat_df">concat_df</a></li>
+  <li><a href="#format_timedelta" id="toc-format_timedelta" class="nav-link" data-scroll-target="#format_timedelta">format_timedelta</a></li>
+  <li><a href="#resample" id="toc-resample" class="nav-link" data-scroll-target="#resample">resample</a></li>
+  <li><a href="#resample-1" id="toc-resample-1" class="nav-link" data-scroll-target="#resample-1">resample</a></li>
+  <li><a href="#resample-2" id="toc-resample-2" class="nav-link" data-scroll-target="#resample-2">resample</a></li>
+  <li><a href="#get_memory_usage" id="toc-get_memory_usage" class="nav-link" data-scroll-target="#get_memory_usage">get_memory_usage</a></li>
+  <li><a href="#calc_vec_mag" id="toc-calc_vec_mag" class="nav-link" data-scroll-target="#calc_vec_mag">calc_vec_mag</a></li>
+  <li><a href="#df2ts" id="toc-df2ts" class="nav-link" data-scroll-target="#df2ts">df2ts</a></li>
+  <li><a href="#check_fgm" id="toc-check_fgm" class="nav-link" data-scroll-target="#check_fgm">check_fgm</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Utils</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="utilities-functions" class="level2">
+<h2 class="anchored" data-anchor-id="utilities-functions">Utilities functions</h2>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L46" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="pmap" class="level3">
+<h3 class="anchored" data-anchor-id="pmap">pmap</h3>
+<blockquote class="blockquote">
+<pre><code> pmap (func, *args, **kwargs)</code></pre>
+</blockquote>
+<p>map with <code>partial</code></p>
+</section>
+</section>
+<section id="utils" class="level2">
+<h2 class="anchored" data-anchor-id="utils">Utils</h2>
+</section>
+<section id="configurations" class="level2">
+<h2 class="anchored" data-anchor-id="configurations">Configurations</h2>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L57" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="dataconfig" class="level3">
+<h3 class="anchored" data-anchor-id="dataconfig">DataConfig</h3>
+<blockquote class="blockquote">
+<pre><code> DataConfig (sat_id:str=None, start:datetime.datetime=None,
+             end:datetime.datetime=None, ts:datetime.timedelta=None,
+             coord:str=None)</code></pre>
+</blockquote>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+</section>
+</section>
+<section id="polars" class="level2">
+<h2 class="anchored" data-anchor-id="polars"><code>Polars</code></h2>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L86" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="filter_tranges_df" class="level3">
+<h3 class="anchored" data-anchor-id="filter_tranges_df">filter_tranges_df</h3>
+<blockquote class="blockquote">
+<pre><code> filter_tranges_df (df:polars.dataframe.frame.DataFrame,
+                    tranges:Tuple[list,list], time_col:str='time')</code></pre>
+</blockquote>
+<ul>
+<li>Filter data by time ranges</li>
+</ul>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L68" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="filter_tranges" class="level3">
+<h3 class="anchored" data-anchor-id="filter_tranges">filter_tranges</h3>
+<blockquote class="blockquote">
+<pre><code> filter_tranges (time:polars.series.series.Series,
+                 tranges:Tuple[list,list])</code></pre>
+</blockquote>
+<ul>
+<li>Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)</li>
+</ul>
+<hr>
+</section>
+<section id="dataframe.plot" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe.plot">DataFrame.plot</h3>
+<blockquote class="blockquote">
+<pre><code> DataFrame.plot (*args, **kwargs)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/polars.py#L68" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="pl_norm" class="level3">
+<h3 class="anchored" data-anchor-id="pl_norm">pl_norm</h3>
+<blockquote class="blockquote">
+<pre><code> pl_norm (columns, *more_columns)</code></pre>
+</blockquote>
+<p>Computes the square root of the sum of squares for the given columns.</p>
+<p>Args: *columns (str): Names of the columns.</p>
+<p>Returns: pl.Expr: Expression representing the square root of the sum of squares.</p>
+<section id="partition-the-dataset-by-year" class="level4">
+<h4 class="anchored" data-anchor-id="partition-the-dataset-by-year">Partition the dataset by year</h4>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L133" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+</section>
+<section id="partition_data_by_year" class="level3">
+<h3 class="anchored" data-anchor-id="partition_data_by_year">partition_data_by_year</h3>
+<blockquote class="blockquote">
+<pre><code> partition_data_by_year (df:polars.lazyframe.frame.LazyFrame)</code></pre>
+</blockquote>
+<p>Partition the dataset by year</p>
+<p>Args: df: Input DataFrame.</p>
+<p>Returns: Partitioned DataFrame.</p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L164" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="concat_partitions" class="level3">
+<h3 class="anchored" data-anchor-id="concat_partitions">concat_partitions</h3>
+<blockquote class="blockquote">
+<pre><code> concat_partitions (partitioned_input:Dict[str,Callable])</code></pre>
+</blockquote>
+<p>Concatenate input partitions into one DataFrame.</p>
+<p>Args: partitioned_input: A dictionary with partition ids as keys and load functions as values.</p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L150" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="concat_df" class="level3">
+<h3 class="anchored" data-anchor-id="concat_df">concat_df</h3>
+<blockquote class="blockquote">
+<pre><code> concat_df (dfs:list[typing.Union[polars.dataframe.frame.DataFrame,polars.
+            lazyframe.frame.LazyFrame,pandas.core.frame.DataFrame]])</code></pre>
+</blockquote>
+<p>Concatenate a list of DataFrames into one DataFrame.</p>
+<section id="resample-data" class="level4">
+<h4 class="anchored" data-anchor-id="resample-data">Resample data</h4>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L178" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+</section>
+<section id="format_timedelta" class="level3">
+<h3 class="anchored" data-anchor-id="format_timedelta">format_timedelta</h3>
+<blockquote class="blockquote">
+<pre><code> format_timedelta (time)</code></pre>
+</blockquote>
+<p>Format timedelta to <code>timedelta</code></p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L212" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="resample" class="level3">
+<h3 class="anchored" data-anchor-id="resample">resample</h3>
+<blockquote class="blockquote">
+<pre><code> resample
+           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat
+           aFrame, every:datetime.timedelta,
+           period:datetime.timedelta=None, offset:datetime.timedelta=None,
+           shift:datetime.timedelta=None, time_column='time')</code></pre>
+</blockquote>
+<p>Resample the DataFrame</p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L212" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="resample-1" class="level3">
+<h3 class="anchored" data-anchor-id="resample-1">resample</h3>
+<blockquote class="blockquote">
+<pre><code> resample
+           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat
+           aFrame, every:datetime.timedelta,
+           period:datetime.timedelta=None, offset:datetime.timedelta=None,
+           shift:datetime.timedelta=None, time_column='time')</code></pre>
+</blockquote>
+<p>Resample the DataFrame</p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L212" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="resample-2" class="level3">
+<h3 class="anchored" data-anchor-id="resample-2">resample</h3>
+<blockquote class="blockquote">
+<pre><code> resample
+           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat
+           aFrame, every:datetime.timedelta,
+           period:datetime.timedelta=None, offset:datetime.timedelta=None,
+           shift:datetime.timedelta=None, time_column='time')</code></pre>
+</blockquote>
+<p>Resample the DataFrame</p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L236" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="get_memory_usage" class="level3">
+<h3 class="anchored" data-anchor-id="get_memory_usage">get_memory_usage</h3>
+<blockquote class="blockquote">
+<pre><code> get_memory_usage (data)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L273" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="calc_vec_mag" class="level3">
+<h3 class="anchored" data-anchor-id="calc_vec_mag">calc_vec_mag</h3>
+<blockquote class="blockquote">
+<pre><code> calc_vec_mag (vec)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L250" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="df2ts" class="level3">
+<h3 class="anchored" data-anchor-id="df2ts">df2ts</h3>
+<blockquote class="blockquote">
+<pre><code> df2ts (df:Union[pandas.core.frame.DataFrame,polars.dataframe.frame.DataFr
+        ame,polars.lazyframe.frame.LazyFrame], cols, attrs=None,
+        name=None)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L277" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="check_fgm" class="level3">
+<h3 class="anchored" data-anchor-id="check_fgm">check_fgm</h3>
+<blockquote class="blockquote">
+<pre><code> check_fgm (vec:xarray.core.dataarray.DataArray)</code></pre>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

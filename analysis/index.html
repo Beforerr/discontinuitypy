@@ -62,16 +62,14 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="ids-finder - Results">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://Beforerr.github.io/ids_finder/figures/ocr_time_cleaned.png">
+<meta property="og:image" content="https://Beforerr.github.io/ids_finder/figures/orientation/orientation_k_xyz.png">
 <meta property="og:site-name" content="ids-finder">
-<meta property="og:image:height" content="1999">
-<meta property="og:image:width" content="1999">
+<meta property="og:image:height" content="4999">
+<meta property="og:image:width" content="4999">
 <meta name="twitter:title" content="ids-finder - Results">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://Beforerr.github.io/ids_finder/figures/ocr_time_cleaned.png">
-<meta name="twitter:image-height" content="1999">
-<meta name="twitter:image-width" content="1999">
+<meta name="twitter:image" content="https://Beforerr.github.io/ids_finder/figures/orientation/orientation_k_xyz.png">
+<meta name="twitter:image-height" content="4999">
+<meta name="twitter:image-width" content="4999">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -96,6 +94,21 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Publications</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
+        <li>
+    <a class="dropdown-item" href="../manuscripts/paper.html" rel="" target="">
+ <span class="dropdown-text">Paper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html" rel="" target="">
+ <span class="dropdown-text">AGU23 Poster</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link active" href="../analysis/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Results</span></a>
@@ -118,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/index.html">Analysis</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/index.html">Results</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -136,28 +149,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../01_pipelines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pipelines</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../20_candidates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Datasets</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Missions</span></a>
+            <a href="../pipelines/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pipelines</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -165,46 +160,58 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/juno.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Juno</span></a>
+  <a href="../pipelines/1_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from STEREO</span></a>
+  <a href="../pipelines/10_mission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/artemis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from ARTHEMIS</span></a>
+  <a href="../pipelines/100_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Wind</span></a>
+  <a href="../pipelines/2_data_mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Magnetic field data pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/venus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Venus Express</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/messenger.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Messenger</span></a>
+  <a href="../pipelines/3_data_state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State data pipeline</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID identification</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_ids_properties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID properties</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../20_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../analysis/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Analysis</span></a>
+ <span class="menu-text">Results</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,14 +219,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../analysis/or.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SWD Occurence Rate</span></a>
+  <a href="../analysis/00_base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading all datasets from different sources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../analysis/properties.html" class="sidebar-item-text sidebar-link">
+  <a href="../analysis/01_occurence_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Occurence Rate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/02_orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orientation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/02_properties.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SWD Properties</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/03_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map of thickness and current intensity</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -236,6 +261,197 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/juno/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Juno</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/juno/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/juno/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/stereo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from STEREO</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/wind/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Wind</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/themis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from ARTHEMIS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/omni/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OMNI data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Manuscripts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscripts/AGU23_poster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solar wind discontinuities spatial evolution and energetic ion scattering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscripts/paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discontinuities? Yes!</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/01_plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MVA plotting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/10_polars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/15_kedro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>Kedro</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/20_pds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planetary Data System (PDS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/30_cdf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for CDF file format</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/31_lbl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for lbl file format</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -246,12 +462,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#occurrence-rates" id="toc-occurrence-rates" class="nav-link active" data-scroll-target="#occurrence-rates">Occurrence rates</a></li>
+  <li><a href="#orientation" id="toc-orientation" class="nav-link active" data-scroll-target="#orientation">Orientation</a></li>
+  <li><a href="#intensity" id="toc-intensity" class="nav-link" data-scroll-target="#intensity">Intensity</a></li>
+  <li><a href="#thickness" id="toc-thickness" class="nav-link" data-scroll-target="#thickness">Thickness</a></li>
+  <li><a href="#current" id="toc-current" class="nav-link" data-scroll-target="#current">Current</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -270,63 +489,127 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="occurrence-rates" class="level2">
-<h2 class="anchored" data-anchor-id="occurrence-rates">Occurrence rates</h2>
-<p>For code, see <a href="../analysis/or.html">noteboook</a>.</p>
-<p>Results:</p>
-<div id="fig-ocr_time" class="quarto-layout-panel">
+<section id="orientation" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="orientation">Orientation</h2>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../figures/ocr_time_cleaned.png" class="img-fluid figure-img"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../figures/ocr_time_N2_cleaned.png" class="img-fluid figure-img"></p>
-</div>
-</div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Occurrence rates with time</figcaption><p></p>
+<p><img src="../figures/orientation/orientation_k_xyz.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">k Orientaion</figcaption>
 </figure>
 </div>
-<div id="fig-ocr_r" class="quarto-layout-panel">
-<figure class="figure">
+<div class="column-page quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../figures/ocr_r_cleaned.png" class="img-fluid figure-img"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../figures/ocr_r_N2_cleaned.png" class="img-fluid figure-img"></p>
-</div>
-</div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Occurrence rates with radial distance</figcaption><p></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/orientation/orientation_dB_xyz.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">dB Orientaion</figcaption>
 </figure>
 </div>
-<div id="fig-thickness" class="quarto-layout-panel">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/orientation/orientation_Vl_xyz.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Vl Orientaion</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<!-- ::: {#fig-orientation .column-page layout-ncol="3"}
+![](../figures/orientation/orientation_k_time)
+
+![](../figures/orientation/orientation_k_r)
+
+![](../figures/orientation/orientation_l_r)
+
+Orientation with time and radial distance
+:::
+
+:::
+![](../figures/orientation/orientation_kx_r_dist)
+::: -->
+</section>
+<section id="intensity" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="intensity">Intensity</h2>
+<div id="fig-intensity" class="column-page quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="../figures/dB_l_dist.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/dB_l_N1_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Normalized by mean magnitude</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Insensity with time and radial distance</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="thickness" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="thickness">Thickness</h2>
+<div id="fig-thickness" class="column-page quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="../figures/thickness_time.png" class="img-fluid figure-img"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <p><img src="../figures/thickness_r.png" class="img-fluid figure-img"></p>
 </div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/thickness_r_N2.png" class="img-fluid figure-img"></p>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Thickness with time and radial distance</figcaption><p></p>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Thickness with time and radial distance</figcaption><p></p>
 </figure>
 </div>
-<div id="fig-current" class="quarto-layout-panel">
+<div id="fig-thickness-distribution" class="column-page quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../figures/current_time.png" class="img-fluid figure-img"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="../figures/current_r.png" class="img-fluid figure-img"></p>
-</div>
-</div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: Current density with time and radial distance</figcaption><p></p>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/thickness/thickness_mn_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">MN Thickness</figcaption>
 </figure>
 </div>
-<div id="fig-current" class="quarto-layout-panel">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/thickness/thickness_k_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">K Thickness</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/thickness/thickness_mn_N1_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">MN Normalized Thickness</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/thickness/thickness_k_N1_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">K Normalized Thickness</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Thickness distribution</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-thickness-distribution" class="quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -336,10 +619,108 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="../figures/thickness_N1_r_dist.png" class="img-fluid figure-img"></p>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: Thickness distribution with radial distance</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Thickness distribution with radial distance</figcaption><p></p>
 </figure>
 </div>
-<div id="fig-current" class="quarto-layout-panel">
+<div id="fig-thickness-evolution" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="../figures/thickness/thickness_r_diff.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="../figures/thickness/thickness_norm_r_diff.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Thickness with radial distance for different definitions</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-thickness-evolution-dist" class="column-page quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/thickness_r_dist.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/thickness/thickness_k_r_dist.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/thickness/thickness_R_r_dist.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/thickness/thickness_N1_r_dist.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/thickness/thickness_k_N1_r_dist.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/thickness/thickness_R_N1_r_dist.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Thickness distribution with radial distance for different definitions</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="current" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="current">Current</h2>
+<div id="fig-current" class="column-page quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/current_time.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/current_r.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="../figures/current_r_N2.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Current density with time and radial distance</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-current-distribution" class="column-page quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/current/current_mn_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">MN current</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/current/current_k_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">K current</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/current/current_mn_N1_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">MN Normalized current</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/current/current_k_N1_dist.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">K Normalized current</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Current distribution</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-current-distribution-jno" class="quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -349,10 +730,10 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="../figures/current_N1_r_dist.png" class="img-fluid figure-img"></p>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6: Current distribution with radial distance</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: JUNO Current distribution with radial distance</figcaption><p></p>
 </figure>
 </div>
-<div id="fig-current" class="quarto-layout-panel">
+<div id="fig-current-jno" class="quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -362,12 +743,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="../figures/thickness_N1_log_r_hist.png" class="img-fluid figure-img"></p>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<!-- Current distribution with radial distance -->
-</div>
-</div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;7: <strong>?(caption)</strong></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10: Thickness distribution with radial distance</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-current" class="quarto-layout-panel">
@@ -380,7 +756,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="../figures/current_N1_log_r_hist.png" class="img-fluid figure-img"></p>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8: Current distribution with radial distance</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;11: Current distribution with radial distance</figcaption><p></p>
 </figure>
 </div>
 

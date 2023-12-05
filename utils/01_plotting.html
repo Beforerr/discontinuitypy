@@ -124,6 +124,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Publications</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
+        <li>
+    <a class="dropdown-item" href="../manuscripts/paper.html" rel="" target="">
+ <span class="dropdown-text">Paper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html" rel="" target="">
+ <span class="dropdown-text">AGU23 Poster</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link active" href="../analysis/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Results</span></a>
@@ -146,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">MVA plotting</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/01_plotting.html">MVA plotting</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -164,28 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../01_pipelines.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pipelines</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../20_candidates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Datasets</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Missions</span></a>
+            <a href="../pipelines/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pipelines</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -193,46 +190,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/juno.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Juno</span></a>
+  <a href="../pipelines/1_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from STEREO</span></a>
+  <a href="../pipelines/10_mission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/artemis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from ARTHEMIS</span></a>
+  <a href="../pipelines/100_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project Pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Wind</span></a>
+  <a href="../pipelines/2_data_mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Magnetic field data pipeline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../missions/venus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Venus Express</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/messenger.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Messenger</span></a>
+  <a href="../pipelines/3_data_state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State data pipeline</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID identification</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_ids_properties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ID properties</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../20_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../analysis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analysis</span></a>
+ <span class="menu-text">Results</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -240,14 +249,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../analysis/or.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SWD Occurence Rate</span></a>
+  <a href="../analysis/00_base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Loading all datasets from different sources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../analysis/properties.html" class="sidebar-item-text sidebar-link">
+  <a href="../analysis/01_occurence_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Occurence Rate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/02_orientation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orientation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/02_properties.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SWD Properties</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/03_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Map of thickness and current intensity</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -264,6 +291,197 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/juno/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Juno</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/juno/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/juno/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JUNO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/stereo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from STEREO</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STEREO State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/wind/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from Wind</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../missions/themis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IDs from ARTHEMIS</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis/mag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS Magnetic field data pipeline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis/state.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">THEMIS State data pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/omni/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">OMNI data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Manuscripts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscripts/AGU23_poster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solar wind discontinuities spatial evolution and energetic ion scattering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscripts/paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discontinuities? Yes!</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/01_plotting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">MVA plotting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/10_polars.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for Polars</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/15_kedro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>Kedro</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/20_pds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Planetary Data System (PDS)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/30_cdf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for CDF file format</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/31_lbl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utils for lbl file format</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -274,7 +492,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup_mva_plot" id="toc-setup_mva_plot" class="nav-link active" data-scroll-target="#setup_mva_plot">setup_mva_plot</a></li>
+  <li><a href="#savefig" id="toc-savefig" class="nav-link active" data-scroll-target="#savefig">savefig</a></li>
+  <li><a href="#setup_mva_plot" id="toc-setup_mva_plot" class="nav-link" data-scroll-target="#setup_mva_plot">setup_mva_plot</a></li>
   <li><a href="#time_stamp" id="toc-time_stamp" class="nav-link" data-scroll-target="#time_stamp">time_stamp</a></li>
   <li><a href="#plot_candidate" id="toc-plot_candidate" class="nav-link" data-scroll-target="#plot_candidate">plot_candidate</a></li>
   </ul>
@@ -302,7 +521,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/plot.py#L33" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/plot.py#L10" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="savefig" class="level3">
+<h3 class="anchored" data-anchor-id="savefig">savefig</h3>
+<blockquote class="blockquote">
+<pre><code> savefig (name, **kwargs)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/plot.py#L41" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
 <section id="setup_mva_plot" class="level3">
 <h3 class="anchored" data-anchor-id="setup_mva_plot">setup_mva_plot</h3>
 <blockquote class="blockquote">
@@ -312,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                  mva_tstop:datetime.datetime=None)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/plot.py#L28" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/plot.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="time_stamp" class="level3">
 <h3 class="anchored" data-anchor-id="time_stamp">time_stamp</h3>
@@ -323,22 +550,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_candidate_title(candidate: <span class="bu">dict</span>):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    format_float <span class="op">=</span> (</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> x: <span class="vs">rf"$\bf </span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="vs"> $"</span> <span class="cf">if</span> <span class="bu">isinstance</span>(x, (<span class="bu">float</span>, <span class="bu">int</span>)) <span class="cf">else</span> <span class="vs">rf"$\bf </span><span class="sc">{</span>x<span class="sc">}</span><span class="vs"> $"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    base_line <span class="op">=</span> <span class="vs">rf'$\bf </span><span class="sc">{</span>candidate<span class="sc">.</span>get(<span class="st">"type"</span>, <span class="st">"N/A"</span>)<span class="sc">}</span><span class="vs"> $ candidate (time: </span><span class="sc">{</span>candidate<span class="sc">.</span>get(<span class="st">"time"</span>, <span class="st">"N/A"</span>)<span class="sc">}</span><span class="vs">) with index '</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    index_line <span class="op">=</span> <span class="vs">rf'i1: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_std"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, i2: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_fluctuation"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, i3: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_diff"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">'</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    info_line <span class="op">=</span> <span class="vs">rf'$B_n/B$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"BnOverB"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, $dB/B$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"dBOverB"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, $(dB/B)_</span><span class="ch">{{</span><span class="vs">max</span><span class="ch">}}</span><span class="vs">$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"dBOverB_max"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">,  $Q_</span><span class="ch">{{</span><span class="vs">mva</span><span class="ch">}}</span><span class="vs">$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"Q_mva"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">'</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="vs">rf"""</span><span class="sc">{</span>base_line<span class="sc">}</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">{</span>index_line<span class="sc">}</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">{</span>info_line<span class="sc">}</span><span class="vs">"""</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_candidate_title(candidate: <span class="bu">dict</span>):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    format_float <span class="op">=</span> (</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> x: <span class="vs">rf"$\bf </span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="vs"> $"</span> <span class="cf">if</span> <span class="bu">isinstance</span>(x, (<span class="bu">float</span>, <span class="bu">int</span>)) <span class="cf">else</span> <span class="vs">rf"$\bf </span><span class="sc">{</span>x<span class="sc">}</span><span class="vs"> $"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    base_line <span class="op">=</span> <span class="vs">rf'$\bf </span><span class="sc">{</span>candidate<span class="sc">.</span>get(<span class="st">"type"</span>, <span class="st">"N/A"</span>)<span class="sc">}</span><span class="vs"> $ candidate (time: </span><span class="sc">{</span>candidate<span class="sc">.</span>get(<span class="st">"time"</span>, <span class="st">"N/A"</span>)<span class="sc">}</span><span class="vs">) with index '</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    index_line <span class="op">=</span> <span class="vs">rf'i1: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_std"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, i2: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_fluctuation"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, i3: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_diff"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">'</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    info_line <span class="op">=</span> <span class="vs">rf'$B_n/B$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"BnOverB"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, $dB/B$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"dBOverB"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, $(dB/B)_</span><span class="ch">{{</span><span class="vs">max</span><span class="ch">}}</span><span class="vs">$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"dBOverB_max"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">,  $Q_</span><span class="ch">{{</span><span class="vs">mva</span><span class="ch">}}</span><span class="vs">$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"Q_mva"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">'</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="vs">rf"""</span><span class="sc">{</span>base_line<span class="sc">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">{</span>index_line<span class="sc">}</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">{</span>info_line<span class="sc">}</span><span class="vs">"""</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/plot.py#L66" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/plot.py#L74" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="plot_candidate" class="level3">
 <h3 class="anchored" data-anchor-id="plot_candidate">plot_candidate</h3>
@@ -348,80 +575,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_candidates(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    candidates: pandas.DataFrame, candidate_type<span class="op">=</span><span class="va">None</span>, num<span class="op">=</span><span class="dv">4</span>, plot_func<span class="op">=</span>plot_candidate</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot a set of candidates.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - candidates (pd.DataFrame): DataFrame containing the candidates.</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    - candidate_type (str, optional): Filter candidates based on a specific type.</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    - num (int): Number of candidates to plot, selected randomly.</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    - plot_func (callable): Function used to plot an individual candidate.</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter by candidate_type if provided</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    candidates <span class="op">=</span> get_candidates(candidates, candidate_type, num)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot each candidate using the provided plotting function</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, candidate <span class="kw">in</span> candidates.iterrows():</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        plot_func(candidate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_candidates(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    candidates: pandas.DataFrame, candidate_type<span class="op">=</span><span class="va">None</span>, num<span class="op">=</span><span class="dv">4</span>, plot_func<span class="op">=</span>plot_candidate</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plot a set of candidates.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - candidates (pd.DataFrame): DataFrame containing the candidates.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    - candidate_type (str, optional): Filter candidates based on a specific type.</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    - num (int): Number of candidates to plot, selected randomly.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    - plot_func (callable): Function used to plot an individual candidate.</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter by candidate_type if provided</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    candidates <span class="op">=</span> get_candidates(candidates, candidate_type, num)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot each candidate using the provided plotting function</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, candidate <span class="kw">in</span> candidates.iterrows():</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        plot_func(candidate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_basic(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    data: xr.DataArray, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    tstart: datetime, </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    tstop: datetime,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    tau: timedelta, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    mva_tstart<span class="op">=</span><span class="va">None</span>, mva_tstop<span class="op">=</span><span class="va">None</span>, neighbor: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mva_tstart <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        mva_tstart <span class="op">=</span> tstart</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mva_tstop <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        mva_tstop <span class="op">=</span> tstop</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    mva_b <span class="op">=</span> data.sel(time<span class="op">=</span><span class="bu">slice</span>(mva_tstart, mva_tstop))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    store_data(<span class="st">"fgm"</span>, data<span class="op">=</span>{<span class="st">"x"</span>: mva_b.time, <span class="st">"y"</span>: mva_b})</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    minvar_matrix_make(<span class="st">"fgm"</span>)  <span class="co"># get the MVA matrix</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    temp_tstart <span class="op">=</span> tstart <span class="op">-</span> neighbor <span class="op">*</span> tau</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    temp_tstop <span class="op">=</span> tstop <span class="op">+</span> neighbor <span class="op">*</span> tau</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    temp_b <span class="op">=</span> data.sel(time<span class="op">=</span><span class="bu">slice</span>(temp_tstart, temp_tstop))</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    store_data(<span class="st">"fgm"</span>, data<span class="op">=</span>{<span class="st">"x"</span>: temp_b.time, <span class="st">"y"</span>: temp_b})</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    temp_btotal <span class="op">=</span> calc_vec_mag(temp_b)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    store_data(<span class="st">"fgm_btotal"</span>, data<span class="op">=</span>{<span class="st">"x"</span>: temp_btotal.time, <span class="st">"y"</span>: temp_btotal})</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    tvector_rotate(<span class="st">"fgm_mva_mat"</span>, <span class="st">"fgm"</span>)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    split_vec(<span class="st">"fgm_rot"</span>)</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    pytplot.data_quants[<span class="st">"fgm_btotal"</span>][<span class="st">"time"</span>] <span class="op">=</span> pytplot.data_quants[<span class="st">"fgm_rot"</span>][</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"time"</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    ]  <span class="co"># </span><span class="al">NOTE</span><span class="co">: whenever using `get_data`, we may lose precision in the time values. This is a workaround.</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    join_vec(</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_rot_x"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_rot_y"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_rot_z"</span>,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_btotal"</span>,</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        new_tvar<span class="op">=</span><span class="st">"fgm_all"</span>,</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    options(<span class="st">"fgm"</span>, <span class="st">"legend_names"</span>, [<span class="vs">r"$B_x$"</span>, <span class="vs">r"$B_y$"</span>, <span class="vs">r"$B_z$"</span>])</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    options(<span class="st">"fgm_all"</span>, <span class="st">"legend_names"</span>, [<span class="vs">r"$B_l$"</span>, <span class="vs">r"$B_m$"</span>, <span class="vs">r"$B_n$"</span>, <span class="vs">r"$B_</span><span class="sc">{total}</span><span class="vs">$"</span>])</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    options(<span class="st">"fgm_all"</span>, <span class="st">"ysubtitle"</span>, <span class="st">"[nT LMN]"</span>)</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    tstart_ts <span class="op">=</span> time_stamp(tstart)</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    tstop_ts <span class="op">=</span> time_stamp(tstop)</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># .replace(tzinfo=ZoneInfo('UTC')).timestamp()</span></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    highlight([<span class="st">"fgm"</span>, <span class="st">"fgm_all"</span>], [tstart_ts, tstop_ts])</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    degap(<span class="st">"fgm"</span>)</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    degap(<span class="st">"fgm_all"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_basic(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    data: xr.DataArray, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    tstart: datetime, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    tstop: datetime,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    tau: timedelta, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    mva_tstart<span class="op">=</span><span class="va">None</span>, mva_tstop<span class="op">=</span><span class="va">None</span>, neighbor: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mva_tstart <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        mva_tstart <span class="op">=</span> tstart</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mva_tstop <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        mva_tstop <span class="op">=</span> tstop</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    mva_b <span class="op">=</span> data.sel(time<span class="op">=</span><span class="bu">slice</span>(mva_tstart, mva_tstop))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    store_data(<span class="st">"fgm"</span>, data<span class="op">=</span>{<span class="st">"x"</span>: mva_b.time, <span class="st">"y"</span>: mva_b})</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    minvar_matrix_make(<span class="st">"fgm"</span>)  <span class="co"># get the MVA matrix</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    temp_tstart <span class="op">=</span> tstart <span class="op">-</span> neighbor <span class="op">*</span> tau</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    temp_tstop <span class="op">=</span> tstop <span class="op">+</span> neighbor <span class="op">*</span> tau</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    temp_b <span class="op">=</span> data.sel(time<span class="op">=</span><span class="bu">slice</span>(temp_tstart, temp_tstop))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    store_data(<span class="st">"fgm"</span>, data<span class="op">=</span>{<span class="st">"x"</span>: temp_b.time, <span class="st">"y"</span>: temp_b})</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    temp_btotal <span class="op">=</span> calc_vec_mag(temp_b)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    store_data(<span class="st">"fgm_btotal"</span>, data<span class="op">=</span>{<span class="st">"x"</span>: temp_btotal.time, <span class="st">"y"</span>: temp_btotal})</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    tvector_rotate(<span class="st">"fgm_mva_mat"</span>, <span class="st">"fgm"</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    split_vec(<span class="st">"fgm_rot"</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    pytplot.data_quants[<span class="st">"fgm_btotal"</span>][<span class="st">"time"</span>] <span class="op">=</span> pytplot.data_quants[<span class="st">"fgm_rot"</span>][</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"time"</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    ]  <span class="co"># </span><span class="al">NOTE</span><span class="co">: whenever using `get_data`, we may lose precision in the time values. This is a workaround.</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    join_vec(</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_rot_x"</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_rot_y"</span>,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_rot_z"</span>,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fgm_btotal"</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        new_tvar<span class="op">=</span><span class="st">"fgm_all"</span>,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    options(<span class="st">"fgm"</span>, <span class="st">"legend_names"</span>, [<span class="vs">r"$B_x$"</span>, <span class="vs">r"$B_y$"</span>, <span class="vs">r"$B_z$"</span>])</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    options(<span class="st">"fgm_all"</span>, <span class="st">"legend_names"</span>, [<span class="vs">r"$B_l$"</span>, <span class="vs">r"$B_m$"</span>, <span class="vs">r"$B_n$"</span>, <span class="vs">r"$B_</span><span class="sc">{total}</span><span class="vs">$"</span>])</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    options(<span class="st">"fgm_all"</span>, <span class="st">"ysubtitle"</span>, <span class="st">"[nT LMN]"</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    tstart_ts <span class="op">=</span> time_stamp(tstart)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    tstop_ts <span class="op">=</span> time_stamp(tstop)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># .replace(tzinfo=ZoneInfo('UTC')).timestamp()</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    highlight([<span class="st">"fgm"</span>, <span class="st">"fgm_all"</span>], [tstart_ts, tstop_ts])</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    degap(<span class="st">"fgm"</span>)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    degap(<span class="st">"fgm_all"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
