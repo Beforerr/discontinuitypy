@@ -1,5 +1,8 @@
 missions := ("JNO" + "STA")
 
+quarto-publish:
+  nbdev_proc_nbs && cd _proc && quarto publish gh-pages
+
 quarto-install:
   cd notebooks && quarto install extension jmbuhr/quarto-qrcode --no-prompt
 

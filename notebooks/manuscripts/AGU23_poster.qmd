@@ -25,6 +25,10 @@ title_textsize: 90pt # "125pt"
 logoleft_name: '![](../../images/qrcode.png)'
 bibliography: references.bib
 reference_textsize: 0 # "20px"
+format:
+  html: default
+  markdown:
+    output-ext: rmd
 ---
 
 ## Introduction & Motivation
