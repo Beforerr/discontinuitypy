@@ -19,14 +19,13 @@ author:
 affiliations:
   - id: ucla
     name: University of California, Los Angeles
-bibliography: references.bib
 execute: 
   eval: false
 ---
 
 For how to use this project as a python library, please see [this page](./00_ids_finder.ipynb).
 
-- [AGU23 Poster](./manuscripts/AGU23_poster.rmd)
+- [AGU23 Poster](./manuscripts/AGU23_poster.qmd)
 - [Paper](./manuscripts/paper.qmd)
 
 ## TODOs

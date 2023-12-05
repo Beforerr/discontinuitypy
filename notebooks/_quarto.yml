@@ -19,6 +19,12 @@ website:
     left:
       - text: "Home"
         href: index.qmd
+      - text: Publications
+        menu:
+        - text: Paper
+          href: manuscripts/paper.qmd
+        - text: "AGU23 Poster"
+          href: manuscripts/AGU23_poster.qmd
       - text: "Results"
         href: analysis/index.qmd
       # - text: "Tutorial"

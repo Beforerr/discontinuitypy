@@ -18,6 +18,11 @@ website:
           - analysis/jno_model_comparison.html
           - analysis/jno_model_ts.html
         href: analysis/index.qmd
+      - section: manuscripts
+        contents:
+          - manuscripts/AGU23_poster.html
+          - manuscripts/AGU23_poster.qmd
+          - manuscripts/paper.qmd
       - section: missions
         contents:
           - section: juno

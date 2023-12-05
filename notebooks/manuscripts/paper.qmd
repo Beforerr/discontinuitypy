@@ -24,8 +24,6 @@ execute:
   eval: false
 ---
 
-For how to use this project as a python library, please see [this page](./00_ids_finder.ipynb).
-
 ## Background
 
 'Discontinuities' are discontinuous spatial changes in plasma parameters/characteristics and magnetic fields [@colburn1966].
@@ -33,7 +31,7 @@ For how to use this project as a python library, please see [this page](./00_ids
 They are observed across the heliosphere from inner heliosphere [@liu2022] to the heliosheath [@burlaga2011].
 
 ::: {#fig-ids_examples .column-page layout-ncol="2"}
-![Current sheets in the heliosheath: Voyager 1, 2009](https://agupubs.onlinelibrary.wiley.com/cms/asset/912e3fd6-fe07-4ed9-a216-3c7228a2ebd9/jgra21162-fig-0009.png){fig-alt="Hodograms produced by means of a minimum variance analysis for the current sheets associated with the sector boundaries in Figures 8 and 10. (b, d, and f) The value of the component of B along the minimum variance direction (Bm) as a function of time, N. (a, c, and e) The components of B along the intermediate variance direction (Bi) and maximum variance direction (BM)."}
+![Current sheets in the heliosheath: Voyager 1, 2009](images/jgra21162-fig-0009.png){fig-alt="Hodograms produced by means of a minimum variance analysis for the current sheets associated with the sector boundaries in Figures 8 and 10. (b, d, and f) The value of the component of B along the minimum variance direction (Bm) as a function of time, N. (a, c, and e) The components of B along the intermediate variance direction (Bi) and maximum variance direction (BM)."}
 
 ![A rotational discontinuity (RD) detected at 0.126 AU](https://agupubs.onlinelibrary.wiley.com/cms/asset/8e244339-32cf-4703-9101-c1d9b4a3fa7c/jgra57047-fig-0002-m.jpg){fig-alt="The properties of a rotational discontinuity (RD) detected at 0.126 AU on 28 January 2020. (a) The magnetic field magnitude and three components in Radial‐Tangential‐Normal (RTN) coordinate system, (b) the magnetic field in local magnetic normal (LMN) coordinate system, (c and d) the proton velocity in RTN and LMN coordinate systems, (e) the proton density, (f) the proton thermal pressure, the magnetic pressure and the sum, (g) the tangential components of the electric field in LMN coordinate system in the RD rest frame, (h) the position, orientation, and motion of the RD, (i–k) the distributions of BL, JM, and J · E across the RD, (l and m) the jump conditions across the RD. In (h), the cyan plane and arrow represent the RD and its motion vector, and the yellow curve shows the PSP orbit. In (j), both the colors and the curve correspond to the values of JM, and two vertical dashed lines indicate the area of |JM|>13max|JM| $\\vert {J}_{M}\\vert > \\frac{1}{3}\\text{max}\\left(\\vert {J}_{M}\\vert \\right)$ whose width is defined as the half thickness of the discontinuity. In (m), the solid lines present the actual upstream and downstream velocities, while the dashed lines show the theoretical downstream velocity to satisfy the Walén relation."}
 
@@ -43,7 +41,7 @@ Discontinuities examples across the heliosphere
 @söding2001 studied the radial distribution of discontinuities in the solar wind between 0.3 and 19 AU during solar activity minimum. @liu2021 studied the spatial evolution of the discontinuities from 0.13-0.9 AU, using measurements from the Parker Solar Probe. [Typical rate of occurrence is about 50 per day at 1AU]{.aside}
 
 ::: {#fig-ids_distribution .column-page layout-ncol="2"}
-[![Discontinuities between 0.3 and 19 AU](https://www.researchgate.net/publication/29624789/figure/fig4/AS:669023285018628@1536518989313/Distribution-of-DD-per-day-over-r-with-a-bin-size-of-01-AU-and-the-standard-deviations.png){fig-alt="Distribution of DD per day over r with a bin size of 0.1 AU and the standard deviations as error bars on logarithmic scale; TS criterion at the top and B at the bottom; darker lines represent intervals in the ecliptic which are used for the given fit and lighter ones are out of the ecliptic; right Voyager 2 in detail on linear scale."}](https://www.researchgate.net/figure/Distribution-of-DD-per-day-over-r-with-a-bin-size-of-01-AU-and-the-standard-deviations_fig4_29624789)
+[![Discontinuities between 0.3 and 19 AU](images/söding2001_fig4.png){fig-alt="Distribution of DD per day over r with a bin size of 0.1 AU and the standard deviations as error bars on logarithmic scale; TS criterion at the top and B at the bottom; darker lines represent intervals in the ecliptic which are used for the given fit and lighter ones are out of the ecliptic; right Voyager 2 in detail on linear scale."}](https://www.researchgate.net/figure/Distribution-of-DD-per-day-over-r-with-a-bin-size-of-01-AU-and-the-standard-deviations_fig4_29624789)
 
 ![Discontinuities between 0.13–0.9 AU](images/liu2021_fig2.png){fig-alt="Histograms as a function of heliocentric distance of (a) the number of events, (b) the PSP detection time, and (c)–(e) the occurrence rates of the total IDs, RDs and TDs. Panel (f) shows the ratio of RD occurrence rate to TD occurrence rate. The orange curves in panels (c) and (d) are the power-function fittings of ID and RD occurrence rates, with the coefficient of determination R2 being 0.983 and 0.985, respectively. The uncertainties of the power-law indices correspond to 95% confidence bounds."}
 
@@ -93,7 +91,8 @@ To eliminate the effect of the solar wind structure, we use data from other miss
 
 ## Methods
 
-We use [@liu2022a] method to identify IDs, which has better compatibility for the IDs with minor field changes.
+- We use [@liu2022a] method to identify IDs, which has better compatibility for the IDs with minor field changes.
+- Then the minimum variance analysis is applied to each ID event to obtain the boundary normal (LMN) coordinate and extract IDs' features.
 
 ### ID identification (limited feature extraction / anomaly detection)
 
@@ -129,28 +128,28 @@ Some key points about the model
 -   Inclusion of neutral hydrogen (important for the outer heliosphere)
 -   Inner boundary is filled by time-shifting in situ data from multiple spacecraft
 
-For model validation part, please see [JUNO Model Report](./analysis/20_model.ipynb).
+For model validation part, please see [JUNO Model Report](../analysis/20_model.ipynb).
 
 ## Results
 
-For all results, see [results page](./analysis/index.qmd).
+For all results, see [results page](../analysis/index.qmd).
 
 ### Occurrence rates
 
-[For code, see [noteboook](./analysis/01_occurence_rate.ipynb).]{.aside}
+[For code, see [noteboook](../analysis/01_occurence_rate.ipynb).]{.aside}
 
 ::: {#fig-ocr_time layout-ncol="2"}
-![](./figures/ocr_time_cleaned)
+![](../figures/ocr_time_cleaned)
 
-![](./figures/ocr_time_N2_cleaned)
+![](../figures/ocr_time_N2_cleaned)
 
 Occurrence rates with time
 :::
 
 ::: {#fig-ocr_r layout-ncol="2"}
-![](./figures/ocr_r_cleaned)
+![](../figures/ocr_r_cleaned)
 
-![](./figures/ocr_r_N2_cleaned)
+![](../figures/ocr_r_N2_cleaned)
 
 Occurrence rates with radial distance
 :::
@@ -158,13 +157,13 @@ Occurrence rates with radial distance
 ### Properties
 
 ::: {#fig-thickness-distribution .column-page layout-ncol="2"}
-![MN thickness](./figures/thickness/thickness_mn_dist)
+![MN thickness](../figures/thickness/thickness_mn_dist)
 
-![MN current](./figures/current/current_mn_dist)
+![MN current](../figures/current/current_mn_dist)
 
-![MN normalized thickness](./figures/thickness/thickness_mn_N1_dist)
+![MN normalized thickness](../figures/thickness/thickness_mn_N1_dist)
 
-![MN normalized current](./figures/current/current_mn_N1_dist)
+![MN normalized current](../figures/current/current_mn_N1_dist)
 
 Thickness and current density distribution
 :::
@@ -223,7 +222,3 @@ Code part
 
 -   [x] JUNO sw_temperature type
 -   [ ] STEREO `B` less than zero (after downsampling?)
-
-## Others
-
-[AGU23 Poster](./AGU23_poster.qmd)

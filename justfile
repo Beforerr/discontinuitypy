@@ -3,8 +3,11 @@ missions := ("JNO" + "STA")
 quarto-install:
   cd notebooks && quarto install extension jmbuhr/quarto-qrcode --no-prompt
 
+publish-qrcode:
+  segno "https://beforerr.github.io/ids_finder" -o=images/qrcode.png --light transparent --scale 10
+
 publish-poster:
-  Rscript -e 'pagedown::chrome_print("notebooks/manuscripts/AGU23_poster.rmd")'
+  Rscript -e 'pagedown::chrome_print("notebooks/manuscripts/AGU23_poster.qmd")'
 
 export:
   nbdev_export --path notebooks/__init__.ipynb

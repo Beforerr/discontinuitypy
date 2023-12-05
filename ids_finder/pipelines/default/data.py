@@ -20,9 +20,6 @@ DEFAULT_LOAD_INPUTS = dict(
 )
 
 # %% ../../../notebooks/pipelines/1_data.ipynb 12
-from semver import process
-
-
 def create_pipeline_template(
     sat_id: str,  # satellite id, used for namespace
     source: str,  # source data, like "mag" or "plasma", used for namespace
