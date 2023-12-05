@@ -59,32 +59,49 @@ class IDsDataset(BaseModel):
 # %% ../notebooks/20_datasets.ipynb 11
 class cIDsDataset(IDsDataset):
     catalog: DataCatalog
-    
+
+    _load_data_format = "{sat}.MAG.primary_data_{ts}"
+    _load_events_format = "events.{sat}_{ts}_{tau}"
     or_df: pl.DataFrame | None = None  # occurence rate
-    or_df_normalized: pl.DataFrame | None = None # normalized occurence rate
+    or_df_normalized: pl.DataFrame | None = None  # normalized occurence rate
 
     def __init__(self, **data):
         super().__init__(**data)
-        
-        self._tau_str = f"tau_{self.tau.seconds}s"
-        self._ts_mag_str = f"ts_{self.ts.seconds}s"
-        
+
+        tau_str = f"tau_{self.tau.seconds}s"
+        ts_mag_str = f"ts_{self.ts.seconds}s"
+
+        self._tau_str = tau_str
+        self._ts_mag_str = ts_mag_str
+
+        self.events_format = self._load_events_format.format(
+            sat=self.sat_id, ts=ts_mag_str, tau=tau_str
+        )
+
+        if data.get("data_format") is None:
+            self.data_format = self._load_data_format.format(
+                sat=self.sat_id, ts=ts_mag_str
+            )
+
         if self.candidates is None:
-            self.load_candidates()
+            self.load_events()
         if self.data is None:
             self.load_data()
 
-    def load_candidates(self):
-
-        candidates_format = f"events.{self.sat_id.upper()}_{self._ts_mag_str}_{self._tau_str}"
-
-        self.candidates = self.catalog.load(candidates_format).fill_nan(None).with_columns(
-            cs.float().cast(pl.Float64),
-            sat=pl.lit(self.sat_id),
-        ).collect()
+    def load_events(self):
+        data_format = self.events_format
+        self.candidates = (
+            self.catalog.load(data_format)
+            .fill_nan(None)
+            .with_columns(
+                cs.float().cast(pl.Float64),
+                sat=pl.lit(self.sat_id),
+            )
+            .collect()
+        )
 
     def load_data(self):
-        data_format = f"{self.sat_id}.MAG.primary_data_{self._ts_mag_str}"
+        data_format = self.data_format
         self.data = concat_partitions(self.catalog.load(data_format))
 
 # %% ../notebooks/20_datasets.ipynb 13

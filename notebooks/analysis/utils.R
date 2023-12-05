@@ -1,7 +1,9 @@
-if (!requireNamespace("ggdensity", quietly = TRUE))
+if (!requireNamespace("ggdensity", quietly = TRUE)) {
   pak::pkg_install("ggdensity")
-if (!requireNamespace("gaussplotR", quietly = TRUE))
+}
+if (!requireNamespace("gaussplotR", quietly = TRUE)) {
   pak::pkg_install("gaussplotR")
+}
 
 library(dplyr)
 
@@ -55,6 +57,9 @@ plot_binned_data <- function(data, x_col, y_col, x_bins, y_bins, y_lim = NULL, l
   # If transform_log_y is TRUE, transform y_col to log scale
   if (log_y) {
     data[[y_col]] <- log10(data[[y_col]])
+    if (!is.null(y_lim)) {
+      y_lim <- log10(y_lim)
+    }
   }
 
   # Define bins for x and y based on the input parameters
@@ -89,11 +94,11 @@ plot_binned_data <- function(data, x_col, y_col, x_bins, y_bins, y_lim = NULL, l
 
   # Note: ggline will produce another figure, so we use geom_line instead
 
-  plot <- plot +
+  plot +
     scale_fill_viridis_c() +
-    theme_pubr(base_size = 16, legend = "r")
+    theme_pubr(base_size = 16, legend = "r") +
+    coord_cartesian(ylim = y_lim)
 
-  return(plot)
 }
 
 
@@ -115,7 +120,6 @@ plot_dist <- function(
     x_col = x_col, y_col = y,
     x_bins = x_bins, y_bins = y_bins, y_lim = y_lim, log_y = log_y
   ) + labs(x = xlab, y = ylab) + ggtitle("Others")
-
-  p <- p1 / p2
-  return(p)
+  
+  p1 / p2
 }

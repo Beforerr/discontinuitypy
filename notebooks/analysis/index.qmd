@@ -7,31 +7,18 @@ title: Results
 #   filter-ui: false
 ---
 
-## Occurrence rates
-
-For code, see [noteboook](./01_occurence_rate.ipynb).
-
-Results:
-
-::: {#fig-ocr_time layout-ncol="2"}
-![](../figures/ocr_time_cleaned.png)
-
-![](../figures/ocr_time_N2_cleaned.png)
-
-Occurrence rates with time
-:::
-
-::: {#fig-ocr_r layout-ncol="2"}
-![](../figures/ocr_r_cleaned.png)
-
-![](../figures/ocr_r_N2_cleaned.png)
-
-Occurrence rates with radial distance
-:::
 
 ## Orientation
 
-::: {#fig-orientation .column-page layout-ncol="3"}
+![k Orientaion](../figures/orientation/orientation_k_xyz)
+
+::: {.column-page layout-ncol="2"}
+![dB Orientaion](../figures/orientation/orientation_dB_xyz)
+
+![Vl Orientaion](../figures/orientation/orientation_Vl_xyz)
+:::
+
+<!-- ::: {#fig-orientation .column-page layout-ncol="3"}
 ![](../figures/orientation/orientation_k_time)
 
 ![](../figures/orientation/orientation_k_r)
@@ -43,7 +30,7 @@ Orientation with time and radial distance
 
 :::
 ![](../figures/orientation/orientation_kx_r_dist)
-:::
+::: -->
 
 ## Intensity
 

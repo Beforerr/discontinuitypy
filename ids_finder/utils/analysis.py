@@ -34,10 +34,8 @@ def filter_before_jupiter(df: pl.DataFrame):
     return df.filter(pl.col("time") < pd.Timestamp("2016-05-01"))
 
 # %% ../../notebooks/utils/02_analysis_utils.ipynb 7
-from ast import expr
-import polars.selectors as cs
+AVG_SATS = ["STA", "THB", "Wind"]
 
-AVG_SATS = ["STA", "THB"]
 
 def n2_normalize(df: pl.DataFrame, cols, avg_sats: list = AVG_SATS):
     exprs = [pl.col(f"{col}").mean().alias(f"{col}_n2_factor") for col in cols]
@@ -49,6 +47,4 @@ def n2_normalize(df: pl.DataFrame, cols, avg_sats: list = AVG_SATS):
         for col in cols
     ]
 
-    return df.join(avg_df, on="time").with_columns(
-        exprs
-    )
+    return df.join(avg_df, on="time").with_columns(exprs)

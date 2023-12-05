@@ -1,5 +1,11 @@
 missions := ("JNO" + "STA")
 
+quarto-install:
+  cd notebooks && quarto install extension jmbuhr/quarto-qrcode --no-prompt
+
+publish-poster:
+  Rscript -e 'pagedown::chrome_print("notebooks/manuscripts/AGU23_poster.rmd")'
+
 export:
   nbdev_export --path notebooks/__init__.ipynb
   nbdev_export

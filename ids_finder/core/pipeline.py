@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['compress_data_by_cands', 'ids_finder', 'extract_features']
 
-# %% ../../notebooks/00_ids_finder.ipynb 2
+# %% ../../notebooks/00_ids_finder.ipynb 3
 #| code-summary: "Import all the packages needed for the project"
 import polars as pl
 from .propeties import process_events
@@ -15,7 +15,7 @@ from datetime import timedelta
 
 from typing import Callable
 
-# %% ../../notebooks/00_ids_finder.ipynb 6
+# %% ../../notebooks/00_ids_finder.ipynb 7
 def compress_data_by_cands(
     data: pl.DataFrame, candidates: pl.DataFrame
 ):
@@ -38,7 +38,7 @@ def compress_data_by_cands(
     return data[indices_unique]
 
 
-# %% ../../notebooks/00_ids_finder.ipynb 7
+# %% ../../notebooks/00_ids_finder.ipynb 8
 def ids_finder(ldata: pl.LazyFrame, tau: timedelta, ts: timedelta, bcols):
     
     data = ldata.sort("time").collect()
