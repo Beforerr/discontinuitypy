@@ -3,6 +3,7 @@ data/
 _docs/
 _proc/
 
+*.html
 *.bak
 .gitattributes
 .last_checked
