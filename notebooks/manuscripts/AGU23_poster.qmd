@@ -64,6 +64,9 @@ $$
 
 ![](../figures/ocr_time_cleaned.png){width=48%}
 
+Normalized occurrence rate of IDs drops with the radial distance from the Sun, following 1/r law.
+
+
 ![](../figures/thickness/thickness_mn_dist.png){width=48%}
 ![](../figures/current/current_mn_dist.png){width=48%}
 
@@ -72,3 +75,6 @@ $$
 ![](https://github.com/Beforerr/ion_scattering_by_SWD/blob/f6fbedc30f93bd799e2bb8cb6afe7aa31d58b98b/figures/example_scatter.png?raw=true){width=48%}
 
 ![](https://github.com/Beforerr/ion_scattering_by_SWD/blob/1728b9a32010b72e2ec6c156a76467fe25a51d88/figures/uncertainty_curve_length.png?raw=true){width=48%}
+
+- High energy particle has higher chance to cross uncertainty curve
+- High shear magnetic field will make separatrix vanishes and the geometrical jumps of the quasiadiabatic invariant disappear

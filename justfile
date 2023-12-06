@@ -11,7 +11,6 @@ publish-qrcode:
 
 publish-poster:
   Rscript -e 'pagedown::chrome_print("notebooks/manuscripts/.AGU23_poster.rmd")'
-  rm notebooks/manuscripts/.AGU23_poster.html
 
 export:
   nbdev_export --path notebooks/__init__.ipynb
