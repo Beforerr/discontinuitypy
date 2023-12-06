@@ -1,0 +1,74 @@
+---
+title: Solar wind discontinuities spatial evolution and energetic ion
+  scattering
+subtitle: AGU23 poster
+author:
+  - name: Zijin Zhang
+    affil: 1
+  - name: Anton Artemyev
+    affil: 1
+  - name: Vassilis Angelopoulos
+    affil: 1
+  - name: Shi Chen
+    affil: 1
+affiliation:
+  - num: 1
+    address: Department of Earth, Planetary, and Space Sciences, University of California, Los Angeles
+bibliography: references.bib
+logoleft_name: "![](../../images/qrcode.png)"
+main_findings:
+- Solar wind discontinuities evolve in space with occurrence rate
+  decreasing, **thickness increasing** and **current density
+  decreasing** with distance from the Sun. And they are probably
+  **generated locally** beyond 1 AU.
+- "Background sheared magnetic field plays an important role in
+  determining the efficiency of ion pitch angle scattering, and
+  characterize three ion populations: **transient, trapped, regular**."
+main_textsize: 120px
+output: "posterdown::posterdown_betterland"
+reference_textsize: 0
+title_textsize: 90pt
+---
+
+## Introduction & Motivation
+
+'Discontinuities' are discontinuous spatial changes in plasma
+parameters/characteristics and magnetic fields [@colburn1966].
+
+![Current sheets in the heliosheath: Voyager 1,
+2009](images/jgra21162-fig-0009.png){width="48%"} ![Characteristics of
+magnetic
+field](https://github.com/Beforerr/ion_scattering_by_SWD/blob/385bfe5f1b147ef18d64e9507af77a38b5a9f091/figures/example_mva_noted.jpg?raw=true){width="48%"}
+
+@söding2001 studied the radial distribution of discontinuities in the
+solar wind.
+
+![Discontinuities between 0.3 and 19
+AU](images/söding2001_fig4.png){width="60%"}
+![](https://www.nasa.gov/wp-content/uploads/2023/03/575573main_Juno20110727-3-43_full.jpg){width="38%"}
+
+Joint observations of JUNO & ARTEMIS & Other missions really provides a
+unique opportunity!!!
+
+## Method
+
+-   We use [@liu2022a] method to identify IDs, which has better
+    compatibility for the IDs with minor field changes.
+-   Then the minimum variance analysis is applied to each ID event to
+    obtain the boundary normal (LMN) coordinate and extract IDs'
+    features.
+-   Hamiltonian model is applied for investigation of ion dynamics in
+    the solar wind discontinuity configuration.
+
+## Results
+
+![](../figures/ocr_time_cleaned.png){width="48%"}
+
+![](../figures/thickness/thickness_mn_dist.png){width="48%"}
+![](../figures/current/current_mn_dist.png){width="48%"}
+
+![](https://github.com/Beforerr/ion_scattering_by_SWD/blob/385bfe5f1b147ef18d64e9507af77a38b5a9f091/figures/example_traj.png?raw=true)
+
+![](https://github.com/Beforerr/ion_scattering_by_SWD/blob/f6fbedc30f93bd799e2bb8cb6afe7aa31d58b98b/figures/example_scatter.png?raw=true){width="48%"}
+
+![](https://github.com/Beforerr/ion_scattering_by_SWD/blob/1728b9a32010b72e2ec6c156a76467fe25a51d88/figures/uncertainty_curve_length.png?raw=true){width="48%"}

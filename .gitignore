@@ -175,3 +175,5 @@ checklink/cookies.txt
 # Quarto
 .quarto
 .Rproj.user
+
+/.luarc.json

@@ -4,13 +4,14 @@ quarto-publish:
   nbdev_proc_nbs && cd _proc && quarto publish gh-pages
 
 quarto-install:
-  cd notebooks && quarto install extension jmbuhr/quarto-qrcode --no-prompt
+  cd notebooks && quarto add Beforerr/quarto-ext --no-prompt
 
 publish-qrcode:
   segno "https://beforerr.github.io/ids_finder" -o=images/qrcode.png --light transparent --scale 10
 
 publish-poster:
-  Rscript -e 'pagedown::chrome_print("notebooks/manuscripts/AGU23_poster.qmd")'
+  Rscript -e 'pagedown::chrome_print("notebooks/manuscripts/.AGU23_poster.rmd")'
+  rm notebooks/manuscripts/.AGU23_poster.html
 
 export:
   nbdev_export --path notebooks/__init__.ipynb
