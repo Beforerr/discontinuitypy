@@ -116,11 +116,11 @@ def create_pipeline(sat_id="JNO", source="MAG"):
         process_data_fn=process_data,
     )
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 18
+# %% ../../../notebooks/missions/juno/mag.ipynb 19
 import pandas
 import pdpipe as pdp
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 19
+# %% ../../../notebooks/missions/juno/mag.ipynb 20
 def process_jno_index(df: pandas.DataFrame):
     _index_time_format = "%Y-%jT%H:%M:%S.%f"
 
@@ -148,10 +148,10 @@ def process_jno_index(df: pandas.DataFrame):
 
     return jno_index_pipeline(df)
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 21
+# %% ../../../notebooks/missions/juno/mag.ipynb 22
 from kedro.pipeline import pipeline, node
 
-# %% ../../../notebooks/missions/juno/mag.ipynb 22
+# %% ../../../notebooks/missions/juno/mag.ipynb 23
 def create_jno_index_pipeline():
     jno_index_pipeline = pipeline(
         [

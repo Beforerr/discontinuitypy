@@ -9,3 +9,18 @@ jno_end_date: "2016-06-30"
 mission:
   source:
     time_resolution: 1 # unit: seconds
+
+experiments:
+  - name: wind_ts_high
+    start: "2012-01-01"
+    end: "2012-12-31"
+    MAG:
+      data_source: "Wind"
+    output_path: "data/04_feature/Wind_ts_high"
+  - name: wind_ts_low
+    start: "2012-01-01"
+    end: "2012-12-31"
+    MAG:
+      time_resolution: 1
+      data_source: "Wind"
+    output_path: "data/04_feature/Wind_ts_low"

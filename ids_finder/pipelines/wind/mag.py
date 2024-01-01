@@ -12,13 +12,13 @@ from ...utils.basic import pmap, resample, partition_data_by_year
 from ...utils.polars import create_partitions
 from ..default.data_mag import create_pipeline_template
 
+import pyspedas
+
 from functools import partial
 
 from typing import Dict, Callable
 
 # %% ../../../notebooks/missions/wind/mag.ipynb 4
-import pyspedas
-
 def download_data(start: str, end: str, datatype="h4-rtn") -> list[str]:
     trange = [start, end]
     return pyspedas.wind.mfi(trange, datatype=datatype, downloadonly=True)
