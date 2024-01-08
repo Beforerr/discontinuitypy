@@ -40,9 +40,12 @@ def compress_data_by_cands(
 
 # %% ../../notebooks/00_ids_finder.ipynb 8
 def ids_finder(ldata: pl.LazyFrame, tau: timedelta, ts: timedelta, bcols):
-    
-    data = ldata.sort("time").collect()
-    
+    data = (
+        ldata.sort("time")
+        .with_columns(pl.col("time").dt.cast_time_unit("us")) # https://github.com/pola-rs/polars/issues/12023
+        .collect()
+    )
+
     events = detect_events(data, tau, ts, bcols)
 
     data_c = compress_data_by_cands(data, events)
@@ -53,7 +56,7 @@ def ids_finder(ldata: pl.LazyFrame, tau: timedelta, ts: timedelta, bcols):
 
 def extract_features(
     partitioned_input: dict[str, Callable[..., pl.LazyFrame]],
-    tau: float, # in seconds, yaml input
+    tau: float,  # in seconds, yaml input
     ts: float,  # in seconds, yaml input
     bcols: list[str] = ["B_x", "B_y", "B_z"],
 ) -> pl.DataFrame:

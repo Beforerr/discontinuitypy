@@ -2,8 +2,9 @@
 
 # %% auto 0
 __all__ = ['load_catalog', 'load_params', 'DF_TYPE', 'pmap', 'DataConfig', 'filter_tranges', 'filter_tranges_df', 'pl_norm',
-           'partition_data_by_year', 'concat_df', 'concat_partitions', 'format_timedelta', 'resample',
-           'get_memory_usage', 'df2ts', 'calc_vec_mag', 'check_fgm']
+           'partition_data_by_ts', 'partition_data_by_year', 'partition_data_by_year_month', 'partition_data_by_time',
+           'concat_df', 'concat_partitions', 'format_timedelta', 'resample', 'get_memory_usage', 'df2ts',
+           'calc_vec_mag', 'check_fgm']
 
 # %% ../../notebooks/utils/00_basic.ipynb 1
 from .. import ROOT_DIR
@@ -130,7 +131,22 @@ def pl_norm(columns, *more_columns) -> pl.Expr:
     return sum(squares).sqrt()
 
 # %% ../../notebooks/utils/00_basic.ipynb 16
-def partition_data_by_year(df: pl.LazyFrame) -> Dict[str, pl.DataFrame]:
+def partition_data_by_ts(df: pl.DataFrame, ts: timedelta) -> Dict[str, pl.DataFrame]:
+    """Partition the dataset by time
+
+    Args:
+        df: Input DataFrame.
+        ts: Time interval.
+
+    Returns:
+        Partitioned DataFrame.
+    """
+    return df.with_columns(
+        key=pl.col("time").dt.truncate(ts).cast(pl.Utf8)
+    ).partition_by("key", include_key=False, as_dict=True)
+
+
+def partition_data_by_year(df: pl.DataFrame) -> Dict[str, pl.DataFrame]:
     """Partition the dataset by year
 
     Args:
@@ -139,11 +155,46 @@ def partition_data_by_year(df: pl.LazyFrame) -> Dict[str, pl.DataFrame]:
     Returns:
         Partitioned DataFrame.
     """
-    return (
-        df.with_columns(year=pl.col("time").dt.year().cast(pl.Utf8))
-        .collect()
-        .partition_by("year", include_key=False, as_dict=True)
+    return df.with_columns(year=pl.col("time").dt.year().cast(pl.Utf8)).partition_by(
+        "year", include_key=False, as_dict=True
     )
+
+
+def partition_data_by_year_month(df: pl.DataFrame) -> Dict[str, pl.DataFrame]:
+    """Partition the dataset by year
+
+    Args:
+        df: Input DataFrame.
+
+    Returns:
+        Partitioned DataFrame.
+    """
+    return df.with_columns(
+        year_month=pl.col("time").dt.year().cast(pl.Utf8)
+        + "_"
+        + pl.col("time").dt.month().cast(pl.Utf8).str.zfill(2),
+    ).partition_by("year_month", include_key=False, as_dict=True)
+    
+def partition_data_by_time(df: pl.LazyFrame | pl.DataFrame, method) -> Dict[str, pl.DataFrame]:
+    """Partition the dataset by time
+
+    Args:
+        df: Input DataFrame.
+        method: The method to partition the data.
+
+    Returns:
+        Partitioned DataFrame.
+    """
+    if isinstance(df, pl.LazyFrame):
+        df = df.collect()
+    
+    if method == "year":
+        return partition_data_by_year(df)
+    elif method == "year_month":
+        return partition_data_by_year_month(df)
+    else:
+        ts = pd.Timedelta(method)
+        return partition_data_by_ts(df, ts)
 
 # %% ../../notebooks/utils/00_basic.ipynb 17
 DF_TYPE = Union[pl.DataFrame, pl.LazyFrame, pd.DataFrame]

@@ -59,8 +59,8 @@ def create_pipeline(
     if params is None:
         params = PARAMS
     tau = params["tau"]
-    ts_state = params[sat_id]["STATE"]["time_resolution"]
-    ts_mag = params[sat_id]["MAG"]["time_resolution"]
+    ts_state = params[sat_id]["STATE"].get("time_resolution", 0)
+    ts_mag = params[sat_id]["MAG"].get("time_resolution", 0)
     ts_state_str = f"ts_{ts_state}s"
 
 

@@ -21,7 +21,7 @@ def create_pipeline(
 ):
     if params is None:
         params = PARAMS
-    ts_state = params[sat_id]["STATE"]["time_resolution"]
+    ts_state = params[sat_id]["STATE"].get("time_resolution", 0)
     ts_state_str = f"ts_{ts_state}s"
     
     input_combined_data = {

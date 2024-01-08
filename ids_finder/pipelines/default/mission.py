@@ -146,8 +146,8 @@ def create_combined_data_pipeline(
         params = PARAMS
     
     tau = params["tau"]
-    ts_mag = params[sat_id]["MAG"]["time_resolution"]
-    ts_state = params[sat_id]["STATE"]["time_resolution"]
+    ts_mag = params[sat_id]["MAG"].get("time_resolution", 0)
+    ts_state = params[sat_id]["STATE"].get("time_resolution", 0)
     
     ts_mag_str = f"ts_{ts_mag}s"
     ts_state_str = f"ts_{ts_state}s"

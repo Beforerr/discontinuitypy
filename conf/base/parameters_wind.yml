@@ -6,8 +6,17 @@
 
 Wind:
   MAG:
+    start: "2016-01-01"
+    end: "2016-06-30"
+    # start: "2012-01-01"
+    # end: "2012-12-31"
     datatype: "h4-rtn"
-    time_resolution: 1
+    tau: 60 # unit: seconds
+    # time_resolution: 0.09
+    time_resolution: 0.1
+    # time_resolution: 0.2
+    # time_resolution: 0.5
+    # time_resolution: 1
     coords: "rtn"
     bcols: ["BRTN_0", "BRTN_1", "BRTN_2"]
   STATE:

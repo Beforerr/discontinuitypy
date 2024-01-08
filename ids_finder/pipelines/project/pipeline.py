@@ -62,7 +62,7 @@ def process_events_l1(events: pl.LazyFrame):
     return df.lazy()
 
 # %% ../../../notebooks/pipelines/100_project.ipynb 4
-def create_l1_node(sat="JNO", ts=1, tau=60):
+def create_l1_node(sat="JNO", ts: float=1, tau=60):
     ts_str = f"ts_{ts}s"
     tau_str = f"tau_{tau}s"
     return node(
@@ -101,6 +101,10 @@ def create_pipeline():
         create_l1_node("STA"),
         create_l1_node("THB_sw"),
         create_l1_node("Wind"),
+        create_l1_node("Wind", 0.5),
+        create_l1_node("Wind", 0.2),
+        create_l1_node("Wind", 0.1),
+        create_l1_node("Wind", 0.09),
         node_combine_events,
     ]
     return pipeline(nodes)

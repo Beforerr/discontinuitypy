@@ -32,7 +32,7 @@ def compute_std(
     period: timedelta,  # period to group by
     b_cols=["BX", "BY", "BZ"],
     every: timedelta = None,  # every to group by (default: period / 2)
-) -> pl.DataFrame:
+):
     if every is None:
         every = period / 2
     b_std_cols = [col_name + "_std" for col_name in b_cols]

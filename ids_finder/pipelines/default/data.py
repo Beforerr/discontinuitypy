@@ -14,8 +14,8 @@ from typing import Callable, Optional, Any, Dict
 from ... import PARAMS
 
 DEFAULT_LOAD_INPUTS = dict(
-    start="params:start_date",
-    end="params:end_date",
+    start="params:start",
+    end="params:end",
     datatype="params:datatype",
 )
 
@@ -29,14 +29,15 @@ def create_pipeline_template(
     load_inputs: dict = DEFAULT_LOAD_INPUTS,
     process_inputs: dict = None,
     params: Optional[dict] = None,
+    namespace=None,
     **kwargs,
 ) -> Pipeline:
     if params is None:
         params = PARAMS
+    if namespace is None:
+        namespace = f"{sat_id}.{source}"
 
-    namespace = f"{sat_id}.{source}"
-
-    ts = params[sat_id][source]["time_resolution"]
+    ts = params[sat_id][source].get("time_resolution", 0)
     datatype = params[sat_id][source]["datatype"]
 
     ts_str = f"ts_{ts}s"
@@ -77,10 +78,10 @@ def create_pipeline_template(
     pipelines = pipeline(
         nodes,
         namespace=namespace,
-        parameters={
-            "params:start_date": "params:jno_start_date",
-            "params:end_date": "params:jno_end_date",
-        },
+        # parameters={
+        #     "params:start_date": "params:jno_start_date",
+        #     "params:end_date": "params:jno_end_date",
+        # },
     )
 
     return pipelines

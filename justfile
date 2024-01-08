@@ -31,6 +31,13 @@ kedro-run-mag-primary mission:
 kedro-run-mag-feature mission:
   kedro run --to-outputs={{mission}}.MAG.feature_ts_1s_tau_60s --from-inputs={{mission}}.MAG.primary_data_ts_1s
 
+  kedro run --to-outputs=Wind.MAG.feature_ts_0.09s_tau_60s --from-inputs=Wind.MAG.primary_data_ts_0.09s
+  kedro run --to-outputs=events.l1.Wind_ts_0.5s_tau_60s --from-inputs=Wind.MAG.inter_data_h4-rtn
+  kedro run --to-outputs=events.l1.Wind_ts_0.2s_tau_60s --from-inputs=Wind.MAG.inter_data_h4-rtn
+  kedro run --to-outputs=events.l1.Wind_ts_0.1s_tau_60s --from-inputs=Wind.MAG.inter_data_h4-rtn
+
+
+
 kedro-run-mag-feature-all: (kedro-run-mag-feature "JNO") (kedro-run-mag-feature "STA") (kedro-run-mag-feature "THB") (kedro-run-mag-feature "Wind")
 
 kedro-run-candidates mission:
@@ -44,6 +51,7 @@ kedro-run-primary_states:
 kedro-run-sw-events:
   kedro run --to-outputs=events.l1.ALL_sw_ts_1s_tau_60s --from-inputs=JNO.MAG.feature_ts_1s_tau_60s,STA.MAG.feature_ts_1s_tau_60s,THB.MAG.feature_ts_1s_tau_60s,Wind.MAG.feature_ts_1s_tau_60s
   kedro run --to-outputs=events.l1.ALL_sw_ts_1s_tau_60s --from-inputs=events.JNO_ts_1s_tau_60s,events.Wind_ts_1s_tau_60s,events.THB_sw_ts_1s_tau_60s,events.STA_ts_1s_tau_60s
+  kedro run --to-outputs=events.l1.Wind_ts_0.5s_tau_60s --from-inputs=Wind.MAG.feature_ts_0.09s_tau_60s
 
 create-mission-notebooks mission:
   mkdir -p notebooks/missions/{{mission}}
