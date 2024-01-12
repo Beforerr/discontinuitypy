@@ -2,174 +2,178 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://Beforerr.github.io/ids_finder/20_datasets.html</loc>
-    <lastmod>2023-12-05T03:33:19.339Z</lastmod>
+    <lastmod>2024-01-12T01:09:34.058Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/00_ids_finder.html</loc>
-    <lastmod>2023-12-05T03:33:18.628Z</lastmod>
+    <lastmod>2024-01-10T04:28:47.772Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/20_pds.html</loc>
-    <lastmod>2023-12-05T03:33:17.775Z</lastmod>
+    <lastmod>2023-12-05T06:58:14.627Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/01_plotting.html</loc>
-    <lastmod>2023-12-05T03:33:17.070Z</lastmod>
+    <lastmod>2024-01-12T01:09:34.035Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/basic.html</loc>
-    <lastmod>2023-12-05T03:33:16.510Z</lastmod>
+    <lastmod>2024-01-10T04:28:46.507Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/02_analysis_utils.html</loc>
-    <lastmod>2023-12-05T03:33:15.953Z</lastmod>
+    <lastmod>2023-12-05T06:58:14.791Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/pipelines/2_data_mag.html</loc>
-    <lastmod>2023-12-05T03:33:15.468Z</lastmod>
+    <lastmod>2024-01-10T04:28:47.796Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/pipelines/10_mission.html</loc>
-    <lastmod>2023-12-05T03:33:14.886Z</lastmod>
+    <lastmod>2024-01-10T04:28:48.465Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/pipelines/1_data.html</loc>
-    <lastmod>2023-12-05T03:33:14.300Z</lastmod>
+    <lastmod>2024-01-10T04:28:46.487Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/01_ids_detection.html</loc>
-    <lastmod>2023-12-05T03:33:13.696Z</lastmod>
+    <lastmod>2024-01-10T04:28:46.639Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/juno/index.html</loc>
-    <lastmod>2023-12-05T03:33:12.899Z</lastmod>
+    <lastmod>2023-12-05T06:58:14.885Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/juno/state.html</loc>
-    <lastmod>2023-12-05T03:33:11.835Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.058Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/themis/mag.html</loc>
-    <lastmod>2023-12-05T03:33:10.917Z</lastmod>
+    <lastmod>2023-12-05T06:58:15.701Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/index.html</loc>
-    <lastmod>2023-12-05T03:33:10.392Z</lastmod>
+    <lastmod>2023-11-18T17:52:57.838Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/wind/mag.html</loc>
-    <lastmod>2023-12-05T03:33:09.748Z</lastmod>
+    <lastmod>2024-01-10T04:28:48.450Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/stereo/index.html</loc>
-    <lastmod>2023-12-05T03:33:09.250Z</lastmod>
+    <lastmod>2023-12-05T06:58:14.919Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/stereo/state.html</loc>
-    <lastmod>2023-12-05T03:33:08.588Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.023Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/analysis/10_classification.html</loc>
-    <lastmod>2023-12-05T03:33:07.999Z</lastmod>
+    <lastmod>2023-12-05T06:58:12.936Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/analysis/20_model.html</loc>
-    <lastmod>2023-12-05T03:33:07.080Z</lastmod>
+    <lastmod>2024-01-12T01:09:33.073Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/analysis/index.html</loc>
-    <lastmod>2023-12-05T03:33:05.837Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/ids_finder/analysis/02_orientation.html</loc>
-    <lastmod>2023-12-05T03:33:05.020Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/ids_finder/manuscripts/AGU23_poster.html</loc>
-    <lastmod>2023-12-05T03:33:04.006Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/ids_finder/manuscripts/paper.html</loc>
-    <lastmod>2023-12-05T03:33:04.604Z</lastmod>
+    <lastmod>2023-12-04T17:27:46.176Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/analysis/00_base.html</loc>
-    <lastmod>2023-12-05T03:33:05.543Z</lastmod>
+    <lastmod>2023-12-05T06:58:12.869Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/ids_finder/manuscripts/paper.html</loc>
+    <lastmod>2024-01-10T04:30:36.570Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/ids_finder/manuscripts/AGU23_poster.html</loc>
+    <lastmod>2024-01-09T23:29:55.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/ids_finder/analysis/02_orientation.html</loc>
+    <lastmod>2023-12-05T06:58:12.942Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/ids_finder/analysis/11_ts.html</loc>
+    <lastmod>2024-01-10T04:28:46.432Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/analysis/01_occurence_rate.html</loc>
-    <lastmod>2023-12-05T03:33:06.336Z</lastmod>
+    <lastmod>2023-12-05T06:58:12.886Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/analysis/02_properties.html</loc>
-    <lastmod>2023-12-05T03:33:07.663Z</lastmod>
+    <lastmod>2024-01-12T01:09:33.072Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/analysis/03_map.html</loc>
-    <lastmod>2023-12-05T03:33:08.285Z</lastmod>
+    <lastmod>2024-01-12T01:09:33.061Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/stereo/mag.html</loc>
-    <lastmod>2023-12-05T03:33:08.851Z</lastmod>
+    <lastmod>2023-12-05T06:58:14.769Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/wind/state.html</loc>
-    <lastmod>2023-12-05T03:33:09.484Z</lastmod>
+    <lastmod>2023-12-05T06:58:12.964Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/wind/index.html</loc>
-    <lastmod>2023-12-05T03:33:10.158Z</lastmod>
+    <lastmod>2024-01-10T04:28:48.578Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/themis/state.html</loc>
-    <lastmod>2023-12-05T03:33:10.643Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.009Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/themis/index.html</loc>
-    <lastmod>2023-12-05T03:33:11.346Z</lastmod>
+    <lastmod>2024-01-10T04:29:19.204Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/juno/mag.html</loc>
-    <lastmod>2023-12-05T03:33:12.339Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.886Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/missions/omni/index.html</loc>
-    <lastmod>2023-12-05T03:33:13.371Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.093Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/pipelines/100_project.html</loc>
-    <lastmod>2023-12-05T03:33:13.979Z</lastmod>
+    <lastmod>2024-01-10T04:28:48.151Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/pipelines/index.html</loc>
-    <lastmod>2023-12-05T03:33:14.584Z</lastmod>
+    <lastmod>2023-11-18T17:52:57.842Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/pipelines/3_data_state.html</loc>
-    <lastmod>2023-12-05T03:33:15.133Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.591Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/30_cdf.html</loc>
-    <lastmod>2023-12-05T03:33:15.716Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.668Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/31_lbl.html</loc>
-    <lastmod>2023-12-05T03:33:16.214Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.941Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/10_polars.html</loc>
-    <lastmod>2023-12-05T03:33:16.787Z</lastmod>
+    <lastmod>2023-12-05T06:58:14.050Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/utils/15_kedro.html</loc>
-    <lastmod>2023-12-05T03:33:17.496Z</lastmod>
+    <lastmod>2023-12-05T06:58:14.564Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/index.html</loc>
-    <lastmod>2023-12-05T03:33:18.100Z</lastmod>
+    <lastmod>2023-12-05T01:09:29.233Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/ids_finder/02_ids_properties.html</loc>
-    <lastmod>2023-12-05T03:33:19.054Z</lastmod>
+    <lastmod>2023-12-05T06:58:13.561Z</lastmod>
   </url>
 </urlset>

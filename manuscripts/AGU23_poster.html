@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.518">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,7 @@
 <meta name="author" content="Anton Artemyev">
 <meta name="author" content="Vassilis Angelopoulos">
 <meta name="author" content="Shi Chen">
+<meta name="dcterms.date" content="2024-01-09">
 
 <title>ids-finder - Solar wind discontinuities spatial evolution and energetic ion scattering</title>
 <style>
@@ -28,6 +29,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -68,7 +70,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -83,28 +91,24 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="ids-finder - Solar wind discontinuities spatial evolution and energetic ion scattering">
 <meta property="og:description" content="Because solar wind plasma flow transports the entire spectrum of magnetic field fluctuations (from low-frequency inertial range to electron kinetic range), it is a natural laboratory for plasma turbulence investigation. Among the various wave modes and coherent plasma structures that contribute to this spectrum, one of the most important solar wind elements is ion-scale solar wind discontinuities. These structures, which carry very intense current, have been considered as a free energy source for plasma instabilities that contribute to solar wind heating. Investigations of such discontinuities have been mostly focused on their magnetic field signatures; much less is known about their role in scattering of energetic ions. In this studay, we consider observational-based model of ion dynamics and scattering in force-free rotational magnetic discontinuities. Focusing on quantification of the scattering effect, we demonstrate that background sheared magnetic field plays an important role in determining the efficiency of pitch angle scattering. We provide a model included statistical properties of solar wind discontinuities and providing estimates of ion scattering rate.">
-<meta property="og:image" content="https://Beforerr.github.io/ids_finder/manuscripts/images/jgra21162-fig-0009.png">
-<meta property="og:site-name" content="ids-finder">
-<meta property="og:image:height" content="433">
-<meta property="og:image:width" content="570">
+<meta property="og:site_name" content="ids-finder">
 <meta name="twitter:title" content="ids-finder - Solar wind discontinuities spatial evolution and energetic ion scattering">
 <meta name="twitter:description" content="Because solar wind plasma flow transports the entire spectrum of magnetic field fluctuations (from low-frequency inertial range to electron kinetic range), it is a natural laboratory for plasma turbulence investigation. Among the various wave modes and coherent plasma structures that contribute to this spectrum, one of the most important solar wind elements is ion-scale solar wind discontinuities. These structures, which carry very intense current, have been considered as a free energy source for plasma instabilities that contribute to solar wind heating. Investigations of such discontinuities have been mostly focused on their magnetic field signatures; much less is known about their role in scattering of energetic ions. In this studay, we consider observational-based model of ion dynamics and scattering in force-free rotational magnetic discontinuities. Focusing on quantification of the scattering effect, we demonstrate that background sheared magnetic field plays an important role in determining the efficiency of pitch angle scattering. We provide a model included statistical properties of solar wind discontinuities and providing estimates of ion scattering rate.">
-<meta name="twitter:image" content="https://Beforerr.github.io/ids_finder/manuscripts/images/jgra21162-fig-0009.png">
-<meta name="twitter:image-height" content="433">
-<meta name="twitter:image-width" content="570">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ids-finder</span>
     </a>
@@ -116,56 +120,56 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Publications</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
         <li>
-    <a class="dropdown-item" href="../manuscripts/paper.html" rel="" target="">
+    <a class="dropdown-item" href="../manuscripts/paper.html">
  <span class="dropdown-text">Paper</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html" rel="" target="">
+    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html">
  <span class="dropdown-text">AGU23 Poster</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../analysis/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Results</span></a>
+    <a class="nav-link active" href="../analysis/index.html" aria-current="page"> 
+<span class="menu-text">Results</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Beforerr/ids_finder" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/Beforerr/ids_finder"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscripts/AGU23_poster.html">Manuscripts</a></li><li class="breadcrumb-item"><a href="../manuscripts/AGU23_poster.html">Solar wind discontinuities spatial evolution and energetic ion scattering</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscripts/AGU23_poster.html">Manuscripts</a></li><li class="breadcrumb-item"><a href="../manuscripts/AGU23_poster.html">Solar wind discontinuities spatial evolution and energetic ion scattering</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -276,6 +280,12 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="../analysis/10_classification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/11_ts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time resolution effect</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -480,23 +490,25 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-motivation" id="toc-introduction-motivation" class="nav-link active" data-scroll-target="#introduction-motivation">Introduction &amp; Motivation</a></li>
+  <li><a href="#poster-pdf" id="toc-poster-pdf" class="nav-link active" data-scroll-target="#poster-pdf">Poster PDF</a></li>
+  <li><a href="#main-findings" id="toc-main-findings" class="nav-link" data-scroll-target="#main-findings">Main findings</a></li>
+  <li><a href="#introduction-motivation" id="toc-introduction-motivation" class="nav-link" data-scroll-target="#introduction-motivation">Introduction &amp; Motivation</a></li>
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscripts/AGU23_poster.html">Manuscripts</a></li><li class="breadcrumb-item"><a href="../manuscripts/AGU23_poster.html">Solar wind discontinuities spatial evolution and energetic ion scattering</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Solar wind discontinuities spatial evolution and energetic ion scattering</h1>
 <p class="subtitle lead">AGU23 poster</p>
@@ -516,25 +528,43 @@ div.csl-indent {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 9, 2024</p>
+    </div>
+  </div>
   
     
   </div>
   
 <div>
   <div class="abstract">
-    <div class="abstract-title">Abstract</div>
+    <div class="block-title">Abstract</div>
     Because solar wind plasma flow transports the entire spectrum of magnetic field fluctuations (from low-frequency inertial range to electron kinetic range), it is a natural laboratory for plasma turbulence investigation. Among the various wave modes and coherent plasma structures that contribute to this spectrum, one of the most important solar wind elements is ion-scale solar wind discontinuities. These structures, which carry very intense current, have been considered as a free energy source for plasma instabilities that contribute to solar wind heating. Investigations of such discontinuities have been mostly focused on their magnetic field signatures; much less is known about their role in scattering of energetic ions. In this studay, we consider observational-based model of ion dynamics and scattering in force-free rotational magnetic discontinuities. Focusing on quantification of the scattering effect, we demonstrate that background sheared magnetic field plays an important role in determining the efficiency of pitch angle scattering. We provide a model included statistical properties of solar wind discontinuities and providing estimates of ion scattering rate.
   </div>
 </div>
 
+
 </header>
 
+
+<section id="poster-pdf" class="level2">
+<h2 class="anchored" data-anchor-id="poster-pdf"><a href="./AGU23_poster.pdf">Poster PDF</a></h2>
+</section>
+<section id="main-findings" class="level2 main_findings">
+<h2 class="main_findings anchored" data-anchor-id="main-findings">Main findings</h2>
+<ul>
+<li>Solar wind discontinuities evolve in space with occurrence rate decreasing, <strong>thickness increasing</strong> and <strong>current density decreasing</strong> with distance from the Sun. And they are probably <strong>generated locally</strong> beyond 1 AU.</li>
+<li>Background sheared magnetic field plays an important role in determining the efficiency of ion pitch angle scattering, and characterize three ion populations: <strong>transient, trapped, regular</strong>.</li>
+</ul>
+</section>
 <section id="introduction-motivation" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-motivation">Introduction &amp; Motivation</h2>
 <p>‘Discontinuities’ are discontinuous spatial changes in plasma parameters/characteristics and magnetic fields <span class="citation" data-cites="colburn1966">(<a href="#ref-colburn1966" role="doc-biblioref">Colburn and Sonett 1966</a>)</span>.</p>
 <p><img src="images/jgra21162-fig-0009.png" class="img-fluid" style="width:48.0%" alt="Current sheets in the heliosheath: Voyager 1, 2009"> <img src="https://github.com/Beforerr/ion_scattering_by_SWD/blob/385bfe5f1b147ef18d64e9507af77a38b5a9f091/figures/example_mva_noted.jpg?raw=true" class="img-fluid" style="width:48.0%" alt="Characteristics of magnetic field"></p>
 <p><span class="citation" data-cites="söding2001">Söding et al. (<a href="#ref-söding2001" role="doc-biblioref">2001</a>)</span> studied the radial distribution of discontinuities in the solar wind.</p>
-<p><img src="images/söding2001_fig4.png" class="img-fluid" style="width:60.0%" alt="Discontinuities between 0.3 and 19 AU"> <img src="https://www.nasa.gov/wp-content/uploads/2023/03/575573main_Juno20110727-3-43_full.jpg" class="img-fluid" style="width:38.0%"></p>
+<p><img src="images/söding2001_fig4.png" class="img-fluid" style="width:60.0%" alt="Discontinuities between 0.3 and 19 AU"> <img src="https://www.nasa.gov/wp-content/uploads/2023/03/575573main_Juno20110727-3-43_full.jpg" class="img-fluid" style="width:38.0%" alt="Juno orbit"></p>
 <p>Joint observations of JUNO &amp; ARTEMIS &amp; Other missions really provides a unique opportunity!!!</p>
 </section>
 <section id="method" class="level2">
@@ -544,20 +574,40 @@ div.csl-indent {
 <li>Then the minimum variance analysis is applied to each ID event to obtain the boundary normal (LMN) coordinate and extract IDs’ features.</li>
 <li>Hamiltonian model is applied for investigation of ion dynamics in the solar wind discontinuity configuration.</li>
 </ul>
+<p>The most generalized form of dimensionless hamiltonian equation for ions in force-free rotational magnetic discontinuities configuration is</p>
+<p><span class="math display">\[
+H=\frac{1}{2}\left(\frac{1}{6} \alpha^2 c_2 z^3-c_1 z+p_x\right)^2+\frac{p_z^2}{2}+\frac{1}{2}\left(\kappa x-\frac{\alpha z^2}{2}\right)^2
+\]</span></p>
+<p>With <span class="math inline">\(B_l^2+B_m^2=\text { const }\)</span>, we have</p>
+<p><span class="math display">\[
+H=\frac{1}{2}\left(\frac{\alpha^2 z^3}{6 \sqrt{\kappa_m^2+1}}-z \sqrt{\kappa_m^2+1}+p_x\right)^2+\frac{p_z^2}{2}+\frac{1}{2}\left(\kappa_n x-\frac{\alpha z^2}{2}\right)^2
+\]</span></p>
+<p>The system has three parameters <span class="math display">\[
+\kappa_n=\frac{B_n}{B_{l, \max }}
+\quad
+\kappa_m=\frac{B_{m, 0}}{B_{l, \max }}
+\quad
+\alpha=\frac{l_0}{L}=\frac{\text { gyro radius }}{\text { system length }}
+\]</span></p>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p><img src="../figures/ocr_time_cleaned.png" class="img-fluid" style="width:48.0%"></p>
+<p>Normalized occurrence rate of IDs drops with the radial distance from the Sun, following 1/r law.</p>
 <p><img src="../figures/thickness/thickness_mn_dist.png" class="img-fluid" style="width:48.0%"> <img src="../figures/current/current_mn_dist.png" class="img-fluid" style="width:48.0%"></p>
 <p><img src="https://github.com/Beforerr/ion_scattering_by_SWD/blob/385bfe5f1b147ef18d64e9507af77a38b5a9f091/figures/example_traj.png?raw=true" class="img-fluid"></p>
 <p><img src="https://github.com/Beforerr/ion_scattering_by_SWD/blob/f6fbedc30f93bd799e2bb8cb6afe7aa31d58b98b/figures/example_scatter.png?raw=true" class="img-fluid" style="width:48.0%"></p>
 <p><img src="https://github.com/Beforerr/ion_scattering_by_SWD/blob/1728b9a32010b72e2ec6c156a76467fe25a51d88/figures/uncertainty_curve_length.png?raw=true" class="img-fluid" style="width:48.0%"></p>
+<ul>
+<li>High energy particle has higher chance to cross uncertainty curve</li>
+<li>High shear magnetic field will make separatrix vanishes and the geometrical jumps of the quasiadiabatic invariant disappear</li>
+</ul>
 
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-colburn1966" class="csl-entry" role="listitem">
 Colburn, D. S., and C. P. Sonett. 1966. <span>“Discontinuities in the Solar Wind.”</span> <em>Space Science Reviews</em> 5 (4): 439–506. <a href="https://doi.org/10.1007/BF00240575">https://doi.org/10.1007/BF00240575</a>.
 </div>
@@ -647,10 +697,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -660,8 +709,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -674,6 +732,135 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -717,6 +904,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -742,6 +930,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -802,6 +1016,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

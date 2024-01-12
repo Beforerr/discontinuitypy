@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.518">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -94,33 +100,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="ids-finder - SWD Properties">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://Beforerr.github.io/ids_finder/analysis/02_properties_files/figure-html/cell-9-output-3.png">
-<meta property="og:site-name" content="ids-finder">
-<meta property="og:image:height" content="480">
-<meta property="og:image:width" content="480">
+<meta property="og:description" content="Hello planet">
+<meta property="og:site_name" content="ids-finder">
 <meta name="twitter:title" content="ids-finder - SWD Properties">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://Beforerr.github.io/ids_finder/analysis/02_properties_files/figure-html/cell-9-output-3.png">
-<meta name="twitter:image-height" content="480">
-<meta name="twitter:image-width" content="480">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Hello planet">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ids-finder</span>
     </a>
@@ -132,56 +132,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Publications</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
         <li>
-    <a class="dropdown-item" href="../manuscripts/paper.html" rel="" target="">
+    <a class="dropdown-item" href="../manuscripts/paper.html">
  <span class="dropdown-text">Paper</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html" rel="" target="">
+    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html">
  <span class="dropdown-text">AGU23 Poster</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../analysis/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Results</span></a>
+    <a class="nav-link active" href="../analysis/index.html" aria-current="page"> 
+<span class="menu-text">Results</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Beforerr/ids_finder" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/Beforerr/ids_finder"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/index.html">Results</a></li><li class="breadcrumb-item"><a href="../analysis/02_properties.html">SWD Properties</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/index.html">Results</a></li><li class="breadcrumb-item"><a href="../analysis/02_properties.html">SWD Properties</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -292,6 +292,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../analysis/10_classification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/11_ts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time resolution effect</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -496,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -528,12 +534,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#histogram-2" id="toc-histogram-2" class="nav-link" data-scroll-target="#histogram-2">Histogram</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/index.html">Results</a></li><li class="breadcrumb-item"><a href="../analysis/02_properties.html">SWD Properties</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">SWD Properties</h1>
 </div>
@@ -548,18 +554,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<div class="cell" data-execution_count="3">
-<details>
+<div id="cell-3" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>catalog <span class="op">=</span> load_catalog()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">[12/01/23 16:44:25] </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> <span style="color: #800080; text-decoration-color: #800080">/Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/ke</span> <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/astropy/logger.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">logger.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/astropy/logger.py#205" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">205</span></a>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">[01/11/24 16:43:56] </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> <span style="color: #800080; text-decoration-color: #800080">/Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/ke</span> <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/astropy/logger.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">logger.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/astropy/logger.py#205" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">205</span></a>
 <span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="color: #800080; text-decoration-color: #800080">dro_datasets/polars/</span><span style="color: #ff00ff; text-decoration-color: #ff00ff">lazy_polars_dataset.py</span>:<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span>: KedroDeprecationWarning:  <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">             </span>
 <span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="color: #008000; text-decoration-color: #008000">'AbstractVersionedDataSet'</span> has been renamed to                           <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">             </span>
 <span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="color: #008000; text-decoration-color: #008000">'AbstractVersionedDataset'</span>, and the alias will be removed in Kedro       <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">             </span>
@@ -570,71 +578,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Connect <code>python</code> with <code>R</code> kernel</p>
-<div class="cell" data-execution_count="4">
-<details>
+<div id="cell-5" class="cell" data-execution_count="44">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> robjects.r</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>r.source(<span class="st">'utils.R'</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> beforerr.r <span class="im">import</span> py2rpy_polars</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>conv_pl <span class="op">=</span> py2rpy_polars()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> robjects.r</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>r.source(<span class="st">'utils.R'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>conv_pl <span class="op">=</span> py2rpy_polars()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>:                                                  <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         Attaching package: ‘dplyr’                                            <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: The following objects are masked from            <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         ‘package:stats’:                                                      <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>             filter, lag                                                       <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-</pre>
-</div>
-<div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: The following objects are masked from            <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         ‘packag<span style="color: #00ff00; text-decoration-color: #00ff00; font-weight: bold">e:ba</span>se’:                                                       <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>             intersect, setdiff, setequal, union                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
-</pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>The rpy2.ipython extension is already loaded. To reload it, use:
+  %reload_ext rpy2.ipython</code></pre>
 </div>
 </div>
 </section>
 <section id="processing-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="processing-datasets">Processing datasets</h2>
-<div class="cell" data-execution_count="5">
-<details>
+<div id="cell-7" class="cell" data-execution_count="5">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>all_events_l1 : pl.DataFrame <span class="op">=</span> catalog.load(<span class="st">'events.l1.ALL_sw_ts_1s_tau_60s'</span>).collect()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>JNO_events_l1 <span class="op">=</span> all_events_l1.<span class="bu">filter</span>(pl.col(<span class="st">'sat'</span>) <span class="op">==</span> <span class="st">'JNO'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>other_events_l1 <span class="op">=</span> all_events_l1.<span class="bu">filter</span>(pl.col(<span class="st">'sat'</span>) <span class="op">!=</span> <span class="st">'JNO'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>all_events_l2 <span class="op">=</span> all_events_l1.pipe(process_events_l2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>all_events_l1 : pl.DataFrame <span class="op">=</span> catalog.load(<span class="st">'events.l1.ALL_sw_ts_1s_tau_60s'</span>).collect()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>JNO_events_l1 <span class="op">=</span> all_events_l1.<span class="bu">filter</span>(pl.col(<span class="st">'sat'</span>) <span class="op">==</span> <span class="st">'JNO'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>other_events_l1 <span class="op">=</span> all_events_l1.<span class="bu">filter</span>(pl.col(<span class="st">'sat'</span>) <span class="op">!=</span> <span class="st">'JNO'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>all_events_l2 <span class="op">=</span> all_events_l1.pipe(process_events_l2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">[12/01/23 16:44:26] </span><span style="color: #000080; text-decoration-color: #000080">INFO    </span> Loading data from <span style="color: #008000; text-decoration-color: #008000">'events.l1.ALL_sw_ts_1s_tau_60s'</span>                 <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/kedro/io/data_catalog.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">data_catalog.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/kedro/io/data_catalog.py#502" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">502</span></a>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #000080; text-decoration-color: #000080">INFO    </span> Loading data from <span style="color: #008000; text-decoration-color: #008000">'events.l1.ALL_sw_ts_1s_tau_60s'</span>                 <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/kedro/io/data_catalog.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">data_catalog.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/kedro/io/data_catalog.py#502" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">502</span></a>
 <span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="font-weight: bold">(</span>LazyPolarsDataset<span style="font-weight: bold">)</span><span style="color: #808000; text-decoration-color: #808000">...</span>                                             <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                   </span>
 </pre>
 </div>
 </div>
 <p>Some extreme values are present in the data. We will remove them.</p>
-<div class="cell" data-execution_count="6">
-<details>
+<div id="cell-9" class="cell" data-execution_count="6">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>NVARS <span class="op">=</span> [<span class="st">'d_star'</span>, <span class="st">'L_mn'</span>, <span class="st">'L_mn_norm'</span>, <span class="st">'j0'</span>, <span class="st">'j0_norm'</span>, <span class="st">'duration'</span>, <span class="st">'v_mn'</span>]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>DISPLAY_VARS <span class="op">=</span> [<span class="st">'time'</span>, <span class="st">'sat'</span>] <span class="op">+</span> NVARS</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_candidates(df):</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(df, pl.LazyFrame):</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> df.collect()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.select(NVARS).describe()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>check_candidates(all_events_l1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>NVARS <span class="op">=</span> [<span class="st">'d_star'</span>, <span class="st">'L_mn'</span>, <span class="st">'L_mn_norm'</span>, <span class="st">'j0'</span>, <span class="st">'j0_norm'</span>, <span class="st">'duration'</span>, <span class="st">'v_mn'</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>DISPLAY_VARS <span class="op">=</span> [<span class="st">'time'</span>, <span class="st">'sat'</span>] <span class="op">+</span> NVARS</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_candidates(df):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(df, pl.LazyFrame):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> df.collect()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.select(NVARS).describe()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>check_candidates(all_events_l1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
@@ -767,11 +758,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
-<details>
+<div id="cell-10" class="cell" data-execution_count="7">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>inspect_df <span class="op">=</span> all_events_l2[NVARS]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>inspect_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>inspect_df <span class="op">=</span> all_events_l2[NVARS]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>inspect_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
@@ -916,105 +907,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="plotting-function-for-level-2-averaged-data." class="level3">
 <h3 class="anchored" data-anchor-id="plotting-function-for-level-2-averaged-data.">Plotting function for Level 2 averaged data.</h3>
-<div class="cell" data-execution_count="8">
-<details>
+<div id="cell-14" class="cell" data-execution_count="8">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utility function for plotting</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plot_util <span class="op">&lt;-</span> function(df, x_var, y_vars, xlab, ylabs, color<span class="op">=</span><span class="st">"sat"</span>, linetype<span class="op">=</span><span class="st">"sat"</span>) {</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialize an empty list for storing plots</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  plots <span class="op">&lt;-</span> <span class="bu">list</span>()</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Iterate over each y_var and its corresponding label</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="kw">in</span> seq_along(y_vars)) {</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    y_var <span class="op">&lt;-</span> y_vars[i]</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    y_lab <span class="op">&lt;-</span> ylabs[i]</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create plot for the current y variable</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    p <span class="op">&lt;-</span> ggplot(df, aes(x <span class="op">=</span> .data[[x_var]], y <span class="op">=</span> .data[[y_var]], color <span class="op">=</span> .data[[color]], linetype <span class="op">=</span> .data[[linetype]])) <span class="op">+</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      geom_line() <span class="op">+</span> geom_point() <span class="op">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      labs(y <span class="op">=</span> y_lab, x <span class="op">=</span> x_var, color <span class="op">=</span> <span class="st">"Satellites"</span>, linetype <span class="op">=</span> <span class="st">"Satellites"</span>) <span class="op">+</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      theme_pubr(base_size <span class="op">=</span> <span class="dv">16</span>) <span class="op">+</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      theme(legend.text <span class="op">=</span> element_text(size <span class="op">=</span> <span class="dv">16</span>)) <span class="op">+</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      scale_color_okabeito(palette <span class="op">=</span> <span class="st">"black_first"</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply modifications specific to the position of the plot</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    p <span class="op">&lt;-</span> ggpar(p, legend <span class="op">=</span> <span class="st">"none"</span>)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">!=</span> length(y_vars)) {</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>      p <span class="op">&lt;-</span> ggpar(p, xlab <span class="op">=</span> FALSE)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">==</span> length(y_vars)) {</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>      p <span class="op">&lt;-</span> ggpar(p, xlab <span class="op">=</span> xlab)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">==</span> <span class="dv">1</span>) {</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>      p <span class="op">&lt;-</span> ggpar(p, legend <span class="op">=</span> <span class="st">"top"</span>)</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add the plot to the list</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    plots[[i]] <span class="op">&lt;-</span> p</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine all the plots vertically</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  combined_plot <span class="op">&lt;-</span> wrap_plots(plots) <span class="op">+</span> plot_layout(ncol <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>(combined_plot)</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utility function for plotting</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plot_util <span class="op">&lt;-</span> function(df, x_var, y_vars, xlab, ylabs, color<span class="op">=</span><span class="st">"sat"</span>, linetype<span class="op">=</span><span class="st">"sat"</span>) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialize an empty list for storing plots</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  plots <span class="op">&lt;-</span> <span class="bu">list</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Iterate over each y_var and its corresponding label</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="kw">in</span> seq_along(y_vars)) {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    y_var <span class="op">&lt;-</span> y_vars[i]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    y_lab <span class="op">&lt;-</span> ylabs[i]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create plot for the current y variable</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    p <span class="op">&lt;-</span> ggplot(df, aes(x <span class="op">=</span> .data[[x_var]], y <span class="op">=</span> .data[[y_var]], color <span class="op">=</span> .data[[color]], linetype <span class="op">=</span> .data[[linetype]])) <span class="op">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      geom_line() <span class="op">+</span> geom_point() <span class="op">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      labs(y <span class="op">=</span> y_lab, x <span class="op">=</span> x_var, color <span class="op">=</span> <span class="st">"Satellites"</span>, linetype <span class="op">=</span> <span class="st">"Satellites"</span>) <span class="op">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      theme_pubr(base_size <span class="op">=</span> <span class="dv">16</span>) <span class="op">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      theme(legend.text <span class="op">=</span> element_text(size <span class="op">=</span> <span class="dv">16</span>)) <span class="op">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      scale_color_okabeito(palette <span class="op">=</span> <span class="st">"black_first"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply modifications specific to the position of the plot</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    p <span class="op">&lt;-</span> ggpar(p, legend <span class="op">=</span> <span class="st">"none"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">!=</span> length(y_vars)) {</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      p <span class="op">&lt;-</span> ggpar(p, xlab <span class="op">=</span> FALSE)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">==</span> length(y_vars)) {</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      p <span class="op">&lt;-</span> ggpar(p, xlab <span class="op">=</span> xlab)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">==</span> <span class="dv">1</span>) {</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      p <span class="op">&lt;-</span> ggpar(p, legend <span class="op">=</span> <span class="st">"top"</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add the plot to the list</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    plots[[i]] <span class="op">&lt;-</span> p</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine all the plots vertically</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  combined_plot <span class="op">&lt;-</span> wrap_plots(plots) <span class="op">+</span> plot_layout(ncol <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>(combined_plot)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="histogram" class="level3">
 <h3 class="anchored" data-anchor-id="histogram">Histogram</h3>
-<div class="cell" data-execution_count="9">
-<details>
+<div id="cell-16" class="cell" data-execution_count="9">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_limited_histogram <span class="op">&lt;-</span> function(df, x, x_lim, bins, facet_var) {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">&lt;-</span> df <span class="op">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">filter</span>(<span class="op">!!</span>sym(x) <span class="op">&gt;=</span> x_lim[<span class="dv">1</span>], <span class="op">!!</span>sym(x) <span class="op">&lt;=</span> x_lim[<span class="dv">2</span>])</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    p <span class="op">&lt;-</span> gghistogram(data, x <span class="op">=</span> x, y<span class="op">=</span><span class="st">"density"</span>, color <span class="op">=</span> <span class="st">"sat"</span>, bins <span class="op">=</span> bins, facet.by <span class="op">=</span> facet_var)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(p)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_limited_histogram <span class="op">&lt;-</span> function(df, x, x_lim, bins, facet_var) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">&lt;-</span> df <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">filter</span>(<span class="op">!!</span>sym(x) <span class="op">&gt;=</span> x_lim[<span class="dv">1</span>], <span class="op">!!</span>sym(x) <span class="op">&lt;=</span> x_lim[<span class="dv">2</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    p <span class="op">&lt;-</span> gghistogram(data, x <span class="op">=</span> x, y<span class="op">=</span><span class="st">"density"</span>, color <span class="op">=</span> <span class="st">"sat"</span>, bins <span class="op">=</span> bins, facet.by <span class="op">=</span> facet_var)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(p)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 </section>
 <section id="delta-b_l" class="level2">
 <h2 class="anchored" data-anchor-id="delta-b_l"><span class="math inline">\(\Delta B_l\)</span></h2>
-<div class="cell" data-execution_count="182">
-<details>
+<div id="cell-18" class="cell" data-execution_count="27">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"dB_l"</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> <span class="st">"Log dB_l (nT)"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.1</span>,<span class="dv">30</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"dB_l_dist"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"dB_l_norm"</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> <span class="st">"Log dB_l (&lt;B&gt;)"</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.05</span>,<span class="dv">2</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"dB_l_N1_dist"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>JNO_events_l1 <span class="op">&lt;-</span> JNO_events_l1 <span class="op">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    mutate(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        dB_lmn_x <span class="op">=</span> <span class="bu">abs</span>(dB_lmn_x),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        dB_lmn_x_norm <span class="op">=</span> <span class="bu">abs</span>(dB_lmn_x_norm)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>other_events_l1 <span class="op">&lt;-</span> other_events_l1 <span class="op">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    mutate(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        dB_lmn_x <span class="op">=</span> <span class="bu">abs</span>(dB_lmn_x),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        dB_lmn_x_norm <span class="op">=</span> <span class="bu">abs</span>(dB_lmn_x_norm)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    )  </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"dB_lmn_x"</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> <span class="st">"Log dB_l (nT)"</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.1</span>,<span class="dv">30</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>y_log <span class="op">&lt;-</span> TRUE</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim, y_log <span class="op">=</span> y_log)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># save_plot("dB_l_dist")</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"dB_lmn_x_norm"</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>,<span class="fl">0.618</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> <span class="st">"dB_l (&lt;B&gt;)"</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>y_log <span class="op">&lt;-</span> FALSE</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim, y_log <span class="op">=</span> y_log)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># save_plot("dB_l_N1_dist")</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Saving 6.67 x 6.67 in image
-Saving 6.67 x 6.67 in image
-Saving 6.67 x 6.67 in image
-Saving 6.67 x 6.67 in image</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="02_properties_files/figure-html/cell-9-output-3.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="02_properties_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<div class="cell">
-<details>
+<div id="cell-20" class="cell">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>thresold <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1086,8 +1091,8 @@ Saving 6.67 x 6.67 in image</code></pre>
 <p>Note since want different y-axis titles (labels) for each facet, not different facet titles, it is not clear how to do this with <code>facet_wrap</code> after <code>pivot_longer</code>. Also these are different units, so it is better to plot them separately and combine them together.</p>
 <section id="evolution" class="level3">
 <h3 class="anchored" data-anchor-id="evolution">Evolution</h3>
-<div class="cell" data-execution_count="28">
-<details>
+<div id="cell-24" class="cell" data-execution_count="28">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x_var <span class="op">&lt;-</span> <span class="st">"time"</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y_vars <span class="op">&lt;-</span> c(<span class="st">"L_mn"</span>, <span class="st">"L_mn_norm"</span>)</span>
@@ -1123,8 +1128,8 @@ Saving 6.67 x 6.67 in image</code></pre>
 </section>
 <section id="different-thickness-standard" class="level3">
 <h3 class="anchored" data-anchor-id="different-thickness-standard">Different thickness standard</h3>
-<div class="cell" data-execution_count="30">
-<details>
+<div id="cell-27" class="cell" data-execution_count="30">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x_var <span class="op">&lt;-</span> <span class="st">"ref_radial_distance"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_vars <span class="op">&lt;-</span> c(<span class="st">"L_mn"</span>, <span class="st">"L_n"</span>, <span class="st">"L_k"</span>)</span>
@@ -1152,8 +1157,8 @@ Saving 6.67 x 6.67 in image</code></pre>
 </section>
 <section id="map" class="level3">
 <h3 class="anchored" data-anchor-id="map">Map</h3>
-<div class="cell" data-execution_count="33">
-<details>
+<div id="cell-30" class="cell" data-execution_count="33">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x_col <span class="op">&lt;-</span> <span class="st">"radial_distance"</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y_col <span class="op">&lt;-</span> <span class="st">"L_mn"</span></span>
@@ -1169,8 +1174,8 @@ Saving 6.67 x 6.67 in image</code></pre>
 Saving 6.67 x 6.67 in image</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="21">
-<details>
+<div id="cell-31" class="cell" data-execution_count="12">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plot_threshold <span class="op">&lt;-</span> function(df, x, y, cols, k_threshold <span class="op">=</span> <span class="fl">0.75</span>, x_bins <span class="op">=</span> <span class="dv">8</span>, y_bins <span class="op">=</span> <span class="dv">16</span>, y_lim <span class="op">=</span> NULL, xlab <span class="op">=</span> NULL, ylab <span class="op">=</span> NULL, larger_only <span class="op">=</span> FALSE) {</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialize an empty list to store plots</span></span>
@@ -1254,8 +1259,8 @@ Saving 6.67 x 6.67 in image</code></pre>
 </details>
 </div>
 <p>We examine the effects of orientation <span class="math inline">\(k\)</span> on the evolution of the thickness.</p>
-<div class="cell" data-execution_count="12">
-<details>
+<div id="cell-33" class="cell" data-execution_count="13">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>y_vars_l <span class="op">&lt;-</span> <span class="bu">list</span>(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">list</span>(y <span class="op">=</span> <span class="st">"L_k"</span>, ylab <span class="op">=</span> <span class="st">"Log Thickness (km)"</span>, y_lim <span class="op">=</span> c(<span class="dv">500</span>, <span class="dv">10000</span>)),</span>
@@ -1271,8 +1276,8 @@ Saving 6.67 x 6.67 in image</code></pre>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>y_vars <span class="op">&lt;-</span> c(y_vars_l, y_vars_j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="42">
-<details>
+<div id="cell-34" class="cell" data-execution_count="42">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">&lt;-</span> c(<span class="st">"k_x"</span>, <span class="st">"k_y"</span>, <span class="st">"k_z"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plot_effect(JNO_events_l1, cols, y_vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1281,12 +1286,16 @@ Saving 6.67 x 6.67 in image</code></pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="02_properties_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="02_properties_files/figure-html/cell-16-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We examine the effects of max variation orientation <span class="math inline">\(V_l\)</span> on the evolution of the thickness.</p>
-<div class="cell" data-execution_count="13">
-<details>
+<div id="cell-36" class="cell" data-execution_count="13">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">&lt;-</span> c(<span class="st">"Vl_x"</span>, <span class="st">"Vl_y"</span>, <span class="st">"Vl_z"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plot_effect(JNO_events_l1, cols, y_vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1295,12 +1304,16 @@ Saving 6.67 x 6.67 in image</code></pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="02_properties_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="02_properties_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We examine the effects of max variation orientation <span class="math inline">\(V_l\)</span> on the evolution of the thickness, now dividing into two groups depending on whether or not out of eclipic plane.</p>
-<div class="cell" data-execution_count="24">
-<details>
+<div id="cell-38" class="cell" data-execution_count="24">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">&lt;-</span> c(<span class="st">"Vl_z"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1311,18 +1324,22 @@ Saving 6.67 x 6.67 in image</code></pre>
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="02_properties_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="02_properties_files/figure-html/cell-18-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="distribution" class="level3">
 <h3 class="anchored" data-anchor-id="distribution">Distribution</h3>
-<div class="cell" data-execution_count="146">
-<details>
+<div id="cell-40" class="cell" data-execution_count="46">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"L_mn"</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> <span class="st">"Log Thickness (km)"</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="dv">500</span>,<span class="dv">10000</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>im <span class="op">&lt;-</span> c(<span class="dv">500</span>,<span class="dv">13000</span>)</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"thickness/thickness_mn_dist"</span>)</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -1357,27 +1374,97 @@ Saving 6.67 x 6.67 in image</code></pre>
 </section>
 <section id="histogram-1" class="level3">
 <h3 class="anchored" data-anchor-id="histogram-1">Histogram</h3>
-<div class="cell" data-execution_count="22">
-<details>
+<div id="cell-42" class="cell" data-execution_count="48">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"L_mn_norm"</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>,<span class="dv">60</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>bins <span class="op">&lt;-</span> <span class="dv">16</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>facet_var <span class="op">&lt;-</span> <span class="st">"r_bin"</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim , bins <span class="op">=</span> bins, facet_var<span class="op">=</span>facet_var)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"thickness_N1_r_hist"</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"L_mn_norm_log"</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>, <span class="dv">2</span>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>facet_var <span class="op">&lt;-</span> <span class="st">"r_bin"</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim , bins <span class="op">=</span> bins, facet_var<span class="op">=</span>facet_var)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"thickness_N1_log_r_hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">&lt;-</span> JNO_events_l1</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df$r_bin <span class="op">&lt;-</span> <span class="im">as</span>.factor(df$r_bin)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>color <span class="op">&lt;-</span> <span class="st">"r_bin"</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"L_mn"</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">500</span>,<span class="dv">10000</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">&lt;-</span> ggdensity(df, x <span class="op">=</span> x, color <span class="op">=</span> color, add <span class="op">=</span> <span class="st">"mean"</span>) <span class="op">+</span> xlim(x_lim) <span class="op">+</span> scale_color_okabeito(palette <span class="op">=</span> <span class="st">"black_first"</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"L_mn_norm"</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>,<span class="dv">60</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">&lt;-</span> ggdensity(df, x <span class="op">=</span> x, color <span class="op">=</span> color, add <span class="op">=</span> <span class="st">"mean"</span>) <span class="op">+</span> xlim(x_lim) <span class="op">+</span> scale_color_okabeito(palette <span class="op">=</span> <span class="st">"black_first"</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"j0"</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>,<span class="dv">5</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>p3 <span class="op">&lt;-</span> ggdensity(df, x <span class="op">=</span> x, color <span class="op">=</span> color, add <span class="op">=</span> <span class="st">"mean"</span>) <span class="op">+</span> xlim(x_lim) <span class="op">+</span> scale_color_okabeito(palette <span class="op">=</span> <span class="st">"black_first"</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"j0_norm"</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>p4 <span class="op">&lt;-</span> ggdensity(df, x <span class="op">=</span> x, color <span class="op">=</span> color, add <span class="op">=</span> <span class="st">"mean"</span>) <span class="op">+</span> xlim(x_lim) <span class="op">+</span> scale_color_okabeito(palette <span class="op">=</span> <span class="st">"black_first"</span>)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>(p1 <span class="op">/</span> p2) <span class="op">|</span> (p3 <span class="op">/</span> p4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">[12/31/23 10:56:47] </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: In addition:                                     <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: Warning messages:                                <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>: Removed <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">623</span> rows containing non-finite values <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="font-weight: bold">(</span>`<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">stat_density</span><span style="font-weight: bold">()</span>`<span style="font-weight: bold">)</span>.                                                   <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>: Removed <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">263</span> rows containing non-finite values <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="font-weight: bold">(</span>`<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">stat_density</span><span style="font-weight: bold">()</span>`<span style="font-weight: bold">)</span>.                                                   <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>: Removed <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">638</span> rows containing non-finite values <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="font-weight: bold">(</span>`<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">stat_density</span><span style="font-weight: bold">()</span>`<span style="font-weight: bold">)</span>.                                                   <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span><span style="color: #800000; text-decoration-color: #800000">WARNING </span> R<span style="font-weight: bold">[</span>write to console<span style="font-weight: bold">]</span>: <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>: Removed <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">96</span> rows containing non-finite values  <a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">callbacks.py</span></a><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">:</span><a href="file:///Users/zijin/miniforge3/envs/cool_planet/lib/python3.10/site-packages/rpy2/rinterface_lib/callbacks.py#124" target="_blank"><span style="color: #7f7f7f; text-decoration-color: #7f7f7f">124</span></a>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>         <span style="font-weight: bold">(</span>`<span style="color: #800080; text-decoration-color: #800080; font-weight: bold">stat_density</span><span style="font-weight: bold">()</span>`<span style="font-weight: bold">)</span>.                                                   <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+<span style="color: #7fbfbf; text-decoration-color: #7fbfbf">                    </span>                                                                               <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">                </span>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_properties_files/figure-html/cell-20-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-43" class="cell" data-execution_count="47">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"L_mn_norm"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>,<span class="dv">60</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>bins <span class="op">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>facet_var <span class="op">&lt;-</span> <span class="st">"r_bin"</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim , bins <span class="op">=</span> bins, facet_var<span class="op">=</span>facet_var)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"thickness_N1_r_hist"</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"L_mn_norm_log"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>facet_var <span class="op">&lt;-</span> <span class="st">"r_bin"</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim , bins <span class="op">=</span> bins, facet_var<span class="op">=</span>facet_var)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"thickness_N1_log_r_hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Saving 6.67 x 6.67 in image
-Saving 6.67 x 6.67 in image
-Saving 6.67 x 6.67 in image
-Saving 6.67 x 6.67 in image</code></pre>
+<pre><code>Saving 16.7 x 11.1 in image
+Saving 16.7 x 11.1 in image
+Saving 16.7 x 11.1 in image
+Saving 16.7 x 11.1 in image</code></pre>
 </div>
 </div>
 <p>Results</p>
@@ -1388,25 +1475,25 @@ Saving 6.67 x 6.67 in image</code></pre>
 <h2 class="anchored" data-anchor-id="current-intensity">Current intensity</h2>
 <section id="mean-value" class="level3">
 <h3 class="anchored" data-anchor-id="mean-value">Mean value</h3>
-<div class="cell" data-execution_count="23">
-<details>
+<div id="cell-47" class="cell" data-execution_count="23">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x_var <span class="op">&lt;-</span> <span class="st">"time"</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>y_vars <span class="op">&lt;-</span> c(<span class="st">"j0"</span>, <span class="st">"j0_norm"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>xlab <span class="op">&lt;-</span> <span class="st">"Time"</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>ylabs <span class="op">&lt;-</span> c(<span class="st">"J (nA/m^2)"</span>,  <span class="st">"Normalized J (J_A)"</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_util(all_events_l2, x_var <span class="op">=</span> x_var, y_vars <span class="op">=</span> y_vars, xlab<span class="op">=</span>xlab, ylabs<span class="op">=</span>ylabs)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_time"</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>x_var <span class="op">&lt;-</span> <span class="st">"ref_radial_distance"</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>xlab <span class="op">&lt;-</span> <span class="st">"Referred Radial Distance (AU)"</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_util(all_events_l2, x_var<span class="op">=</span>x_var, y_vars <span class="op">=</span> y_vars, xlab<span class="op">=</span>xlab, ylabs<span class="op">=</span>ylabs)</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_r"</span>)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>y_vars <span class="op">&lt;-</span> c(<span class="st">"j0_n2"</span>, <span class="st">"j0_norm_n2"</span>)</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>ylabs <span class="op">&lt;-</span> c(<span class="st">"Relative J"</span>, <span class="st">"Relative normalized J"</span>)</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_util(all_events_l2, x_var<span class="op">=</span>x_var, y_vars <span class="op">=</span> y_vars, xlab<span class="op">=</span>xlab, ylabs<span class="op">=</span>ylabs)</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_r_N2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x_var <span class="op">&lt;-</span> <span class="st">"time"</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>y_vars <span class="op">&lt;-</span> c(<span class="st">"j0"</span>, <span class="st">"j0_norm"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>xlab <span class="op">&lt;-</span> <span class="st">"Time"</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>ylabs <span class="op">&lt;-</span> c(<span class="st">"J (nA/m^2)"</span>,  <span class="st">"Normalized J (J_A)"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_util(all_events_l2, x_var <span class="op">=</span> x_var, y_vars <span class="op">=</span> y_vars, xlab<span class="op">=</span>xlab, ylabs<span class="op">=</span>ylabs)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_time"</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>x_var <span class="op">&lt;-</span> <span class="st">"ref_radial_distance"</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>xlab <span class="op">&lt;-</span> <span class="st">"Referred Radial Distance (AU)"</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_util(all_events_l2, x_var<span class="op">=</span>x_var, y_vars <span class="op">=</span> y_vars, xlab<span class="op">=</span>xlab, ylabs<span class="op">=</span>ylabs)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_r"</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>y_vars <span class="op">&lt;-</span> c(<span class="st">"j0_n2"</span>, <span class="st">"j0_norm_n2"</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>ylabs <span class="op">&lt;-</span> c(<span class="st">"Relative J"</span>, <span class="st">"Relative normalized J"</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_util(all_events_l2, x_var<span class="op">=</span>x_var, y_vars <span class="op">=</span> y_vars, xlab<span class="op">=</span>xlab, ylabs<span class="op">=</span>ylabs)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_r_N2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Saving 6.67 x 6.67 in image
@@ -1425,24 +1512,24 @@ Saving 6.67 x 6.67 in image</code></pre>
 </section>
 <section id="map-1" class="level3">
 <h3 class="anchored" data-anchor-id="map-1">Map</h3>
-<div class="cell" data-execution_count="129">
-<details>
+<div id="cell-50" class="cell" data-execution_count="129">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>x_col <span class="op">&lt;-</span> <span class="st">"radial_distance"</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>y_col <span class="op">&lt;-</span> <span class="st">"j0"</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>, <span class="dv">15</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>xlab <span class="op">&lt;-</span> <span class="st">"Radial Distance (AU)"</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>J<span class="op">~</span>(nA<span class="op">~</span>m<span class="op">^-</span><span class="dv">2</span>))</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_binned_data(JNO_events_l1, x_col <span class="op">=</span> x_col, y_col <span class="op">=</span> y_col, x_bins <span class="op">=</span> <span class="dv">8</span>, y_bins <span class="op">=</span> <span class="dv">32</span>, y_lim <span class="op">=</span> y_lim, log_y <span class="op">=</span> TRUE)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> p <span class="op">+</span> labs(x <span class="op">=</span> xlab, y<span class="op">=</span> ylab)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_r_dist"</span>)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>y_col <span class="op">&lt;-</span> <span class="st">"j0_norm"</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.01</span>, <span class="dv">1</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>Normalized<span class="op">~</span>J<span class="op">~</span>(J[A]))</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_binned_data(JNO_events_l1, x_col <span class="op">=</span> x_col, y_col <span class="op">=</span> y_col, x_bins <span class="op">=</span> <span class="dv">8</span>, y_bins <span class="op">=</span> <span class="dv">32</span>, y_lim <span class="op">=</span> y_lim, log_y <span class="op">=</span> TRUE)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> p <span class="op">+</span> labs(x <span class="op">=</span> xlab, y<span class="op">=</span> ylab)</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_N1_r_dist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x_col <span class="op">&lt;-</span> <span class="st">"radial_distance"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>y_col <span class="op">&lt;-</span> <span class="st">"j0"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>, <span class="dv">15</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>xlab <span class="op">&lt;-</span> <span class="st">"Radial Distance (AU)"</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>J<span class="op">~</span>(nA<span class="op">~</span>m<span class="op">^-</span><span class="dv">2</span>))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_binned_data(JNO_events_l1, x_col <span class="op">=</span> x_col, y_col <span class="op">=</span> y_col, x_bins <span class="op">=</span> <span class="dv">8</span>, y_bins <span class="op">=</span> <span class="dv">32</span>, y_lim <span class="op">=</span> y_lim, log_y <span class="op">=</span> TRUE)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> p <span class="op">+</span> labs(x <span class="op">=</span> xlab, y<span class="op">=</span> ylab)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_r_dist"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>y_col <span class="op">&lt;-</span> <span class="st">"j0_norm"</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.01</span>, <span class="dv">1</span>)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>Normalized<span class="op">~</span>J<span class="op">~</span>(J[A]))</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_binned_data(JNO_events_l1, x_col <span class="op">=</span> x_col, y_col <span class="op">=</span> y_col, x_bins <span class="op">=</span> <span class="dv">8</span>, y_bins <span class="op">=</span> <span class="dv">32</span>, y_lim <span class="op">=</span> y_lim, log_y <span class="op">=</span> TRUE)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> p <span class="op">+</span> labs(x <span class="op">=</span> xlab, y<span class="op">=</span> ylab)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_N1_r_dist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Saving 6.67 x 6.67 in image
@@ -1454,29 +1541,29 @@ Saving 6.67 x 6.67 in image</code></pre>
 </section>
 <section id="distribution-1" class="level3">
 <h3 class="anchored" data-anchor-id="distribution-1">Distribution</h3>
-<div class="cell" data-execution_count="138">
-<details>
+<div id="cell-52" class="cell" data-execution_count="138">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0"</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>J<span class="op">~</span>(nA<span class="op">~</span>m<span class="op">^-</span><span class="dv">2</span>))</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.01</span>, <span class="dv">15</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_mn_dist"</span>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0_k"</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_k_dist"</span>)</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0_norm"</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>J<span class="op">~</span>(J[A]))</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.01</span>, <span class="dv">1</span>)</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_mn_N1_dist"</span>)</span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0_k_norm"</span></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_k_N1_dist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0"</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>J<span class="op">~</span>(nA<span class="op">~</span>m<span class="op">^-</span><span class="dv">2</span>))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.01</span>, <span class="dv">15</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_mn_dist"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0_k"</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_k_dist"</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0_norm"</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>ylab <span class="op">&lt;-</span> expression(Log<span class="op">~</span>J<span class="op">~</span>(J[A]))</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>y_lim <span class="op">&lt;-</span> c(<span class="fl">0.01</span>, <span class="dv">1</span>)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_mn_N1_dist"</span>)</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">&lt;-</span> <span class="st">"j0_k_norm"</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_dist(y<span class="op">=</span>y, ylab<span class="op">=</span>ylab, y_lim <span class="op">=</span> y_lim)</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current/current_k_N1_dist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Saving 6.67 x 6.67 in image
@@ -1492,19 +1579,19 @@ Saving 6.67 x 6.67 in image</code></pre>
 </section>
 <section id="histogram-2" class="level3">
 <h3 class="anchored" data-anchor-id="histogram-2">Histogram</h3>
-<div class="cell" data-execution_count="25">
-<details>
+<div id="cell-54" class="cell" data-execution_count="25">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"j0_norm"</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>facet_var <span class="op">&lt;-</span> <span class="st">"r_bin"</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim, bins <span class="op">=</span> <span class="dv">8</span>, facet_var<span class="op">=</span>facet_var)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_N1_r_hist"</span>)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"j0_norm_log"</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim, bins <span class="op">=</span> <span class="dv">8</span>, facet_var<span class="op">=</span>facet_var)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_N1_log_r_hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"j0_norm"</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>facet_var <span class="op">&lt;-</span> <span class="st">"r_bin"</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim, bins <span class="op">=</span> <span class="dv">8</span>, facet_var<span class="op">=</span>facet_var)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_N1_r_hist"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">&lt;-</span> <span class="st">"j0_norm_log"</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>x_lim <span class="op">&lt;-</span> c(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>p <span class="op">&lt;-</span> plot_limited_histogram(all_events_l1, x <span class="op">=</span> x, x_lim <span class="op">=</span> x_lim, bins <span class="op">=</span> <span class="dv">8</span>, facet_var<span class="op">=</span>facet_var)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>save_plot(<span class="st">"current_N1_log_r_hist"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Saving 6.67 x 6.67 in image
@@ -1600,10 +1687,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1613,8 +1699,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1627,6 +1722,135 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1670,6 +1894,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1695,6 +1920,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1755,6 +2006,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
