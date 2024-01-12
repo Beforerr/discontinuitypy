@@ -1,7 +1,7 @@
 missions := ("JNO" + "STA")
 
-quarto-publish:
-  nbdev_proc_nbs && cd _proc && quarto publish gh-pages
+publish:
+  nbdev_proc_nbs && cd _proc && quarto publish gh-pages --no-prompt
 
 quarto-install:
   cd notebooks && quarto add Beforerr/quarto-ext --no-prompt

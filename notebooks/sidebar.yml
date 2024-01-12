@@ -6,6 +6,9 @@ website:
       - 01_ids_detection.ipynb
       - 02_ids_properties.ipynb
       - 20_datasets.ipynb
+      - nbdev.yml
+      - pipelines.yaml
+      - sidebar.yml
       - section: analysis
         contents:
           - analysis/00_base.ipynb
@@ -18,11 +21,132 @@ website:
           - analysis/20_model.ipynb
           - analysis/jno_model_comparison.html
           - analysis/jno_model_ts.html
+          - analysis/utils.R
         href: analysis/index.qmd
+      - section: figures
+        contents:
+          - figures/current_N1_log_r_hist.pdf
+          - figures/current_N1_log_r_hist.png
+          - figures/current_N1_r_dist.pdf
+          - figures/current_N1_r_dist.png
+          - figures/current_N1_r_hist.pdf
+          - figures/current_N1_r_hist.png
+          - figures/current_r.pdf
+          - figures/current_r.png
+          - figures/current_r_N2.pdf
+          - figures/current_r_N2.png
+          - figures/current_r_dist.pdf
+          - figures/current_r_dist.png
+          - figures/current_time.pdf
+          - figures/current_time.png
+          - figures/dB_l_N1_dist.pdf
+          - figures/dB_l_N1_dist.png
+          - figures/dB_l_dist.pdf
+          - figures/dB_l_dist.png
+          - figures/distance_and_or.pdf
+          - figures/distance_and_or.png
+          - figures/juno_ic1_traj.pdf
+          - figures/juno_ic1_traj.png
+          - figures/juno_traj.pdf
+          - figures/juno_traj.png
+          - figures/juno_validation.pdf
+          - figures/juno_validation.png
+          - figures/ocr_r_N2_cleaned.pdf
+          - figures/ocr_r_N2_cleaned.png
+          - figures/ocr_r_cleaned.pdf
+          - figures/ocr_r_cleaned.png
+          - figures/ocr_time_N2_cleaned.pdf
+          - figures/ocr_time_N2_cleaned.png
+          - figures/ocr_time_cleaned.png
+          - figures/thickness_N1_log_r_hist.pdf
+          - figures/thickness_N1_log_r_hist.png
+          - figures/thickness_N1_r_hist.pdf
+          - figures/thickness_N1_r_hist.png
+          - figures/thickness_r.pdf
+          - figures/thickness_r.png
+          - figures/thickness_r_N2.pdf
+          - figures/thickness_r_N2.png
+          - figures/thickness_time.pdf
+          - figures/thickness_time.png
+          - section: current
+            contents:
+              - figures/current/current_k_N1_dist.pdf
+              - figures/current/current_k_N1_dist.png
+              - figures/current/current_k_dist.pdf
+              - figures/current/current_k_dist.png
+              - figures/current/current_mn_N1_dist.pdf
+              - figures/current/current_mn_N1_dist.png
+              - figures/current/current_mn_dist.pdf
+              - figures/current/current_mn_dist.png
+          - section: ocr
+            contents:
+              - figures/ocr/ocr_time_N2_cleaned.pdf
+              - figures/ocr/ocr_time_N2_cleaned.png
+              - figures/ocr/ocr_time_cleaned.pdf
+              - figures/ocr/ocr_time_cleaned.png
+          - section: orientation
+            contents:
+              - figures/orientation/orientation_Vl_xyz.pdf
+              - figures/orientation/orientation_Vl_xyz.png
+              - figures/orientation/orientation_dB_xyz.pdf
+              - figures/orientation/orientation_dB_xyz.png
+              - figures/orientation/orientation_k_r.pdf
+              - figures/orientation/orientation_k_r.png
+              - figures/orientation/orientation_k_time.pdf
+              - figures/orientation/orientation_k_time.png
+              - figures/orientation/orientation_k_xyz.pdf
+              - figures/orientation/orientation_k_xyz.png
+              - figures/orientation/orientation_kx_r_dist.pdf
+              - figures/orientation/orientation_kx_r_dist.png
+              - figures/orientation/orientation_l_r.pdf
+              - figures/orientation/orientation_l_r.png
+          - section: solarmach
+            contents:
+              - figures/solarmach/Solar-MACH_2011-08-06_00:01:06.183.png
+              - figures/solarmach/Solar-MACH_2012-02-21_11:03:06.405.png
+              - figures/solarmach/Solar-MACH_2012-09-07_22:05:06.628.png
+              - figures/solarmach/Solar-MACH_2013-03-26_09:07:06.850.png
+              - figures/solarmach/Solar-MACH_2013-10-11_20:09:07.072.png
+              - figures/solarmach/Solar-MACH_2014-04-29_07:11:07.295.png
+              - figures/solarmach/Solar-MACH_2014-11-14_18:13:07.517.png
+              - figures/solarmach/Solar-MACH_2015-06-02_05:15:07.739.png
+              - figures/solarmach/Solar-MACH_2015-12-18_16:17:07.962.png
+              - figures/solarmach/Solar-MACH_2016-07-05_03:19:08.184.png
+          - section: thickness
+            contents:
+              - figures/thickness/thickness_N1_r_dist.pdf
+              - figures/thickness/thickness_N1_r_dist.png
+              - figures/thickness/thickness_k_N1_dist.pdf
+              - figures/thickness/thickness_k_N1_dist.png
+              - figures/thickness/thickness_k_N1_r_dist.pdf
+              - figures/thickness/thickness_k_N1_r_dist.png
+              - figures/thickness/thickness_k_dist.pdf
+              - figures/thickness/thickness_k_dist.png
+              - figures/thickness/thickness_k_r_dist.pdf
+              - figures/thickness/thickness_k_r_dist.png
+              - figures/thickness/thickness_mn_N1_dist.pdf
+              - figures/thickness/thickness_mn_N1_dist.png
+              - figures/thickness/thickness_mn_dist.pdf
+              - figures/thickness/thickness_mn_dist.png
+              - figures/thickness/thickness_norm_r_diff.pdf
+              - figures/thickness/thickness_norm_r_diff.png
+              - figures/thickness/thickness_r_diff.pdf
+              - figures/thickness/thickness_r_diff.png
+              - figures/thickness/thickness_r_dist.pdf
+              - figures/thickness/thickness_r_dist.png
       - section: manuscripts
         contents:
+          - manuscripts/AGU23_poster.pdf
           - manuscripts/AGU23_poster.qmd
           - manuscripts/paper.qmd
+          - manuscripts/references.bib
+          - manuscripts/sidebar.yml
+          - section: images
+            contents:
+              - manuscripts/images/jgra21162-fig-0009.png
+              - manuscripts/images/liu2021_fig2.png
+              - manuscripts/images/poster_traj.png
+              - "manuscripts/images/so\u0308ding2001_fig4.png"
       - section: missions
         contents:
           - section: juno
