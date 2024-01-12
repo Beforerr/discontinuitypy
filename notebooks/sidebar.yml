@@ -49,8 +49,6 @@ website:
           - figures/juno_ic1_traj.png
           - figures/juno_traj.pdf
           - figures/juno_traj.png
-          - figures/juno_validation.pdf
-          - figures/juno_validation.png
           - figures/ocr_r_N2_cleaned.pdf
           - figures/ocr_r_N2_cleaned.png
           - figures/ocr_r_cleaned.pdf
@@ -78,6 +76,10 @@ website:
               - figures/current/current_mn_N1_dist.png
               - figures/current/current_mn_dist.pdf
               - figures/current/current_mn_dist.png
+          - section: model
+            contents:
+              - figures/model/juno_model_validation.pdf
+              - figures/model/juno_model_validation.png
           - section: ocr
             contents:
               - figures/ocr/ocr_time_N2_cleaned.pdf
