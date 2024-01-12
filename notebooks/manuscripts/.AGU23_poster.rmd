@@ -43,8 +43,8 @@ field](https://github.com/Beforerr/ion_scattering_by_SWD/blob/385bfe5f1b147ef18d
 @söding2001 studied the radial distribution of discontinuities in the
 solar wind.
 
-![Discontinuities between 0.3 and 19
-AU](images/söding2001_fig4.png){width="60%"}
+![Discontinuities between 0.3 and 19 AU](images/söding2001_fig4.png){width="60%"}
+
 ![](https://www.nasa.gov/wp-content/uploads/2023/03/575573main_Juno20110727-3-43_full.jpg){width="38%"}
 
 Joint observations of JUNO & ARTEMIS & Other missions really provides a

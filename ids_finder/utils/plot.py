@@ -56,22 +56,28 @@ def setup_mva_plot(
 
     temp_b = data.sel(time=slice(tstart, tstop))
     store_data("fgm", data={"x": temp_b.time, "y": temp_b})
-    tvar_rot = tvector_rotate("fgm_mva_mat", "fgm")[0]
-    tvar = tvectot(tvar_rot, join_component=True)
-
-    options(tvar, "legend_names", [r"$B_l$", r"$B_m$", r"$B_n$", r"$B_{total}$"])
-    options(tvar, "ysubtitle", "[nT LMN]")
+    tvar = tvector_rotate("fgm_mva_mat", "fgm")[0]
+    ysubtitle = "[nT LMN]"
+    legend_names = [r"$B_l$", r"$B_m$", r"$B_n$"]
     
-    options(tvar, "thick", 2)
-    options(tvar, "char_size", 16)
-    tstart_ts = time_stamp(tstart)
-    tstop_ts = time_stamp(tstop)
-    highlight(tvar, [tstart_ts, tstop_ts])
-    degap(tvar)
-    return tvar
+    tvar2plot = tvectot(tvar, join_component=True)
+    legend_names = legend_names + [r"$B_{total}$"]
+
+    options(tvar2plot, "ytitle", "$B$")
+    options(tvar2plot, "ysubtitle", ysubtitle)
+    options(tvar2plot, "legend_names", legend_names)
+    
+    options(tvar2plot, "thick", 2)
+    options(tvar2plot, "char_size", 16)
+    
+    # tstart_ts = time_stamp(tstart)
+    # tstop_ts = time_stamp(tstop)
+    # highlight(tvar2plot, [tstart_ts, tstop_ts])
+    degap(tvar2plot)
+    return tvar2plot
 
 # %% ../../notebooks/utils/01_plotting.ipynb 8
-def plot_candidate(candidate: dict, sat_fgm: xr.DataArray):
+def plot_candidate(candidate: dict, sat_fgm: xr.DataArray, **kwargs):
     if pd.notnull(candidate.get("d_tstart")) and pd.notnull(candidate.get("d_tstop")):
         tvar = setup_mva_plot(
             sat_fgm,
@@ -94,4 +100,4 @@ def plot_candidate(candidate: dict, sat_fgm: xr.DataArray):
         d_stop_ts = time_stamp(candidate["d_tstop"])
         timebar(d_stop_ts)
 
-    tplot(tvar)
+    return tplot(tvar, **kwargs)

@@ -14,6 +14,7 @@ website:
           - analysis/02_properties.ipynb
           - analysis/03_map.ipynb
           - analysis/10_classification.ipynb
+          - analysis/11_ts.ipynb
           - analysis/20_model.ipynb
           - analysis/jno_model_comparison.html
           - analysis/jno_model_ts.html

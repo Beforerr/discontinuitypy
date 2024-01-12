@@ -5,6 +5,10 @@ if (!requireNamespace("gaussplotR", quietly = TRUE)) {
   pak::pkg_install("gaussplotR")
 }
 
+if (!requireNamespace("ggmagnify", quietly = TRUE)) {
+  pak::pkg_install("hughjonesd/ggmagnify")
+}
+
 library(dplyr)
 
 library(ggplot2)
@@ -97,14 +101,18 @@ plot_binned_data <- function(data, x_col, y_col, x_bins, y_bins, y_lim = NULL, l
   plot +
     scale_fill_viridis_c() +
     theme_pubr(base_size = 16, legend = "r") +
-    coord_cartesian(ylim = y_lim)
-
+    coord_cartesian(ylim = y_lim) +
+    guides(fill = guide_colourbar(title = "p"))
 }
 
 
 
 plot_dist <- function(
-    y, ylab, y_lim = NULL, y_log = TRUE, x_bins = 8, y_bins = 16) {
+    y, ylab, y_lim = NULL, y_log = TRUE,
+    x_bins = 8,
+    y_bins = 16,
+    p1title = "Juno",
+    p2title = "ARTEMIS, STEREO and Wind") {
   log_y <- y_log
 
   x_col <- "radial_distance"
@@ -112,14 +120,20 @@ plot_dist <- function(
   p1 <- plot_binned_data(JNO_events_l1,
     x_col = x_col, y_col = y,
     x_bins = x_bins, y_bins = y_bins, y_lim = y_lim, log_y = log_y
-  ) + labs(x = xlab, y = ylab) + ggtitle("JUNO")
+  ) +
+    labs(x = xlab, y = ylab) +
+    ggtitle(p1title) +
+    theme(legend.position = "none")
 
   x_col <- "time"
   xlab <- "Time"
+
   p2 <- plot_binned_data(other_events_l1,
     x_col = x_col, y_col = y,
     x_bins = x_bins, y_bins = y_bins, y_lim = y_lim, log_y = log_y
-  ) + labs(x = xlab, y = ylab) + ggtitle("Others")
-  
-  p1 / p2
+  ) +
+    labs(x = xlab, y = ylab) +
+    ggtitle(p2title)
+
+  p1 + p2 + plot_layout(ncol = 1, guides = "collect")
 }

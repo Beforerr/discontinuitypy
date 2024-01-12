@@ -139,9 +139,9 @@ For all results, see [results page](../analysis/index.qmd).
 [For code, see [noteboook](../analysis/01_occurence_rate.ipynb).]{.aside}
 
 ::: {#fig-ocr_time layout-ncol="2"}
-![](../figures/ocr_time_cleaned)
+![](../figures/ocr/ocr_time_cleaned)
 
-![](../figures/ocr_time_N2_cleaned)
+![](../figures/ocr/ocr_time_N2_cleaned)
 
 Occurrence rates with time
 :::
