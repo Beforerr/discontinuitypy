@@ -1,5 +1,8 @@
 missions := ("JNO" + "STA")
 
+preview:
+  nbdev_preview
+
 publish:
   nbdev_proc_nbs && cd _proc && quarto publish gh-pages --no-prompt
 

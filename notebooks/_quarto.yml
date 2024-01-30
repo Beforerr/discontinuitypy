@@ -1,7 +1,5 @@
 project:
   type: website
-  resources: 
-    - "*.html"
 
 format:
   html:
@@ -14,21 +12,10 @@ website:
   open-graph: true
   repo-actions: [issue]
   navbar:
-    background: primary
     search: true
     left:
       - text: "Home"
         href: index.qmd
-      - text: Publications
-        menu:
-        - text: Paper
-          href: manuscripts/paper.qmd
-        - text: "AGU23 Poster"
-          href: manuscripts/AGU23_poster.qmd
-      - text: "Results"
-        href: analysis/index.qmd
-      # - text: "Tutorial"
-      #   href: tutorials/tutorial.ipynb
     right:
       - icon: github
         href: "https://github.com/Beforerr/ids_finder"

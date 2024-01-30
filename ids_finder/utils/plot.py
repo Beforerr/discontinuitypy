@@ -100,4 +100,5 @@ def plot_candidate(candidate: dict, sat_fgm: xr.DataArray, **kwargs):
         d_stop_ts = time_stamp(candidate["d_tstop"])
         timebar(d_stop_ts)
 
-    return tplot(tvar, **kwargs)
+    tplot(tvar, **kwargs)
+    return tvar

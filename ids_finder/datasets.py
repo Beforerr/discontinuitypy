@@ -37,21 +37,33 @@ class IDsDataset(BaseModel):
     ts: timedelta = timedelta(seconds=1)
 
     candidates: pl.DataFrame | None = None
-    data: pl.LazyFrame | None = None # data is large, so we use `pl.LazyFrame` to save memory
+    data: pl.LazyFrame | None = (
+        None  # data is large, so we use `pl.LazyFrame` to save memory
+    )
     bcols: list[str] = ["B_x", "B_y", "B_z"]
 
-    def plot_candidate(self, index = None, predicates = None, **kwargs):
+    def get_candidate(self, index=None, predicates=None, **kwargs):
         if index is not None:
             candidate = self.candidates.row(index, named=True)
         elif predicates is not None:
             candidate = self.candidates.filter(predicates).row(0, named=True)
+        return candidate
+
+    def get_candidate_data(self, candidate=None, index=None, predicates=None, **kwargs):
+        if candidate is None:
+            candidate = self.get_candidate(index, predicates, **kwargs)
 
         _data = self.data.filter(
             pl.col("time").is_between(candidate["tstart"], candidate["tstop"])
         )
-        sat_fgm = df2ts(_data, self.bcols)
+        return df2ts(_data, self.bcols)
+
+    def plot_candidate(self, candidate=None, index=None, predicates=None, **kwargs):
+        if candidate is None:
+            candidate = self.get_candidate(index, predicates, **kwargs)
+        sat_fgm = self.get_candidate_data(candidate)
+
         return _plot_candidate(candidate, sat_fgm, **kwargs)
-        
 
     def plot_candidates(self, **kwargs):
         pass
