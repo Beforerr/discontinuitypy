@@ -16,6 +16,10 @@ website:
           - section: omni
             contents: []
             href: missions/omni/index.ipynb
+          - section: psp
+            contents:
+              - missions/psp/mag.ipynb
+            href: missions/psp/index.qmd
           - section: stereo
             contents:
               - missions/stereo/mag.ipynb

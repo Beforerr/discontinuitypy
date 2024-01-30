@@ -10,6 +10,9 @@ author:
   - name: Anton Artemyev
     affiliation: 
        - ref: ucla
+  - name: Zesen Huang
+    affiliation: 
+       - ref: ucla
 affiliations:
   - id: ucla
     name: University of California, Los Angeles
@@ -17,12 +20,31 @@ execute:
   eval: false
 ---
 
+# User Guide
+
 For how to use this project as a python library, please see [this page](./00_ids_finder.ipynb).
 
-- [AGU23 Poster](./manuscripts/AGU23_poster.qmd)
-- [Paper](./manuscripts/paper.qmd)
+## Installation
 
-## TODOs
+``` {shell}
+pip install ids-finder
+```
+
+## Getting started
+
+Import the package
+
+```{python}
+from ids_finder.utils.basic import *
+from ids_finder.core import *
+```
+
+
+# Related projects and publications:
+
+- [Solar wind discontinuities spatial evolution in the outer heliosphere](https://beforerr.github.io/ids_spatial_evolution_juno/)
+
+# TODOs
 
 Science part
 

@@ -1,5 +1,7 @@
 project:
   type: website
+  preview: 
+    port: 5556
 
 format:
   html:
@@ -28,5 +30,7 @@ website:
         # contents: missions/*
       # - section: Analysis
         # contents: analysis/*
+
+bibliography: '../../research.bib'
 
 metadata-files: [nbdev.yml]

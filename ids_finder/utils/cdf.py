@@ -26,7 +26,8 @@ def cdf2pl(file_path: str, var_names: str | list[str]) -> pl.LazyFrame:
         var_names = [var_names]
 
     cdf = pycdfpp.load(file_path)
-    epoch_time = pycdfpp.to_datetime64(cdf["Epoch"])
+    epoch_var = cdf[var_names[0]].attributes['DEPEND_0'][0]
+    epoch_time = pycdfpp.to_datetime64(cdf[epoch_var])
     
     columns = {"time": epoch_time}
     
@@ -45,6 +46,9 @@ def cdf2pl(file_path: str, var_names: str | list[str]) -> pl.LazyFrame:
             columns[var_name] = var_values[:, 0]
         else:  # Multi-dimensional data
             # Dynamically create column names based on the shape of the field values
+            
+            # labels = cdf[var_attrs["LABL_PTR_1"][0]].values
+            
             for i in range(var_values.shape[1]):
                 columns[f"{var_name}_{i}"] = var_values[:, i]
 

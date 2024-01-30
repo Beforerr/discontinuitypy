@@ -13,20 +13,15 @@ import xarray as xr
 from datetime import timedelta
 
 # %% ../notebooks/20_datasets.ipynb 4
-from kedro.pipeline import Pipeline, node
-from kedro.pipeline.modular_pipeline import pipeline
-from .utils.basic import load_catalog
-
-# %% ../notebooks/20_datasets.ipynb 6
 from pydantic import BaseModel
 from kedro.io import DataCatalog
 from .utils.basic import concat_partitions
 
-# %% ../notebooks/20_datasets.ipynb 8
+# %% ../notebooks/20_datasets.ipynb 6
 from .utils.basic import df2ts
 from .utils.plot import plot_candidate as _plot_candidate
 
-# %% ../notebooks/20_datasets.ipynb 9
+# %% ../notebooks/20_datasets.ipynb 7
 class IDsDataset(BaseModel):
     class Config:
         arbitrary_types_allowed = True
@@ -68,7 +63,7 @@ class IDsDataset(BaseModel):
     def plot_candidates(self, **kwargs):
         pass
 
-# %% ../notebooks/20_datasets.ipynb 11
+# %% ../notebooks/20_datasets.ipynb 9
 class cIDsDataset(IDsDataset):
     catalog: DataCatalog
 
@@ -116,10 +111,10 @@ class cIDsDataset(IDsDataset):
         data_format = self.data_format
         self.data = concat_partitions(self.catalog.load(data_format))
 
-# %% ../notebooks/20_datasets.ipynb 13
+# %% ../notebooks/20_datasets.ipynb 11
 from pprint import pprint
 
-# %% ../notebooks/20_datasets.ipynb 14
+# %% ../notebooks/20_datasets.ipynb 12
 class CandidateID:
     def __init__(self, time, df: pl.DataFrame) -> None:
         self.time = pd.Timestamp(time)
@@ -132,8 +127,3 @@ class CandidateID:
         # return self.data.__repr__()
         pprint(self.data)
         return ''
-    
-    def plot(self, sat_fgm, tau):
-        plot_candidate_xr(self.data, sat_fgm, tau)
-        pass
-        

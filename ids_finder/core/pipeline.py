@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['compress_data_by_cands', 'ids_finder', 'extract_features']
 
-# %% ../../notebooks/00_ids_finder.ipynb 3
+# %% ../../notebooks/00_ids_finder.ipynb 2
 #| code-summary: "Import all the packages needed for the project"
 import polars as pl
 from .propeties import process_events
@@ -15,7 +15,7 @@ from datetime import timedelta
 
 from typing import Callable
 
-# %% ../../notebooks/00_ids_finder.ipynb 7
+# %% ../../notebooks/00_ids_finder.ipynb 5
 def compress_data_by_cands(
     data: pl.DataFrame, candidates: pl.DataFrame
 ):
@@ -38,27 +38,36 @@ def compress_data_by_cands(
     return data[indices_unique]
 
 
-# %% ../../notebooks/00_ids_finder.ipynb 8
-def ids_finder(ldata: pl.LazyFrame, tau: timedelta, ts: timedelta, bcols):
-    data = (
-        ldata.sort("time")
-        .with_columns(pl.col("time").dt.cast_time_unit("us")) # https://github.com/pola-rs/polars/issues/12023
-        .collect()
-    )
+# %% ../../notebooks/00_ids_finder.ipynb 6
+def ids_finder(
+    detection_df: pl.LazyFrame, # data used for anomaly dectection (typically low cadence data)
+    tau: timedelta,
+    ts: timedelta, 
+    bcols = None,
+    extract_df: pl.LazyFrame = None, # data used for feature extraction (typically high cadence data)
+):
+    if extract_df is None:
+        extract_df = detection_df
+    if bcols is None:
+        bcols = detection_df.columns
+        bcols.remove("time")
+    
+    detection_df = detection_df.sort("time").with_columns(pl.col("time").dt.cast_time_unit("us")) # https://github.com/pola-rs/polars/issues/12023
+    extract_df = extract_df.sort("time").with_columns(pl.col("time").dt.cast_time_unit("us"))
 
-    events = detect_events(data, tau, ts, bcols)
-
-    data_c = compress_data_by_cands(data, events)
+    events = detect_events(detection_df, tau, ts, bcols)
+    
+    data_c = compress_data_by_cands(extract_df.collect(), events)
     sat_fgm = df2ts(data_c, bcols)
     ids = process_events(events, sat_fgm, ts)
     return ids
 
-
+# %% ../../notebooks/00_ids_finder.ipynb 8
 def extract_features(
     partitioned_input: dict[str, Callable[..., pl.LazyFrame]],
     tau: float,  # in seconds, yaml input
     ts: float,  # in seconds, yaml input
-    bcols: list[str] = ["B_x", "B_y", "B_z"],
+    **kwargs,
 ) -> pl.DataFrame:
     "wrapper function for partitioned input"
 
@@ -67,7 +76,7 @@ def extract_features(
 
     ids = pl.concat(
         [
-            ids_finder(partition_load(), _tau, _ts, bcols)
+            ids_finder(partition_load(), _tau, _ts, **kwargs)
             for partition_load in partitioned_input.values()
         ]
     )

@@ -3,6 +3,9 @@ missions := ("JNO" + "STA")
 preview:
   nbdev_preview
 
+publish-pkgs:
+  nbdev_export
+
 publish:
   nbdev_proc_nbs && cd _proc && quarto publish gh-pages --no-prompt
 
@@ -11,9 +14,6 @@ quarto-install:
 
 publish-qrcode:
   segno "https://beforerr.github.io/ids_finder" -o=images/qrcode.png --light transparent --scale 10
-
-publish-poster:
-  Rscript -e 'pagedown::chrome_print("notebooks/manuscripts/.AGU23_poster.rmd")'
 
 export:
   nbdev_export --path notebooks/__init__.ipynb
@@ -38,7 +38,6 @@ kedro-run-mag-feature mission:
   kedro run --to-outputs=events.l1.Wind_ts_0.5s_tau_60s --from-inputs=Wind.MAG.inter_data_h4-rtn
   kedro run --to-outputs=events.l1.Wind_ts_0.2s_tau_60s --from-inputs=Wind.MAG.inter_data_h4-rtn
   kedro run --to-outputs=events.l1.Wind_ts_0.1s_tau_60s --from-inputs=Wind.MAG.inter_data_h4-rtn
-
 
 
 kedro-run-mag-feature-all: (kedro-run-mag-feature "JNO") (kedro-run-mag-feature "STA") (kedro-run-mag-feature "THB") (kedro-run-mag-feature "Wind")

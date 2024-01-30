@@ -2,4 +2,10 @@
 title: Missions
 ---
 
-We try to employ our method and find IDs from different missions.
+This module includes helpful functions for working with mission (magnetic field and plasma) data. We currently support the following missions:
+
+- [Parker Solar Probe](psp/index.qmd)
+- [Juno](juno/index.ipynb)
+- [Wind](wind/index.ipynb)
+- [THEMIS/ARTEMIS](themis/index.ipynb)
+- [STEREO](stereo/index.ipynb)
