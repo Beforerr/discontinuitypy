@@ -1,14 +1,9 @@
-# conda activate cool_planet
-name: cool_planet
+name: discontinuitypy
 channels:
   - conda-forge
 dependencies:
-  - pdr # [P]lanetary [D]ata [R]eader - A single function to read all Planetary Data System (PDS) data into Python
-  - kedro
-  - kedro-viz
-  # - kedro-datasets
-  
   - pandas
+  - polars
   # - modin-ray # not working on Apple Silicon
   - pdpipe
 
@@ -21,43 +16,18 @@ dependencies:
   
   - astropy
   - plasmapy
-  - poliastro
-  - solarmach
 
-  - ipykernel
+  - jupyter
   - fastai::nbdev
   - fastai::fastcore
 
-  - pyviz::hvplot
-  - nodejs # required for hvplot
-  - jupyter_bokeh
-
-  - pyod
-  - bokeh<3 # pytplot compatibility
-  - seaborn
-  - altair
   - loguru
   - tqdm
-  - grpcio # used in `modin`, using conda for (Apple Silicon) Support
-  - pytables # used in `pyspedas`
+  - kedro
   - pip
   - pip:
-    - pipe
-    - polars
-    - pyspedas@git+https://github.com/Beforerr/pyspedas
-    - pytplot-mpl-temp@git+https://github.com/Beforerr/PyTplot@matplotlib-backend
-    - pycdfpp # fast CDF reader
-    # - kedro-datasets@git+https://github.com/MatthiasRoels/kedro-plugins@feat/datasets-add-polars-lazy-dataset#subdirectory=kedro-datasets
-    - kedro-datasets
-    # - tsflex @ git+https://github.com/predict-idlab/tsflex
-    - pooch # A friend to fetch your Python data files
-    - modin[ray]
-    - swifter # efficiently applies any function to a pandas dataframe or series in the fastest available manner
-    - speasy # Python client for Space Physics web services such as CDAWEB or AMDA.
+    - pyspedas # needed for plotting (to be removed in the future)
+    # - swifter # efficiently applies any function to a pandas dataframe or series in the fastest available manner
     - multipledispatch
-    - vegafusion[embed]
-
     - xarray-einstats
-    - nltk
-    - humanize
-    - scienceplots
+    - . # local package

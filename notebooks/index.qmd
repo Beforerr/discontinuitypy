@@ -1,32 +1,26 @@
 ---
-title: Discontinuities? Yes!
-subtitle: 'All statistics are wrong, but some may be useful:)'
-author:
-  - name: Zijin Zhang
-    email: zijin@ucla.edu
-    corresponding: true
-    affiliation: 
-       - ref: ucla
-  - name: Anton Artemyev
-    affiliation: 
-       - ref: ucla
-  - name: Zesen Huang
-    affiliation: 
-       - ref: ucla
-affiliations:
-  - id: ucla
-    name: University of California, Los Angeles
+# title: Discontinuities? Yes!
+title: DiscontinuityPy
+subtitle: A python package for identifying and analyzing discontinuities for time series data.
+description: All statistics are wrong, but some may be useful:)
 execute: 
   eval: false
 ---
 
 # User Guide
 
+This package is designed to identify and analyze discontinuities in time series data.
+
+1. Finding the discontinuities, see [this notebook](./01_ids_detection.ipynb)
+    - Corresponding to limited feature extraction / anomaly detection
+2. Calculating the properties of the discontinuities, see [this notebook](./02_ids_properties.ipynb)
+    - One can use higher time resolution data
+
 For how to use this project as a python library, please see [this page](./00_ids_finder.ipynb).
 
 ## Installation
 
-``` {shell}
+```shell
 pip install ids-finder
 ```
 
@@ -34,15 +28,15 @@ pip install ids-finder
 
 Import the package
 
-```{python}
-from ids_finder.utils.basic import *
-from ids_finder.core import *
+```python
+from discontinuitypy.utils.basic import *
+from discontinuitypy.core import *
 ```
 
-
-# Related projects and publications:
+# Related projects and publications
 
 - [Solar wind discontinuities spatial evolution in the outer heliosphere](https://beforerr.github.io/ids_spatial_evolution_juno/)
+- [Evolution of solar wind discontinuities in the inner heliosphere: PSP and Earth conjunctions and alignments](https://beforerr.github.io/psp_conjunction/)
 
 # TODOs
 
@@ -53,6 +47,7 @@ Science part
     -   [ ] Check Datagap
     -   [ ] Distribution of \|B\| over radius
     -   [ ] Add error bar
+    -   [ ] More accurate way to obtain the properties of the discontinuities
 -   Identifaction
     -   [ ] Ensemble forest?
     -   [ ] Smoothing is important?

@@ -1,12 +1,9 @@
 missions := ("JNO" + "STA")
 
-preview:
+preview: export
   nbdev_preview
 
-publish-pkgs:
-  nbdev_export
-
-publish:
+publish: export
   nbdev_proc_nbs && cd _proc && quarto publish gh-pages --no-prompt
 
 quarto-install:
@@ -19,14 +16,11 @@ export:
   nbdev_export --path notebooks/__init__.ipynb
   nbdev_export
 
-env-update:
-  #!/usr/bin/env sh
-  mamba env update --file environment.yml
-
 env-create:
-  mamba env create --file environment.yml --force
-  # conda activate $(CONDA_ENV)
-  # pip install -e .
+  micromamba env create --file environment.yml
+
+env-update:
+  micromamba install --file environment.yml
 
 kedro-run-mag-primary mission:
   kedro run --to-outputs={{mission}}.MAG.primary_data_ts_1s

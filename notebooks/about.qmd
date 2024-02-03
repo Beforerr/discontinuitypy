@@ -1,0 +1,22 @@
+---
+title: About
+author:
+  - name: Zijin Zhang
+    email: zijin@ucla.edu
+    corresponding: true
+    affiliation: 
+       - ref: ucla
+  - name: Anton Artemyev
+    affiliation: 
+       - ref: ucla
+  - name: Zesen Huang
+    affiliation: 
+       - ref: ucla
+affiliations:
+  - id: ucla
+    name: University of California, Los Angeles
+execute: 
+  eval: false
+---
+
+This python package is still in beta phrase, and we are actively working on it. If you have any questions or suggestions, please feel free to contact us.

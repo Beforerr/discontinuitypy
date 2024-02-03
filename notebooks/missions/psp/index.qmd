@@ -1,5 +1,0 @@
----
-title: Parker Solar Probe (PSP)
-order: 1
----
-

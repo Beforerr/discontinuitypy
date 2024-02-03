@@ -2,8 +2,8 @@ project:
   output-dir: _docs
 
 website:
-  title: "ids-finder"
+  title: "discontinuitypy"
   site-url: "https://Beforerr.github.io/ids_finder"
-  description: "Hello planet"
+  description: "A python package for identifying and analyzing discontinuities for time series data."
   repo-branch: main
   repo-url: "https://github.com/Beforerr/ids_finder"

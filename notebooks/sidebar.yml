@@ -5,45 +5,15 @@ website:
       - 00_ids_finder.ipynb
       - 01_ids_detection.ipynb
       - 02_ids_properties.ipynb
+      - 03_mag_plasma.ipynb
       - 20_datasets.ipynb
-      - section: missions
+      - 21_datasets_kedro.ipynb
+      - 21_event.ipynb
+      - about.qmd
+      - section: properties
         contents:
-          - section: juno
-            contents:
-              - missions/juno/mag.ipynb
-              - missions/juno/state.ipynb
-            href: missions/juno/index.ipynb
-          - section: omni
-            contents: []
-            href: missions/omni/index.ipynb
-          - section: psp
-            contents:
-              - missions/psp/mag.ipynb
-            href: missions/psp/index.qmd
-          - section: stereo
-            contents:
-              - missions/stereo/mag.ipynb
-              - missions/stereo/state.ipynb
-            href: missions/stereo/index.ipynb
-          - section: themis
-            contents:
-              - missions/themis/mag.ipynb
-              - missions/themis/state.ipynb
-            href: missions/themis/index.ipynb
-          - section: wind
-            contents:
-              - missions/wind/mag.ipynb
-              - missions/wind/state.ipynb
-            href: missions/wind/index.ipynb
-        href: missions/index.qmd
-      - section: pipelines
-        contents:
-          - pipelines/100_project.ipynb
-          - pipelines/10_mission.ipynb
-          - pipelines/1_data.ipynb
-          - pipelines/2_data_mag.ipynb
-          - pipelines/3_data_state.ipynb
-        href: pipelines/index.qmd
+          - properties/00_duration.ipynb
+          - properties/00_mva.ipynb
       - section: utils
         contents:
           - utils/00_basic.ipynb
@@ -51,6 +21,3 @@ website:
           - utils/02_analysis_utils.ipynb
           - utils/10_polars.ipynb
           - utils/15_kedro.ipynb
-          - utils/20_pds.ipynb
-          - utils/30_cdf.ipynb
-          - utils/31_lbl.ipynb

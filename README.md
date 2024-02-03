@@ -1,42 +1,64 @@
-# Discontinuities? Yes!
-Zijin ZhangAnton ArtemyevVassilis AngelopoulosShi Chen
+# DiscontinuityPy
+
+
+# User Guide
+
+This package is designed to identify and analyze discontinuities in time
+series data.
+
+1.  Finding the discontinuities, see [this
+    notebook](./01_ids_detection.ipynb)
+    - Corresponding to limited feature extraction / anomaly detection
+2.  Calculating the properties of the discontinuities, see [this
+    notebook](./02_ids_properties.ipynb)
+    - One can use higher time resolution data
 
 For how to use this project as a python library, please see [this
 page](./00_ids_finder.ipynb).
 
-- [AGU23 Poster](./manuscripts/AGU23_poster.qmd)
-- [Paper](./manuscripts/paper.qmd)
+## Installation
 
-## TODOs
+``` shell
+pip install ids-finder
+```
+
+## Getting started
+
+Import the package
+
+``` python
+from discontinuitypy.utils.basic import *
+from discontinuitypy.core import *
+```
+
+# Related projects and publications
+
+- [Solar wind discontinuities spatial evolution in the outer
+  heliosphere](https://beforerr.github.io/ids_spatial_evolution_juno/)
+- [Evolution of solar wind discontinuities in the inner heliosphere: PSP
+  and Earth conjunctions and
+  alignments](https://beforerr.github.io/psp_conjunction/)
+
+# TODOs
 
 Science part
 
 - Analysis
-  - [x] Check `STEREO-A` and `ARTEMIS-B` data
   - [ ] Contribution of discontinuities to the power spectrum
   - [ ] Check Datagap
-  - [ ] Check `ARTEMIS-B` data in different states (solar wind,
-    magnetosheath, magnetotail, moon wake)
   - [ ] Distribution of \|B\| over radius
-  - [ ] JUNO from 2012-09~2012-10 lack of IDS and extreme large
-    thickness
-  - [ ] Wind data
   - [ ] Add error bar
-  - [ ] Validate the effects of calibrate candidate duration
-  - [ ] Validate model density with `Voyager`
+  - [ ] More accurate way to obtain the properties of the
+    discontinuities
 - Identifaction
   - [ ] Ensemble forest?
   - [ ] Smoothing is important?
   - [ ] Check change point algorithm
-- Visualize data gaps
 - Features
   - [ ] Thickness in N direction
   - [ ] Use high resolution data for feature extraction
 - Compare with other methods of identifying IDs
   - [ ] Verify with other methods of identifying IDs
-- [x] Incorporate solar wind propagation model
-  - [x] Verify with solar wind propagation model
-    - [x] Coordinate transformation
 
 Code part
 
@@ -48,10 +70,7 @@ Code part
   - [x] renaming feature layer `candidates`
 - [x] Kedro
   - [x] Modular pipelines
-  - ~~Incorporate `lineapy`~~
-- [x] QR codes
 
 ### bugs
 
-- [x] JUNO sw_temperature type
 - [ ] STEREO `B` less than zero (after downsampling?)
