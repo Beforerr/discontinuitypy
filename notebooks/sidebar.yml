@@ -10,6 +10,9 @@ website:
       - 21_datasets_kedro.ipynb
       - 21_event.ipynb
       - about.qmd
+      - nbdev.yml
+      - pipelines.yaml
+      - sidebar.yml
       - section: properties
         contents:
           - properties/00_duration.ipynb

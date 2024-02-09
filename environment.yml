@@ -23,11 +23,11 @@ dependencies:
 
   - loguru
   - tqdm
-  - kedro
   - pip
   - pip:
     - pyspedas # needed for plotting (to be removed in the future)
     # - swifter # efficiently applies any function to a pandas dataframe or series in the fastest available manner
     - multipledispatch
     - xarray-einstats
+    - ../space_analysis
     - . # local package

@@ -44,7 +44,8 @@ def ids_finder(
     tau: timedelta,
     ts: timedelta, 
     bcols = None,
-    extract_df: pl.LazyFrame = None, # data used for feature extraction (typically high cadence data)
+    extract_df: pl.LazyFrame = None, # data used for feature extraction (typically high cadence data),
+    **kwargs
 ):
     if extract_df is None:
         extract_df = detection_df
@@ -59,7 +60,7 @@ def ids_finder(
     
     data_c = compress_data_by_cands(extract_df.collect(), events)
     sat_fgm = df2ts(data_c, bcols)
-    ids = process_events(events, sat_fgm, ts)
+    ids = process_events(events, sat_fgm, ts, **kwargs)
     return ids
 
 # %% ../../notebooks/00_ids_finder.ipynb 8

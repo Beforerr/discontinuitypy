@@ -6,6 +6,7 @@ __all__ = ['create_partitions', 'convert_to_pd_dataframe', 'sort', 'pl_norm', 'd
 # %% ../../notebooks/utils/10_polars.ipynb 2
 import polars as pl
 import modin.pandas as mpd
+import pandas  as pd
 
 from typing import Any, Collection
 
@@ -91,3 +92,10 @@ def decompose_vector(df: pl.LazyFrame, vector_col, name=None):
         pl.col(vector_col).list.get(2).alias(f"{name}_z"),
     )
 
+# def _decompose_vector_pd(df: pd.DataFrame, vector_col, name=None):
+#     if name is None:
+#         name = vector_col
+
+#     return df.assign(
+#         **{f"{name}_x": df[vector_col].str[0], f"{name}_y": df[vector_col].str[1], f"{name}_z": df[vector_col].str[2]}
+#     )

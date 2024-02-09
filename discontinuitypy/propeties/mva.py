@@ -7,9 +7,8 @@ __all__ = ['minvar', 'calc_mva_features', 'fit_maxiumum_variance_direction', 'ca
 import xarray as xr
 import numpy as np
 import pandas as pd
-from datetime import timedelta
 
-from lmfit.models import StepModel, ConstantModel, Model
+from lmfit.models import StepModel, ConstantModel
 from lmfit import Parameters
 
 # %% ../../notebooks/properties/00_mva.ipynb 3
@@ -115,32 +114,23 @@ def calc_mva_features(data: np.ndarray):
     dvec_mag = vec_mag[-1] - vec_mag[0]
     dBOverB = np.abs(dvec_mag / vec_mag_mean)
     dBOverB_max = (np.max(vec_mag) - np.min(vec_mag)) / vec_mag_mean
-
-    output_names = [
-        "Vl",
-        "Vn",
-        "b_mag",
-        "b_n",
-        "db_mag",
-        "bn_over_b",
-        "db_over_b",
-        "db_over_b_max",
-        "dB_lmn",
-    ]
-
-    results = [
-        Vl,
-        Vn,
-        vec_mag_mean,
-        vec_n_mean,
-        dvec_mag,
-        VnOverVmag,
-        dBOverB,
-        dBOverB_max,
-        dvec,
-    ]
-
-    return pd.Series(results, index=output_names), vrot
+    
+    result = {
+        "Vl": Vl,
+        "Vn": Vn,
+        "b_mag": vec_mag_mean,
+        "b_n": vec_n_mean,
+        'B.before': vec_mag[0],
+        'B.after': vec_mag[-1],
+        "db_mag": dvec_mag,
+        "bn_over_b": VnOverVmag,
+        "db_over_b": dBOverB,
+        "db_over_b_max": dBOverB_max,
+        "dB_lmn": dvec,
+    }
+    
+    result = pd.Series(result)
+    return result, vrot
 
 # %% ../../notebooks/properties/00_mva.ipynb 8
 def fit_maxiumum_variance_direction(
@@ -149,7 +139,7 @@ def fit_maxiumum_variance_direction(
     """
     Fit maximum variance direction data by model
 
-    Note: 
+    Note:
         - see `datetime_to_numeric` in `xarray.core.duck_array_ops` for more details about converting datetime to numeric
         - Xarray uses the numpy dtypes datetime64[ns] and timedelta64[ns] to represent datetime data.
     """
@@ -157,8 +147,8 @@ def fit_maxiumum_variance_direction(
     x = (time - min(time)) / np.timedelta64(1, datetime_unit)
     y = ts.values
 
-    xmin, xmax = min(x), max(x)
-    ymin, ymax = min(y), max(y)
+    x_min, x_max = min(x), max(x)
+    x_width = x_max - x_min
 
     # Create a model
     step_mod = StepModel(form="logistic")
@@ -167,19 +157,39 @@ def fit_maxiumum_variance_direction(
 
     # Create parameters
     params = Parameters()
-    params.add("c", value=0)
-    params.add("center", value=(xmax + xmin) / 2.0, min=xmin, max=xmax)
-    params.add("amplitude", value=(ymax - ymin))
-    params.add("sigma", value=(xmax - xmin) / 7.0, min=0)
+    params.add("c", value=y[0])
+    params.add(
+        "center",
+        value=(x_max + x_min) / 2.0,
+        min=x_min + x_width / 7.0,
+        max=x_max - x_width / 7.0,
+    )
+    params.add("amplitude", value=(y[-1] - y[0]))
+    params.add("sigma", value=x_width / 7.0, min=0)
 
-    out = mod.fit(y, params, x=x)
-
-    amplitude = out.params["amplitude"].value
-    sigma = out.params["sigma"].value
-    center = out.params["center"].value
+    # Ensure there are enough data points to fit the model
+    if len(y) < 4:
+        # Not enough data points, return None or an empty result instead of raising an error
+        amplitude = np.nan
+        sigma = np.nan
+        center = np.nan
+        rsquared = np.nan
+        chisqr = np.nan
+        c = np.nan
+    else:
+        out = mod.fit(y, params, x=x)
+        amplitude = out.params["amplitude"].value
+        sigma = out.params["sigma"].value
+        center = out.params["center"].value
+        c = out.params["c"].value
+        rsquared = out.rsquared
+        chisqr = out.chisqr
+    
     max_df = amplitude / (4 * sigma)
 
-    d_time = min(time) + center * np.timedelta64(1, datetime_unit).astype("timedelta64[ns]")
+    d_time = min(time) + center * np.timedelta64(1, datetime_unit).astype(
+        "timedelta64[ns]"
+    )
 
     result = pd.Series(
         {
@@ -187,9 +197,9 @@ def fit_maxiumum_variance_direction(
             "fit.vars.sigma": sigma,
             "d_time": d_time,
             "d_star": max_df,
-            "fit.vars.c": out.params["c"].value,
-            "fit.stat.rsquared": out.rsquared,
-            "fit.stat.chisqr": out.chisqr,
+            "fit.vars.c": c,
+            "fit.stat.rsquared": rsquared,
+            "fit.stat.chisqr": chisqr,
         }
     )
     if return_best_fit:

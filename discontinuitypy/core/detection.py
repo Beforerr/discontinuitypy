@@ -271,7 +271,7 @@ def filter_indices(
     ).drop(["count_prev", "count_next"])
 
 # %% ../../notebooks/01_ids_detection.ipynb 19
-def detect_events(data: pl.DataFrame, tau: timedelta, ts: timedelta, bcols):
+def detect_events(data: pl.DataFrame, tau: timedelta, ts: timedelta, bcols, method='liu'):
     indices = compute_indices(data, tau, bcols)
     sparse_num = tau / ts // 3
     events = indices.pipe(filter_indices, sparse_num=sparse_num).pipe(

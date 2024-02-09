@@ -7,10 +7,9 @@ __all__ = ['get_candidate_data', 'get_candidates', 'calc_candidate_duration', 'g
 
 # %% ../../notebooks/02_ids_properties.ipynb 1
 #| code-summary: "Import all the packages needed for the project"
-from fastcore.utils import *
-from fastcore.test import *
 import polars as pl
 import xarray as xr
+from fastcore.all import patch
 
 try:
     import modin.pandas as pd
@@ -63,7 +62,7 @@ def get_candidates(candidates: pd.DataFrame, candidate_type=None, num: int = 4):
 from ..propeties.duration import calc_duration
 
 
-def calc_candidate_duration(candidate: pd.Series, data, method="distance"):
+def calc_candidate_duration(candidate: pd.Series, data, method="distance", **kwargs):
     try:
         candidate_data = get_candidate_data(candidate, data)
         result = calc_duration(candidate_data)
@@ -227,37 +226,42 @@ def _transform(self: pdp.ApplyToRows, X, verbose):
 class IDsPipeline:
     def __init__(self):
         pass
-
-    def calc_duration(self, data: xr.DataArray):
+    
+    @classmethod
+    def calc_duration(self, data: xr.DataArray, **kwargs):
         return pdp.ApplyToRows(
-            lambda candidate: calc_candidate_duration(candidate, data),
+            lambda candidate: calc_candidate_duration(candidate, data, **kwargs),
             func_desc="calculating duration parameters",
         )
-
-    def calc_mva_features(self, data):
+    
+    @classmethod
+    def calc_mva_features(self, data, **kwargs):
         return pdp.ApplyToRows(
-            lambda candidate: calc_candidate_mva_features(candidate, data),
-            func_desc='calculating MVA features',
+            lambda candidate: calc_candidate_mva_features(candidate, data, **kwargs),
+            func_desc="calculating MVA features",
         )
 
-    def calc_vec_change(self, data):
+    @classmethod
+    def calc_vec_change(self, data, **kwargs):
         return pdp.ColByFrameFunc(
             "dB",
-            lambda candidate: calc_events_vec_change(candidate, data),
-            func_desc='calculating compound change',
+            lambda candidate: calc_events_vec_change(candidate, data, **kwargs),
+            func_desc="calculating compound change",
         )
 
-    def calc_rotation_angle(self, data):
+    @classmethod
+    def calc_rotation_angle(self, data, **kwargs):
         return pdp.ColByFrameFunc(
             "rotation_angle",
-            lambda df: calc_events_rotation_angle(df, data),
+            lambda df: calc_events_rotation_angle(df, data, **kwargs),
             func_desc="calculating rotation angle",
         )
 
-    def calc_normal_direction(self, data):
+    @classmethod
+    def calc_normal_direction(self, data, name="normal_direction", **kwargs):
         return pdp.ColByFrameFunc(
-            "normal_direction",
-            lambda df: calc_events_normal_direction(df, data),
+            name,
+            lambda df: calc_events_normal_direction(df, data, **kwargs),
             func_desc="calculating normal direction",
         )
 
@@ -276,28 +280,31 @@ def process_events(
 
     candidates = convert_to_pd_dataframe(candidates_pl, modin=modin)
 
-    id_pipelines = IDsPipeline()
-    candidates = id_pipelines.calc_duration(sat_fgm).apply(candidates)
+    candidates = (
+        IDsPipeline.calc_duration(sat_fgm, **kwargs).apply(candidates).dropna()
+    )  # Remove candidates with NaN values)
 
     ids = (
-        id_pipelines.calc_mva_features(sat_fgm)
-        + id_pipelines.calc_vec_change(sat_fgm)
-        + id_pipelines.calc_rotation_angle(sat_fgm)
-        + id_pipelines.calc_normal_direction(sat_fgm)
-    ).apply(
-        candidates.dropna()  # Remove candidates with NaN values)
+        (
+            IDsPipeline.calc_mva_features(sat_fgm, **kwargs)
+            + IDsPipeline.calc_vec_change(sat_fgm)
+            + IDsPipeline.calc_rotation_angle(sat_fgm)
+            + IDsPipeline.calc_normal_direction(sat_fgm, name="k")
+        )
+        .apply(candidates)
     )
 
     if isinstance(ids, mpd.DataFrame):
         ids = ids._to_pandas()
 
-    return (
-        pl.DataFrame(ids)
-        .pipe(decompose_vector, "dB")
-        .pipe(decompose_vector, "dB_lmn")
-        .pipe(decompose_vector, "normal_direction", name="k")
-        .pipe(decompose_vector, "Vl")
-        .pipe(decompose_vector, "Vn")
-        .drop(["dB", "dB_lmn", "normal_direction", "Vl", "Vn"])
-    )
+    vectors2decompose = ["dB", "dB_lmn", "k", "Vl", "Vn"]
+
+    df = pl.DataFrame(
+        ids.dropna(), schema_overrides={vec: pl.List for vec in vectors2decompose}
+    )  # ArrowInvalid: Could not convert [0.9799027968348948, -0.17761542644940076, -0.07309766783111293] with type list: tried to convert to double
+
+    for vec in vectors2decompose:
+        df = decompose_vector(df, vec)
+
+    return df.drop(vectors2decompose)
     # ValueError: Data type fixed_size_list[pyarrow] not supported by interchange protocol

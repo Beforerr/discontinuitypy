@@ -2,23 +2,58 @@
 
 # %% auto 0
 __all__ = ['combine_features', 'vector_project', 'vector_project_pl', 'calc_rotation_angle_pl', 'compute_inertial_length',
-           'compute_Alfven_speed', 'compute_Alfven_current', 'calc_combined_features']
+           'compute_Alfven_current', 'calc_plasma_parameter_change', 'calc_combined_features']
 
 # %% ../notebooks/03_mag_plasma.ipynb 1
 import polars as pl
 import polars.selectors as cs
+from space_analysis.plasma.formulary import ldf_Alfven_speed as compute_Alfven_speed
 
 # %% ../notebooks/03_mag_plasma.ipynb 2
-def combine_features(candidates: pl.DataFrame, states_data: pl.DataFrame):
+def combine_features(
+    events: pl.DataFrame,
+    states_data: pl.DataFrame,
+    detail: bool = True,
+    subset_cols: list = [
+        "plasma_density",
+        "plasma_temperature",
+        "plasma_speed",
+    ],
+):
     # change time format: see issue: https://github.com/pola-rs/polars/issues/12023
+
     states_data = states_data.with_columns(
         cs.datetime().dt.cast_time_unit("ns"),
-    )
-    candidates = candidates.with_columns(
-        cs.datetime().dt.cast_time_unit("ns"),
-    )
+    ).sort("time")
 
-    return candidates.sort("time").join_asof(states_data.sort("time"), on="time")
+    events = events.with_columns(
+        cs.datetime().dt.cast_time_unit("ns"),
+    ).sort("time")
+
+    subset_cols = subset_cols + ["time"] # https://stackoverflow.com/questions/2347265/why-does-behave-unexpectedly-on-lists
+    states_data_subset = states_data.select(subset_cols)
+    df = events.join_asof(states_data, on="time", strategy="nearest")
+    if detail:
+        return (
+            df.sort("d_tstart")
+            .join_asof(
+                states_data_subset,
+                left_on="d_tstart",
+                right_on="time",
+                strategy="backward",
+                suffix="_before",
+            )
+            .sort("d_tstop")
+            .join_asof(
+                states_data_subset,
+                left_on="d_tstop",
+                right_on="time",
+                strategy="forward",
+                suffix="_after",
+            )
+        )
+    else:
+        return df
 
 # %% ../notebooks/03_mag_plasma.ipynb 4
 import astropy.units as u
@@ -66,19 +101,6 @@ def compute_inertial_length(ldf: pl.LazyFrame, density_col = "plasma_density"):
     return df.with_columns(ion_inertial_length=pl.Series(result.value)).lazy()
 
 # %% ../notebooks/03_mag_plasma.ipynb 10
-def compute_Alfven_speed(
-    ldf: pl.LazyFrame,
-    density_col = "plasma_density",
-):
-    df = ldf.collect()
-
-    B = df["B"] if "B" in df.columns else df["b_mag"]  # backwards compatiblity
-    density = df[density_col].to_numpy() * u.cm ** (-3)
-    result = Alfven_speed(B.to_numpy() * u.nT, density=density, ion="p+").to(u.km / u.s)
-
-    return df.with_columns(Alfven_speed=pl.Series(result.value)).lazy()
-
-
 def compute_Alfven_current(
     ldf: pl.LazyFrame,
     density_col = "plasma_density",
@@ -94,15 +116,48 @@ def compute_Alfven_current(
     return df.with_columns(j_Alfven=pl.Series(result.value)).lazy()
 
 # %% ../notebooks/03_mag_plasma.ipynb 12
+def calc_plasma_parameter_change(df: pl.LazyFrame):
+    return df.rename(
+        {
+            "plasma_density_before": "n.before",
+            "plasma_speed_before": "v.ion.before",
+            "plasma_temperature_before": "T.before",
+            "plasma_density_after": "n.after",
+            "plasma_speed_after": "v.ion.after",
+            "plasma_temperature_after": "T.after",
+        }
+    ).pipe(
+        compute_Alfven_speed, B="B.before", n="n.before", col_name="v.Alfven.before"
+    ).pipe(
+        compute_Alfven_speed, B="B.after", n="n.after", col_name="v.Alfven.after"
+    ).with_columns(
+        (pl.col("n.after") - pl.col("n.before")).alias("n.change"),
+        (pl.col("v.ion.after") - pl.col("v.ion.before")).alias("v.ion.change"),
+        (pl.col("T.after") - pl.col("T.before")).alias("T.change"),
+        (pl.col("B.after") - pl.col("B.before")).alias("B.change"),
+        (pl.col("v.Alfven.after") - pl.col("v.Alfven.before")).alias("v.Alfven.change"),
+    )
+
+# %% ../notebooks/03_mag_plasma.ipynb 13
 def calc_combined_features(
     df: pl.LazyFrame,
     vec_cols = ["v_x", "v_y", "v_z"],  # plasma velocity vector in any fixed coordinate system,
     normal_cols = ["k_x", "k_y", "k_z"], # normal vector of the discontinuity plane
     b_cols = None, # ["B_background_x", "B_background_y", "B_background_z"]
+    density_col = "plasma_density",
+    detail: bool = True,
 ):
     
     Vl_cols = ["Vl_x", "Vl_y", "Vl_z"]
     Vn_cols = ["Vn_x", "Vn_y", "Vn_z"]
+    
+    thickness_cols = ["L_n", "L_mn", "L_k"]
+    current_cols = ["j0", "j0_k"]
+
+    length_norm = pl.col("ion_inertial_length")
+    current_norm = pl.col("j_Alfven")
+    b_norm = pl.col("b_mag")    
+
     
     j_factor = ((u.nT / u.s) * (1 / mu0 / (u.km / u.s))).to(u.nA / u.m**2)
 
@@ -129,10 +184,18 @@ def calc_combined_features(
             j0_k=pl.col("d_star") / pl.col("v_k"),
         )
         .pipe(compute_inertial_length)
-        .pipe(compute_Alfven_speed)
+        .pipe(compute_Alfven_speed, n=density_col, B="b_mag")
         .pipe(compute_Alfven_current)
         .with_columns(
             cs.by_name("j0", "j0_k") * j_factor.value,
+        ).with_columns(
+            (cs.by_name(thickness_cols) / length_norm).suffix("_norm"),
+            (cs.by_name(current_cols) / current_norm).suffix("_norm"),
+            (cs.by_name(b_cols) / b_norm).suffix("_norm"),
         )
     )
+    
+    if detail:
+        result = result.pipe(calc_plasma_parameter_change)
+    
     return result
