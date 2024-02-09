@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.518">
+<meta name="generator" content="quarto-1.4.547">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ids-finder - Kedro</title>
+<title>discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -101,11 +102,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="ids-finder - Kedro">
-<meta property="og:description" content="Hello planet">
-<meta property="og:site_name" content="ids-finder">
-<meta name="twitter:title" content="ids-finder - Kedro">
-<meta name="twitter:description" content="Hello planet">
+<meta property="og:title" content="discontinuitypy">
+<meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
+<meta property="og:site_name" content="discontinuitypy">
+<meta name="twitter:title" content="discontinuitypy">
+<meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -117,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">ids-finder</span>
+    <span class="navbar-title">discontinuitypy</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -130,35 +131,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Publications</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
-        <li>
-    <a class="dropdown-item" href="../manuscripts/paper.html">
- <span class="dropdown-text">Paper</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html">
- <span class="dropdown-text">AGU23 Poster</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../analysis/index.html" aria-current="page"> 
-<span class="menu-text">Results</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Beforerr/ids_finder"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
+    <a class="nav-link active" href="../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+    <a href="https://github.com/Beforerr/ids_finder" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -185,47 +165,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../pipelines/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pipelines</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/1_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/10_mission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mission Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/100_project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/2_data_mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/3_data_state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
@@ -240,210 +179,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../03_mag_plasma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Combine magnetic field data and plasma data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../20_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../21_datasets_kedro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../21_event.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Event</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../analysis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Results</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Duration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../properties/00_mva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Minimum variance analysis (MVA)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/00_base.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loading all datasets from different sources</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/01_occurence_rate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Occurence Rate</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/02_orientation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Orientation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/02_properties.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SWD Properties</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/03_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Map of thickness and current intensity</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/10_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ID classification</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/11_ts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Time resolution effect</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/20_model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Missions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/juno/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Juno</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/juno/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JUNO Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/juno/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JUNO State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/stereo/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from STEREO</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/stereo/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">STEREO Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/stereo/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">STEREO State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/wind/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Wind</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/wind/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wind Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/wind/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wind State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/themis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from ARTHEMIS</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/themis/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">THEMIS Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/themis/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">THEMIS State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/omni/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OMNI data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text">Manuscripts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../manuscripts/AGU23_poster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solar wind discontinuities spatial evolution and energetic ion scattering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../manuscripts/paper.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Discontinuities? Yes!</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../utils/basic.html" class="sidebar-item-text sidebar-link">
@@ -474,24 +275,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><code>Kedro</code></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils/20_pds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Planetary Data System (PDS)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils/30_cdf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils for CDF file format</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils/31_lbl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils for lbl file format</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -504,33 +287,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#load_context" id="toc-load_context" class="nav-link active" data-scroll-target="#load_context">load_context</a></li>
+  <li><a href="#kedro" id="toc-kedro" class="nav-link active" data-scroll-target="#kedro"><code>Kedro</code></a>
+  <ul class="collapse">
+  <li><a href="#load_context" id="toc-load_context" class="nav-link" data-scroll-target="#load_context">load_context</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/15_kedro.html"><code>Kedro</code></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><code>Kedro</code></h1>
-</div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="kedro" class="level2">
+<h2 class="anchored" data-anchor-id="kedro"><code>Kedro</code></h2>
 <p>Standard import</p>
 <pre class="{python}"><code>from kedro.pipeline import Pipeline, node
 from kedro.pipeline.modular_pipeline import pipeline
@@ -539,7 +311,7 @@ def create_pipeline(**kwargs) -&gt; Pipeline:
     return pipeline([
         ...
     ])</code></pre>
-<div id="cell-4" class="cell">
+<div id="cell-3" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_catalog(conf_source: <span class="bu">str</span>, catalog_source: <span class="bu">str</span> <span class="op">=</span> <span class="st">"catalog"</span>):</span>
@@ -557,7 +329,7 @@ def create_pipeline(**kwargs) -&gt; Pipeline:
 </div>
 <p>The following <code>load_catalog</code> provides project-aware access to the catalog. The preceding <code>load_catalog</code> only works when notebook is run from the project root.</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/kedro.py#L15" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/kedro.py#L15" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="load_context" class="level3">
 <h3 class="anchored" data-anchor-id="load_context">load_context</h3>
 <blockquote class="blockquote">
@@ -566,6 +338,7 @@ def create_pipeline(**kwargs) -&gt; Pipeline:
 </blockquote>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -697,27 +470,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -732,10 +484,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -744,8 +500,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -971,4 +734,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.518">
+<meta name="generator" content="quarto-1.4.547">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ids-finder - Utils</title>
+<title>discontinuitypy - Utils</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,6 +60,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -67,11 +68,11 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="ids-finder - Utils">
-<meta property="og:description" content="Hello planet">
-<meta property="og:site_name" content="ids-finder">
-<meta name="twitter:title" content="ids-finder - Utils">
-<meta name="twitter:description" content="Hello planet">
+<meta property="og:title" content="discontinuitypy - Utils">
+<meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
+<meta property="og:site_name" content="discontinuitypy">
+<meta name="twitter:title" content="discontinuitypy - Utils">
+<meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -83,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">ids-finder</span>
+    <span class="navbar-title">discontinuitypy</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -96,35 +97,14 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Publications</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
-        <li>
-    <a class="dropdown-item" href="../manuscripts/paper.html">
- <span class="dropdown-text">Paper</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../manuscripts/AGU23_poster.html">
- <span class="dropdown-text">AGU23 Poster</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../analysis/index.html" aria-current="page"> 
-<span class="menu-text">Results</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Beforerr/ids_finder"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
+    <a class="nav-link active" href="../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+    <a href="https://github.com/Beforerr/ids_finder" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -151,47 +131,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../pipelines/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pipelines</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/1_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/10_mission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mission Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/100_project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/2_data_mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pipelines/3_data_state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
@@ -206,210 +145,72 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../03_mag_plasma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Combine magnetic field data and plasma data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../20_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../21_datasets_kedro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../21_event.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Event</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../analysis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Results</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Duration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../properties/00_mva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Minimum variance analysis (MVA)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/00_base.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loading all datasets from different sources</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/01_occurence_rate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Occurence Rate</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/02_orientation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Orientation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/02_properties.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SWD Properties</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/03_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Map of thickness and current intensity</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/10_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ID classification</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/11_ts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Time resolution effect</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../analysis/20_model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Missions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/juno/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Juno</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/juno/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JUNO Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/juno/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JUNO State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/stereo/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from STEREO</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/stereo/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">STEREO Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/stereo/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">STEREO State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/wind/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Wind</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/wind/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wind Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/wind/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wind State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../missions/themis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from ARTHEMIS</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/themis/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">THEMIS Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/themis/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">THEMIS State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../missions/omni/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OMNI data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text">Manuscripts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../manuscripts/AGU23_poster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solar wind discontinuities spatial evolution and energetic ion scattering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../manuscripts/paper.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Discontinuities? Yes!</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../utils/basic.html" class="sidebar-item-text sidebar-link active">
@@ -438,24 +239,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../utils/15_kedro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>Kedro</code></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils/20_pds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Planetary Data System (PDS)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils/30_cdf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils for CDF file format</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../utils/31_lbl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils for lbl file format</span></a>
   </div>
 </li>
       </ul>
@@ -495,7 +278,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#resample" id="toc-resample" class="nav-link" data-scroll-target="#resample">resample</a></li>
   <li><a href="#resample-1" id="toc-resample-1" class="nav-link" data-scroll-target="#resample-1">resample</a></li>
   <li><a href="#resample-2" id="toc-resample-2" class="nav-link" data-scroll-target="#resample-2">resample</a></li>
-  <li><a href="#get_memory_usage" id="toc-get_memory_usage" class="nav-link" data-scroll-target="#get_memory_usage">get_memory_usage</a></li>
   <li><a href="#calc_vec_mag" id="toc-calc_vec_mag" class="nav-link" data-scroll-target="#calc_vec_mag">calc_vec_mag</a></li>
   <li><a href="#df2ts" id="toc-df2ts" class="nav-link" data-scroll-target="#df2ts">df2ts</a></li>
   <li><a href="#check_fgm" id="toc-check_fgm" class="nav-link" data-scroll-target="#check_fgm">check_fgm</a></li>
@@ -529,7 +311,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="utilities-functions" class="level2">
 <h2 class="anchored" data-anchor-id="utilities-functions">Utilities functions</h2>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L47" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L44" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="pmap" class="level3">
 <h3 class="anchored" data-anchor-id="pmap">pmap</h3>
 <blockquote class="blockquote">
@@ -544,7 +326,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="configurations" class="level2">
 <h2 class="anchored" data-anchor-id="configurations">Configurations</h2>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L58" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L55" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="dataconfig" class="level3">
 <h3 class="anchored" data-anchor-id="dataconfig">DataConfig</h3>
 <blockquote class="blockquote">
@@ -552,14 +334,32 @@ ul.task-list li input[type="checkbox"] {
              end:datetime.datetime=None, ts:datetime.timedelta=None,
              coord:str=None)</code></pre>
 </blockquote>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
+<p>Usage docs: https://docs.pydantic.dev/2.6/concepts/models/</p>
+<p>A base class for creating Pydantic models.</p>
+<p>Attributes: <strong>class_vars</strong>: The names of classvars defined on the model. <strong>private_attributes</strong>: Metadata about the private attributes of the model. <strong>signature</strong>: The signature for instantiating the model.</p>
+<pre><code>__pydantic_complete__: Whether model building is completed, or if there are still undefined fields.
+__pydantic_core_schema__: The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
+__pydantic_custom_init__: Whether the model has a custom `__init__` function.
+__pydantic_decorators__: Metadata containing the decorators defined on the model.
+    This replaces `Model.__validators__` and `Model.__root_validators__` from Pydantic V1.
+__pydantic_generic_metadata__: Metadata for generic models; contains data used for a similar purpose to
+    __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.
+__pydantic_parent_namespace__: Parent namespace of the model, used for automatic rebuilding of models.
+__pydantic_post_init__: The name of the post-init method for the model, if defined.
+__pydantic_root_model__: Whether the model is a `RootModel`.
+__pydantic_serializer__: The pydantic-core SchemaSerializer used to dump instances of the model.
+__pydantic_validator__: The pydantic-core SchemaValidator used to validate instances of the model.
+
+__pydantic_extra__: An instance attribute with the values of extra fields from validation when
+    `model_config['extra'] == 'allow'`.
+__pydantic_fields_set__: An instance attribute with the names of fields explicitly set.
+__pydantic_private__: Instance attribute with the values of private attributes set on the model instance.</code></pre>
 </section>
 </section>
 <section id="polars" class="level2">
 <h2 class="anchored" data-anchor-id="polars"><code>Polars</code></h2>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L87" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L84" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="filter_tranges_df" class="level3">
 <h3 class="anchored" data-anchor-id="filter_tranges_df">filter_tranges_df</h3>
 <blockquote class="blockquote">
@@ -570,7 +370,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Filter data by time ranges</li>
 </ul>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L69" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L66" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="filter_tranges" class="level3">
 <h3 class="anchored" data-anchor-id="filter_tranges">filter_tranges</h3>
@@ -589,7 +389,7 @@ ul.task-list li input[type="checkbox"] {
 <pre><code> DataFrame.plot (*args, **kwargs)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/polars.py#L68" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/polars.py#L69" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="pl_norm" class="level3">
 <h3 class="anchored" data-anchor-id="pl_norm">pl_norm</h3>
@@ -602,7 +402,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="partition-the-dataset-by-time" class="level4">
 <h4 class="anchored" data-anchor-id="partition-the-dataset-by-time">Partition the dataset by time</h4>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L178" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L175" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 </section>
 <section id="partition_data_by_time" class="level3">
@@ -616,7 +416,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame. method: The method to partition the data.</p>
 <p>Returns: Partitioned DataFrame.</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L163" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L160" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="partition_data_by_year_month" class="level3">
 <h3 class="anchored" data-anchor-id="partition_data_by_year_month">partition_data_by_year_month</h3>
@@ -627,7 +427,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame.</p>
 <p>Returns: Partitioned DataFrame.</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L149" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L146" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="partition_data_by_year" class="level3">
 <h3 class="anchored" data-anchor-id="partition_data_by_year">partition_data_by_year</h3>
@@ -638,7 +438,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame.</p>
 <p>Returns: Partitioned DataFrame.</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L134" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L131" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="partition_data_by_ts" class="level3">
 <h3 class="anchored" data-anchor-id="partition_data_by_ts">partition_data_by_ts</h3>
@@ -650,7 +450,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame. ts: Time interval.</p>
 <p>Returns: Partitioned DataFrame.</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L215" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L212" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="concat_partitions" class="level3">
 <h3 class="anchored" data-anchor-id="concat_partitions">concat_partitions</h3>
@@ -660,7 +460,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Concatenate input partitions into one DataFrame.</p>
 <p>Args: partitioned_input: A dictionary with partition ids as keys and load functions as values.</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L201" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L198" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="concat_df" class="level3">
 <h3 class="anchored" data-anchor-id="concat_df">concat_df</h3>
@@ -672,7 +472,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="resample-data" class="level4">
 <h4 class="anchored" data-anchor-id="resample-data">Resample data</h4>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L229" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L226" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 </section>
 <section id="format_timedelta" class="level3">
@@ -682,7 +482,7 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p>Format timedelta to <code>timedelta</code></p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L263" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L260" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="resample" class="level3">
 <h3 class="anchored" data-anchor-id="resample">resample</h3>
@@ -695,7 +495,7 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p>Resample the DataFrame</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L263" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L260" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="resample-1" class="level3">
 <h3 class="anchored" data-anchor-id="resample-1">resample</h3>
@@ -708,7 +508,7 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p>Resample the DataFrame</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L263" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L260" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="resample-2" class="level3">
 <h3 class="anchored" data-anchor-id="resample-2">resample</h3>
@@ -721,15 +521,7 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p>Resample the DataFrame</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L287" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="get_memory_usage" class="level3">
-<h3 class="anchored" data-anchor-id="get_memory_usage">get_memory_usage</h3>
-<blockquote class="blockquote">
-<pre><code> get_memory_usage (data)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L324" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L317" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calc_vec_mag" class="level3">
 <h3 class="anchored" data-anchor-id="calc_vec_mag">calc_vec_mag</h3>
@@ -737,17 +529,18 @@ ul.task-list li input[type="checkbox"] {
 <pre><code> calc_vec_mag (vec)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L301" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L281" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="df2ts" class="level3">
 <h3 class="anchored" data-anchor-id="df2ts">df2ts</h3>
 <blockquote class="blockquote">
 <pre><code> df2ts (df:Union[pandas.core.frame.DataFrame,polars.dataframe.frame.DataFr
-        ame,polars.lazyframe.frame.LazyFrame], cols, attrs=None,
-        name=None)</code></pre>
+        ame,polars.lazyframe.frame.LazyFrame], cols=None, time_col='time',
+        attrs=None, name=None)</code></pre>
 </blockquote>
+<p>Convert DataFrame to TimeSeries</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/utils/basic.py#L328" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/basic.py#L321" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="check_fgm" class="level3">
 <h3 class="anchored" data-anchor-id="check_fgm">check_fgm</h3>
@@ -888,27 +681,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -923,10 +695,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -935,8 +711,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1162,4 +945,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

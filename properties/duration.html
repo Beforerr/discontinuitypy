@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>discontinuitypy - Utils</title>
+<title>discontinuitypy - Duration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,10 +102,10 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="discontinuitypy - Utils">
+<meta property="og:title" content="discontinuitypy - Duration">
 <meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - Utils">
+<meta name="twitter:title" content="discontinuitypy - Duration">
 <meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -113,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/02_analysis_utils.html">Utils</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../properties/duration.html">Properties</a></li><li class="breadcrumb-item"><a href="../properties/duration.html">Duration</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -151,12 +185,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../10_datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Datasets</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../20_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
@@ -190,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/duration.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Duration</span></a>
   </div>
 </li>
@@ -225,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link active">
+  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Utils</span></a>
   </div>
 </li>
@@ -253,19 +281,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#link_coord2dim" id="toc-link_coord2dim" class="nav-link active" data-scroll-target="#link_coord2dim">link_coord2dim</a></li>
-  <li><a href="#filter_before_jupiter" id="toc-filter_before_jupiter" class="nav-link" data-scroll-target="#filter_before_jupiter">filter_before_jupiter</a></li>
-  <li><a href="#n2_normalize" id="toc-n2_normalize" class="nav-link" data-scroll-target="#n2_normalize">n2_normalize</a></li>
-  <li><a href="#common-codes-used-across-notebooks" id="toc-common-codes-used-across-notebooks" class="nav-link" data-scroll-target="#common-codes-used-across-notebooks">Common codes used across notebooks</a></li>
+  <li><a href="#maxium-distance-method" id="toc-maxium-distance-method" class="nav-link active" data-scroll-target="#maxium-distance-method">Maxium distance method</a>
+  <ul class="collapse">
+  <li><a href="#ts_max_distance" id="toc-ts_max_distance" class="nav-link" data-scroll-target="#ts_max_distance">ts_max_distance</a></li>
+  </ul></li>
+  <li><a href="#maxium-derivative-method" id="toc-maxium-derivative-method" class="nav-link" data-scroll-target="#maxium-derivative-method">Maxium derivative method</a>
+  <ul class="collapse">
+  <li><a href="#get_time_from_condition" id="toc-get_time_from_condition" class="nav-link" data-scroll-target="#get_time_from_condition">get_time_from_condition</a></li>
+  <li><a href="#find_start_end_times" id="toc-find_start_end_times" class="nav-link" data-scroll-target="#find_start_end_times">find_start_end_times</a></li>
+  <li><a href="#calc_d_duration" id="toc-calc_d_duration" class="nav-link" data-scroll-target="#calc_d_duration">calc_d_duration</a></li>
+  <li><a href="#ts_max_derivative" id="toc-ts_max_derivative" class="nav-link" data-scroll-target="#ts_max_derivative">ts_max_derivative</a></li>
+  <li><a href="#calc_duration" id="toc-calc_duration" class="nav-link" data-scroll-target="#calc_duration">calc_duration</a></li>
+  </ul></li>
+  <li><a href="#obsolete-codes" id="toc-obsolete-codes" class="nav-link" data-scroll-target="#obsolete-codes">Obsolete codes</a>
+  <ul class="collapse">
+  <li><a href="#calibrates-candidate-duration" id="toc-calibrates-candidate-duration" class="nav-link" data-scroll-target="#calibrates-candidate-duration">Calibrates candidate duration</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/02_analysis_utils.html">Utils</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../properties/duration.html">Properties</a></li><li class="breadcrumb-item"><a href="../properties/duration.html">Duration</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Utils</h1>
+<h1 class="title">Duration</h1>
 </div>
 
 
@@ -283,42 +323,184 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="maxium-distance-method" class="level2">
+<h2 class="anchored" data-anchor-id="maxium-distance-method">Maxium distance method</h2>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/analysis.py#L11" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="link_coord2dim" class="level3">
-<h3 class="anchored" data-anchor-id="link_coord2dim">link_coord2dim</h3>
+<section id="ts_max_distance" class="level3">
+<h3 class="anchored" data-anchor-id="ts_max_distance">ts_max_distance</h3>
 <blockquote class="blockquote">
-<pre><code> link_coord2dim (df:polars.dataframe.frame.DataFrame, dim='time',
-                 coord:str='radial_distance')</code></pre>
+<pre><code> ts_max_distance (ts:xarray.core.dataarray.DataArray, coord:str='time')</code></pre>
 </blockquote>
-<p>Link the coord to a dimension across different subgroups</p>
-<p>Note: this idea is borrowed from the <code>xarray.DataArray.coords</code>.</p>
-<pre><code>╭─────────────────────────────── Traceback (most recent call last) ────────────────────────────────╮
-│ in &lt;module&gt;:3                                                                                    │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
-NameError: name 'filter_tranges_ds' is not defined</code></pre>
+<p>Compute the time interval when the timeseries has maxium cumulative variation</p>
+<div id="cell-4" class="cell" data-execution_count="155">
+<details class="code-fold">
+<summary>test for ts_max_distance function</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> pd.date_range(<span class="st">'2000-01-01'</span>, periods<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi, <span class="dv">10</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># generate data circular in three dimensions, so the biggest distance is between the first and the last point    </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.zeros((<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data[:, <span class="dv">0</span>] <span class="op">=</span> np.sin(x)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>data[:, <span class="dv">1</span>] <span class="op">=</span> np.cos(x)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> xr.DataArray(data, coords<span class="op">=</span>{<span class="st">'time'</span>: time}, dims<span class="op">=</span>[<span class="st">'time'</span>, <span class="st">'space'</span>])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>start, end <span class="op">=</span> ts_max_distance(ts)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> start <span class="op">==</span> time[<span class="dv">0</span>]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> end <span class="op">==</span> time[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="maxium-derivative-method" class="level2">
+<h2 class="anchored" data-anchor-id="maxium-derivative-method">Maxium derivative method</h2>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/analysis.py#L33" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="filter_before_jupiter" class="level3">
-<h3 class="anchored" data-anchor-id="filter_before_jupiter">filter_before_jupiter</h3>
+<section id="get_time_from_condition" class="level3">
+<h3 class="anchored" data-anchor-id="get_time_from_condition">get_time_from_condition</h3>
 <blockquote class="blockquote">
-<pre><code> filter_before_jupiter (df:polars.dataframe.frame.DataFrame)</code></pre>
+<pre><code> get_time_from_condition (vec:xarray.core.dataarray.DataArray, threshold,
+                          condition_type)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/utils/analysis.py#L40" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="n2_normalize" class="level3">
-<h3 class="anchored" data-anchor-id="n2_normalize">n2_normalize</h3>
+<section id="find_start_end_times" class="level3">
+<h3 class="anchored" data-anchor-id="find_start_end_times">find_start_end_times</h3>
 <blockquote class="blockquote">
-<pre><code> n2_normalize (df:polars.dataframe.frame.DataFrame, cols,
-               avg_sats:list=['STA', 'THB', 'Wind'])</code></pre>
+<pre><code> find_start_end_times (vec_diff_mag:xarray.core.dataarray.DataArray,
+                       d_time, threshold)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="calc_d_duration" class="level3">
+<h3 class="anchored" data-anchor-id="calc_d_duration">calc_d_duration</h3>
+<blockquote class="blockquote">
+<pre><code> calc_d_duration (vec:xarray.core.dataarray.DataArray, d_time, threshold)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="ts_max_derivative" class="level3">
+<h3 class="anchored" data-anchor-id="ts_max_derivative">ts_max_derivative</h3>
+<blockquote class="blockquote">
+<pre><code> ts_max_derivative (vec:xarray.core.dataarray.DataArray,
+                    threshold_ratio=0.25)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="calc_duration" class="level3">
+<h3 class="anchored" data-anchor-id="calc_duration">calc_duration</h3>
+<blockquote class="blockquote">
+<pre><code> calc_duration (ts:xarray.core.dataarray.DataArray,
+                method:Literal['distance','derivative']='distance',
+                **kwargs)</code></pre>
 </blockquote>
 </section>
-<section id="common-codes-used-across-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="common-codes-used-across-notebooks">Common codes used across notebooks</h2>
+</section>
+<section id="obsolete-codes" class="level2">
+<h2 class="anchored" data-anchor-id="obsolete-codes">Obsolete codes</h2>
+<p>This is obsolete codes because the timewindow now is overlapping. No need to consider where magnetic discontinuities happens in the boundary of one timewindow.</p>
+<div id="cell-13" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_candidate_d_duration(candidate, data) <span class="op">-&gt;</span> pd.Series:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pd.isnull(candidate[<span class="st">'d_tstart'</span>]) <span class="kw">or</span> pd.isnull(candidate[<span class="st">'d_tstop'</span>]):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            candidate_data <span class="op">=</span> get_candidate_data(candidate, data, neighbor<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            d_time <span class="op">=</span> candidate[<span class="st">'d_time'</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            threshold <span class="op">=</span> candidate[<span class="st">'threshold'</span>]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> calc_d_duration(candidate_data, d_time, threshold)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> pd.Series({</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">'d_tstart'</span>: candidate[<span class="st">'d_tstart'</span>],</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">'d_tstop'</span>: candidate[<span class="st">'d_tstop'</span>],</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># logger.debug(f"Error for candidate {candidate} at {candidate['time']}: {str(e)}")</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error for candidate </span><span class="sc">{</span>candidate<span class="sc">}</span><span class="ss"> at </span><span class="sc">{</span>candidate[<span class="st">'time'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> e</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="calibrates-candidate-duration" class="level3">
+<h3 class="anchored" data-anchor-id="calibrates-candidate-duration">Calibrates candidate duration</h3>
+<p>This calibration is based on the assumption that the magnetic discontinuity is symmetric around the center of time, which is not always true.</p>
+<p>So instead of calibrating the duration, we drop the events. - Cons: Might influence the statistics of occurrence rate, but - Pros: More robust results about the properties of the magnetic discontinuity.</p>
+<div id="cell-15" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calibrate_candidate_duration(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    candidate: pd.Series, data:xr.DataArray, data_resolution, ratio <span class="op">=</span> <span class="dv">3</span><span class="op">/</span><span class="dv">4</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Calibrates the candidate duration. </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - If only one of 'd_tstart' or 'd_tstop' is provided, calculates the missing one based on the provided one and 'd_time'.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - Then if this is not enough points between 'd_tstart' and 'd_tstop', returns None for both.</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">    - candidate (pd.Series): The input candidate with potential missing 'd_tstart' or 'd_tstop'.</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">    - pd.Series: The calibrated candidate.</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    start_notnull <span class="op">=</span> pd.notnull(candidate[<span class="st">'d_tstart'</span>])</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    stop_notnull <span class="op">=</span> pd.notnull(candidate[<span class="st">'d_tstop'</span>]) </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> start_notnull, stop_notnull:</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">True</span>, <span class="va">True</span>):</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            d_tstart <span class="op">=</span> candidate[<span class="st">'d_tstart'</span>]</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            d_tstop <span class="op">=</span> candidate[<span class="st">'d_tstop'</span>]</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">True</span>, <span class="va">False</span>):</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            d_tstart <span class="op">=</span> candidate[<span class="st">'d_tstart'</span>]</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>            d_tstop <span class="op">=</span> candidate[<span class="st">'d_time'</span>] <span class="op">-</span>  candidate[<span class="st">'d_tstart'</span>] <span class="op">+</span> candidate[<span class="st">'d_time'</span>]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">False</span>, <span class="va">True</span>):</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>            d_tstart <span class="op">=</span> candidate[<span class="st">'d_time'</span>] <span class="op">-</span>  candidate[<span class="st">'d_tstop'</span>] <span class="op">+</span> candidate[<span class="st">'d_time'</span>]</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            d_tstop <span class="op">=</span> candidate[<span class="st">'d_tstop'</span>]</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">False</span>, <span class="va">False</span>):</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> pandas.Series({</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                <span class="st">'d_tstart'</span>: <span class="va">None</span>,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                <span class="st">'d_tstop'</span>: <span class="va">None</span>,</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    duration <span class="op">=</span> d_tstop <span class="op">-</span> d_tstart</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    num_of_points_between <span class="op">=</span> data.time.sel(time<span class="op">=</span><span class="bu">slice</span>(d_tstart, d_tstop)).count().item()</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num_of_points_between <span class="op">&lt;=</span> (duration<span class="op">/</span>data_resolution) <span class="op">*</span> ratio:</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        d_tstart <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        d_tstop <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pandas.Series({</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">'d_tstart'</span>: d_tstart,</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">'d_tstop'</span>: d_tstop,</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-16" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calibrate_candidates_duration(candidates, sat_fgm, data_resolution):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calibrate duration</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    calibrate_duration <span class="op">=</span> pdp.ApplyToRows(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> candidate: calibrate_candidate_duration(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            candidate, sat_fgm, data_resolution</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        func_desc<span class="op">=</span><span class="st">"calibrating duration parameters if needed"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    temp_candidates <span class="op">=</span> candidates.loc[</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> df: df[<span class="st">"d_tstart"</span>].isnull() <span class="op">|</span> df[<span class="st">"d_tstop"</span>].isnull()</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ]  <span class="co"># temp_candidates = candidates.query('d_tstart.isnull() | d_tstop.isnull()') # not implemented in `modin`</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> temp_candidates.empty:</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        temp_candidates_updated <span class="op">=</span> calibrate_duration(sat_fgm, data_resolution).<span class="bu">apply</span>(</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            temp_candidates</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        candidates.update(temp_candidates_updated)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> candidates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

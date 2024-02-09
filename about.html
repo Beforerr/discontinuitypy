@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zijin Zhang">
+<meta name="author" content="Anton Artemyev">
+<meta name="author" content="Zesen Huang">
 
-<title>discontinuitypy - ID identification</title>
+<title>discontinuitypy - About</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -87,41 +70,12 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="discontinuitypy - ID identification">
-<meta property="og:description" content="limited feature extraction / anomaly detection">
+<meta property="og:title" content="discontinuitypy - About">
+<meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - ID identification">
-<meta name="twitter:description" content="limited feature extraction / anomaly detection">
+<meta name="twitter:title" content="discontinuitypy - About">
+<meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -162,7 +116,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_ids_detection.html">ID identification</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about.html">About</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -182,7 +136,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link active">
+  <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID identification</span></a>
   </div>
 </li>
@@ -224,7 +178,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="./about.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -298,53 +252,50 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#lius-variance-method" id="toc-lius-variance-method" class="nav-link active" data-scroll-target="#lius-variance-method">Liu’s variance method</a>
-  <ul class="collapse">
-  <li><a href="#pl_format_time" id="toc-pl_format_time" class="nav-link" data-scroll-target="#pl_format_time">pl_format_time</a></li>
-  <li><a href="#compute_combinded_std" id="toc-compute_combinded_std" class="nav-link" data-scroll-target="#compute_combinded_std">compute_combinded_std</a></li>
-  <li><a href="#compute_std" id="toc-compute_std" class="nav-link" data-scroll-target="#compute_std">compute_std</a></li>
-  </ul></li>
-  <li><a href="#index-of-the-standard-deviation" id="toc-index-of-the-standard-deviation" class="nav-link" data-scroll-target="#index-of-the-standard-deviation">Index of the standard deviation</a>
-  <ul class="collapse">
-  <li><a href="#add_neighbor_std" id="toc-add_neighbor_std" class="nav-link" data-scroll-target="#add_neighbor_std">add_neighbor_std</a></li>
-  <li><a href="#compute_index_std" id="toc-compute_index_std" class="nav-link" data-scroll-target="#compute_index_std">compute_index_std</a></li>
-  </ul></li>
-  <li><a href="#index-of-fluctuation" id="toc-index-of-fluctuation" class="nav-link" data-scroll-target="#index-of-fluctuation">Index of fluctuation</a>
-  <ul class="collapse">
-  <li><a href="#compute_index_fluctuation" id="toc-compute_index_fluctuation" class="nav-link" data-scroll-target="#compute_index_fluctuation">compute_index_fluctuation</a></li>
-  </ul></li>
-  <li><a href="#index-of-the-relative-field-jump" id="toc-index-of-the-relative-field-jump" class="nav-link" data-scroll-target="#index-of-the-relative-field-jump">Index of the relative field jump</a>
-  <ul class="collapse">
-  <li><a href="#pl_dvec" id="toc-pl_dvec" class="nav-link" data-scroll-target="#pl_dvec">pl_dvec</a></li>
-  <li><a href="#compute_index_diff" id="toc-compute_index_diff" class="nav-link" data-scroll-target="#compute_index_diff">compute_index_diff</a></li>
-  <li><a href="#compute_indices" id="toc-compute_indices" class="nav-link" data-scroll-target="#compute_indices">compute_indices</a></li>
-  </ul></li>
-  <li><a href="#pipelines" id="toc-pipelines" class="nav-link" data-scroll-target="#pipelines">Pipelines</a>
-  <ul class="collapse">
-  <li><a href="#filter_indices" id="toc-filter_indices" class="nav-link" data-scroll-target="#filter_indices">filter_indices</a></li>
-  <li><a href="#detect_events" id="toc-detect_events" class="nav-link" data-scroll-target="#detect_events">detect_events</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ID identification</h1>
-<p class="subtitle lead">limited feature extraction / anomaly detection</p>
+<h1 class="title">About</h1>
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Zijin Zhang <a href="mailto:zijin@ucla.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of California, Los Angeles
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Anton Artemyev </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of California, Los Angeles
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Zesen Huang </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of California, Los Angeles
+          </p>
+      </div>
+  </div>
 
 <div class="quarto-title-meta">
 
-    
+      
   
     
   </div>
@@ -354,273 +305,11 @@ window.Quarto = {
 </header>
 
 
-<p>There are couple of ways to identify the ID.</p>
-<ul>
-<li>Variance method <span class="citation" data-cites="liuMagneticDiscontinuitiesSolar2022">(<a href="#ref-liuMagneticDiscontinuitiesSolar2022" role="doc-biblioref">Liu et al. 2022</a>)</span> : Large variance in the magnetic field compared with neighboring intervals</li>
-<li>B-criterion <span class="citation" data-cites="burlagaTangentialDiscontinuitiesSolar1969">(<a href="#ref-burlagaTangentialDiscontinuitiesSolar1969" role="doc-biblioref">Burlaga and Ness 1969</a>)</span> : a directional change of the magnetic ﬁeld larger than 30° during 60 s</li>
-<li>TS-criterion <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesTemporal1979">(<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" role="doc-biblioref">Tsurutani and Smith 1979</a>)</span> : <span class="math inline">\(|ΔB|/|B| \geq 0.5\)</span> within 3 minutes</li>
-</ul>
-<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<section id="lius-variance-method" class="level2">
-<h2 class="anchored" data-anchor-id="lius-variance-method">Liu’s variance method</h2>
-<p>For each sampling instant <span class="math inline">\(t\)</span>, we define three intervals: the pre-interval <span class="math inline">\([-1,-1/2]\cdot T+t\)</span>, the middle interval <span class="math inline">\([-1/,1/2]\cdot T+t\)</span>, and the post-interval <span class="math inline">\([1/2,1]\cdot T+t\)</span>, in which <span class="math inline">\(T\)</span> are time lags. Let time series of the magnetic field data in these three intervals are labeled <span class="math inline">\({\mathbf B}_-\)</span>, <span class="math inline">\({\mathbf B}_0\)</span>, <span class="math inline">\({\mathbf B}_+\)</span>, respectively. Compute the following indices:</p>
-<p><span class="math display">\[
-I_1 = \frac{\sigma(B_0)}{Max(\sigma(B_-),\sigma(B_+))}
-\]</span> <span class="math display">\[
-I_2 = \frac{\sigma(B_- + B_+)} {\sigma(B_-) + \sigma(B_+)}
-\]</span> <span class="math display">\[
-I_3 = \frac{| \Delta \vec{B} |}{|B_{bg}|}
-\]</span></p>
-<p>By selecting a large and reasonable threshold for the ﬁrst two indices (<span class="math inline">\(I_1&gt;2, I_2&gt;1\)</span>) , we could guarantee that the ﬁeld changes of the IDs identiﬁed are large enough to be distinguished from the stochastic ﬂuctuations on magnetic ﬁelds, while the third is a supplementary condition to reduce the uncertainty of recognition. While the third index (relative field jump) is a supplementary condition to reduce the uncertainty of recognition.</p>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L21" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="pl_format_time" class="level3">
-<h3 class="anchored" data-anchor-id="pl_format_time">pl_format_time</h3>
-<blockquote class="blockquote">
-<pre><code> pl_format_time
-                 (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.fra
-                 me.DataFrame, tau:datetime.timedelta)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L53" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="compute_combinded_std" class="level3">
-<h3 class="anchored" data-anchor-id="compute_combinded_std">compute_combinded_std</h3>
-<blockquote class="blockquote">
-<pre><code> compute_combinded_std
-                        (df:polars.dataframe.frame.DataFrame|polars.lazyfr
-                        ame.frame.LazyFrame, tau, cols)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L29" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="compute_std" class="level3">
-<h3 class="anchored" data-anchor-id="compute_std">compute_std</h3>
-<blockquote class="blockquote">
-<pre><code> compute_std
-              (df:polars.dataframe.frame.DataFrame|polars.lazyframe.frame.
-              LazyFrame, period:datetime.timedelta, b_cols=['BX', 'BY',
-              'BZ'], every:datetime.timedelta=None)</code></pre>
-</blockquote>
-<table class="table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>df</td>
-<td>polars.dataframe.frame.DataFrame | polars.lazyframe.frame.LazyFrame</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>period</td>
-<td>timedelta</td>
-<td></td>
-<td>period to group by</td>
-</tr>
-<tr class="odd">
-<td>b_cols</td>
-<td>list</td>
-<td>[‘BX’, ‘BY’, ‘BZ’]</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>every</td>
-<td>timedelta</td>
-<td>None</td>
-<td>every to group by (default: period / 2)</td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="index-of-the-standard-deviation" class="level2">
-<h2 class="anchored" data-anchor-id="index-of-the-standard-deviation">Index of the standard deviation</h2>
-<pre><code>UserWarning: Unknown section Notes</code></pre>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L92" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="add_neighbor_std" class="level3">
-<h3 class="anchored" data-anchor-id="add_neighbor_std">add_neighbor_std</h3>
-<blockquote class="blockquote">
-<pre><code> add_neighbor_std (df:polars.lazyframe.frame.LazyFrame,
-                   tau:datetime.timedelta, join_strategy='inner')</code></pre>
-</blockquote>
-<p>Get the neighbor standard deviations</p>
-<pre><code>UserWarning: Unknown section Examples</code></pre>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L127" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="compute_index_std" class="level3">
-<h3 class="anchored" data-anchor-id="compute_index_std">compute_index_std</h3>
-<blockquote class="blockquote">
-<pre><code> compute_index_std (df:polars.lazyframe.frame.LazyFrame)</code></pre>
-</blockquote>
-<p>Compute the standard deviation index based on the given DataFrame</p>
-<table class="table">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 38%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>df</td>
-<td>LazyFrame</td>
-<td>noqa: F811</td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>- pl.LazyFrame: DataFrame with calculated ‘index_std’ column.</strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="index-of-fluctuation" class="level2">
-<h2 class="anchored" data-anchor-id="index-of-fluctuation">Index of fluctuation</h2>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L150" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="compute_index_fluctuation" class="level3">
-<h3 class="anchored" data-anchor-id="compute_index_fluctuation">compute_index_fluctuation</h3>
-<blockquote class="blockquote">
-<pre><code> compute_index_fluctuation (df:polars.lazyframe.frame.LazyFrame,
-                            base_col='B_std')</code></pre>
-</blockquote>
-</section>
-</section>
-<section id="index-of-the-relative-field-jump" class="level2">
-<h2 class="anchored" data-anchor-id="index-of-the-relative-field-jump">Index of the relative field jump</h2>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L156" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="pl_dvec" class="level3">
-<h3 class="anchored" data-anchor-id="pl_dvec">pl_dvec</h3>
-<blockquote class="blockquote">
-<pre><code> pl_dvec (columns, *more_columns)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L164" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="compute_index_diff" class="level3">
-<h3 class="anchored" data-anchor-id="compute_index_diff">compute_index_diff</h3>
-<blockquote class="blockquote">
-<pre><code> compute_index_diff (df:polars.lazyframe.frame.LazyFrame,
-                     period:datetime.timedelta, cols)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L204" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="compute_indices" class="level3">
-<h3 class="anchored" data-anchor-id="compute_indices">compute_indices</h3>
-<blockquote class="blockquote">
-<pre><code> compute_indices (df:polars.dataframe.frame.DataFrame,
-                  tau:datetime.timedelta, bcols:list[str]=['BX', 'BY',
-                  'BZ'])</code></pre>
-</blockquote>
-<p>Compute all index based on the given DataFrame and tau value.</p>
-<table class="table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 25%">
-<col style="width: 34%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Default</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>df</td>
-<td>DataFrame</td>
-<td></td>
-<td>Input DataFrame.</td>
-</tr>
-<tr class="even">
-<td>tau</td>
-<td>timedelta</td>
-<td></td>
-<td>Time interval value.</td>
-</tr>
-<tr class="odd">
-<td>bcols</td>
-<td>list</td>
-<td>[‘BX’, ‘BY’, ‘BZ’]</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><strong>Returns</strong></td>
-<td><strong>DataFrame</strong></td>
-<td></td>
-<td><strong>Tuple containing DataFrame results for fluctuation index,<br>standard deviation index, and ‘index_num’.</strong></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="pipelines" class="level2">
-<h2 class="anchored" data-anchor-id="pipelines">Pipelines</h2>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L254" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="filter_indices" class="level3">
-<h3 class="anchored" data-anchor-id="filter_indices">filter_indices</h3>
-<blockquote class="blockquote">
-<pre><code> filter_indices
-                 (df:polars.dataframe.frame.DataFrame|polars.lazyframe.fra
-                 me.LazyFrame, index_std_threshold:float=2,
-                 index_fluc_threshold:float=1,
-                 index_diff_threshold:float=0.1, sparse_num:int=15)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/core/detection.py#L274" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="detect_events" class="level3">
-<h3 class="anchored" data-anchor-id="detect_events">detect_events</h3>
-<blockquote class="blockquote">
-<pre><code> detect_events (data:polars.dataframe.frame.DataFrame,
-                tau:datetime.timedelta, ts:datetime.timedelta, bcols,
-                method='liu')</code></pre>
-</blockquote>
+<p>This python package is still in beta phrase, and we are actively working on it. If you have any questions or suggestions, please feel free to contact us.</p>
 
 
 
-</section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-burlagaTangentialDiscontinuitiesSolar1969" class="csl-entry" role="listitem">
-Burlaga, Leonard F., and Norman F. Ness. 1969. <span>“Tangential Discontinuities in the Solar Wind.”</span> <em>Solar Physics</em> 9 (2): 467–77. <a href="https://doi.org/10.1007/BF02391672">https://doi.org/10.1007/BF02391672</a>.
-</div>
-<div id="ref-liuMagneticDiscontinuitiesSolar2022" class="csl-entry" role="listitem">
-Liu, Y. Y., H. S. Fu, J. B. Cao, Z. Wang, R. J. He, Z. Z. Guo, Y. Xu, and Y. Yu. 2022. <span>“Magnetic Discontinuities in the Solar Wind and Magnetosheath: Magnetospheric Multiscale Mission (<span>MMS</span>) Observations.”</span> <em>Astrophysical Journal</em> 930 (1): 63. <a href="https://doi.org/10.3847/1538-4357/ac62d2">https://doi.org/10.3847/1538-4357/ac62d2</a>.
-</div>
-<div id="ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" class="csl-entry" role="listitem">
-Tsurutani, Bruce T., and Edward J. Smith. 1979. <span>“Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 <span>AU</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 84 (A6): 2773–87. <a href="https://doi.org/10.1029/JA084iA06p02773">https://doi.org/10.1029/JA084iA06p02773</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1013,4 +702,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

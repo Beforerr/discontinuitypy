@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.518">
+<meta name="generator" content="quarto-1.4.547">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="This notebook contains the code to deal with all candidates and individual candidate.">
+<meta name="description" content="This module contains the useful functions to deal with candidates datasets and individual candidate.">
 
-<title>ids-finder - Datasets</title>
+<title>discontinuitypy - Datasets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -95,6 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -102,11 +69,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="ids-finder - Datasets">
-<meta property="og:description" content="This notebook contains the code to deal with all candidates and individual candidate.">
-<meta property="og:site_name" content="ids-finder">
-<meta name="twitter:title" content="ids-finder - Datasets">
-<meta name="twitter:description" content="This notebook contains the code to deal with all candidates and individual candidate.">
+<meta property="og:title" content="discontinuitypy - Datasets">
+<meta property="og:description" content="This module contains the useful functions to deal with candidates datasets and individual candidate.">
+<meta property="og:site_name" content="discontinuitypy">
+<meta name="twitter:title" content="discontinuitypy - Datasets">
+<meta name="twitter:description" content="This module contains the useful functions to deal with candidates datasets and individual candidate.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -118,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">ids-finder</span>
+    <span class="navbar-title">discontinuitypy</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -131,35 +98,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Publications</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
-        <li>
-    <a class="dropdown-item" href="./manuscripts/paper.html">
- <span class="dropdown-text">Paper</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./manuscripts/AGU23_poster.html">
- <span class="dropdown-text">AGU23 Poster</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./analysis/index.html" aria-current="page"> 
-<span class="menu-text">Results</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Beforerr/ids_finder"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
+    <a href="https://github.com/Beforerr/ids_finder" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -186,47 +132,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./pipelines/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pipelines</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./pipelines/1_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./pipelines/10_mission.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mission Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./pipelines/100_project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Project Pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./pipelines/2_data_mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./pipelines/3_data_state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link">
@@ -241,210 +146,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./03_mag_plasma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Combine magnetic field data and plasma data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./20_datasets.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_datasets_kedro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21_event.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Event</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./analysis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Results</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./properties/00_duration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Duration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./properties/00_mva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Minimum variance analysis (MVA)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/00_base.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loading all datasets from different sources</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/01_occurence_rate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Occurence Rate</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/02_orientation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Orientation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/02_properties.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SWD Properties</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/03_map.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Map of thickness and current intensity</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/10_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ID classification</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/11_ts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Time resolution effect</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis/20_model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Models</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Missions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./missions/juno/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Juno</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/juno/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JUNO Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/juno/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">JUNO State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./missions/stereo/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from STEREO</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/stereo/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">STEREO Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/stereo/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">STEREO State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./missions/wind/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from Wind</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/wind/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wind Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/wind/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wind State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./missions/themis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">IDs from ARTHEMIS</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/themis/mag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">THEMIS Magnetic field data pipeline</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/themis/state.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">THEMIS State data pipeline</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missions/omni/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">OMNI data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text">Manuscripts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./manuscripts/AGU23_poster.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solar wind discontinuities spatial evolution and energetic ion scattering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./manuscripts/paper.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Discontinuities? Yes!</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./utils/basic.html" class="sidebar-item-text sidebar-link">
@@ -475,24 +242,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><code>Kedro</code></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./utils/20_pds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Planetary Data System (PDS)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./utils/30_cdf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils for CDF file format</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./utils/31_lbl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils for lbl file format</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -508,11 +257,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#datasets" id="toc-datasets" class="nav-link active" data-scroll-target="#datasets">Datasets</a>
   <ul class="collapse">
   <li><a href="#idsdataset" id="toc-idsdataset" class="nav-link" data-scroll-target="#idsdataset">IDsDataset</a></li>
-  <li><a href="#cidsdataset" id="toc-cidsdataset" class="nav-link" data-scroll-target="#cidsdataset">cIDsDataset</a></li>
-  </ul></li>
-  <li><a href="#candidate-class" id="toc-candidate-class" class="nav-link" data-scroll-target="#candidate-class">Candidate class</a>
-  <ul class="collapse">
-  <li><a href="#candidateid" id="toc-candidateid" class="nav-link" data-scroll-target="#candidateid">CandidateID</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -527,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    This notebook contains the code to deal with all candidates and individual candidate.
+    This module contains the useful functions to deal with candidates datasets and individual candidate.
   </div>
 </div>
 
@@ -545,91 +289,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<section id="kerdo" class="level4">
-<h4 class="anchored" data-anchor-id="kerdo"><code>Kerdo</code></h4>
-</section>
 <section id="datasets" class="level2">
 <h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
 <p>Foundational Dataset Class</p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/datasets.py#L30" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/datasets.py#L20" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="idsdataset" class="level3">
 <h3 class="anchored" data-anchor-id="idsdataset">IDsDataset</h3>
 <blockquote class="blockquote">
-<pre><code> IDsDataset (sat_id:str, tau:datetime.timedelta,
-             ts:datetime.timedelta=datetime.timedelta(seconds=1),
-             candidates:polars.dataframe.frame.DataFrame|None=None,
-             data:polars.lazyframe.frame.LazyFrame|None=None,
-             bcols:list[str]=['B_x', 'B_y', 'B_z'], **extra_data:Any)</code></pre>
+<pre><code> IDsDataset (data:polars.lazyframe.frame.LazyFrame,
+             candidates:polars.dataframe.frame.DataFrame=None,
+             plasma_data:polars.lazyframe.frame.LazyFrame=None,
+             bcols:list[str]=None, vec_cols:list[str]=None,
+             **extra_data:Any)</code></pre>
 </blockquote>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
-<p>Extended Dataset Class with support for <code>kedro</code></p>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/datasets.py#L60" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="cidsdataset" class="level3">
-<h3 class="anchored" data-anchor-id="cidsdataset">cIDsDataset</h3>
-<blockquote class="blockquote">
-<pre><code> cIDsDataset (sat_id:str, tau:datetime.timedelta,
-              ts:datetime.timedelta=datetime.timedelta(seconds=1),
-              candidates:polars.dataframe.frame.DataFrame|None=None,
-              data:polars.lazyframe.frame.LazyFrame|None=None,
-              bcols:list[str]=['B_x', 'B_y', 'B_z'],
-              catalog:kedro.io.data_catalog.DataCatalog,
-              or_df:polars.dataframe.frame.DataFrame|None=None,
-              or_df_normalized:polars.dataframe.frame.DataFrame|None=None,
-              **data_)</code></pre>
-</blockquote>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
-</section>
-</section>
-<section id="candidate-class" class="level2">
-<h2 class="anchored" data-anchor-id="candidate-class">Candidate class</h2>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/ids_finder/datasets.py#L111" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="candidateid" class="level3">
-<h3 class="anchored" data-anchor-id="candidateid">CandidateID</h3>
-<blockquote class="blockquote">
-<pre><code> CandidateID (time, df:polars.dataframe.frame.DataFrame)</code></pre>
-</blockquote>
-<p>Initialize self. See help(type(self)) for accurate signature.</p>
-<div id="cell-10" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ids_finder.utils.basic <span class="im">import</span> df2ts, pmap</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastcore.utils <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="cell-11" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_candidate(candidate, mag_data: pl.LazyFrame, b_cols <span class="op">=</span> [<span class="st">'BX'</span>, <span class="st">'BY'</span>, <span class="st">'BZ'</span>]):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    temp_tstart <span class="op">=</span> candidate[<span class="st">"tstart"</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    tmep_tstop <span class="op">=</span> candidate[<span class="st">"tstop"</span>]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    tau <span class="op">=</span> tmep_tstop <span class="op">-</span> temp_tstart</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    temp_mag_data <span class="op">=</span> (</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        mag_data.<span class="bu">filter</span>(pl.col(<span class="st">"time"</span>).is_between(temp_tstart <span class="op">-</span> tau, tmep_tstop <span class="op">+</span> tau))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        .with_columns(pl.col(<span class="st">"time"</span>).dt.cast_time_unit(<span class="st">"ns"</span>))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        .collect()</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    sat_fgm <span class="op">=</span> df2ts(temp_mag_data, b_cols)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    plot_candidate_xr(candidate, sat_fgm, tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="cell-12" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># list(sta_candidates_1s.sample(n).iter_rows(named=True) | pmap(plot_candidate, mag_data=sta_mag))</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> jno_candidates_1s.sample(n)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(candidates.iter_rows(named<span class="op">=</span><span class="va">True</span>) <span class="op">|</span> pmap(plot_candidate, mag_data<span class="op">=</span>jno_mag))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 
 
 </section>
@@ -764,27 +439,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -799,10 +453,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -811,8 +469,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1038,4 +703,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
