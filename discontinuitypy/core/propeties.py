@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['get_candidate_data', 'get_candidates', 'calc_candidate_duration', 'get_data_at_times', 'calc_rotation_angle',
            'calc_events_rotation_angle', 'calc_normal_direction', 'calc_events_normal_direction',
-           'calc_events_vec_change', 'IDsPipeline', 'process_events']
+           'calc_events_vec_change', 'IDsPdPipeline', 'process_events']
 
 # %% ../../notebooks/02_ids_properties.ipynb 1
 #| code-summary: "Import all the packages needed for the project"
@@ -223,7 +223,7 @@ def _transform(self: pdp.ApplyToRows, X, verbose):
     )
 
 # %% ../../notebooks/02_ids_properties.ipynb 19
-class IDsPipeline:
+class IDsPdPipeline:
     def __init__(self):
         pass
     
@@ -281,15 +281,15 @@ def process_events(
     candidates = convert_to_pd_dataframe(candidates_pl, modin=modin)
 
     candidates = (
-        IDsPipeline.calc_duration(sat_fgm, **kwargs).apply(candidates).dropna()
+        IDsPdPipeline.calc_duration(sat_fgm, **kwargs).apply(candidates).dropna()
     )  # Remove candidates with NaN values)
 
     ids = (
         (
-            IDsPipeline.calc_mva_features(sat_fgm, **kwargs)
-            + IDsPipeline.calc_vec_change(sat_fgm)
-            + IDsPipeline.calc_rotation_angle(sat_fgm)
-            + IDsPipeline.calc_normal_direction(sat_fgm, name="k")
+            IDsPdPipeline.calc_mva_features(sat_fgm, **kwargs)
+            + IDsPdPipeline.calc_vec_change(sat_fgm)
+            + IDsPdPipeline.calc_rotation_angle(sat_fgm)
+            + IDsPdPipeline.calc_normal_direction(sat_fgm, name="k")
         )
         .apply(candidates)
     )

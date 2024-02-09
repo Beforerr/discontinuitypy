@@ -81,52 +81,73 @@ class IDsDataset(IdsEvents):
 
     bcols: list[str] = None
     vec_cols: list[str] = None
-    
+
     density_col: str = "n"
+    speed_col: str = "v"
     temperature_col: str = "T"
     plasma_meta: dict = None
 
     def update_candidates_with_plasma_data(self, **kwargs):
         df_combined = combine_features(
-            self.events, self.plasma_data.collect(), **kwargs
-        ).lazy()
+            self.events,
+            self.plasma_data.collect(),
+            subset_cols=self.vec_cols
+            + [self.density_col, self.speed_col, self.temperature_col],
+            **kwargs,
+        )
 
         self.events = calc_combined_features(
-            df_combined, vec_cols=self.vec_cols, **kwargs
-        ).collect()
+            df_combined, vec_cols=self.vec_cols, **kwargs, density_col=self.density_col
+        )
         return self
 
-    def plot(self, type = "overview", event=None, index=None, predicates=None, **kwargs):
-        
+    def plot(self, type="overview", event=None, index=None, predicates=None, **kwargs):
+
         event = event or self.get_event(index, predicates, **kwargs)
         if type == "overview":
             return self.overview_plot(event, **kwargs)
 
-    def overview_plot(self, event: dict, start = None, stop = None,  **kwargs):
+    def overview_plot(self, event: dict, start=None, stop=None, **kwargs):
         start = start or event["tstart"]
         stop = stop or event["tstop"]
-        
+
         _plasma_data = self.plasma_data.filter(
             pl.col("time").is_between(start, stop)
         ).collect()
-        
-        _mag_data = self.data.filter(
-            pl.col("time").is_between(start, stop)
-        ).collect().melt(id_vars=["time"], value_vars=self.bcols, variable_name="B comp", value_name="B")
-        
-        v_df = _plasma_data.melt(id_vars=["time"], value_vars=self.vec_cols, variable_name="veloity comp", value_name="v")
-        
-        panel_mag = _mag_data.hvplot(x="time", y="B", by="B comp", ylabel="Magnetic Field", **kwargs)
+
+        _mag_data = (
+            self.data.filter(pl.col("time").is_between(start, stop))
+            .collect()
+            .melt(
+                id_vars=["time"],
+                value_vars=self.bcols,
+                variable_name="B comp",
+                value_name="B",
+            )
+        )
+
+        v_df = _plasma_data.melt(
+            id_vars=["time"],
+            value_vars=self.vec_cols,
+            variable_name="veloity comp",
+            value_name="v",
+        )
+
+        panel_mag = _mag_data.hvplot(
+            x="time", y="B", by="B comp", ylabel="Magnetic Field", **kwargs
+        )
         panel_n = _plasma_data.hvplot(x="time", y=self.density_col, **kwargs)
-        panel_v = v_df.hvplot(x="time", y="v", by="veloity comp",  ylabel="Plasma Velocity", **kwargs)
+        panel_v = v_df.hvplot(
+            x="time", y="v", by="veloity comp", ylabel="Plasma Velocity", **kwargs
+        )
         panel_temp = _plasma_data.hvplot(x="time", y=self.temperature_col, **kwargs)
-        
+
         logger.info(f"Overview plot: {event['tstart']} - {event['tstop']}")
-        logger.debug(f"n.change: {event['n.change']}, $\Delta v_{{ion}}$: {event['v.ion.change']}, T.change: {event['T.change']}, v.Alfven.change: {event['v.Alfven.change']}")
-        
+        logger.debug(
+            f"n.change: {event['n.change']}, $\Delta v_{{ion}}$: {event['v.ion.change']}, T.change: {event['T.change']}, v.Alfven.change: {event['v.Alfven.change']}"
+        )
+
         return (panel_mag + panel_n + panel_v + panel_temp).cols(1)
-        
-        
 
     def plot_candidate(self, candidate=None, index=None, predicates=None, **kwargs):
         if candidate is None:

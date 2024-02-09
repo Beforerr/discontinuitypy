@@ -7,7 +7,7 @@ __all__ = ['combine_features', 'vector_project', 'vector_project_pl', 'calc_rota
 # %% ../notebooks/03_mag_plasma.ipynb 1
 import polars as pl
 import polars.selectors as cs
-from space_analysis.plasma.formulary import ldf_Alfven_speed as compute_Alfven_speed
+from space_analysis.plasma.formulary import df_Alfven_speed as compute_Alfven_speed
 
 # %% ../notebooks/03_mag_plasma.ipynb 2
 def combine_features(
@@ -59,7 +59,6 @@ def combine_features(
 import astropy.units as u
 from astropy.constants import mu0, e
 from plasmapy.formulary.lengths import inertial_length
-from plasmapy.formulary.speeds import Alfven_speed
 from xarray_einstats import linalg
 from .utils.basic import df2ts
 from .core.propeties import calc_rotation_angle
@@ -69,7 +68,7 @@ import xarray as xr
 def vector_project(v1,v2, dim="v_dim"):
     return xr.dot(v1 , v2, dims=dim) / linalg.norm(v2, dims=dim)
 
-def vector_project_pl(df: pl.LazyFrame, v1_cols, v2_cols, name=None):
+def vector_project_pl(df: pl.DataFrame, v1_cols, v2_cols, name=None):
     
     v1 = df2ts(df, v1_cols).assign_coords(v_dim=["x","y","z"])
     v2 = df2ts(df, v2_cols).assign_coords(v_dim=["x","y","z"])  
@@ -80,43 +79,39 @@ def vector_project_pl(df: pl.LazyFrame, v1_cols, v2_cols, name=None):
     )
 
 # %% ../notebooks/03_mag_plasma.ipynb 6
-def calc_rotation_angle_pl(ldf: pl.LazyFrame, v1_cols, v2_cols, name):
-    df = ldf.collect()
+def calc_rotation_angle_pl(df: pl.DataFrame, v1_cols, v2_cols, name):
     v1 = df.select(v1_cols).to_numpy()
     v2 = df.select(v2_cols).to_numpy()
     
     result = calc_rotation_angle(v1, v2)
     
-    return ldf.with_columns(
+    return df.with_columns(
         pl.Series(result).alias(name)
     )
 
 # %% ../notebooks/03_mag_plasma.ipynb 8
-def compute_inertial_length(ldf: pl.LazyFrame, density_col = "plasma_density"):
-    df = ldf.collect()
+def compute_inertial_length(df: pl.DataFrame, density_col = "plasma_density"):
 
     density = df[density_col].to_numpy() * u.cm ** (-3)
     result = inertial_length(density, "H+").to(u.km)
 
-    return df.with_columns(ion_inertial_length=pl.Series(result.value)).lazy()
+    return df.with_columns(ion_inertial_length=pl.Series(result.value))
 
 # %% ../notebooks/03_mag_plasma.ipynb 10
 def compute_Alfven_current(
-    ldf: pl.LazyFrame,
+    df: pl.DataFrame,
     density_col = "plasma_density",
 ):
-    df = ldf.collect()
 
     Alfven_speed = df["Alfven_speed"].to_numpy() * u.km / u.s
     density = df[density_col].to_numpy() * u.cm ** (-3)
 
-    result = (e.si * Alfven_speed * density)
-    result = result.to(u.nA / u.m**2)
+    result = (e.si * Alfven_speed * density).to(u.nA / u.m**2)
 
-    return df.with_columns(j_Alfven=pl.Series(result.value)).lazy()
+    return df.with_columns(j_Alfven=pl.Series(result.value))
 
 # %% ../notebooks/03_mag_plasma.ipynb 12
-def calc_plasma_parameter_change(df: pl.LazyFrame):
+def calc_plasma_parameter_change(df: pl.DataFrame):
     return df.rename(
         {
             "plasma_density_before": "n.before",
@@ -130,20 +125,28 @@ def calc_plasma_parameter_change(df: pl.LazyFrame):
         compute_Alfven_speed, B="B.before", n="n.before", col_name="v.Alfven.before"
     ).pipe(
         compute_Alfven_speed, B="B.after", n="n.after", col_name="v.Alfven.after"
+    ).pipe(
+        compute_Alfven_speed, n = "n.before", B="B.vec.before.l", col_name="v.Alfven.before.l"
+    ).pipe(
+        compute_Alfven_speed, n = "n.after", B="B.vec.after.l", col_name="v.Alfven.after.l"   
     ).with_columns(
         (pl.col("n.after") - pl.col("n.before")).alias("n.change"),
         (pl.col("v.ion.after") - pl.col("v.ion.before")).alias("v.ion.change"),
+        (pl.col("v.ion.after.l") - pl.col("v.ion.before.l")).alias("v.ion.change.l"),
         (pl.col("T.after") - pl.col("T.before")).alias("T.change"),
         (pl.col("B.after") - pl.col("B.before")).alias("B.change"),
         (pl.col("v.Alfven.after") - pl.col("v.Alfven.before")).alias("v.Alfven.change"),
+        (pl.col("v.Alfven.after.l") - pl.col("v.Alfven.before.l")).alias("v.Alfven.change.l")
     )
 
 # %% ../notebooks/03_mag_plasma.ipynb 13
+from .utils.polars import decompose_vector
+
 def calc_combined_features(
-    df: pl.LazyFrame,
-    vec_cols = ["v_x", "v_y", "v_z"],  # plasma velocity vector in any fixed coordinate system,
-    normal_cols = ["k_x", "k_y", "k_z"], # normal vector of the discontinuity plane
-    b_cols = None, # ["B_background_x", "B_background_y", "B_background_z"]
+    df: pl.DataFrame,
+    vec_cols: list[str] = ["v_x", "v_y", "v_z"],  # plasma velocity vector in any fixed coordinate system,
+    normal_cols: list[str] = ["k_x", "k_y", "k_z"], # normal vector of the discontinuity plane
+    b_cols: list[str] = None, # ["B_background_x", "B_background_y", "B_background_z"]
     density_col = "plasma_density",
     detail: bool = True,
 ):
@@ -196,6 +199,14 @@ def calc_combined_features(
     )
     
     if detail:
-        result = result.pipe(calc_plasma_parameter_change)
+        result = result.pipe(
+            vector_project_pl, [_+'_before' for _ in vec_cols], Vl_cols, name="v.ion.before.l"
+        ).pipe(
+            vector_project_pl, [_+'_after' for _ in vec_cols], Vl_cols, name="v.ion.after.l"
+        ).pipe(
+            decompose_vector, 'B.vec.before', suffixes= ['.l', '.m', '.n']
+        ).pipe(
+            decompose_vector, 'B.vec.after', suffixes= ['.l', '.m', '.n']
+        ).pipe(calc_plasma_parameter_change)
     
     return result

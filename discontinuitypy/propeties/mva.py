@@ -103,7 +103,7 @@ def calc_mva_features(data: np.ndarray):
     vec_mag = np.linalg.norm(vrot, axis=1)
 
     # Compute changes in each component of B_rot
-    dvec = [vrot[0, i] - vrot[-1, i] for i in range(3)]
+    dvec = vrot[0] - vrot[-1]
 
     # Compute mean values
     vec_mag_mean = np.mean(vec_mag)
@@ -120,6 +120,8 @@ def calc_mva_features(data: np.ndarray):
         "Vn": Vn,
         "b_mag": vec_mag_mean,
         "b_n": vec_n_mean,
+        'B.vec.before': vrot[0],
+        'B.vec.after': vrot[-1],
         'B.before': vec_mag[0],
         'B.after': vec_mag[-1],
         "db_mag": dvec_mag,
