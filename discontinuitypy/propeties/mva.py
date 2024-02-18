@@ -159,15 +159,27 @@ def fit_maxiumum_variance_direction(
 
     # Create parameters
     params = Parameters()
-    params.add("c", value=y[0])
+
+    init_amplitude = y[-1] - y[0]
+
     params.add(
         "center",
         value=(x_max + x_min) / 2.0,
         min=x_min + x_width / 7.0,
         max=x_max - x_width / 7.0,
     )
-    params.add("amplitude", value=(y[-1] - y[0]))
+    params.add("amplitude", value=init_amplitude)
     params.add("sigma", value=x_width / 7.0, min=0)
+
+    if True:
+        int_center_y = (y[-1] + y[0]) / 2.0
+        c1  = 1 / 8
+        params.add(
+            "center_y",
+            min=int_center_y - c1 * np.abs(init_amplitude),
+            max=int_center_y + c1 * np.abs(init_amplitude),
+        )
+        params.add("c", expr="center_y - amplitude / 2.0")
 
     # Ensure there are enough data points to fit the model
     if len(y) < 4:
@@ -178,6 +190,7 @@ def fit_maxiumum_variance_direction(
         rsquared = np.nan
         chisqr = np.nan
         c = np.nan
+        best_fit = np.nan
     else:
         out = mod.fit(y, params, x=x)
         amplitude = out.params["amplitude"].value
@@ -186,7 +199,8 @@ def fit_maxiumum_variance_direction(
         c = out.params["c"].value
         rsquared = out.rsquared
         chisqr = out.chisqr
-    
+        best_fit = out.best_fit
+
     max_df = amplitude / (4 * sigma)
 
     d_time = min(time) + center * np.timedelta64(1, datetime_unit).astype(
@@ -205,7 +219,7 @@ def fit_maxiumum_variance_direction(
         }
     )
     if return_best_fit:
-        result["fit.best_fit"] = out.best_fit
+        result["fit.best_fit"] = best_fit
         result["fit.time"] = time
     return result
 

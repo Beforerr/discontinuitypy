@@ -38,6 +38,9 @@ from discontinuitypy.core import *
 - [Solar wind discontinuities spatial evolution in the outer heliosphere](https://beforerr.github.io/ids_spatial_evolution_juno/)
 - [Evolution of solar wind discontinuities in the inner heliosphere: PSP and Earth conjunctions and alignments](https://beforerr.github.io/psp_conjunction/)
 
+
+<!-- We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable) -->
+
 # TODOs
 
 Science part

@@ -6,7 +6,7 @@ website:
       - 01_ids_detection.ipynb
       - 02_ids_properties.ipynb
       - 03_mag_plasma.ipynb
-      - 20_datasets.ipynb
+      - 10_datasets.ipynb
       - 21_datasets_kedro.ipynb
       - 21_event.ipynb
       - about.qmd

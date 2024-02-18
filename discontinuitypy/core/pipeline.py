@@ -56,7 +56,7 @@ def ids_finder(
     detection_df = detection_df.sort("time").with_columns(pl.col("time").dt.cast_time_unit("us")) # https://github.com/pola-rs/polars/issues/12023
     extract_df = extract_df.sort("time").with_columns(pl.col("time").dt.cast_time_unit("us"))
 
-    events = detect_events(detection_df, tau, ts, bcols)
+    events = detect_events(detection_df, tau, ts, bcols, **kwargs)
     
     data_c = compress_data_by_cands(extract_df.collect(), events)
     sat_fgm = df2ts(data_c, bcols)

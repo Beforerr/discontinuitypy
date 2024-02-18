@@ -224,14 +224,11 @@ def _transform(self: pdp.ApplyToRows, X, verbose):
 
 # %% ../../notebooks/02_ids_properties.ipynb 19
 class IDsPdPipeline:
-    def __init__(self):
-        pass
-    
     @classmethod
     def calc_duration(self, data: xr.DataArray, **kwargs):
         return pdp.ApplyToRows(
             lambda candidate: calc_candidate_duration(candidate, data, **kwargs),
-            func_desc="calculating duration parameters",
+            func_desc="calculating pre-duration parameters",
         )
     
     @classmethod
@@ -274,6 +271,7 @@ def process_events(
     sat_fgm: xr.DataArray,  # satellite FGM data
     data_resolution: timedelta,  # time resolution of the data
     modin=True,
+    duration_method="distance",
     **kwargs,
 ) -> pl.DataFrame:
     "Process candidates DataFrame"
@@ -281,18 +279,17 @@ def process_events(
     candidates = convert_to_pd_dataframe(candidates_pl, modin=modin)
 
     candidates = (
-        IDsPdPipeline.calc_duration(sat_fgm, **kwargs).apply(candidates).dropna()
+        IDsPdPipeline.calc_duration(sat_fgm, method=duration_method, **kwargs)
+        .apply(candidates)
+        .dropna()
     )  # Remove candidates with NaN values)
 
     ids = (
-        (
-            IDsPdPipeline.calc_mva_features(sat_fgm, **kwargs)
-            + IDsPdPipeline.calc_vec_change(sat_fgm)
-            + IDsPdPipeline.calc_rotation_angle(sat_fgm)
-            + IDsPdPipeline.calc_normal_direction(sat_fgm, name="k")
-        )
-        .apply(candidates)
-    )
+        IDsPdPipeline.calc_mva_features(sat_fgm, **kwargs)
+        + IDsPdPipeline.calc_vec_change(sat_fgm)
+        + IDsPdPipeline.calc_rotation_angle(sat_fgm)
+        + IDsPdPipeline.calc_normal_direction(sat_fgm, name="k")
+    ).apply(candidates)
 
     if isinstance(ids, mpd.DataFrame):
         ids = ids._to_pandas()
@@ -303,8 +300,13 @@ def process_events(
         ids.dropna(), schema_overrides={vec: pl.List for vec in vectors2decompose}
     )  # ArrowInvalid: Could not convert [0.9799027968348948, -0.17761542644940076, -0.07309766783111293] with type list: tried to convert to double
 
+    if duration_method == "derivative":
+        duration_expr = (pl.col("fit.vars.sigma") * 2)
+    else:
+        duration_expr = (pl.col("d_tstop") - pl.col("d_tstart")).dt.total_nanoseconds() / 1e9 # convert to seconds
+
     for vec in vectors2decompose:
         df = decompose_vector(df, vec)
 
-    return df.drop(vectors2decompose)
+    return df.with_columns(duration=duration_expr).drop(vectors2decompose)
     # ValueError: Data type fixed_size_list[pyarrow] not supported by interchange protocol

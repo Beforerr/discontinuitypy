@@ -21,6 +21,8 @@ dependencies:
   - fastai::nbdev
   - fastai::fastcore
 
+  - hvplot
+
   - loguru
   - tqdm
   - pip
