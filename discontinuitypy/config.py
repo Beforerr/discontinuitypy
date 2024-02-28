@@ -63,9 +63,7 @@ class IDsConfig(IDsDataset):
 
 # %% ../notebooks/11_ids_config.ipynb 3
 class SpeasyIDsConfig(IDsConfig):
-    # timerange: list[datetime] = Field(
-    #     ["2011-08-25", "2012-01-01"], validate_default=True
-    # )
+    """Based on `speasy` Variables to get the data"""
     _cached_vars: dict[str, Variables] = {}
     
     def model_post_init(self, __context):

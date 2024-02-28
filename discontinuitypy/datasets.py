@@ -12,7 +12,7 @@ from random import sample
 from datetime import timedelta
 
 from pydantic import BaseModel, Field, validate_call
-from space_analysis.ds.meta import Meta, PlasmaMeta
+from space_analysis.ds.meta import Meta, PlasmaMeta, TempMeta
 from typing import Literal
 
 # %% ../notebooks/10_datasets.ipynb 4
@@ -118,9 +118,13 @@ class IDsDataset(IdsEvents):
     data: pl.LazyFrame = Field(default=None, alias="mag_data")
     
     mag_meta: Meta = Meta()
+    bcols: list[str] = None
+    
     plasma_data: pl.LazyFrame = None
     plasma_meta: PlasmaMeta = PlasmaMeta()
-    bcols: list[str] = None
+    
+    ion_temp_meta: TempMeta = None
+    e_temp_meta: TempMeta = None
 
     def update_candidates_with_plasma_data(self, **kwargs):
         df_combined = combine_features(
@@ -146,6 +150,7 @@ class IDsDataset(IdsEvents):
     def overview_plot(
         self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs
     ):
+        # BUG: to be fixed
         start = start or event["tstart"]
         stop = stop or event["tstop"]
 
