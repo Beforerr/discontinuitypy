@@ -80,32 +80,29 @@ def setup_mva_plot(
     return tvar2plot
 
 # %% ../../notebooks/utils/01_plotting.ipynb 8
-from matplotlib import lines
-
-
 def plot_candidate(
-    candidate: dict,
+    event: dict,
     data: xr.DataArray,
     add_timebars=True,
     add_plasma_params=False,
     plot_fit_data=False,
     **kwargs,
 ):
-    if pd.notnull(candidate.get("d_tstart")) and pd.notnull(candidate.get("d_tstop")):
+    if pd.notnull(event.get("t.d_start")) and pd.notnull(event.get("t.d_end")):
         tvar = setup_mva_plot(
             data,
-            candidate["tstart"],
-            candidate["tstop"],
-            candidate["d_tstart"],
-            candidate["d_tstop"],
+            event["tstart"],
+            event["tstop"],
+            event["t.d_start"],
+            event["t.d_end"],
         )
     else:
-        tvar = setup_mva_plot(data, candidate["tstart"], candidate["tstop"])
+        tvar = setup_mva_plot(data, event["tstart"], event["tstop"])
 
     if add_timebars:
-        d_time = candidate.get("d_time")
-        d_start = candidate.get("d_tstart")
-        d_stop = candidate.get("d_tstop")
+        d_time = event.get("t.d_time")
+        d_start = event.get("t.d_start")
+        d_stop = event.get("t.d_end")
 
         if d_time:
             timebar(time_stamp(d_time), color="red")
@@ -117,9 +114,9 @@ def plot_candidate(
     title = ""
     
     if add_plasma_params:
-        plasma_speed = candidate.get("plasma_speed")
-        plasma_density = candidate.get("plasma_density")
-        plasma_temperature = candidate.get("plasma_temperature")
+        plasma_speed = event.get("plasma_speed")
+        plasma_density = event.get("plasma_density")
+        plasma_temperature = event.get("plasma_temperature")
 
         title += "#Plasma parameters# "
         if plasma_speed:
@@ -134,20 +131,25 @@ def plot_candidate(
     fig, axes = tplot(tvar, return_plot_objects=True, **kwargs)
 
     if plot_fit_data:
-        fit_data = candidate.get("fit.best_fit")
-        fit_time = candidate.get("fit.time")
+        fit_data = event.get("fit.best_fit")
+        fit_time = event.get("fit.time")
 
-        c = candidate.get("fit.vars.c")
-        amp = candidate.get("fit.vars.amplitude")
+        c = event.get("fit.vars.c")
+        amp = event.get("fit.vars.amplitude")
+        sigma = event.get('fit.vars.sigma')
         
-        d_star = candidate.get("d_star")
-        rsquared = candidate.get("fit.stat.rsquared")
-        chisqr = candidate.get("fit.stat.chisqr")
+        d_star = event.get("d_star")
+        rsquared = event.get("fit.stat.rsquared")
+        chisqr = event.get("fit.stat.chisqr")
+        
+        
 
         plt.plot(d_time, c + amp / 2, marker="o", markersize=10, color="red")
-        plt.plot(fit_time, fit_data, label="Fit", color="black", linestyle="--")
+        if fit_time is not None and fit_data is not None:
+            plt.plot(fit_time, fit_data, label="Fit", color="black", linestyle="--")
         
         title += f"\n#Fit# $\max dB/dt$: {d_star:.2f}, $R^2$: {rsquared:.2f}, $\chi^2$: {chisqr:.2f}"
+        title += f"\n#Fit# $c$: {c:.2f}, $Amp$: {amp:.2f}, $\Sigma$: {sigma:.2f}"
     
     plt.title(title)
 

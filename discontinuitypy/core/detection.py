@@ -3,13 +3,13 @@
 # %% auto 0
 __all__ = ['pl_format_time', 'detect_events']
 
-# %% ../../notebooks/01_ids_detection.ipynb 3
+# %% ../../notebooks/01_ids_detection.ipynb 1
 from datetime import timedelta
 import polars as pl
 
 from typing import overload
 
-# %% ../../notebooks/01_ids_detection.ipynb 4
+# %% ../../notebooks/01_ids_detection.ipynb 2
 # some helper functions
 @overload
 def pl_format_time(df: pl.DataFrame, tau: timedelta) -> pl.DataFrame: pass
@@ -24,7 +24,7 @@ def pl_format_time(df: pl.LazyFrame, tau: timedelta):
         time=(pl.col("time") + tau / 2),
     )
 
-# %% ../../notebooks/01_ids_detection.ipynb 6
+# %% ../../notebooks/01_ids_detection.ipynb 4
 from ..detection.variance import compute_indices, filter_indices
 
 def detect_events(

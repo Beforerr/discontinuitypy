@@ -12,7 +12,7 @@ from lmfit.models import StepModel, ConstantModel
 from lmfit import Parameters
 
 # %% ../../notebooks/properties/00_mva.ipynb 3
-def minvar(data):
+def minvar(data: np.ndarray):
     """
     see `pyspedas.cotrans.minvar`
 
@@ -165,15 +165,20 @@ def fit_maxiumum_variance_direction(
     params.add(
         "center",
         value=(x_max + x_min) / 2.0,
-        min=x_min + x_width / 7.0,
-        max=x_max - x_width / 7.0,
+        # min=x_min + x_width / 7.0,
+        # max=x_max - x_width / 7.0,
     )
-    params.add("amplitude", value=init_amplitude)
+    params.add(
+        "amplitude",
+        value=init_amplitude,
+        max=abs(init_amplitude) * 2.0,
+        min=-abs(init_amplitude) * 2.0,
+    )
     params.add("sigma", value=x_width / 7.0, min=0)
 
     if True:
         int_center_y = (y[-1] + y[0]) / 2.0
-        c1  = 1 / 8
+        c1 = 1 / 8
         params.add(
             "center_y",
             min=int_center_y - c1 * np.abs(init_amplitude),
@@ -211,7 +216,7 @@ def fit_maxiumum_variance_direction(
         {
             "fit.vars.amplitude": amplitude,
             "fit.vars.sigma": sigma,
-            "d_time": d_time,
+            "t.d_time": d_time,
             "d_star": max_df,
             "fit.vars.c": c,
             "fit.stat.rsquared": rsquared,
@@ -224,8 +229,12 @@ def fit_maxiumum_variance_direction(
     return result
 
 # %% ../../notebooks/properties/00_mva.ipynb 9
-def calc_candidate_mva_features(event, data: xr.DataArray, **kwargs):
-    event_data = data.sel(time=slice(event["d_tstart"], event["d_tstop"]))
+from typing import Literal
+
+def calc_candidate_mva_features(
+    event, data: xr.DataArray, method = Literal["fit", "derivative"], **kwargs
+):
+    event_data = data.sel(time=slice(event["t.d_start"], event["t.d_end"]))
 
     mva_features, vrot = calc_mva_features(event_data.to_numpy())
 
@@ -233,6 +242,8 @@ def calc_candidate_mva_features(event, data: xr.DataArray, **kwargs):
         vrot[:, 0], dims=["time"], coords={"time": event_data.time}
     )
 
-    fit_result = fit_maxiumum_variance_direction(event_data_l, **kwargs)
-
-    return pd.concat([mva_features, fit_result])
+    if method == "fit":
+        fit_result = fit_maxiumum_variance_direction(event_data_l, **kwargs)
+        return pd.concat([mva_features, fit_result])
+    elif method == "derivative":
+        return mva_features

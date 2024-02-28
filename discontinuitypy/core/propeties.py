@@ -26,15 +26,12 @@ from datetime import timedelta
 
 from loguru import logger
 
-
 import pdpipe as pdp
 from pdpipe.util import out_of_place_col_insert
-from multipledispatch import dispatch
 
 # %% ../../notebooks/02_ids_properties.ipynb 2
-@dispatch(object, xr.DataArray)
 def get_candidate_data(
-    candidate, data, neighbor: int = 0
+    candidate: dict, data: xr.DataArray, neighbor: int = 0
 ) -> xr.DataArray:
     duration = candidate["tstop"] - candidate["tstart"]
     offset = neighbor * duration
@@ -42,6 +39,7 @@ def get_candidate_data(
     temp_tstop = candidate["tstop"] + offset
 
     return data.sel(time=slice(temp_tstart, temp_tstop))
+
 
 def get_candidates(candidates: pd.DataFrame, candidate_type=None, num: int = 4):
     if candidate_type is not None:
@@ -61,37 +59,22 @@ def get_candidates(candidates: pd.DataFrame, candidate_type=None, num: int = 4):
 # %% ../../notebooks/02_ids_properties.ipynb 4
 from ..propeties.duration import calc_duration
 
-
-def calc_candidate_duration(candidate: pd.Series, data, method="distance", **kwargs):
+# %% ../../notebooks/02_ids_properties.ipynb 5
+def calc_candidate_duration(candidate, data, **kwargs):
     try:
         candidate_data = get_candidate_data(candidate, data)
-        result = calc_duration(candidate_data)
+        result = calc_duration(candidate_data, **kwargs)
+        return pandas.Series(result)
     except Exception as e:
-        # logger.debug(f"Error for candidate {candidate} at {candidate['time']}: {str(e)}") # can not be serialized
-        print(f"Error for candidate {candidate} at {candidate['time']}: {str(e)}")
+        logger.debug(
+            f"Error for candidate {candidate} at {candidate['time']}: {str(e)}"
+        )
         raise e
 
-    if method == "distance":
-        return pd.Series(
-            {
-                "d_tstart": result[0],
-                "d_tstop": result[1],
-            }
-        )
-    elif method == "derivative":
-        return pd.Series(
-            {
-                "d_tstart": result[0],
-                "d_tstop": result[1],
-                "d_time": result[2],
-                "d_star": result[3],
-            }
-        )
-
-# %% ../../notebooks/02_ids_properties.ipynb 6
+# %% ../../notebooks/02_ids_properties.ipynb 7
 from ..propeties.mva import calc_candidate_mva_features
 
-# %% ../../notebooks/02_ids_properties.ipynb 8
+# %% ../../notebooks/02_ids_properties.ipynb 9
 def get_data_at_times(data: xr.DataArray, times) -> np.ndarray:
     """
     Select data at specified times.
@@ -99,7 +82,7 @@ def get_data_at_times(data: xr.DataArray, times) -> np.ndarray:
     # Use xarray's selection capability if data supports it
     return data.sel(time=times, method="nearest").to_numpy()
 
-# %% ../../notebooks/02_ids_properties.ipynb 9
+# %% ../../notebooks/02_ids_properties.ipynb 10
 def calc_rotation_angle(v1, v2):
     """
     Computes the rotation angle between two vectors.
@@ -128,13 +111,13 @@ def calc_rotation_angle(v1, v2):
     return np.degrees(angle)
 
 
-# %% ../../notebooks/02_ids_properties.ipynb 10
+# %% ../../notebooks/02_ids_properties.ipynb 11
 def calc_events_rotation_angle(events, data: xr.DataArray):
     """
     Computes the rotation angle(s) at two different time steps.
     """
-    tstart = events['d_tstart'].to_numpy()
-    tstop = events['d_tstop'].to_numpy()
+    tstart = events['t.d_start'].to_numpy()
+    tstop = events['t.d_end'].to_numpy()
 
     vecs_before = get_data_at_times(data, tstart)
     vecs_after = get_data_at_times(data, tstop)
@@ -142,7 +125,7 @@ def calc_events_rotation_angle(events, data: xr.DataArray):
     rotation_angles = calc_rotation_angle(vecs_before, vecs_after)
     return rotation_angles
 
-# %% ../../notebooks/02_ids_properties.ipynb 12
+# %% ../../notebooks/02_ids_properties.ipynb 13
 def calc_normal_direction(v1, v2, normalize=True) -> np.ndarray:
     """
     Computes the normal direction of two vectors.
@@ -158,13 +141,13 @@ def calc_normal_direction(v1, v2, normalize=True) -> np.ndarray:
     return c / np.linalg.norm(c, axis=-1, keepdims=True)
 
 
-# %% ../../notebooks/02_ids_properties.ipynb 13
+# %% ../../notebooks/02_ids_properties.ipynb 14
 def calc_events_normal_direction(events, data: xr.DataArray):
     """
     Computes the normal directions(s) at two different time steps.
     """
-    tstart = events['d_tstart'].to_numpy()
-    tstop = events['d_tstop'].to_numpy()
+    tstart = events['t.d_start'].to_numpy()
+    tstop = events['t.d_end'].to_numpy()
 
     vecs_before = get_data_at_times(data, tstart)
     vecs_after = get_data_at_times(data, tstop)
@@ -174,20 +157,20 @@ def calc_events_normal_direction(events, data: xr.DataArray):
     return normal_directions.tolist()
 
 
-# %% ../../notebooks/02_ids_properties.ipynb 14
+# %% ../../notebooks/02_ids_properties.ipynb 15
 def calc_events_vec_change(events, data: xr.DataArray):
     """
     Utils function to calculate features related to the change of the magnetic field
     """
-    tstart = events['d_tstart'].to_numpy()
-    tstop = events['d_tstop'].to_numpy()
+    tstart = events['t.d_start'].to_numpy()
+    tstop = events['t.d_end'].to_numpy()
     
     vecs_before = get_data_at_times(data, tstart)
     vecs_after = get_data_at_times(data, tstop)
     return (vecs_after - vecs_before).tolist()
     
 
-# %% ../../notebooks/02_ids_properties.ipynb 17
+# %% ../../notebooks/02_ids_properties.ipynb 18
 @patch
 def _transform(self: pdp.ApplyToRows, X, verbose):
     new_cols = X.apply(self._func, axis=1)
@@ -222,61 +205,69 @@ def _transform(self: pdp.ApplyToRows, X, verbose):
         " Only Series and DataFrame are allowed."
     )
 
-# %% ../../notebooks/02_ids_properties.ipynb 19
+# %% ../../notebooks/02_ids_properties.ipynb 20
 class IDsPdPipeline:
-    @classmethod
-    def calc_duration(self, data: xr.DataArray, **kwargs):
+    @staticmethod
+    def calc_duration(data: xr.DataArray, **kwargs):
         return pdp.ApplyToRows(
-            lambda candidate: calc_candidate_duration(candidate, data, **kwargs),
+            lambda df: calc_candidate_duration(df, data, **kwargs),
             func_desc="calculating pre-duration parameters",
         )
-    
-    @classmethod
-    def calc_mva_features(self, data, **kwargs):
+
+    @staticmethod
+    def calc_mva_features(data, **kwargs):
         return pdp.ApplyToRows(
-            lambda candidate: calc_candidate_mva_features(candidate, data, **kwargs),
+            lambda df: calc_candidate_mva_features(df, data, **kwargs),
             func_desc="calculating MVA features",
         )
 
-    @classmethod
-    def calc_vec_change(self, data, **kwargs):
+    @staticmethod
+    def calc_vec_change(data, **kwargs):
         return pdp.ColByFrameFunc(
             "dB",
-            lambda candidate: calc_events_vec_change(candidate, data, **kwargs),
+            lambda df: calc_events_vec_change(df, data, **kwargs),
             func_desc="calculating compound change",
         )
 
-    @classmethod
-    def calc_rotation_angle(self, data, **kwargs):
+    @staticmethod
+    def calc_rotation_angle(data, **kwargs):
         return pdp.ColByFrameFunc(
             "rotation_angle",
             lambda df: calc_events_rotation_angle(df, data, **kwargs),
             func_desc="calculating rotation angle",
         )
 
-    @classmethod
-    def calc_normal_direction(self, data, name="normal_direction", **kwargs):
+    @staticmethod
+    def calc_normal_direction(data, name="normal_direction", **kwargs):
         return pdp.ColByFrameFunc(
             name,
             lambda df: calc_events_normal_direction(df, data, **kwargs),
             func_desc="calculating normal direction",
         )
 
-# %% ../../notebooks/02_ids_properties.ipynb 20
+# %% ../../notebooks/02_ids_properties.ipynb 21
 from ..utils.polars import convert_to_pd_dataframe, decompose_vector  # noqa: E402
 
-# %% ../../notebooks/02_ids_properties.ipynb 21
+# %% ../../notebooks/02_ids_properties.ipynb 22
+from typing import Literal
+
+
 def process_events(
     candidates_pl: pl.DataFrame,  # potential candidates DataFrame
     sat_fgm: xr.DataArray,  # satellite FGM data
     data_resolution: timedelta,  # time resolution of the data
     modin=True,
-    duration_method="distance",
+    method: Literal["fit", "derivative"]= "fit",
     **kwargs,
 ) -> pl.DataFrame:
     "Process candidates DataFrame"
 
     candidates = convert_to_pd_dataframe(candidates_pl, modin=modin)
+    
+    if method == "fit":
+        duration_method = "distance"  
+    else:
+        duration_method = "derivative"
 
     candidates = (
         IDsPdPipeline.calc_duration(sat_fgm, method=duration_method, **kwargs)
@@ -285,7 +276,7 @@ def process_events(
     )  # Remove candidates with NaN values)
 
     ids = (
-        IDsPdPipeline.calc_mva_features(sat_fgm, **kwargs)
+        IDsPdPipeline.calc_mva_features(sat_fgm, method=method, **kwargs)
         + IDsPdPipeline.calc_vec_change(sat_fgm)
         + IDsPdPipeline.calc_rotation_angle(sat_fgm)
         + IDsPdPipeline.calc_normal_direction(sat_fgm, name="k")
@@ -300,10 +291,12 @@ def process_events(
         ids.dropna(), schema_overrides={vec: pl.List for vec in vectors2decompose}
     )  # ArrowInvalid: Could not convert [0.9799027968348948, -0.17761542644940076, -0.07309766783111293] with type list: tried to convert to double
 
-    if duration_method == "derivative":
-        duration_expr = (pl.col("fit.vars.sigma") * 2)
+    if method == "fit":
+        duration_expr = pl.col("fit.vars.sigma") * 2
     else:
-        duration_expr = (pl.col("d_tstop") - pl.col("d_tstart")).dt.total_nanoseconds() / 1e9 # convert to seconds
+        duration_expr = (
+            pl.col("t.d_end") - pl.col("t.d_start")
+        ).dt.total_nanoseconds() / 1e9  # convert to seconds
 
     for vec in vectors2decompose:
         df = decompose_vector(df, vec)

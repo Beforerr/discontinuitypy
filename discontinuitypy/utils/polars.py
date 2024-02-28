@@ -112,7 +112,7 @@ def decompose_vector(
 
     # Create column expressions for each element in the vector
     column_expressions = [
-        pl.col(vector_col).list.get(i).alias(f"{name}{suffixes[i]}")
+        pl.col(vector_col).list.get(i).alias(name).name.suffix(suffixes[i])
         for i in range(max_length)
     ]
 

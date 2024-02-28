@@ -10,13 +10,7 @@ from functools import partial
 
 from typing import overload
 
-# %% ../../notebooks/utils/00_basic.ipynb 2
-# from discontinuitypy import ROOT_DIR
-# from discontinuitypy.utils.kedro import load_context
-# load_catalog = partial(load_context, project_path=ROOT_DIR, catalog_only=True)
-# load_params = partial(load_context, project_path=ROOT_DIR, params_only=True)
-
-# %% ../../notebooks/utils/00_basic.ipynb 4
+# %% ../../notebooks/utils/00_basic.ipynb 3
 import polars as pl
 import polars.selectors as cs
 
@@ -36,18 +30,18 @@ from typing import Union, Collection, Callable, Optional, Tuple
 from typing import Any, Dict
 
 
-# %% ../../notebooks/utils/00_basic.ipynb 5
+# %% ../../notebooks/utils/00_basic.ipynb 4
 from pipe import select
 from fastcore.utils import partial
 
-# %% ../../notebooks/utils/00_basic.ipynb 6
+# %% ../../notebooks/utils/00_basic.ipynb 5
 def pmap(func, *args, **kwargs):
     """
     map with `partial`
     """
     return select(partial(func, *args, **kwargs))
 
-# %% ../../notebooks/utils/00_basic.ipynb 9
+# %% ../../notebooks/utils/00_basic.ipynb 8
 from pydantic import BaseModel
 from datetime import datetime, timedelta
 from pandas import Timedelta
@@ -59,10 +53,10 @@ class DataConfig(BaseModel):
     ts: timedelta = None
     coord: str = None
 
-# %% ../../notebooks/utils/00_basic.ipynb 11
+# %% ../../notebooks/utils/00_basic.ipynb 10
 from fastcore.utils import patch
 
-# %% ../../notebooks/utils/00_basic.ipynb 12
+# %% ../../notebooks/utils/00_basic.ipynb 11
 def filter_tranges(time: pl.Series, tranges: Tuple[list, list]):
     """
     - Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)
@@ -90,12 +84,12 @@ def filter_tranges_df(df: pl.DataFrame, tranges: Tuple[list, list], time_col: st
     filtered_indices = filter_tranges(time, tranges)
     return df[filtered_indices]
 
-# %% ../../notebooks/utils/00_basic.ipynb 13
+# %% ../../notebooks/utils/00_basic.ipynb 12
 @patch
 def plot(self:pl.DataFrame, *args, **kwargs):
     return self.to_pandas().plot(*args, **kwargs)
 
-# %% ../../notebooks/utils/00_basic.ipynb 14
+# %% ../../notebooks/utils/00_basic.ipynb 13
 def _expand_selectors(items: Any, *more_items: Any) -> list[Any]:
     """
     See `_expand_selectors` in `polars`.
@@ -127,7 +121,7 @@ def pl_norm(columns, *more_columns) -> pl.Expr:
 
     return sum(squares).sqrt()
 
-# %% ../../notebooks/utils/00_basic.ipynb 16
+# %% ../../notebooks/utils/00_basic.ipynb 15
 def partition_data_by_ts(df: pl.DataFrame, ts: timedelta) -> Dict[str, pl.DataFrame]:
     """Partition the dataset by time
 
@@ -193,7 +187,7 @@ def partition_data_by_time(df: pl.LazyFrame | pl.DataFrame, method) -> Dict[str,
         ts = pd.Timedelta(method)
         return partition_data_by_ts(df, ts)
 
-# %% ../../notebooks/utils/00_basic.ipynb 17
+# %% ../../notebooks/utils/00_basic.ipynb 16
 DF_TYPE = Union[pl.DataFrame, pl.LazyFrame, pd.DataFrame]
 def concat_df(dfs: list[DF_TYPE]) -> DF_TYPE:
     """Concatenate a list of DataFrames into one DataFrame.
@@ -222,7 +216,7 @@ def concat_partitions(partitioned_input: Dict[str, Callable]):
     result = concat_df(partitions_data)
     return result
 
-# %% ../../notebooks/utils/00_basic.ipynb 19
+# %% ../../notebooks/utils/00_basic.ipynb 18
 def format_timedelta(time):
     """Format timedelta to `timedelta`"""
     if isinstance(time, timedelta):
@@ -234,7 +228,7 @@ def format_timedelta(time):
     else:
         raise TypeError(f"Unsupported type: {type(time)}")
 
-# %% ../../notebooks/utils/00_basic.ipynb 20
+# %% ../../notebooks/utils/00_basic.ipynb 19
 @overload
 def resample(
     df: pl.DataFrame,
@@ -277,23 +271,23 @@ def resample(
         .with_columns((pl.col(time_column) + shift))
     )
 
-# %% ../../notebooks/utils/00_basic.ipynb 21
+# %% ../../notebooks/utils/00_basic.ipynb 20
 def df2ts(
     df: Union[pandas.DataFrame, pl.DataFrame, pl.LazyFrame],
-    cols = None,
-    time_col = "time",
+    cols=None,
+    time_col="time",
     attrs=None,
     name=None,
 ):
     """Convert DataFrame to TimeSeries"""
-    
+
     if cols is None:
         if isinstance(df, (pl.DataFrame, pl.LazyFrame)):
             cols = df.columns
             cols.remove(time_col)
         else:
             cols = df.columns.tolist()
-    
+
     if isinstance(df, pl.LazyFrame):
         df = df.collect()
 
@@ -307,7 +301,7 @@ def df2ts(
         v_dim = [cols + str(i) for i in range(element_len)]
     else:
         v_dim = cols
-        
+
     # Create the DataArray
     coords = {"time": time, "v_dim": v_dim}
 
@@ -317,7 +311,7 @@ def df2ts(
 def calc_vec_mag(vec) -> DataArray:
     return linalg.norm(vec, dims="v_dim")
 
-# %% ../../notebooks/utils/00_basic.ipynb 22
+# %% ../../notebooks/utils/00_basic.ipynb 21
 def check_fgm(vec: xr.DataArray):
     # check if time is monotonic increasing
     logger.info("Check if time is monotonic increasing")
