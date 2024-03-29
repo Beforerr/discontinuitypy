@@ -29,6 +29,13 @@ def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaMeta):
 
 # %% ../notebooks/11_ids_config.ipynb 2
 class IDsConfig(IDsDataset):
+    """
+    Extend the IDsDataset class to provide additional functionalities:
+    
+    - Export and load data
+    - Standardize data
+    - Split data to handle large datasets
+    """
     timerange: list[datetime] = None
 
     split: int = 1
@@ -64,34 +71,53 @@ class IDsConfig(IDsDataset):
 # %% ../notebooks/11_ids_config.ipynb 3
 class SpeasyIDsConfig(IDsConfig):
     """Based on `speasy` Variables to get the data"""
+
     _cached_vars: dict[str, Variables] = {}
-    
+
     def model_post_init(self, __context):
         # TODO: directly get columns from the data without loading them
         # self.plasma_meta.density_col = self.plasma_vars.data[0].columns[0]
         # self.plasma_meta.velocity_cols = self.plasma_vars.data[1].columns
         pass
 
-    def get_vars(self, vars: str):
+    def get_vars(self, vars: str, cached: bool = True):
+        if cached:
+            if vars not in self._cached_vars:
+                self._cached_vars[vars] = self._get_vars(vars)
+            return self._cached_vars[vars]
+        else:
+            return self._get_vars(vars)
+
+    def _get_vars(self, vars: str):
         meta: Meta = getattr(self, f"{vars}_meta")
         return Variables(
             timerange=self.timerange,
-            **meta.model_dump(),
+            **meta.model_dump(exclude_unset=True),
         )
 
-    def get_cached_vars(self, vars: str):
-        if vars not in self._cached_vars:
-            self._cached_vars[vars] = self.get_vars(vars)
-        return self._cached_vars[vars]
+    def get_vars_df(self, vars: str, cached: bool = True):
+        return self.get_vars(vars, cached=cached).to_polars()
 
-
+    # Variables
     @property
     def mag_vars(self):
-        return self.get_cached_vars("mag")
+        return self.get_vars("mag")
 
     @property
     def plasma_vars(self):
-        return self.get_cached_vars("plasma")
+        return self.get_vars("plasma")
+
+    @property
+    def ion_temp_var(self):
+        return self.get_vars("ion_temp")
+
+    @property
+    def e_temp_var(self):
+        return self.get_vars("e_temp")
+
+    # DataFrames
+    def set_data_from_vars(self, update: False):
+        pass
 
     @property
     def timeranges(self):
@@ -103,17 +129,17 @@ class SpeasyIDsConfig(IDsConfig):
     def _get_and_process_data(self, **kwargs):
         self.plasma_meta.density_col = self.plasma_vars.data[0].columns[0]
         self.plasma_meta.velocity_cols = self.plasma_vars.data[1].columns
+
+        # TODO: optimize for no-split timeranges
+
         for tr in tqdm(self.timeranges):
             ids_ds = self.model_copy(update={"timerange": tr, "split": 1}, deep=True)
-            
-            ids_ds.data = ids_ds.get_vars("mag").retrieve_data().to_polars()
-            ids_ds.plasma_data = (
-                ids_ds.get_vars("plasma")
-                .retrieve_data()
-                .to_polars()
-                .pipe(standardize_plasma_data, ids_ds.plasma_meta)
+
+            ids_ds.data = ids_ds.get_vars_df("mag", cached=False)
+            ids_ds.plasma_data = ids_ds.get_vars_df("plasma", cached=False).pipe(
+                standardize_plasma_data, ids_ds.plasma_meta
             )
-            
+
             yield ids_ds.find_events(
                 return_best_fit=False
             ).update_candidates_with_plasma_data().events

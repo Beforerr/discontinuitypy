@@ -89,6 +89,6 @@ def calc_duration(ts: xr.DataArray, method: AvailableMethod = "distance", **kwar
 
     elif method == "derivative":
         result = ts_max_derivative(ts)
-        keys = ["t.d_start", "t.d_end", "t.d_time", "d_star"]
+        keys = ["t.d_start", "t.d_end", "t.d_time", "d_star_max"]
 
     return dict(zip(keys, result))

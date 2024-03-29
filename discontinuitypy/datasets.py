@@ -24,6 +24,7 @@ from .core.pipeline import ids_finder
 # %% ../notebooks/10_datasets.ipynb 5
 from pathlib import Path
 
+
 def write(df: pl.DataFrame, fname: Path, format=None, **kwargs):
     if format is None:
         format = fname.suffix
@@ -37,11 +38,13 @@ def write(df: pl.DataFrame, fname: Path, format=None, **kwargs):
             df.write_parquet(fname, **kwargs)
 
     logger.info(f"Dataframe written to {fname}")
-    
+
     return fname
 
 
 class IdsEvents(BaseModel):
+    """Core class to handle discontinuity events in a dataset."""
+
     class Config:
         extra = "allow"
         arbitrary_types_allowed = True
@@ -74,29 +77,28 @@ class IdsEvents(BaseModel):
         )
         return self
 
-    def get_event(self, index=None, predicates=None, random: bool = True, **kwargs):
-        if index:
-            candidate = self.events.row(index, named=True)
-        elif predicates:
-            candidate = self.events.filter(predicates).row(0, named=True)
-        else:
-            index = sample(range(len(self.events)), 1)[0] if random else 0
-            candidate = self.events.row(index, named=True)
-        return candidate
+    def get_event(self, index: int):
+        events = self.events
+        if "index" not in events.columns:
+            events = events.with_row_index()
+        predicate = pl.col("index") == index
+        return events.row(by_predicate=predicate, named=True)
+
+    def get_events(self, indices=None, predicate=None):
+        pass
 
     def get_event_data(
         self,
-        candidate=None,
-        index=None,
-        predicates=None,
+        event,
+        start_col="t.d_start",
+        end_col="t.d_end",
+        offset=timedelta(seconds=1),
         **kwargs,
     ):
-        if candidate is None:
-            candidate = self.get_event(index, predicates, **kwargs)
+        start = event[start_col] - offset
+        end = event[end_col] + offset
 
-        _data = self.data.filter(
-            pl.col("time").is_between(candidate["t.d_start"], candidate["t.d_end"])
-        )
+        _data = self.data.filter(pl.col("time").is_between(start, end))
         return df2ts(_data, self.bcols)
 
 # %% ../notebooks/10_datasets.ipynb 6
@@ -114,17 +116,22 @@ def log_event_change(event, logger=logger):
 
 # %% ../notebooks/10_datasets.ipynb 8
 class IDsDataset(IdsEvents):
+    """Extend the IdsEvents class to handle plasma and temperature data."""
 
     data: pl.LazyFrame = Field(default=None, alias="mag_data")
-    
     mag_meta: Meta = Meta()
     bcols: list[str] = None
-    
+
     plasma_data: pl.LazyFrame = None
     plasma_meta: PlasmaMeta = PlasmaMeta()
-    
-    ion_temp_meta: TempMeta = None
-    e_temp_meta: TempMeta = None
+
+    ion_temp_data: pl.LazyFrame = None
+    ion_temp_meta: TempMeta = TempMeta()
+    e_temp_data: pl.LazyFrame = None
+    e_temp_meta: TempMeta = TempMeta()
+
+    def update_events(self, **kwargs):
+        pass
 
     def update_candidates_with_plasma_data(self, **kwargs):
         df_combined = combine_features(
@@ -141,9 +148,12 @@ class IDsDataset(IdsEvents):
         )
         return self
 
-    def plot(self, type="overview", event=None, index=None, predicates=None, **kwargs):
+    def _update_events_with_temp_data(self, **kwargs):
+        pass
 
-        event = event or self.get_event(index, predicates, **kwargs)
+    def plot(self, type="overview", event=None, index=None, **kwargs):
+
+        event = event or self.get_event(index)
         if type == "overview":
             return self.overview_plot(event, **kwargs)
 
@@ -174,7 +184,7 @@ class IDsDataset(IdsEvents):
 
         v_df = _plasma_data.melt(
             id_vars=["time"],
-            value_vars=self.vec_cols,
+            value_vars=self.plasma_meta.velocity_cols,
             variable_name="veloity comp",
             value_name="v",
         )
@@ -183,13 +193,17 @@ class IDsDataset(IdsEvents):
             x="time", y="B", by="B comp", ylabel="Magnetic Field", **kwargs
         )
         panel_n = _plasma_data.hvplot(
-            x="time", y=self.density_col, **kwargs
-        ) * _plasma_data.hvplot.scatter(x="time", y=self.density_col, **kwargs)
+            x="time", y=self.plasma_meta.density_col, **kwargs
+        ) * _plasma_data.hvplot.scatter(
+            x="time", y=self.plasma_meta.density_col, **kwargs
+        )
 
         panel_v = v_df.hvplot(
             x="time", y="v", by="veloity comp", ylabel="Plasma Velocity", **kwargs
         )
-        panel_temp = _plasma_data.hvplot(x="time", y=self.temperature_col, **kwargs)
+        panel_temp = _plasma_data.hvplot(
+            x="time", y=self.plasma_meta.temperature_col, **kwargs
+        )
 
         mag_vlines = hv.VLine(event["t.d_start"]) * hv.VLine(event["t.d_end"])
         plasma_vlines = hv.VLine(event.get("time_before")) * hv.VLine(
@@ -206,21 +220,23 @@ class IDsDataset(IdsEvents):
             + panel_temp * plasma_vlines
         ).cols(1)
 
-    def plot_candidate(self, candidate=None, index=None, predicates=None, **kwargs):
-        if candidate is None:
-            candidate = self.get_event(index, predicates, **kwargs)
-        sat_fgm = self.get_event_data(candidate)
+    def plot_candidate(self, event=None, index=None, **kwargs):
+        if event is None:
+            event = self.get_event(index)
+        data = self.get_event_data(event, **kwargs)
 
-        return _plot_candidate(candidate, sat_fgm, **kwargs)
+        return _plot_candidate(event, data, **kwargs)
 
     def plot_candidates(
-        self, indices=None, num=4, random=True, predicates=None, **kwargs
+        self, indices=None, num=4, random=True, predicate=None, **kwargs
     ):
-        events = self.events.with_row_index()
+        events = self.events
+        if "index" not in events.columns:
+            events = events.with_row_index()
 
-        if indices is None: # the truth value of an Expr is ambiguous
-            if predicates is not None:
-                events = events.filter(predicates)
+        if indices is None:  # the truth value of an Expr is ambiguous
+            if predicate is not None:
+                events = events.filter(predicate)
             indices = events.get_column("index")
             if random:
                 indices = indices.sample(num).to_numpy()
