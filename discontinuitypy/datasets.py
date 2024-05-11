@@ -15,13 +15,13 @@ from pydantic import BaseModel, Field, validate_call
 from space_analysis.ds.meta import Meta, PlasmaMeta, TempMeta
 from typing import Literal
 
-# %% ../notebooks/10_datasets.ipynb 4
+# %% ../notebooks/10_datasets.ipynb 3
 from .utils.basic import df2ts
 from .utils.plot import plot_candidate as _plot_candidate
 from .integration import combine_features, calc_combined_features
 from .core.pipeline import ids_finder
 
-# %% ../notebooks/10_datasets.ipynb 5
+# %% ../notebooks/10_datasets.ipynb 4
 from pathlib import Path
 
 
@@ -101,7 +101,7 @@ class IdsEvents(BaseModel):
         _data = self.data.filter(pl.col("time").is_between(start, end))
         return df2ts(_data, self.bcols)
 
-# %% ../notebooks/10_datasets.ipynb 6
+# %% ../notebooks/10_datasets.ipynb 5
 def log_event_change(event, logger=logger):
     logger.debug(
         f"""CHANGE INFO
@@ -114,7 +114,7 @@ def log_event_change(event, logger=logger):
         """
     )
 
-# %% ../notebooks/10_datasets.ipynb 8
+# %% ../notebooks/10_datasets.ipynb 7
 class IDsDataset(IdsEvents):
     """Extend the IdsEvents class to handle plasma and temperature data."""
 
@@ -131,25 +131,47 @@ class IDsDataset(IdsEvents):
     e_temp_meta: TempMeta = TempMeta()
 
     def update_events(self, **kwargs):
-        pass
+        return self.update_events_with_plasma_data(
+            **kwargs
+        ).update_events_with_temp_data(**kwargs)
 
-    def update_candidates_with_plasma_data(self, **kwargs):
-        df_combined = combine_features(
-            self.events,
-            self.plasma_data.collect(),
-            plasma_meta=self.plasma_meta,
-            **kwargs,
-        )
+    def update_events_with_plasma_data(self, **kwargs):
+        # TypeError: the truth value of a LazyFrame is ambiguous
+        if self.plasma_data is not None:
+            df_combined = combine_features(
+                self.events,
+                self.plasma_data.collect(),
+                plasma_meta=self.plasma_meta,
+                **kwargs,
+            )
 
-        self.events = calc_combined_features(
-            df_combined,
-            plasma_meta=self.plasma_meta,
-            **kwargs,
-        )
+            self.events = calc_combined_features(
+                df_combined,
+                plasma_meta=self.plasma_meta,
+                **kwargs,
+            )
+        else:
+            logger.info("Plasma data is not available.")
+
         return self
 
-    def _update_events_with_temp_data(self, **kwargs):
-        pass
+    def update_events_with_temp_data(self, **kwargs):
+        on = "time"
+
+        if self.ion_temp_data is not None:
+            self.events = self.events.sort(on).join_asof(
+                self.ion_temp_data.sort(on).collect(), on=on
+            )
+        else:
+            logger.info("Ion temperature data is not available.")
+
+        if self.e_temp_data is not None:
+            self.events = self.events.sort(on).join_asof(
+                self.e_temp_data.sort(on).collect(), on=on
+            )
+        else:
+            logger.info("Electron temperature data is not available.")
+        return self
 
     def plot(self, type="overview", event=None, index=None, **kwargs):
 

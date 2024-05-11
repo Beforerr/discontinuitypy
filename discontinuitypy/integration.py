@@ -29,8 +29,7 @@ def interpolate(
 
 
 def interpolate2(df1: pl.DataFrame, df2, **kwargs):
-
-    return pl.concat([df1, df2], how="diagonal").pipe(interpolate, **kwargs)
+    return pl.concat([df1, df2], how="diagonal_relaxed").pipe(interpolate, **kwargs)
 
 
 def format_time(df: pl.DataFrame, time_unit="ns"):
@@ -55,8 +54,8 @@ def combine_features(
     subset_cols = [item for item in subset_cols if item is not None]
 
     # change time format: see issue: https://github.com/pola-rs/polars/issues/12023
-    states_data = states_data.pipe(format_time).sort("time")
-    events = events.pipe(format_time).sort("time")
+    states_data = states_data.sort("time")
+    events = events.sort("time")
 
     subset_cols = subset_cols + [
         "time"

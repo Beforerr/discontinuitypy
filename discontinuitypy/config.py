@@ -142,4 +142,4 @@ class SpeasyIDsConfig(IDsConfig):
 
             yield ids_ds.find_events(
                 return_best_fit=False
-            ).update_candidates_with_plasma_data().events
+            ).update_events_with_plasma_data().events
