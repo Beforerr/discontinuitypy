@@ -54,7 +54,10 @@ def combine_features(
     subset_cols = [item for item in subset_cols if item is not None]
 
     # change time format: see issue: https://github.com/pola-rs/polars/issues/12023
-    states_data = states_data.sort("time")
+    time_unit = events["time"].dtype.time_unit
+    states_data = states_data.sort("time").with_columns(
+        pl.col("time").dt.cast_time_unit(time_unit)
+    )
     events = events.sort("time")
 
     subset_cols = subset_cols + [

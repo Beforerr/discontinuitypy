@@ -11,6 +11,7 @@ from space_analysis.utils.speasy import Variables
 import polars as pl
 from loguru import logger
 from pathlib import Path
+from functools import cached_property
 
 from tqdm.auto import tqdm
 
@@ -53,6 +54,13 @@ class IDsConfig(IDsDataset):
     def path(self):
         return self._data_dir / self.fname
     
+    @property
+    def timeranges(self):
+        from sunpy.time import TimeRange
+
+        trs: list[TimeRange] = TimeRange(self.timerange).split(self.split)
+        return [[tr.start.value, tr.end.value] for tr in trs]
+    
     def export(self, **kwargs):
         return super().export(self.path, format=self.fmt, **kwargs)
 
@@ -62,13 +70,6 @@ class IDsConfig(IDsDataset):
             self.events = pl.read_ipc(self.path)
         else:
             logger.warning(f"Data not found at {self.path}")
-        return self
-    
-    def _get_and_process_data(self, **kwargs) -> pl.DataFrame:
-        pass
-
-    def get_and_process_data(self, **kwargs):
-        self.events = pl.concat(self._get_and_process_data(**kwargs))
         return self
 
 # %% ../notebooks/11_ids_config.ipynb 3
@@ -102,32 +103,25 @@ class SpeasyIDsConfig(IDsConfig):
         return self.get_vars(vars, cached=cached).to_polars()
 
     # Variables
-    @property
+    @cached_property
     def mag_vars(self):
-        return self.get_vars("mag")
+        return self._get_vars("mag")
 
-    @property
+    @cached_property
     def plasma_vars(self):
-        return self.get_vars("plasma")
+        return self._get_vars("plasma")
 
-    @property
+    @cached_property
     def ion_temp_var(self):
-        return self.get_vars("ion_temp")
+        return self._get_vars("ion_temp")
 
-    @property
+    @cached_property
     def e_temp_var(self):
-        return self.get_vars("e_temp")
+        return self._get_vars("e_temp")
 
     # DataFrames
     def set_data_from_vars(self, update: False):
         pass
-
-    @property
-    def timeranges(self):
-        from sunpy.time import TimeRange
-
-        trs: list[TimeRange] = TimeRange(self.timerange).split(self.split)
-        return [[tr.start.value, tr.end.value] for tr in trs]
 
     def _get_and_process_data(self, **kwargs):
         self.plasma_meta.density_col = self.plasma_vars.data[0].columns[0]
@@ -146,3 +140,7 @@ class SpeasyIDsConfig(IDsConfig):
             yield ids_ds.find_events(
                 return_best_fit=False
             ).update_events_with_plasma_data().events
+            
+    def get_and_process_data(self, **kwargs):
+        self.events = pl.concat(self._get_and_process_data(**kwargs))
+        return self
