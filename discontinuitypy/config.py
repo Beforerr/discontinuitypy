@@ -9,7 +9,7 @@ from .datasets import IDsDataset
 from space_analysis.ds.meta import Meta, PlasmaMeta
 from space_analysis.utils.speasy import Variables
 import polars as pl
-
+from loguru import logger
 from pathlib import Path
 
 from tqdm.auto import tqdm
@@ -58,7 +58,10 @@ class IDsConfig(IDsDataset):
 
     def load(self):
         if self.path.exists():
+            logger.info(f"Loading data from {self.path}")
             self.events = pl.read_ipc(self.path)
+        else:
+            logger.warning(f"Data not found at {self.path}")
         return self
     
     def _get_and_process_data(self, **kwargs) -> pl.DataFrame:
