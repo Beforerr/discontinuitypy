@@ -1,5 +1,8 @@
 missions := ("JNO" + "STA")
 
+default:
+  just --list
+
 preview: export
   nbdev_preview
 

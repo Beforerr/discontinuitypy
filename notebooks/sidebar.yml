@@ -7,12 +7,13 @@ website:
       - 02_ids_properties.ipynb
       - 03_mag_plasma.ipynb
       - 10_datasets.ipynb
+      - 11_ids_config.ipynb
+      - 12_mission_config.ipynb
       - 21_datasets_kedro.ipynb
-      - 21_event.ipynb
       - about.qmd
-      - nbdev.yml
-      - pipelines.yaml
-      - sidebar.yml
+      - section: detection
+        contents:
+          - detection/01_variance.ipynb
       - section: properties
         contents:
           - properties/00_duration.ipynb
