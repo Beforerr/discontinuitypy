@@ -75,8 +75,7 @@ class IDsConfig(IDsDataset):
 # %% ../notebooks/11_ids_config.ipynb 3
 class SpeasyIDsConfig(IDsConfig):
     """Based on `speasy` Variables to get the data"""
-
-    _cached_vars: dict[str, Variables] = {}
+    provider: str = "cda"
 
     def model_post_init(self, __context):
         # TODO: directly get columns from the data without loading them
@@ -84,40 +83,36 @@ class SpeasyIDsConfig(IDsConfig):
         # self.plasma_meta.velocity_cols = self.plasma_vars.data[1].columns
         pass
 
-    def get_vars(self, vars: str, cached: bool = True):
-        if cached:
-            if vars not in self._cached_vars:
-                self._cached_vars[vars] = self._get_vars(vars)
-            return self._cached_vars[vars]
-        else:
-            return self._get_vars(vars)
-
-    def _get_vars(self, vars: str):
+    def get_vars(self, vars: str):
         meta: Meta = getattr(self, f"{vars}_meta")
         return Variables(
             timerange=self.timerange,
+            provider=self.provider,
             **meta.model_dump(exclude_unset=True),
         )
 
-    def get_vars_df(self, vars: str, cached: bool = True):
-        return self.get_vars(vars, cached=cached).to_polars()
+    def get_vars_df(self, vars: str, cached: bool = False):
+        if not cached:
+            return self.get_vars(vars).to_polars()
+        else:
+            return NotImplementedError
 
     # Variables
     @cached_property
     def mag_vars(self):
-        return self._get_vars("mag")
+        return self.get_vars("mag")
 
     @cached_property
     def plasma_vars(self):
-        return self._get_vars("plasma")
+        return self.get_vars("plasma")
 
     @cached_property
     def ion_temp_var(self):
-        return self._get_vars("ion_temp")
+        return self.get_vars("ion_temp")
 
     @cached_property
     def e_temp_var(self):
-        return self._get_vars("e_temp")
+        return self.get_vars("e_temp")
 
     # DataFrames
     def set_data_from_vars(self, update: False):
