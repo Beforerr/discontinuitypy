@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Large variance in the magnetic field compared with neighboring intervals">
 
-<title>discontinuitypy – Combine magnetic field data and plasma data</title>
+<title>discontinuitypy – Variance method</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,25 +55,45 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,9 +121,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -134,11 +152,11 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="discontinuitypy - Combine magnetic field data and plasma data">
-<meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
+<meta property="og:title" content="discontinuitypy - Variance method">
+<meta property="og:description" content="Large variance in the magnetic field compared with neighboring intervals">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - Combine magnetic field data and plasma data">
-<meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
+<meta name="twitter:title" content="discontinuitypy - Variance method">
+<meta name="twitter:description" content="Large variance in the magnetic field compared with neighboring intervals">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -149,7 +167,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">discontinuitypy</span>
     </a>
   </div>
@@ -160,11 +178,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link active" href="../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -179,7 +197,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_mag_plasma.html">Combine magnetic field data and plasma data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../detection/01_variance.html">Detection</a></li><li class="breadcrumb-item"><a href="../detection/01_variance.html">Variance method</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -193,67 +211,67 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_ids_finder.html" class="sidebar-item-text sidebar-link">
+  <a href="../00_ids_finder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID identification</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_ids_properties.html" class="sidebar-item-text sidebar-link">
+  <a href="../02_ids_properties.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID properties</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_mag_plasma.html" class="sidebar-item-text sidebar-link active">
+  <a href="../03_mag_plasma.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combine magnetic field data and plasma data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11_ids_config.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_ids_config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 Ids Config</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12_mission_config.html" class="sidebar-item-text sidebar-link">
+  <a href="../12_mission_config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12 Mission Config</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./20_datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../20_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./21_datasets_kedro.html" class="sidebar-item-text sidebar-link">
+  <a href="../21_datasets_kedro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./21_event.html" class="sidebar-item-text sidebar-link">
+  <a href="../21_event.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Event</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -268,7 +286,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./detection/01_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../detection/01_variance.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
@@ -285,13 +303,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_duration.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Duration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_mva.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/00_mva.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Minimum variance analysis (MVA)</span></a>
   </div>
 </li>
@@ -308,31 +326,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/basic.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/basic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Utils</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/01_plotting.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/01_plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MVA plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Utils</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/10_polars.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/10_polars.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Utils for Polars</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/15_kedro.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/15_kedro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>Kedro</code></span></a>
   </div>
 </li>
@@ -348,36 +366,45 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#format_time" id="toc-format_time" class="nav-link active" data-scroll-target="#format_time">format_time</a></li>
-  <li><a href="#interpolate2" id="toc-interpolate2" class="nav-link" data-scroll-target="#interpolate2">interpolate2</a></li>
-  <li><a href="#interpolate" id="toc-interpolate" class="nav-link" data-scroll-target="#interpolate">interpolate</a></li>
-  <li><a href="#combine_features" id="toc-combine_features" class="nav-link" data-scroll-target="#combine_features">combine_features</a></li>
-  <li><a href="#additional-features-after-combining" id="toc-additional-features-after-combining" class="nav-link" data-scroll-target="#additional-features-after-combining">Additional features after combining</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#index-of-the-standard-deviation" id="toc-index-of-the-standard-deviation" class="nav-link" data-scroll-target="#index-of-the-standard-deviation">Index of the standard deviation</a>
   <ul class="collapse">
-  <li><a href="#vector_project_pl" id="toc-vector_project_pl" class="nav-link" data-scroll-target="#vector_project_pl">vector_project_pl</a></li>
-  <li><a href="#vector_project" id="toc-vector_project" class="nav-link" data-scroll-target="#vector_project">vector_project</a></li>
-  <li><a href="#calc_rotation_angle_pl" id="toc-calc_rotation_angle_pl" class="nav-link" data-scroll-target="#calc_rotation_angle_pl">calc_rotation_angle_pl</a></li>
-  <li><a href="#inertial-length" id="toc-inertial-length" class="nav-link" data-scroll-target="#inertial-length">Inertial length</a></li>
-  <li><a href="#compute_inertial_length" id="toc-compute_inertial_length" class="nav-link" data-scroll-target="#compute_inertial_length">compute_inertial_length</a></li>
-  <li><a href="#alfven-current" id="toc-alfven-current" class="nav-link" data-scroll-target="#alfven-current">Alfven current</a></li>
-  <li><a href="#compute_alfven_current" id="toc-compute_alfven_current" class="nav-link" data-scroll-target="#compute_alfven_current">compute_Alfven_current</a></li>
+  <li><a href="#compute_std" id="toc-compute_std" class="nav-link" data-scroll-target="#compute_std">compute_std</a></li>
+  <li><a href="#add_neighbor_std" id="toc-add_neighbor_std" class="nav-link" data-scroll-target="#add_neighbor_std">add_neighbor_std</a></li>
+  <li><a href="#compute_index_std" id="toc-compute_index_std" class="nav-link" data-scroll-target="#compute_index_std">compute_index_std</a></li>
   </ul></li>
-  <li><a href="#all-features" id="toc-all-features" class="nav-link" data-scroll-target="#all-features">All features</a>
+  <li><a href="#index-of-fluctuation" id="toc-index-of-fluctuation" class="nav-link" data-scroll-target="#index-of-fluctuation">Index of fluctuation</a>
   <ul class="collapse">
-  <li><a href="#calc_plasma_parameter_change" id="toc-calc_plasma_parameter_change" class="nav-link" data-scroll-target="#calc_plasma_parameter_change">calc_plasma_parameter_change</a></li>
-  <li><a href="#calc_combined_features" id="toc-calc_combined_features" class="nav-link" data-scroll-target="#calc_combined_features">calc_combined_features</a></li>
+  <li><a href="#compute_index_fluctuation" id="toc-compute_index_fluctuation" class="nav-link" data-scroll-target="#compute_index_fluctuation">compute_index_fluctuation</a></li>
+  <li><a href="#compute_combinded_std" id="toc-compute_combinded_std" class="nav-link" data-scroll-target="#compute_combinded_std">compute_combinded_std</a></li>
   </ul></li>
+  <li><a href="#index-of-the-relative-field-jump" id="toc-index-of-the-relative-field-jump" class="nav-link" data-scroll-target="#index-of-the-relative-field-jump">Index of the relative field jump</a>
+  <ul class="collapse">
+  <li><a href="#pl_dvec" id="toc-pl_dvec" class="nav-link" data-scroll-target="#pl_dvec">pl_dvec</a></li>
+  <li><a href="#compute_index_diff" id="toc-compute_index_diff" class="nav-link" data-scroll-target="#compute_index_diff">compute_index_diff</a></li>
+  <li><a href="#compute_indices" id="toc-compute_indices" class="nav-link" data-scroll-target="#compute_indices">compute_indices</a></li>
+  </ul></li>
+  <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">Filtering</a>
+  <ul class="collapse">
+  <li><a href="#filter_indices" id="toc-filter_indices" class="nav-link" data-scroll-target="#filter_indices">filter_indices</a></li>
+  </ul></li>
+  <li><a href="#obsolete" id="toc-obsolete" class="nav-link" data-scroll-target="#obsolete">Obsolete</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/ids_finder/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../detection/01_variance.html">Detection</a></li><li class="breadcrumb-item"><a href="../detection/01_variance.html">Variance method</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Combine magnetic field data and plasma data</h1>
+<h1 class="title">Variance method</h1>
 </div>
 
+<div>
+  <div class="description">
+    Large variance in the magnetic field compared with neighboring intervals
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -392,531 +419,107 @@ window.Quarto = {
 </header>
 
 
-<ul>
-<li>combine features from different sources/instruments (magnetic field, state data, etc.)</li>
-<li>generate new features</li>
-</ul>
+<p>References: <span class="citation" data-cites="liuMagneticDiscontinuitiesSolar2022">(<a href="#ref-liuMagneticDiscontinuitiesSolar2022" role="doc-biblioref">Liu et al. 2022</a>)</span></p>
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>For each sampling instant <span class="math inline">\(t\)</span>, we define three intervals: the pre-interval <span class="math inline">\([-1,-1/2]\cdot T+t\)</span>, the middle interval <span class="math inline">\([-1/,1/2]\cdot T+t\)</span>, and the post-interval <span class="math inline">\([1/2,1]\cdot T+t\)</span>, in which <span class="math inline">\(T\)</span> are time lags. Let time series of the magnetic field data in these three intervals are labeled <span class="math inline">\({\mathbf B}_-\)</span>, <span class="math inline">\({\mathbf B}_0\)</span>, <span class="math inline">\({\mathbf B}_+\)</span>, respectively. Compute the following indices:</p>
+<p><span class="math display">\[
+I_1 = \frac{\sigma(B_0)}{Max(\sigma(B_-),\sigma(B_+))}
+\]</span></p>
+<p><span class="math display">\[
+I_2 = \frac{\sigma(B_- + B_+)} {\sigma(B_-) + \sigma(B_+)}
+\]</span></p>
+<p><span class="math display">\[
+I_3 = \frac{| \Delta \vec{B} |}{|B_{bg}|}
+\]</span></p>
+<p>By selecting a large and reasonable threshold for the ﬁrst two indices (<span class="math inline">\(I_1&gt;2, I_2&gt;1\)</span>) , we could guarantee that the ﬁeld changes of the IDs identiﬁed are large enough to be distinguished from the stochastic ﬂuctuations on magnetic ﬁelds, while the third is a supplementary condition to reduce the uncertainty of recognition. While the third index (relative field jump) is a supplementary condition to reduce the uncertainty of recognition.</p>
+</section>
+<section id="index-of-the-standard-deviation" class="level2">
+<h2 class="anchored" data-anchor-id="index-of-the-standard-deviation">Index of the standard deviation</h2>
+<p><span class="math display">\[
+I_1 = \frac{\sigma(B_0)}{Max(\sigma(B_-),\sigma(B_+))}
+\]</span></p>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="format_time" class="level3">
-<h3 class="anchored" data-anchor-id="format_time">format_time</h3>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L17" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="compute_std" class="level3">
+<h3 class="anchored" data-anchor-id="compute_std">compute_std</h3>
 <blockquote class="blockquote">
-<pre><code> format_time (df:polars.dataframe.frame.DataFrame, time_unit='ns')</code></pre>
+<pre><code> compute_std (df:polars.lazyframe.frame.LazyFrame,
+              period:datetime.timedelta, index_column='time',
+              cols:list[str]=['BX', 'BY', 'BZ'],
+              every:datetime.timedelta=None, result_column='std')</code></pre>
 </blockquote>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>df</td>
+<td>LazyFrame</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>period</td>
+<td>timedelta</td>
+<td></td>
+<td>period to group by</td>
+</tr>
+<tr class="odd">
+<td>index_column</td>
+<td>str</td>
+<td>time</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>cols</td>
+<td>list</td>
+<td>[‘BX’, ‘BY’, ‘BZ’]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>every</td>
+<td>timedelta</td>
+<td>None</td>
+<td>every to group by (default: period / 2)</td>
+</tr>
+<tr class="even">
+<td>result_column</td>
+<td>str</td>
+<td>std</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code>UserWarning: Unknown section Notes</code></pre>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L31" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L44" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="interpolate2" class="level3">
-<h3 class="anchored" data-anchor-id="interpolate2">interpolate2</h3>
+<section id="add_neighbor_std" class="level3">
+<h3 class="anchored" data-anchor-id="add_neighbor_std">add_neighbor_std</h3>
 <blockquote class="blockquote">
-<pre><code> interpolate2 (df1:polars.dataframe.frame.DataFrame, df2, **kwargs)</code></pre>
+<pre><code> add_neighbor_std (df:polars.lazyframe.frame.LazyFrame,
+                   tau:datetime.timedelta, join_strategy='inner',
+                   std_column='std', time_column='time')</code></pre>
 </blockquote>
+<p>Get the neighbor standard deviations</p>
+<pre><code>UserWarning: Unknown section Examples</code></pre>
 <hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L14" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L81" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="interpolate" class="level3">
-<h3 class="anchored" data-anchor-id="interpolate">interpolate</h3>
+<section id="compute_index_std" class="level3">
+<h3 class="anchored" data-anchor-id="compute_index_std">compute_index_std</h3>
 <blockquote class="blockquote">
-<pre><code> interpolate (df:polars.dataframe.frame.DataFrame, on='time',
-              method='index', limit=1, limit_direction='both')</code></pre>
+<pre><code> compute_index_std (df:polars.lazyframe.frame.LazyFrame, std_column='std')</code></pre>
 </blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L46" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="combine_features" class="level3">
-<h3 class="anchored" data-anchor-id="combine_features">combine_features</h3>
-<blockquote class="blockquote">
-<pre><code> combine_features (events:polars.dataframe.frame.DataFrame,
-                   states_data:polars.dataframe.frame.DataFrame, plasma_me
-                   ta:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset
-                   =None, parameters=None, density_col=None,
-                   velocity_cols=None, speed_col=None,
-                   temperature_col=None), method:str='interpolate')</code></pre>
-</blockquote>
-</section>
-<section id="additional-features-after-combining" class="level2">
-<h2 class="anchored" data-anchor-id="additional-features-after-combining">Additional features after combining</h2>
-<p>With combined dataset, we calculate additional features for each candidate.</p>
-<p>Length</p>
-<p>the length along the n direction of LMN coordinate system.</p>
-<p><span class="math display">\[L_{n} = v_{n}  T_{duration}\]</span></p>
-<p>However this may not be accurate due to the MVA method.</p>
-<p><span class="math display">\[L_{mn} = v_{mn}  T_{duration}\]</span></p>
-<p>If we have the normal vector of the current sheet, we can calculate the length along the normal direction.</p>
-<p><span class="math display">\[L_{normal} = L_{k} = v_{normal}  T_{duration}\]</span></p>
-<p>Additionally, we can calculate the length projected into RTN coordinate system.</p>
-<p><span class="math display">\[L_{R} = L_{k} \cos \theta\]</span></p>
-<p><span class="math display">\[ j*0 = (\frac{d B}{d t})*{max} \frac{1}{v\_{mn}}\]</span></p>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L125" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="vector_project_pl" class="level3">
-<h3 class="anchored" data-anchor-id="vector_project_pl">vector_project_pl</h3>
-<blockquote class="blockquote">
-<pre><code> vector_project_pl (df:polars.dataframe.frame.DataFrame, v1_cols, v2_cols,
-                    name=None)</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L121" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="vector_project" class="level3">
-<h3 class="anchored" data-anchor-id="vector_project">vector_project</h3>
-<blockquote class="blockquote">
-<pre><code> vector_project (v1:xarray.core.dataarray.DataArray,
-                 v2:xarray.core.dataarray.DataArray, dim='v_dim')</code></pre>
-</blockquote>
-<div id="cell-9" class="cell" data-execution_count="7">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>da_a <span class="op">=</span> xr.DataArray(np.arange(<span class="dv">3</span> <span class="op">*</span> <span class="dv">2</span>).reshape(<span class="dv">3</span>, <span class="dv">2</span>), dims<span class="op">=</span>[<span class="st">"v_dim"</span>, <span class="st">"time"</span>])</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(da_a)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>vector_project(da_a, da_a, dim<span class="op">=</span><span class="st">"v_dim"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;xarray.DataArray (v_dim: 3, time: 2)&gt;
-array([[0, 1],
-       [2, 3],
-       [4, 5]])
-Dimensions without coordinates: v_dim, time</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
-<defs>
-<symbol id="icon-database" viewbox="0 0 32 32">
-<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
-<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
-<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
-</symbol>
-<symbol id="icon-file-text2" viewbox="0 0 32 32">
-<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
-<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-</symbol>
-</defs>
-</svg>
-<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
- *
- */
-
-:root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
-}
-
-html[theme=dark],
-body[data-theme=dark],
-body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
-}
-
-.xr-wrap {
-  display: block !important;
-  min-width: 300px;
-  max-width: 700px;
-}
-
-.xr-text-repr-fallback {
-  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
-  display: none;
-}
-
-.xr-header {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  margin-bottom: 4px;
-  border-bottom: solid 1px var(--xr-border-color);
-}
-
-.xr-header > div,
-.xr-header > ul {
-  display: inline;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.xr-obj-type,
-.xr-array-name {
-  margin-left: 2px;
-  margin-right: 10px;
-}
-
-.xr-obj-type {
-  color: var(--xr-font-color2);
-}
-
-.xr-sections {
-  padding-left: 0 !important;
-  display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
-}
-
-.xr-section-item {
-  display: contents;
-}
-
-.xr-section-item input {
-  display: none;
-}
-
-.xr-section-item input + label {
-  color: var(--xr-disabled-color);
-}
-
-.xr-section-item input:enabled + label {
-  cursor: pointer;
-  color: var(--xr-font-color2);
-}
-
-.xr-section-item input:enabled + label:hover {
-  color: var(--xr-font-color0);
-}
-
-.xr-section-summary {
-  grid-column: 1;
-  color: var(--xr-font-color2);
-  font-weight: 500;
-}
-
-.xr-section-summary > span {
-  display: inline-block;
-  padding-left: 0.5em;
-}
-
-.xr-section-summary-in:disabled + label {
-  color: var(--xr-font-color2);
-}
-
-.xr-section-summary-in + label:before {
-  display: inline-block;
-  content: '►';
-  font-size: 11px;
-  width: 15px;
-  text-align: center;
-}
-
-.xr-section-summary-in:disabled + label:before {
-  color: var(--xr-disabled-color);
-}
-
-.xr-section-summary-in:checked + label:before {
-  content: '▼';
-}
-
-.xr-section-summary-in:checked + label > span {
-  display: none;
-}
-
-.xr-section-summary,
-.xr-section-inline-details {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.xr-section-inline-details {
-  grid-column: 2 / -1;
-}
-
-.xr-section-details {
-  display: none;
-  grid-column: 1 / -1;
-  margin-bottom: 5px;
-}
-
-.xr-section-summary-in:checked ~ .xr-section-details {
-  display: contents;
-}
-
-.xr-array-wrap {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 20px auto;
-}
-
-.xr-array-wrap > label {
-  grid-column: 1;
-  vertical-align: top;
-}
-
-.xr-preview {
-  color: var(--xr-font-color3);
-}
-
-.xr-array-preview,
-.xr-array-data {
-  padding: 0 5px !important;
-  grid-column: 2;
-}
-
-.xr-array-data,
-.xr-array-in:checked ~ .xr-array-preview {
-  display: none;
-}
-
-.xr-array-in:checked ~ .xr-array-data,
-.xr-array-preview {
-  display: inline-block;
-}
-
-.xr-dim-list {
-  display: inline-block !important;
-  list-style: none;
-  padding: 0 !important;
-  margin: 0;
-}
-
-.xr-dim-list li {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-}
-
-.xr-dim-list:before {
-  content: '(';
-}
-
-.xr-dim-list:after {
-  content: ')';
-}
-
-.xr-dim-list li:not(:last-child):after {
-  content: ',';
-  padding-right: 5px;
-}
-
-.xr-has-index {
-  font-weight: bold;
-}
-
-.xr-var-list,
-.xr-var-item {
-  display: contents;
-}
-
-.xr-var-item > div,
-.xr-var-item label,
-.xr-var-item > .xr-var-name span {
-  background-color: var(--xr-background-color-row-even);
-  margin-bottom: 0;
-}
-
-.xr-var-item > .xr-var-name:hover span {
-  padding-right: 5px;
-}
-
-.xr-var-list > li:nth-child(odd) > div,
-.xr-var-list > li:nth-child(odd) > label,
-.xr-var-list > li:nth-child(odd) > .xr-var-name span {
-  background-color: var(--xr-background-color-row-odd);
-}
-
-.xr-var-name {
-  grid-column: 1;
-}
-
-.xr-var-dims {
-  grid-column: 2;
-}
-
-.xr-var-dtype {
-  grid-column: 3;
-  text-align: right;
-  color: var(--xr-font-color2);
-}
-
-.xr-var-preview {
-  grid-column: 4;
-}
-
-.xr-index-preview {
-  grid-column: 2 / 5;
-  color: var(--xr-font-color2);
-}
-
-.xr-var-name,
-.xr-var-dims,
-.xr-var-dtype,
-.xr-preview,
-.xr-attrs dt {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-right: 10px;
-}
-
-.xr-var-name:hover,
-.xr-var-dims:hover,
-.xr-var-dtype:hover,
-.xr-attrs dt:hover {
-  overflow: visible;
-  width: auto;
-  z-index: 1;
-}
-
-.xr-var-attrs,
-.xr-var-data,
-.xr-index-data {
-  display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
-}
-
-.xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data,
-.xr-index-data-in:checked ~ .xr-index-data {
-  display: block;
-}
-
-.xr-var-data > table {
-  float: right;
-}
-
-.xr-var-name span,
-.xr-var-data,
-.xr-index-name div,
-.xr-index-data,
-.xr-attrs {
-  padding-left: 25px !important;
-}
-
-.xr-attrs,
-.xr-var-attrs,
-.xr-var-data,
-.xr-index-data {
-  grid-column: 1 / -1;
-}
-
-dl.xr-attrs {
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 125px auto;
-}
-
-.xr-attrs dt,
-.xr-attrs dd {
-  padding: 0;
-  margin: 0;
-  float: left;
-  padding-right: 10px;
-  width: auto;
-}
-
-.xr-attrs dt {
-  font-weight: normal;
-  grid-column: 1;
-}
-
-.xr-attrs dt:hover span {
-  display: inline-block;
-  background: var(--xr-background-color);
-  padding-right: 10px;
-}
-
-.xr-attrs dd {
-  grid-column: 2;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-.xr-icon-database,
-.xr-icon-file-text2,
-.xr-no-icon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1.5em !important;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
-}
-</style><pre class="xr-text-repr-fallback">&lt;xarray.DataArray (time: 2)&gt;
-array([4.47213595, 5.91607978])
-Dimensions without coordinates: time</pre><div class="xr-wrap" style="display:none"><div class="xr-header"><div class="xr-obj-type">xarray.DataArray</div><div class="xr-array-name"></div><ul class="xr-dim-list"><li><span>time</span>: 2</li></ul></div><ul class="xr-sections"><li class="xr-section-item"><div class="xr-array-wrap"><input id="section-f2904a07-40b1-4c72-98dd-2a8c24c915aa" class="xr-array-in" type="checkbox" checked=""><label for="section-f2904a07-40b1-4c72-98dd-2a8c24c915aa" title="Show/hide data repr"><svg class="icon xr-icon-database"><use href="#icon-database"></use></svg></label><div class="xr-array-preview xr-preview"><span>4.472 5.916</span></div><div class="xr-array-data"><pre>array([4.47213595, 5.91607978])</pre></div></div></li><li class="xr-section-item"><input id="section-04e58067-69c9-42bd-b07d-64e6cb6bebc9" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-04e58067-69c9-42bd-b07d-64e6cb6bebc9" class="xr-section-summary" title="Expand/collapse section">Coordinates: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-80b0855f-7de8-4259-aa04-187087b51c73" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-80b0855f-7de8-4259-aa04-187087b51c73" class="xr-section-summary" title="Expand/collapse section">Indexes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><ul class="xr-var-list"></ul></div></li><li class="xr-section-item"><input id="section-3616b9f5-5bf2-4fc1-9e70-6e8666249721" class="xr-section-summary-in" type="checkbox" disabled=""><label for="section-3616b9f5-5bf2-4fc1-9e70-6e8666249721" class="xr-section-summary" title="Expand/collapse section">Attributes: <span>(0)</span></label><div class="xr-section-inline-details"></div><div class="xr-section-details"><dl class="xr-attrs"></dl></div></li></ul></div></div>
-</div>
-</div>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L133" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="calc_rotation_angle_pl" class="level3">
-<h3 class="anchored" data-anchor-id="calc_rotation_angle_pl">calc_rotation_angle_pl</h3>
-<blockquote class="blockquote">
-<pre><code> calc_rotation_angle_pl (df:polars.dataframe.frame.DataFrame, v1_cols,
-                         v2_cols, name)</code></pre>
-</blockquote>
-</section>
-<section id="inertial-length" class="level3">
-<h3 class="anchored" data-anchor-id="inertial-length">Inertial length</h3>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L142" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="compute_inertial_length" class="level3">
-<h3 class="anchored" data-anchor-id="compute_inertial_length">compute_inertial_length</h3>
-<blockquote class="blockquote">
-<pre><code> compute_inertial_length (df:polars.dataframe.frame.DataFrame,
-                          density_col='plasma_density')</code></pre>
-</blockquote>
-</section>
-<section id="alfven-current" class="level3">
-<h3 class="anchored" data-anchor-id="alfven-current">Alfven current</h3>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L149" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="compute_alfven_current" class="level3">
-<h3 class="anchored" data-anchor-id="compute_alfven_current">compute_Alfven_current</h3>
-<blockquote class="blockquote">
-<pre><code> compute_Alfven_current (df:polars.dataframe.frame.DataFrame,
-                         density_col='plasma_density')</code></pre>
-</blockquote>
-</section>
-</section>
-<section id="all-features" class="level2">
-<h2 class="anchored" data-anchor-id="all-features">All features</h2>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L164" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="calc_plasma_parameter_change" class="level3">
-<h3 class="anchored" data-anchor-id="calc_plasma_parameter_change">calc_plasma_parameter_change</h3>
-<blockquote class="blockquote">
-<pre><code> calc_plasma_parameter_change (df:polars.dataframe.frame.DataFrame,
-                               plasma_meta:space_analysis.ds.meta.PlasmaMe
-                               ta=PlasmaMeta(dataset=None,
-                               parameters=None, density_col=None,
-                               velocity_cols=None, speed_col=None,
-                               temperature_col=None))</code></pre>
-</blockquote>
-<hr>
-<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/integration.py#L245" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="calc_combined_features" class="level3">
-<h3 class="anchored" data-anchor-id="calc_combined_features">calc_combined_features</h3>
-<blockquote class="blockquote">
-<pre><code> calc_combined_features (df:polars.dataframe.frame.DataFrame,
-                         b_cols:list[str]=None, detail:bool=True,
-                         normal_cols:list[str]=['k_x', 'k_y', 'k_z'],
-                         Vl_cols=['Vl_x', 'Vl_y', 'Vl_z'],
-                         Vn_cols=['Vn_x', 'Vn_y', 'Vn_z'],
-                         thickness_cols=['L_k'], current_cols=['j0_k'], pl
-                         asma_meta:space_analysis.ds.meta.PlasmaMeta=None,
-                         **kwargs)</code></pre>
-</blockquote>
-<p>Calculate the combined features of the discontinuity</p>
-<p>Args: df (pl.DataFrame): <em>description</em> normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ “k_x”, “k_y”, “k_z”, ]. detail (bool, optional): <em>description</em>. Defaults to True. Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ “Vl_x”, “Vl_y”, “Vl_z”, ]. Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ “Vn_x”, “Vn_y”, “Vn_z”, ]. current_cols (list, optional): <em>description</em>. Defaults to [“j0_mn”, “j0_k”].</p>
+<p>Compute the standard deviation index based on the given DataFrame</p>
 <table class="table">
 <colgroup>
 <col style="width: 6%">
@@ -935,72 +538,254 @@ Dimensions without coordinates: time</pre><div class="xr-wrap" style="display:no
 <tbody>
 <tr class="odd">
 <td>df</td>
-<td>DataFrame</td>
+<td>LazyFrame</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>b_cols</td>
-<td>list</td>
-<td>None</td>
-<td>[“B_background_x”, “B_background_y”, “B_background_z”]</td>
-</tr>
-<tr class="odd">
-<td>detail</td>
-<td>bool</td>
-<td>True</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>normal_cols</td>
-<td>list</td>
-<td>[‘k_x’, ‘k_y’, ‘k_z’]</td>
+<td>std_column</td>
+<td>str</td>
+<td>std</td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>Vl_cols</td>
-<td>list</td>
-<td>[‘Vl_x’, ‘Vl_y’, ‘Vl_z’]</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Vn_cols</td>
-<td>list</td>
-<td>[‘Vn_x’, ‘Vn_y’, ‘Vn_z’]</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>thickness_cols</td>
-<td>list</td>
-<td>[‘L_k’]</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>current_cols</td>
-<td>list</td>
-<td>[‘j0_k’]</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>plasma_meta</td>
-<td>PlasmaMeta</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>kwargs</td>
-<td></td>
+<td><strong>Returns</strong></td>
+<td><strong>- pl.LazyFrame: DataFrame with calculated ‘index_std’ column.</strong></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+</section>
+</section>
+<section id="index-of-fluctuation" class="level2">
+<h2 class="anchored" data-anchor-id="index-of-fluctuation">Index of fluctuation</h2>
+<p><span class="math display">\[
+I_2 = \frac{\sigma(B_- + B_+)} {\sigma(B_-) + \sigma(B_+)}
+\]</span></p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L131" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="compute_index_fluctuation" class="level3">
+<h3 class="anchored" data-anchor-id="compute_index_fluctuation">compute_index_fluctuation</h3>
+<blockquote class="blockquote">
+<pre><code> compute_index_fluctuation (df:polars.lazyframe.frame.LazyFrame,
+                            std_column='std', clean=True)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L108" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="compute_combinded_std" class="level3">
+<h3 class="anchored" data-anchor-id="compute_combinded_std">compute_combinded_std</h3>
+<blockquote class="blockquote">
+<pre><code> compute_combinded_std (df:polars.lazyframe.frame.LazyFrame,
+                        cols:list[str], every:datetime.timedelta,
+                        period:datetime.timedelta=None,
+                        index_column='time', result_column='std_combined')</code></pre>
+</blockquote>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>df</td>
+<td>LazyFrame</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>cols</td>
+<td>list</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>every</td>
+<td>timedelta</td>
+<td></td>
+<td>every to group by (default: period / 2)</td>
+</tr>
+<tr class="even">
+<td>period</td>
+<td>timedelta</td>
+<td>None</td>
+<td>period to group by</td>
+</tr>
+<tr class="odd">
+<td>index_column</td>
+<td>str</td>
+<td>time</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>result_column</td>
+<td>str</td>
+<td>std_combined</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="index-of-the-relative-field-jump" class="level2">
+<h2 class="anchored" data-anchor-id="index-of-the-relative-field-jump">Index of the relative field jump</h2>
+<p><span class="math display">\[
+I_3 = \frac{| \Delta \vec{B} |}{|B_{bg}|}
+\]</span></p>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L143" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="pl_dvec" class="level3">
+<h3 class="anchored" data-anchor-id="pl_dvec">pl_dvec</h3>
+<blockquote class="blockquote">
+<pre><code> pl_dvec (columns, *more_columns)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L151" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="compute_index_diff" class="level3">
+<h3 class="anchored" data-anchor-id="compute_index_diff">compute_index_diff</h3>
+<blockquote class="blockquote">
+<pre><code> compute_index_diff (df:polars.lazyframe.frame.LazyFrame,
+                     every:datetime.timedelta, cols:list[str],
+                     period:datetime.timedelta=None, clean=True)</code></pre>
+</blockquote>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L177" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="compute_indices" class="level3">
+<h3 class="anchored" data-anchor-id="compute_indices">compute_indices</h3>
+<blockquote class="blockquote">
+<pre><code> compute_indices (df:polars.lazyframe.frame.LazyFrame,
+                  tau:datetime.timedelta, cols:list[str]=['BX', 'BY',
+                  'BZ'], clean=True, join_strategy='inner')</code></pre>
+</blockquote>
+<p>Compute all index based on the given DataFrame and tau value.</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>df</td>
+<td>LazyFrame</td>
+<td></td>
+<td>Input DataFrame.</td>
+</tr>
+<tr class="even">
+<td>tau</td>
+<td>timedelta</td>
+<td></td>
+<td>Time interval value.</td>
+</tr>
+<tr class="odd">
+<td>cols</td>
+<td>list</td>
+<td>[‘BX’, ‘BY’, ‘BZ’]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>clean</td>
+<td>bool</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>join_strategy</td>
+<td>str</td>
+<td>inner</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>LazyFrame</strong></td>
+<td></td>
+<td><strong>Tuple containing DataFrame results for fluctuation index,<br>standard deviation index, and ‘index_num’.</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="filtering" class="level2">
+<h2 class="anchored" data-anchor-id="filtering">Filtering</h2>
+<hr>
+<p><a href="https://github.com/Beforerr/ids_finder/blob/main/discontinuitypy/detection/variance.py#L249" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="filter_indices" class="level3">
+<h3 class="anchored" data-anchor-id="filter_indices">filter_indices</h3>
+<blockquote class="blockquote">
+<pre><code> filter_indices (df:polars.lazyframe.frame.LazyFrame,
+                 index_std_threshold:float=2,
+                 index_fluc_threshold:float=1,
+                 index_diff_threshold:float=0.1, sparse_num:int=15)</code></pre>
+</blockquote>
+</section>
+</section>
+<section id="obsolete" class="level2">
+<h2 class="anchored" data-anchor-id="obsolete">Obsolete</h2>
+<div id="cell-17" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _compute_combinded_std(df: pl.LazyFrame, tau, cols: <span class="bu">list</span>[<span class="bu">str</span>]):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    combined_std_cols <span class="op">=</span> [col_name <span class="op">+</span> <span class="st">"_combined_std"</span> <span class="cf">for</span> col_name <span class="kw">in</span> cols]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    offsets <span class="op">=</span> [<span class="dv">0</span> <span class="op">*</span> tau, tau <span class="op">/</span> <span class="dv">2</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    combined_std_dfs <span class="op">=</span> []</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> offset <span class="kw">in</span> offsets:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        truncated_df <span class="op">=</span> df.select(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            (pl.col(<span class="st">"time"</span>) <span class="op">-</span> offset).dt.truncate(tau, offset<span class="op">=</span>offset).alias(<span class="st">"time"</span>),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            pl.col(cols),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        prev_df <span class="op">=</span> truncated_df.select(</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            (pl.col(<span class="st">"time"</span>) <span class="op">+</span> tau),</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            pl.col(cols),</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        next_df <span class="op">=</span> truncated_df.select(</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            (pl.col(<span class="st">"time"</span>) <span class="op">-</span> tau),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>            pl.col(cols),</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        temp_combined_std_df <span class="op">=</span> (</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            pl.concat([prev_df, next_df])</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>            .group_by(<span class="st">"time"</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            .agg(pl.col(cols).std(ddof<span class="op">=</span><span class="dv">0</span>).name.suffix(<span class="st">"_combined_std"</span>))</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>            .with_columns(B_std_combined<span class="op">=</span>pl_norm(combined_std_cols))</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>            .drop(combined_std_cols)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>            .sort(<span class="st">"time"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        combined_std_dfs.append(temp_combined_std_df)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    combined_std_df <span class="op">=</span> pl.concat(combined_std_dfs)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> combined_std_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-liuMagneticDiscontinuitiesSolar2022" class="csl-entry" role="listitem">
+Liu, Y. Y., H. S. Fu, J. B. Cao, Z. Wang, R. J. He, Z. Z. Guo, Y. Xu, and Y. Yu. 2022. <span>“Magnetic Discontinuities in the Solar Wind and Magnetosheath: Magnetospheric Multiscale Mission (<span>MMS</span>) Observations.”</span> <em>Astrophysical Journal</em> 930 (1): 63. <a href="https://doi.org/10.3847/1538-4357/ac62d2">https://doi.org/10.3847/1538-4357/ac62d2</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
