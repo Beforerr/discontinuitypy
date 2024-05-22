@@ -34,6 +34,7 @@ website:
       # - section: Analysis
         # contents: analysis/*
 
-bibliography: '../../research.bib'
+bibliography:
+  - ../../share/bibliography/research.bib
 
 metadata-files: [nbdev.yml]
