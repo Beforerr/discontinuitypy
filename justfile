@@ -19,12 +19,6 @@ export:
   nbdev_export --path notebooks/__init__.ipynb
   nbdev_export
 
-env-create:
-  micromamba env create --file environment.yml
-
-env-update:
-  micromamba install --file environment.yml
-
 kedro-run-mag-primary mission:
   kedro run --to-outputs={{mission}}.MAG.primary_data_ts_1s
 

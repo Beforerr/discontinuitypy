@@ -18,7 +18,6 @@ dependencies:
   - plasmapy
 
   - jupyter
-  - fastai::nbdev
   - fastai::fastcore
 
   - hvplot
@@ -31,5 +30,5 @@ dependencies:
     # - swifter # efficiently applies any function to a pandas dataframe or series in the fastest available manner
     - multipledispatch
     - xarray-einstats
-    - ../space_analysis
-    - . # local package
+    # - ../space_analysis
+    # - . # local package

@@ -5,7 +5,7 @@ __all__ = ['write', 'IdsEvents', 'log_event_change', 'IDsDataset']
 
 # %% ../notebooks/10_datasets.ipynb 1
 import polars as pl
-import holoviews as hv
+# import holoviews as hv
 import polars.selectors as cs
 from loguru import logger
 from random import sample
@@ -114,7 +114,7 @@ def log_event_change(event, logger=logger):
         """
     )
 
-# %% ../notebooks/10_datasets.ipynb 7
+# %% ../notebooks/10_datasets.ipynb 8
 class IDsDataset(IdsEvents):
     """Extend the IdsEvents class to handle plasma and temperature data."""
 
@@ -178,69 +178,6 @@ class IDsDataset(IdsEvents):
         event = event or self.get_event(index)
         if type == "overview":
             return self.overview_plot(event, **kwargs)
-
-    def overview_plot(
-        self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs
-    ):
-        # BUG: to be fixed
-        start = start or event["tstart"]
-        stop = stop or event["tstop"]
-
-        start -= offset
-        stop += offset
-
-        _plasma_data = self.plasma_data.filter(
-            pl.col("time").is_between(start, stop)
-        ).collect()
-
-        _mag_data = (
-            self.data.filter(pl.col("time").is_between(start, stop))
-            .collect()
-            .melt(
-                id_vars=["time"],
-                value_vars=self.bcols,
-                variable_name="B comp",
-                value_name="B",
-            )
-        )
-
-        v_df = _plasma_data.melt(
-            id_vars=["time"],
-            value_vars=self.plasma_meta.velocity_cols,
-            variable_name="veloity comp",
-            value_name="v",
-        )
-
-        panel_mag = _mag_data.hvplot(
-            x="time", y="B", by="B comp", ylabel="Magnetic Field", **kwargs
-        )
-        panel_n = _plasma_data.hvplot(
-            x="time", y=self.plasma_meta.density_col, **kwargs
-        ) * _plasma_data.hvplot.scatter(
-            x="time", y=self.plasma_meta.density_col, **kwargs
-        )
-
-        panel_v = v_df.hvplot(
-            x="time", y="v", by="veloity comp", ylabel="Plasma Velocity", **kwargs
-        )
-        panel_temp = _plasma_data.hvplot(
-            x="time", y=self.plasma_meta.temperature_col, **kwargs
-        )
-
-        mag_vlines = hv.VLine(event["t.d_start"]) * hv.VLine(event["t.d_end"])
-        plasma_vlines = hv.VLine(event.get("time_before")) * hv.VLine(
-            event.get("time_after")
-        )
-
-        logger.info(f"Overview plot: {event['tstart']} - {event['tstop']}")
-        log_event_change(event)
-
-        return (
-            panel_mag * mag_vlines
-            + panel_n * plasma_vlines
-            + panel_v * plasma_vlines
-            + panel_temp * plasma_vlines
-        ).cols(1)
 
     def plot_candidate(self, event=None, index=None, **kwargs):
         if event is None:
