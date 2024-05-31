@@ -64,6 +64,7 @@ Science part
 Code part
 
 -   Optimization
+    -   [ ] `dask` for parallel computing instead of `modin`
     -   [ ] `JAX` library for `numpy` optimization
     -   [ ] shorten import time
 -   Refactor
