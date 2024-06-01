@@ -1,6 +1,11 @@
 # DiscontinuityPy
 
 
+[![PyPI](https://img.shields.io/pypi/v/discontinuitypy.png)](https://pypi.org/project/discontinuitypy)
+[![Pixi
+Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json)](https://pixi.sh)
+[![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet.png)](https://pdm-project.org)
+
 # User Guide
 
 This package is designed to identify and analyze discontinuities in time
@@ -19,7 +24,7 @@ page](./00_ids_finder.ipynb).
 ## Installation
 
 ``` shell
-pip install ids-finder
+pip install discontinuitypy
 ```
 
 ## Getting started
@@ -38,6 +43,8 @@ from discontinuitypy.core import *
 - [Evolution of solar wind discontinuities in the inner heliosphere: PSP
   and Earth conjunctions and
   alignments](https://beforerr.github.io/psp_conjunction/)
+
+<!-- We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable) -->
 
 # TODOs
 
@@ -63,6 +70,7 @@ Science part
 Code part
 
 - Optimization
+  - [ ] `dask` for parallel computing instead of `modin`
   - [ ] `JAX` library for `numpy` optimization
   - [ ] shorten import time
 - Refactor

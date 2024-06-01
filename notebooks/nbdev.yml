@@ -3,7 +3,7 @@ project:
 
 website:
   title: "discontinuitypy"
-  site-url: "https://Beforerr.github.io/ids_finder"
+  site-url: "https://Beforerr.github.io/discontinuitypy"
   description: "A python package for identifying and analyzing discontinuities for time series data."
   repo-branch: main
-  repo-url: "https://github.com/Beforerr/ids_finder"
+  repo-url: "https://github.com/Beforerr/discontinuitypy"

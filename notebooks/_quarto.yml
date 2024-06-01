@@ -23,7 +23,7 @@ website:
         href: about.qmd
     tools:
       - icon: github
-        href: "https://github.com/Beforerr/ids_finder"
+        href: "https://github.com/Beforerr/discontinuitypy"
   sidebar:
     style: floating
     contents:

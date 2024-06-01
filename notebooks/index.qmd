@@ -1,11 +1,14 @@
 ---
-# title: Discontinuities? Yes!
 title: DiscontinuityPy
 subtitle: A python package for identifying and analyzing discontinuities for time series data.
 description: All statistics are wrong, but some may be useful:)
 execute: 
   eval: false
 ---
+
+[![PyPI](https://img.shields.io/pypi/v/discontinuitypy)](https://pypi.org/project/discontinuitypy)
+[![Pixi Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json)](https://pixi.sh)
+[![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm-project.org)
 
 # User Guide
 

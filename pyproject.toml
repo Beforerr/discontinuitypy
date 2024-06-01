@@ -3,6 +3,7 @@ name = "discontinuitypy"
 dynamic = ["version"]
 description = "A python package for identifying and analyzing discontinuities for time series data."
 authors = [{ name = "Beforerr", email = "zzj956959688@gmail.com" }]
+readme = "README.md"
 requires-python = ">= 3.10"
 dependencies = [
     "space-analysis.py[io]",
@@ -22,6 +23,10 @@ dependencies = [
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+[project.urls]
+Homepage = "https://beforerr.github.io/discontinuitypy"
+Repository = "https://github.com/Beforerr/discontinuitypy"
+
 [tool.pdm.version]
 source = "file"
 path = "discontinuitypy/__init__.py"
@@ -31,7 +36,7 @@ channels = ["conda-forge"]
 platforms = ["osx-arm64"]
 
 [tool.pixi.dependencies]
-python = "3.11"
+python = "<3.12"
 ipykernel = "*"
 scipy = "*"
 matplotlib = "*"
