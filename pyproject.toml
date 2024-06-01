@@ -1,14 +1,30 @@
 [project]
 name = "discontinuitypy"
-version = "0.2.0"
+dynamic = ["version"]
 description = "A python package for identifying and analyzing discontinuities for time series data."
-authors = [{name = "Beforerr", email = "zzj956959688@gmail.com"}]
+authors = [{ name = "Beforerr", email = "zzj956959688@gmail.com" }]
 requires-python = ">= 3.10"
-dependencies = ["plasmapy", "xarray_einstats", "polars", "pydantic", "pdpipe", "loguru"]
+dependencies = [
+    "space-analysis.py[io]",
+    "beforerr",
+    "plasmapy",
+    "xarray[accel]",
+    "xarray_einstats",
+    "polars",
+    "modin",
+    "pydantic",
+    "fastcore",
+    "pdpipe",
+    "loguru",
+]
 
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[tool.pdm.version]
+source = "file"
+path = "discontinuitypy/__init__.py"
 
 [tool.pixi.project]
 channels = ["conda-forge"]
@@ -19,13 +35,10 @@ python = "3.11"
 ipykernel = "*"
 scipy = "*"
 matplotlib = "*"
-pytables = "*" # for `pyspedas`
-modin-ray = "*"
+pytables = "*"   # for `pyspedas`
 
 [tool.pixi.pypi-dependencies]
 discontinuitypy = { path = ".", editable = true }
-space_analysis = { path = "../space-analysis.py", editable = true}
-beforerr = { path = "../beforerr_dev", editable = true}
 nbdev = "*"
 setuptools = "*"
 pyspedas = "*"

@@ -246,7 +246,7 @@ class IDsPdPipeline:
         )
 
 # %% ../../notebooks/02_ids_properties.ipynb 21
-from ..utils.polars import convert_to_pd_dataframe, decompose_vector  # noqa: E402
+from beforerr.polars import convert_to_pd_dataframe, decompose_vector
 
 # %% ../../notebooks/02_ids_properties.ipynb 22
 from typing import Literal
@@ -262,7 +262,7 @@ def process_events(
 ) -> pl.DataFrame:
     "Process candidates DataFrame"
 
-    candidates = convert_to_pd_dataframe(candidates_pl, modin=modin)
+    candidates = pd.DataFrame(convert_to_pd_dataframe(candidates_pl, modin=modin))
     
     if method == "fit":
         duration_method = "distance"  

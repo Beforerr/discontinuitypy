@@ -238,7 +238,7 @@ def calc_plasma_parameter_change(
     )
 
 # %% ../notebooks/03_mag_plasma.ipynb 15
-from .utils.polars import decompose_vector
+from beforerr.polars import decompose_vector
 from space_analysis.ds.meta import PlasmaMeta
 
 J_FACTOR = ((u.nT / u.s) * (1 / mu0 / (u.km / u.s))).to(u.nA / u.m**2)

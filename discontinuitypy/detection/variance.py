@@ -11,8 +11,7 @@ import polars.selectors as cs
 from datetime import timedelta
 
 # %% ../../notebooks/detection/01_variance.ipynb 4
-from ..utils.polars import pl_norm
-
+from beforerr.polars import pl_norm
 
 def compute_std(
     df: pl.LazyFrame,
