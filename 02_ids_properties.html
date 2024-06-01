@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="All statistics are wrong, but some may be useful:)">
 
-<title>discontinuitypy – DiscontinuityPy</title>
+<title>discontinuitypy – ID properties</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,11 +102,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="discontinuitypy - DiscontinuityPy">
-<meta property="og:description" content="All statistics are wrong, but some may be useful:)">
+<meta property="og:title" content="discontinuitypy - ID properties">
+<meta property="og:description" content="Full feature extraction">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - DiscontinuityPy">
-<meta name="twitter:description" content="All statistics are wrong, but some may be useful:)">
+<meta name="twitter:title" content="discontinuitypy - ID properties">
+<meta name="twitter:description" content="Full feature extraction">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -129,11 +128,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -148,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">DiscontinuityPy</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_ids_properties.html">ID properties</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -174,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_ids_properties.html" class="sidebar-item-text sidebar-link">
+  <a href="./02_ids_properties.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ID properties</span></a>
   </div>
 </li>
@@ -287,15 +286,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#user-guide" id="toc-user-guide" class="nav-link active" data-scroll-target="#user-guide">User Guide</a>
+  <li><a href="#get_candidates" id="toc-get_candidates" class="nav-link active" data-scroll-target="#get_candidates">get_candidates</a></li>
+  <li><a href="#get_candidate_data" id="toc-get_candidate_data" class="nav-link" data-scroll-target="#get_candidate_data">get_candidate_data</a></li>
+  <li><a href="#duration" id="toc-duration" class="nav-link" data-scroll-target="#duration">Duration</a>
   <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#calc_candidate_duration" id="toc-calc_candidate_duration" class="nav-link" data-scroll-target="#calc_candidate_duration">calc_candidate_duration</a></li>
   </ul></li>
-  <li><a href="#related-projects-and-publications" id="toc-related-projects-and-publications" class="nav-link" data-scroll-target="#related-projects-and-publications">Related projects and publications</a></li>
-  <li><a href="#todos" id="toc-todos" class="nav-link" data-scroll-target="#todos">TODOs</a>
+  <li><a href="#minimum-variance-analysis-mva-features" id="toc-minimum-variance-analysis-mva-features" class="nav-link" data-scroll-target="#minimum-variance-analysis-mva-features">Minimum variance analysis (MVA) features</a></li>
+  <li><a href="#field-rotation-angles" id="toc-field-rotation-angles" class="nav-link" data-scroll-target="#field-rotation-angles">Field rotation angles</a>
   <ul class="collapse">
-  <li><a href="#bugs" id="toc-bugs" class="nav-link" data-scroll-target="#bugs">bugs</a></li>
+  <li><a href="#get_data_at_times" id="toc-get_data_at_times" class="nav-link" data-scroll-target="#get_data_at_times">get_data_at_times</a></li>
+  <li><a href="#calc_rotation_angle" id="toc-calc_rotation_angle" class="nav-link" data-scroll-target="#calc_rotation_angle">calc_rotation_angle</a></li>
+  <li><a href="#calc_events_rotation_angle" id="toc-calc_events_rotation_angle" class="nav-link" data-scroll-target="#calc_events_rotation_angle">calc_events_rotation_angle</a></li>
+  </ul></li>
+  <li><a href="#normal-direction" id="toc-normal-direction" class="nav-link" data-scroll-target="#normal-direction">Normal direction</a>
+  <ul class="collapse">
+  <li><a href="#calc_normal_direction" id="toc-calc_normal_direction" class="nav-link" data-scroll-target="#calc_normal_direction">calc_normal_direction</a></li>
+  <li><a href="#calc_events_normal_direction" id="toc-calc_events_normal_direction" class="nav-link" data-scroll-target="#calc_events_normal_direction">calc_events_normal_direction</a></li>
+  <li><a href="#calc_events_vec_change" id="toc-calc_events_vec_change" class="nav-link" data-scroll-target="#calc_events_vec_change">calc_events_vec_change</a></li>
+  </ul></li>
+  <li><a href="#pipelines" id="toc-pipelines" class="nav-link" data-scroll-target="#pipelines">Pipelines</a>
+  <ul class="collapse">
+  <li><a href="#idspdpipeline" id="toc-idspdpipeline" class="nav-link" data-scroll-target="#idspdpipeline">IDsPdPipeline</a></li>
+  <li><a href="#process_events" id="toc-process_events" class="nav-link" data-scroll-target="#process_events">process_events</a></li>
+  </ul></li>
+  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a>
+  <ul class="collapse">
+  <li><a href="#test-parallelization" id="toc-test-parallelization" class="nav-link" data-scroll-target="#test-parallelization">Test parallelization</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -305,15 +322,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DiscontinuityPy</h1>
-<p class="subtitle lead">A python package for identifying and analyzing discontinuities for time series data.</p>
+<h1 class="title">ID properties</h1>
+<p class="subtitle lead">Full feature extraction</p>
 </div>
 
-<div>
-  <div class="description">
-    All statistics are wrong, but some may be useful:)
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -328,91 +340,316 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><a href="https://pypi.org/project/discontinuitypy"><img src="https://img.shields.io/pypi/v/discontinuitypy.png" class="img-fluid" alt="PyPI"></a> <a href="https://pixi.sh"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json" class="img-fluid" alt="Pixi Badge"></a> <a href="https://pdm-project.org"><img src="https://img.shields.io/badge/pdm-managed-blueviolet.png" class="img-fluid" alt="pdm-managed"></a></p>
-<section id="user-guide" class="level1">
-<h1>User Guide</h1>
-<p>This package is designed to identify and analyze discontinuities in time series data.</p>
-<ol type="1">
-<li>Finding the discontinuities, see <a href="./01_ids_detection.html">this notebook</a>
-<ul>
-<li>Corresponding to limited feature extraction / anomaly detection</li>
-</ul></li>
-<li>Calculating the properties of the discontinuities, see <a href="./02_ids_properties.html">this notebook</a>
-<ul>
-<li>One can use higher time resolution data</li>
-</ul></li>
-</ol>
-<p>For how to use this project as a python library, please see <a href="./00_ids_finder.html">this page</a>.</p>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<pre class="shell"><code>pip install discontinuitypy</code></pre>
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<hr>
+<section id="get_candidates" class="level3">
+<h3 class="anchored" data-anchor-id="get_candidates">get_candidates</h3>
+<blockquote class="blockquote">
+<pre><code> get_candidates (candidates:modin.pandas.dataframe.DataFrame,
+                 candidate_type=None, num:int=4)</code></pre>
+</blockquote>
+<hr>
 </section>
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p>Import the package</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.utils.basic <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.core <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="get_candidate_data" class="level3">
+<h3 class="anchored" data-anchor-id="get_candidate_data">get_candidate_data</h3>
+<blockquote class="blockquote">
+<pre><code> get_candidate_data (candidate:dict, data:xarray.core.dataarray.DataArray,
+                     neighbor:int=0)</code></pre>
+</blockquote>
+</section>
+<section id="duration" class="level2">
+<h2 class="anchored" data-anchor-id="duration">Duration</h2>
+<hr>
+<section id="calc_candidate_duration" class="level3">
+<h3 class="anchored" data-anchor-id="calc_candidate_duration">calc_candidate_duration</h3>
+<blockquote class="blockquote">
+<pre><code> calc_candidate_duration (candidate, data, **kwargs)</code></pre>
+</blockquote>
 </section>
 </section>
-<section id="related-projects-and-publications" class="level1">
-<h1>Related projects and publications</h1>
-<ul>
-<li><a href="https://beforerr.github.io/ids_spatial_evolution_juno/">Solar wind discontinuities spatial evolution in the outer heliosphere</a></li>
-<li><a href="https://beforerr.github.io/psp_conjunction/">Evolution of solar wind discontinuities in the inner heliosphere: PSP and Earth conjunctions and alignments</a></li>
-</ul>
-<!-- We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable) -->
+<section id="minimum-variance-analysis-mva-features" class="level2">
+<h2 class="anchored" data-anchor-id="minimum-variance-analysis-mva-features">Minimum variance analysis (MVA) features</h2>
 </section>
-<section id="todos" class="level1">
-<h1>TODOs</h1>
-<p>Science part</p>
-<ul>
-<li>Analysis
-<ul class="task-list">
-<li><label><input type="checkbox">Contribution of discontinuities to the power spectrum</label></li>
-<li><label><input type="checkbox">Check Datagap</label></li>
-<li><label><input type="checkbox">Distribution of |B| over radius</label></li>
-<li><label><input type="checkbox">Add error bar</label></li>
-<li><label><input type="checkbox">More accurate way to obtain the properties of the discontinuities</label></li>
-</ul></li>
-<li>Identifaction
-<ul class="task-list">
-<li><label><input type="checkbox">Ensemble forest?</label></li>
-<li><label><input type="checkbox">Smoothing is important?</label></li>
-<li><label><input type="checkbox">Check change point algorithm</label></li>
-</ul></li>
-<li>Features
-<ul class="task-list">
-<li><label><input type="checkbox">Thickness in N direction</label></li>
-<li><label><input type="checkbox">Use high resolution data for feature extraction</label></li>
-</ul></li>
-<li>Compare with other methods of identifying IDs
-<ul class="task-list">
-<li><label><input type="checkbox">Verify with other methods of identifying IDs</label></li>
-</ul></li>
-</ul>
-<p>Code part</p>
-<ul>
-<li>Optimization
-<ul class="task-list">
-<li><label><input type="checkbox"><code>dask</code> for parallel computing instead of <code>modin</code></label></li>
-<li><label><input type="checkbox"><code>JAX</code> library for <code>numpy</code> optimization</label></li>
-<li><label><input type="checkbox">shorten import time</label></li>
-</ul></li>
-<li>Refactor
-<ul class="task-list">
-<li><label><input type="checkbox" checked=""><code>process_candidates</code> to exclude <code>sat_state</code> logics</label></li>
-<li><label><input type="checkbox" checked="">renaming feature layer <code>candidates</code></label></li>
-</ul></li>
-<li><label><input type="checkbox" checked="">Kedro</label>
-<ul class="task-list">
-<li><label><input type="checkbox" checked="">Modular pipelines</label></li>
-</ul></li>
-</ul>
-<section id="bugs" class="level3">
-<h3 class="anchored" data-anchor-id="bugs">bugs</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">STEREO <code>B</code> less than zero (after downsampling?)</label></li>
-</ul>
+<section id="field-rotation-angles" class="level2">
+<h2 class="anchored" data-anchor-id="field-rotation-angles">Field rotation angles</h2>
+<p>The PDF of the field rotation angles across the solar-wind IDs is well fitted by the exponential function exp(−θ/)…</p>
+<hr>
+<section id="get_data_at_times" class="level3">
+<h3 class="anchored" data-anchor-id="get_data_at_times">get_data_at_times</h3>
+<blockquote class="blockquote">
+<pre><code> get_data_at_times (data:xarray.core.dataarray.DataArray, times)</code></pre>
+</blockquote>
+<p><em>Select data at specified times.</em></p>
+<hr>
+</section>
+<section id="calc_rotation_angle" class="level3">
+<h3 class="anchored" data-anchor-id="calc_rotation_angle">calc_rotation_angle</h3>
+<blockquote class="blockquote">
+<pre><code> calc_rotation_angle (v1, v2)</code></pre>
+</blockquote>
+<p>*Computes the rotation angle between two vectors.</p>
+<p>Parameters: - v1: The first vector(s). - v2: The second vector(s).*</p>
+<hr>
+</section>
+<section id="calc_events_rotation_angle" class="level3">
+<h3 class="anchored" data-anchor-id="calc_events_rotation_angle">calc_events_rotation_angle</h3>
+<blockquote class="blockquote">
+<pre><code> calc_events_rotation_angle (events, data:xarray.core.dataarray.DataArray)</code></pre>
+</blockquote>
+<p><em>Computes the rotation angle(s) at two different time steps.</em></p>
+</section>
+</section>
+<section id="normal-direction" class="level2">
+<h2 class="anchored" data-anchor-id="normal-direction">Normal direction</h2>
+<hr>
+<section id="calc_normal_direction" class="level3">
+<h3 class="anchored" data-anchor-id="calc_normal_direction">calc_normal_direction</h3>
+<blockquote class="blockquote">
+<pre><code> calc_normal_direction (v1, v2, normalize=True)</code></pre>
+</blockquote>
+<p><em>Computes the normal direction of two vectors.</em></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>v1</td>
+<td>array_like</td>
+<td></td>
+<td>The first vector(s).</td>
+</tr>
+<tr class="even">
+<td>v2</td>
+<td>array_like</td>
+<td></td>
+<td>The second vector(s).</td>
+</tr>
+<tr class="odd">
+<td>normalize</td>
+<td>bool</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>ndarray</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="calc_events_normal_direction" class="level3">
+<h3 class="anchored" data-anchor-id="calc_events_normal_direction">calc_events_normal_direction</h3>
+<blockquote class="blockquote">
+<pre><code> calc_events_normal_direction (events,
+                               data:xarray.core.dataarray.DataArray)</code></pre>
+</blockquote>
+<p><em>Computes the normal directions(s) at two different time steps.</em></p>
+<hr>
+</section>
+<section id="calc_events_vec_change" class="level3">
+<h3 class="anchored" data-anchor-id="calc_events_vec_change">calc_events_vec_change</h3>
+<blockquote class="blockquote">
+<pre><code> calc_events_vec_change (events, data:xarray.core.dataarray.DataArray)</code></pre>
+</blockquote>
+<p><em>Utils function to calculate features related to the change of the magnetic field</em></p>
+</section>
+</section>
+<section id="pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="pipelines">Pipelines</h2>
+<p>patch <code>pdp.ApplyToRows</code> to work with <code>modin</code> and <code>xorbits</code> DataFrames</p>
+<p><code>Pipelines</code> Class for processing IDs</p>
+<p>Notes: Using <code>lambda</code> function instead of <code>partial</code> because of <code>partial</code> freezeing the args decreasing the performance</p>
+<hr>
+<section id="idspdpipeline" class="level3">
+<h3 class="anchored" data-anchor-id="idspdpipeline">IDsPdPipeline</h3>
+<blockquote class="blockquote">
+<pre><code> IDsPdPipeline ()</code></pre>
+</blockquote>
+<p><em>Initialize self. See help(type(self)) for accurate signature.</em></p>
+<hr>
+</section>
+<section id="process_events" class="level3">
+<h3 class="anchored" data-anchor-id="process_events">process_events</h3>
+<blockquote class="blockquote">
+<pre><code> process_events (candidates_pl:polars.dataframe.frame.DataFrame,
+                 sat_fgm:xarray.core.dataarray.DataArray,
+                 data_resolution:datetime.timedelta, modin=True,
+                 method:Literal['fit','derivative']='fit', **kwargs)</code></pre>
+</blockquote>
+<p><em>Process candidates DataFrame</em></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>candidates_pl</td>
+<td>DataFrame</td>
+<td></td>
+<td>potential candidates DataFrame</td>
+</tr>
+<tr class="even">
+<td>sat_fgm</td>
+<td>DataArray</td>
+<td></td>
+<td>satellite FGM data</td>
+</tr>
+<tr class="odd">
+<td>data_resolution</td>
+<td>timedelta</td>
+<td></td>
+<td>time resolution of the data</td>
+</tr>
+<tr class="even">
+<td>modin</td>
+<td>bool</td>
+<td>True</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>method</td>
+<td>Literal</td>
+<td>fit</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>kwargs</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Returns</strong></td>
+<td><strong>DataFrame</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="test" class="level2">
+<h2 class="anchored" data-anchor-id="test">Test</h2>
+<section id="test-parallelization" class="level3">
+<h3 class="anchored" data-anchor-id="test-parallelization">Test parallelization</h3>
+<p>Generally <code>mapply</code> and <code>modin</code> are the fastest. <code>xorbits</code> is expected to be the fastest but it is not and it is the slowest one.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| notest</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sat <span class="op">=</span> <span class="st">'jno'</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>coord <span class="op">=</span> <span class="st">'se'</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"BX"</span>, <span class="st">"BY"</span>, <span class="st">"BZ"</span>]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> timedelta(seconds<span class="op">=</span><span class="dv">60</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>data_resolution <span class="op">=</span> timedelta(seconds<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">True</span>:</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> <span class="dv">2012</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    files <span class="op">=</span> <span class="ss">f'../data/</span><span class="sc">{</span>sat<span class="sc">}</span><span class="ss">_data_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.parquet'</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    output <span class="op">=</span> <span class="ss">f'../data/</span><span class="sc">{</span>sat<span class="sc">}</span><span class="ss">_candidates_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">_tau_</span><span class="sc">{</span>tau<span class="sc">.</span>seconds<span class="sc">}</span><span class="ss">.parquet'</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pl.scan_parquet(files).set_sorted(<span class="st">'time'</span>).collect()</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> compute_indices(data, tau)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># filter condition</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    sparse_num <span class="op">=</span> tau <span class="op">/</span> data_resolution <span class="op">//</span> <span class="dv">3</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    filter_condition <span class="op">=</span> filter_indices(sparse_num <span class="op">=</span> sparse_num)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    candidates <span class="op">=</span> indices.<span class="bu">filter</span>(filter_condition).with_columns(pl_format_time(tau)).sort(<span class="st">'time'</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    data_c <span class="op">=</span> compress_data_by_events(data, candidates, tau)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    sat_fgm <span class="op">=</span> df2ts(data_c, cols, attrs<span class="op">=</span>{<span class="st">"units"</span>: <span class="st">"nT"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-22" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>candidates_pd <span class="op">=</span> candidates.to_pandas()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>candidates_modin <span class="op">=</span> mpd.DataFrame(candidates_pd)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># candidates_x = xpd.DataFrame(candidates_pd)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-23" class="cell">
+<details class="code-fold">
+<summary>Test different libraries to parallelize the computation</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">True</span>:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    pdp_test <span class="op">=</span> pdp.ApplyToRows(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> candidate: calc_candidate_duration(candidate, sat_fgm),  <span class="co"># fast a little bit</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># lambda candidate: calc_duration(get_candidate_data_xr(candidate, sat_fgm)),</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># lambda candidate: calc_duration(sat_fgm.sel(time=slice(candidate['tstart'], candidate['tstop']))),</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        func_desc<span class="op">=</span><span class="st">"calculating duration parameters"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># process_events(candidates_modin, sat_fgm, sat_state, data_resolution)</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># successful cases</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_pd.mapply(lambda candidate: calc_candidate_duration(candidate, sat_fgm), axis=1) # this works, 4.2 secs</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_pd.mapply(calc_candidate_duration, axis=1, data=sat_fgm) # this works, but a little bit slower, 6.7 secs</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_pd.apply(calc_candidate_duration, axis=1, data=sat_fgm) # Standard case: 24+s secs</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_pd.swifter.apply(calc_candidate_duration, axis=1, data=sat_fgm) # this works with dask, 80 secs</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_pd.swifter.set_dask_scheduler(scheduler="threads").apply(calc_candidate_duration, axis=1, data=sat_fgm) # this works with dask, 60 secs</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_modin.apply(lambda candidate: calc_candidate_duration(candidate, sat_fgm), axis=1) # this works with ray, 6 secs # </span><span class="al">NOTE</span><span class="co">: can not work with dask</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_x.apply(calc_candidate_duration, axis=1, data=sat_fgm) # 30 seconds</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pdp_test(candidates_modin) # this works, 8 secs</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># failed cases</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># candidates_modin.apply(calc_candidate_duration, axis=1, data=sat_fgm) # AttributeError: 'DataFrame' object has no attribute 'sel'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-24" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> timeit</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> partial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-25" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> benchmark(task_dict, number<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, (data, task) <span class="kw">in</span> task_dict.items():</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            time_taken <span class="op">=</span> timeit.timeit(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                <span class="kw">lambda</span>: task(data),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                number<span class="op">=</span>number</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>            results[name] <span class="op">=</span> time_taken <span class="op">/</span> number</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>            results[name] <span class="op">=</span> <span class="bu">str</span>(e)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-26" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> benchmark_results(results, sat_fgm):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    func <span class="op">=</span> partial(calc_candidate_duration, data<span class="op">=</span>sat_fgm)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    task_dict <span class="op">=</span> {</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'pandas'</span>: (candidates_pd, <span class="kw">lambda</span> _: _.<span class="bu">apply</span>(func, axis<span class="op">=</span><span class="dv">1</span>)),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'pandas-mapply'</span>: (candidates_pd, <span class="kw">lambda</span> _: _.mapply(func, axis<span class="op">=</span><span class="dv">1</span>)),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'modin'</span>: (candidates_modin, <span class="kw">lambda</span> _: _.<span class="bu">apply</span>(func, axis<span class="op">=</span><span class="dv">1</span>)),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 'xorbits': (candidates_x, lambda _: _.apply(func, axis=1)),</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> benchmark(task_dict)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
 </section>

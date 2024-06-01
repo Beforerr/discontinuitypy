@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="All statistics are wrong, but some may be useful:)">
+<meta name="description" content="This module contains the useful functions to deal with candidates datasets and individual candidate.">
 
-<title>discontinuitypy – DiscontinuityPy</title>
+<title>discontinuitypy – Datasets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,11 +103,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="discontinuitypy - DiscontinuityPy">
-<meta property="og:description" content="All statistics are wrong, but some may be useful:)">
+<meta property="og:title" content="discontinuitypy - Datasets">
+<meta property="og:description" content="This module contains the useful functions to deal with candidates datasets and individual candidate.">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - DiscontinuityPy">
-<meta name="twitter:description" content="All statistics are wrong, but some may be useful:)">
+<meta name="twitter:title" content="discontinuitypy - Datasets">
+<meta name="twitter:description" content="This module contains the useful functions to deal with candidates datasets and individual candidate.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -129,11 +129,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">DiscontinuityPy</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10_datasets.html">Datasets</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="./10_datasets.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
@@ -287,15 +287,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#user-guide" id="toc-user-guide" class="nav-link active" data-scroll-target="#user-guide">User Guide</a>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link active" data-scroll-target="#datasets">Datasets</a>
   <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
-  </ul></li>
-  <li><a href="#related-projects-and-publications" id="toc-related-projects-and-publications" class="nav-link" data-scroll-target="#related-projects-and-publications">Related projects and publications</a></li>
-  <li><a href="#todos" id="toc-todos" class="nav-link" data-scroll-target="#todos">TODOs</a>
-  <ul class="collapse">
-  <li><a href="#bugs" id="toc-bugs" class="nav-link" data-scroll-target="#bugs">bugs</a></li>
+  <li><a href="#idsevents" id="toc-idsevents" class="nav-link" data-scroll-target="#idsevents">IdsEvents</a></li>
+  <li><a href="#write" id="toc-write" class="nav-link" data-scroll-target="#write">write</a></li>
+  <li><a href="#log_event_change" id="toc-log_event_change" class="nav-link" data-scroll-target="#log_event_change">log_event_change</a></li>
+  <li><a href="#idsdataset" id="toc-idsdataset" class="nav-link" data-scroll-target="#idsdataset">IDsDataset</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -305,13 +302,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DiscontinuityPy</h1>
-<p class="subtitle lead">A python package for identifying and analyzing discontinuities for time series data.</p>
+<h1 class="title">Datasets</h1>
 </div>
 
 <div>
   <div class="description">
-    All statistics are wrong, but some may be useful:)
+    This module contains the useful functions to deal with candidates datasets and individual candidate.
   </div>
 </div>
 
@@ -328,91 +324,162 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><a href="https://pypi.org/project/discontinuitypy"><img src="https://img.shields.io/pypi/v/discontinuitypy.png" class="img-fluid" alt="PyPI"></a> <a href="https://pixi.sh"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json" class="img-fluid" alt="Pixi Badge"></a> <a href="https://pdm-project.org"><img src="https://img.shields.io/badge/pdm-managed-blueviolet.png" class="img-fluid" alt="pdm-managed"></a></p>
-<section id="user-guide" class="level1">
-<h1>User Guide</h1>
-<p>This package is designed to identify and analyze discontinuities in time series data.</p>
-<ol type="1">
-<li>Finding the discontinuities, see <a href="./01_ids_detection.html">this notebook</a>
-<ul>
-<li>Corresponding to limited feature extraction / anomaly detection</li>
-</ul></li>
-<li>Calculating the properties of the discontinuities, see <a href="./02_ids_properties.html">this notebook</a>
-<ul>
-<li>One can use higher time resolution data</li>
-</ul></li>
-</ol>
-<p>For how to use this project as a python library, please see <a href="./00_ids_finder.html">this page</a>.</p>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<pre class="shell"><code>pip install discontinuitypy</code></pre>
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="datasets" class="level2">
+<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
+<p>Fundamental class</p>
+<hr>
+<section id="idsevents" class="level3">
+<h3 class="anchored" data-anchor-id="idsevents">IdsEvents</h3>
+<blockquote class="blockquote">
+<pre><code> IdsEvents (name:str=None, data:polars.lazyframe.frame.LazyFrame=None,
+            ts:datetime.timedelta=None, tau:datetime.timedelta=None,
+            events:polars.dataframe.frame.DataFrame=None,
+            method:Literal['fit','derivative']='fit', **extra_data:Any)</code></pre>
+</blockquote>
+<p><em>Core class to handle discontinuity events in a dataset.</em></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>data</td>
+<td>Any</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>None</strong></td>
+<td><strong>type: ignore</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
 </section>
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p>Import the package</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.utils.basic <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.core <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="write" class="level3">
+<h3 class="anchored" data-anchor-id="write">write</h3>
+<blockquote class="blockquote">
+<pre><code> write (df:polars.dataframe.frame.DataFrame, fname:pathlib.Path,
+        format=None, **kwargs)</code></pre>
+</blockquote>
+<hr>
 </section>
+<section id="log_event_change" class="level3">
+<h3 class="anchored" data-anchor-id="log_event_change">log_event_change</h3>
+<blockquote class="blockquote">
+<pre><code> log_event_change (event, logger=&lt;loguru.logger handlers=[(id=0, level=10,
+                   sink=&lt;_io.StringIO object at 0x10d585b40&gt;)]&gt;)</code></pre>
+</blockquote>
+<div id="cell-6" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastcore.<span class="bu">all</span> <span class="im">import</span> concat</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ls <span class="op">=</span> concat([<span class="va">None</span>, [<span class="dv">1</span>], <span class="va">None</span>])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ls.remove(<span class="va">None</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>[1, None]</code></pre>
+</div>
+</div>
+<div id="cell-7" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># def overview_plot(</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ):</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     # </span><span class="al">BUG</span><span class="co">: to be fixed</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     start = start or event["tstart"]</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     stop = stop or event["tstop"]</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     start -= offset</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     stop += offset</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     _plasma_data = self.plasma_data.filter(</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#         pl.col("time").is_between(start, stop)</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     ).collect()</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     _mag_data = (</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#         self.data.filter(pl.col("time").is_between(start, stop))</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#         .collect()</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#         .melt(</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#             id_vars=["time"],</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#             value_vars=self.bcols,</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#             variable_name="B comp",</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#             value_name="B",</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     v_df = _plasma_data.melt(</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#         id_vars=["time"],</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#         value_vars=self.plasma_meta.velocity_cols,</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#         variable_name="veloity comp",</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#         value_name="v",</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     panel_mag = _mag_data.hvplot(</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#         x="time", y="B", by="B comp", ylabel="Magnetic Field", **kwargs</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#     panel_n = _plasma_data.hvplot(</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#         x="time", y=self.plasma_meta.density_col, **kwargs</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">#     ) * _plasma_data.hvplot.scatter(</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">#         x="time", y=self.plasma_meta.density_col, **kwargs</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">#     panel_v = v_df.hvplot(</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">#         x="time", y="v", by="veloity comp", ylabel="Plasma Velocity", **kwargs</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     panel_temp = _plasma_data.hvplot(</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co">#         x="time", y=self.plasma_meta.temperature_col, **kwargs</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">#     mag_vlines = hv.VLine(event["t.d_start"]) * hv.VLine(event["t.d_end"])</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">#     plasma_vlines = hv.VLine(event.get("time_before")) * hv.VLine(</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co">#         event.get("time_after")</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co">#     logger.info(f"Overview plot: {event['tstart']} - {event['tstop']}")</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co">#     log_event_change(event)</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co">#     return (</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co">#         panel_mag * mag_vlines</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co">#         + panel_n * plasma_vlines</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co">#         + panel_v * plasma_vlines</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co">#         + panel_temp * plasma_vlines</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co">#     ).cols(1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<hr>
 </section>
-<section id="related-projects-and-publications" class="level1">
-<h1>Related projects and publications</h1>
-<ul>
-<li><a href="https://beforerr.github.io/ids_spatial_evolution_juno/">Solar wind discontinuities spatial evolution in the outer heliosphere</a></li>
-<li><a href="https://beforerr.github.io/psp_conjunction/">Evolution of solar wind discontinuities in the inner heliosphere: PSP and Earth conjunctions and alignments</a></li>
-</ul>
-<!-- We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable) -->
-</section>
-<section id="todos" class="level1">
-<h1>TODOs</h1>
-<p>Science part</p>
-<ul>
-<li>Analysis
-<ul class="task-list">
-<li><label><input type="checkbox">Contribution of discontinuities to the power spectrum</label></li>
-<li><label><input type="checkbox">Check Datagap</label></li>
-<li><label><input type="checkbox">Distribution of |B| over radius</label></li>
-<li><label><input type="checkbox">Add error bar</label></li>
-<li><label><input type="checkbox">More accurate way to obtain the properties of the discontinuities</label></li>
-</ul></li>
-<li>Identifaction
-<ul class="task-list">
-<li><label><input type="checkbox">Ensemble forest?</label></li>
-<li><label><input type="checkbox">Smoothing is important?</label></li>
-<li><label><input type="checkbox">Check change point algorithm</label></li>
-</ul></li>
-<li>Features
-<ul class="task-list">
-<li><label><input type="checkbox">Thickness in N direction</label></li>
-<li><label><input type="checkbox">Use high resolution data for feature extraction</label></li>
-</ul></li>
-<li>Compare with other methods of identifying IDs
-<ul class="task-list">
-<li><label><input type="checkbox">Verify with other methods of identifying IDs</label></li>
-</ul></li>
-</ul>
-<p>Code part</p>
-<ul>
-<li>Optimization
-<ul class="task-list">
-<li><label><input type="checkbox"><code>dask</code> for parallel computing instead of <code>modin</code></label></li>
-<li><label><input type="checkbox"><code>JAX</code> library for <code>numpy</code> optimization</label></li>
-<li><label><input type="checkbox">shorten import time</label></li>
-</ul></li>
-<li>Refactor
-<ul class="task-list">
-<li><label><input type="checkbox" checked=""><code>process_candidates</code> to exclude <code>sat_state</code> logics</label></li>
-<li><label><input type="checkbox" checked="">renaming feature layer <code>candidates</code></label></li>
-</ul></li>
-<li><label><input type="checkbox" checked="">Kedro</label>
-<ul class="task-list">
-<li><label><input type="checkbox" checked="">Modular pipelines</label></li>
-</ul></li>
-</ul>
-<section id="bugs" class="level3">
-<h3 class="anchored" data-anchor-id="bugs">bugs</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">STEREO <code>B</code> less than zero (after downsampling?)</label></li>
-</ul>
+<section id="idsdataset" class="level3">
+<h3 class="anchored" data-anchor-id="idsdataset">IDsDataset</h3>
+<blockquote class="blockquote">
+<pre><code> IDsDataset (name:str=None,
+             mag_data:polars.lazyframe.frame.LazyFrame=None,
+             ts:datetime.timedelta=None, tau:datetime.timedelta=None,
+             events:polars.dataframe.frame.DataFrame=None,
+             method:Literal['fit','derivative']='fit',
+             mag_meta:space_analysis.ds.meta.Meta=Meta(dataset=None,
+             parameters=None), bcols:list[str]=None,
+             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met
+             a:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset=None,
+             parameters=None, density_col=None, velocity_cols=None,
+             speed_col=None, temperature_col=None),
+             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp
+             _meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,
+             parameters=None, para_col=None, perp_cols=None),
+             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met
+             a:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,
+             parameters=None, para_col=None, perp_cols=None),
+             **extra_data:Any)</code></pre>
+</blockquote>
+<p><em>Extend the IdsEvents class to handle plasma and temperature data.</em></p>
 
 
 </section>

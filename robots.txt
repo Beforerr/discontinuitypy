@@ -1,1 +1,1 @@
-Sitemap: https://Beforerr.github.io/ids_finder/sitemap.xml
+Sitemap: https://Beforerr.github.io/discontinuitypy/sitemap.xml

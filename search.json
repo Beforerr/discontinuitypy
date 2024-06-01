@@ -1,0 +1,498 @@
+[
+  {
+    "objectID": "detection/01_variance.html",
+    "href": "detection/01_variance.html",
+    "title": "Variance method",
+    "section": "",
+    "text": "References: (Liu et al. 2022)",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Variance method"
+    ]
+  },
+  {
+    "objectID": "detection/01_variance.html#introduction",
+    "href": "detection/01_variance.html#introduction",
+    "title": "Variance method",
+    "section": "Introduction",
+    "text": "Introduction\nFor each sampling instant \\(t\\), we define three intervals: the pre-interval \\([-1,-1/2]\\cdot T+t\\), the middle interval \\([-1/,1/2]\\cdot T+t\\), and the post-interval \\([1/2,1]\\cdot T+t\\), in which \\(T\\) are time lags. Let time series of the magnetic field data in these three intervals are labeled \\({\\mathbf B}_-\\), \\({\\mathbf B}_0\\), \\({\\mathbf B}_+\\), respectively. Compute the following indices:\n\\[\nI_1 = \\frac{\\sigma(B_0)}{Max(\\sigma(B_-),\\sigma(B_+))}\n\\]\n\\[\nI_2 = \\frac{\\sigma(B_- + B_+)} {\\sigma(B_-) + \\sigma(B_+)}\n\\]\n\\[\nI_3 = \\frac{| \\Delta \\vec{B} |}{|B_{bg}|}\n\\]\nBy selecting a large and reasonable threshold for the ﬁrst two indices (\\(I_1&gt;2, I_2&gt;1\\)) , we could guarantee that the ﬁeld changes of the IDs identiﬁed are large enough to be distinguished from the stochastic ﬂuctuations on magnetic ﬁelds, while the third is a supplementary condition to reduce the uncertainty of recognition. While the third index (relative field jump) is a supplementary condition to reduce the uncertainty of recognition.",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Variance method"
+    ]
+  },
+  {
+    "objectID": "detection/01_variance.html#index-of-the-standard-deviation",
+    "href": "detection/01_variance.html#index-of-the-standard-deviation",
+    "title": "Variance method",
+    "section": "Index of the standard deviation",
+    "text": "Index of the standard deviation\n\\[\nI_1 = \\frac{\\sigma(B_0)}{Max(\\sigma(B_-),\\sigma(B_+))}\n\\]\n\n\ncompute_std\n\n compute_std (df:polars.lazyframe.frame.LazyFrame,\n              period:datetime.timedelta, index_column='time',\n              cols:list[str]=['BX', 'BY', 'BZ'],\n              every:datetime.timedelta=None, result_column='std')\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nLazyFrame\n\n\n\n\nperiod\ntimedelta\n\nperiod to group by\n\n\nindex_column\nstr\ntime\n\n\n\ncols\nlist\n[‘BX’, ‘BY’, ‘BZ’]\n\n\n\nevery\ntimedelta\nNone\nevery to group by (default: period / 2)\n\n\nresult_column\nstr\nstd\n\n\n\n\n\n\n\nadd_neighbor_std\n\n add_neighbor_std (df:polars.lazyframe.frame.LazyFrame,\n                   tau:datetime.timedelta, join_strategy='inner',\n                   std_column='std', time_column='time')\n\nGet the neighbor standard deviations\n\n\n\ncompute_index_std\n\n compute_index_std (df:polars.lazyframe.frame.LazyFrame, std_column='std')\n\nCompute the standard deviation index based on the given DataFrame\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nLazyFrame\n\n\n\n\nstd_column\nstr\nstd\n\n\n\nReturns\n- pl.LazyFrame: DataFrame with calculated ‘index_std’ column.",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Variance method"
+    ]
+  },
+  {
+    "objectID": "detection/01_variance.html#index-of-fluctuation",
+    "href": "detection/01_variance.html#index-of-fluctuation",
+    "title": "Variance method",
+    "section": "Index of fluctuation",
+    "text": "Index of fluctuation\n\\[\nI_2 = \\frac{\\sigma(B_- + B_+)} {\\sigma(B_-) + \\sigma(B_+)}\n\\]\n\n\ncompute_index_fluctuation\n\n compute_index_fluctuation (df:polars.lazyframe.frame.LazyFrame,\n                            std_column='std', clean=True)\n\n\n\n\ncompute_combinded_std\n\n compute_combinded_std (df:polars.lazyframe.frame.LazyFrame,\n                        cols:list[str], every:datetime.timedelta,\n                        period:datetime.timedelta=None,\n                        index_column='time', result_column='std_combined')\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nLazyFrame\n\n\n\n\ncols\nlist\n\n\n\n\nevery\ntimedelta\n\nevery to group by (default: period / 2)\n\n\nperiod\ntimedelta\nNone\nperiod to group by\n\n\nindex_column\nstr\ntime\n\n\n\nresult_column\nstr\nstd_combined",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Variance method"
+    ]
+  },
+  {
+    "objectID": "detection/01_variance.html#index-of-the-relative-field-jump",
+    "href": "detection/01_variance.html#index-of-the-relative-field-jump",
+    "title": "Variance method",
+    "section": "Index of the relative field jump",
+    "text": "Index of the relative field jump\n\\[\nI_3 = \\frac{| \\Delta \\vec{B} |}{|B_{bg}|}\n\\]\n\n\npl_dvec\n\n pl_dvec (columns, *more_columns)\n\n\n\n\ncompute_index_diff\n\n compute_index_diff (df:polars.lazyframe.frame.LazyFrame,\n                     every:datetime.timedelta, cols:list[str],\n                     period:datetime.timedelta=None, clean=True)\n\n\n\n\ncompute_indices\n\n compute_indices (df:polars.lazyframe.frame.LazyFrame,\n                  tau:datetime.timedelta, cols:list[str]=['BX', 'BY',\n                  'BZ'], clean=True, join_strategy='inner')\n\nCompute all index based on the given DataFrame and tau value.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nLazyFrame\n\nInput DataFrame.\n\n\ntau\ntimedelta\n\nTime interval value.\n\n\ncols\nlist\n[‘BX’, ‘BY’, ‘BZ’]\n\n\n\nclean\nbool\nTrue\n\n\n\njoin_strategy\nstr\ninner\n\n\n\nReturns\nLazyFrame\n\nTuple containing DataFrame results for fluctuation index,standard deviation index, and ‘index_num’.",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Variance method"
+    ]
+  },
+  {
+    "objectID": "detection/01_variance.html#filtering",
+    "href": "detection/01_variance.html#filtering",
+    "title": "Variance method",
+    "section": "Filtering",
+    "text": "Filtering\n\n\nfilter_indices\n\n filter_indices (df:polars.lazyframe.frame.LazyFrame,\n                 index_std_threshold:float=2,\n                 index_fluc_threshold:float=1,\n                 index_diff_threshold:float=0.1, sparse_num:int=15)",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Variance method"
+    ]
+  },
+  {
+    "objectID": "detection/01_variance.html#obsolete",
+    "href": "detection/01_variance.html#obsolete",
+    "title": "Variance method",
+    "section": "Obsolete",
+    "text": "Obsolete\n\n\nCode\ndef _compute_combinded_std(df: pl.LazyFrame, tau, cols: list[str]):\n    combined_std_cols = [col_name + \"_combined_std\" for col_name in cols]\n    offsets = [0 * tau, tau / 2]\n    combined_std_dfs = []\n\n    for offset in offsets:\n        truncated_df = df.select(\n            (pl.col(\"time\") - offset).dt.truncate(tau, offset=offset).alias(\"time\"),\n            pl.col(cols),\n        )\n\n        prev_df = truncated_df.select(\n            (pl.col(\"time\") + tau),\n            pl.col(cols),\n        )\n\n        next_df = truncated_df.select(\n            (pl.col(\"time\") - tau),\n            pl.col(cols),\n        )\n\n        temp_combined_std_df = (\n            pl.concat([prev_df, next_df])\n            .group_by(\"time\")\n            .agg(pl.col(cols).std(ddof=0).name.suffix(\"_combined_std\"))\n            .with_columns(B_std_combined=pl_norm(combined_std_cols))\n            .drop(combined_std_cols)\n            .sort(\"time\")\n        )\n\n        combined_std_dfs.append(temp_combined_std_df)\n\n    combined_std_df = pl.concat(combined_std_dfs)\n    return combined_std_df",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Variance method"
+    ]
+  },
+  {
+    "objectID": "properties/00_duration.html",
+    "href": "properties/00_duration.html",
+    "title": "Duration",
+    "section": "",
+    "text": "They might be multiple ways to define the duration of a discontinuity. Here are some possibilities:\nNotes:\nCaveats:",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Duration"
+    ]
+  },
+  {
+    "objectID": "properties/00_duration.html#maxium-distance-method",
+    "href": "properties/00_duration.html#maxium-distance-method",
+    "title": "Duration",
+    "section": "Maxium distance method",
+    "text": "Maxium distance method\n\n\nts_max_distance\n\n ts_max_distance (ts:xarray.core.dataarray.DataArray, coord:str='time')\n\nCompute the time interval when the timeseries has maxium cumulative variation\n\n\ntest for ts_max_distance function\ntime = pd.date_range('2000-01-01', periods=10)\nx = np.linspace(0, np.pi, 10)\n# generate data circular in three dimensions, so the biggest distance is between the first and the last point    \ndata = np.zeros((10, 3))\ndata[:, 0] = np.sin(x)\ndata[:, 1] = np.cos(x)\nts = xr.DataArray(data, coords={'time': time}, dims=['time', 'space'])\nstart, end = ts_max_distance(ts)\nassert start == time[0]\nassert end == time[-1]",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Duration"
+    ]
+  },
+  {
+    "objectID": "properties/00_duration.html#maxium-derivative-method",
+    "href": "properties/00_duration.html#maxium-derivative-method",
+    "title": "Duration",
+    "section": "Maxium derivative method",
+    "text": "Maxium derivative method\n\n\nget_time_from_condition\n\n get_time_from_condition (vec:xarray.core.dataarray.DataArray, threshold,\n                          condition_type)\n\n\n\n\nfind_start_end_times\n\n find_start_end_times (vec_diff_mag:xarray.core.dataarray.DataArray,\n                       d_time, threshold)\n\n\n\n\nts_max_derivative\n\n ts_max_derivative (vec:xarray.core.dataarray.DataArray,\n                    threshold_ratio=0.25)\n\n\n\n\ncalc_duration\n\n calc_duration (ts:xarray.core.dataarray.DataArray,\n                method:Literal['distance','derivative']='distance',\n                **kwargs)",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Duration"
+    ]
+  },
+  {
+    "objectID": "properties/00_duration.html#obsolete-codes",
+    "href": "properties/00_duration.html#obsolete-codes",
+    "title": "Duration",
+    "section": "Obsolete codes",
+    "text": "Obsolete codes\nThis is obsolete codes because the timewindow now is overlapping. No need to consider where magnetic discontinuities happens in the boundary of one timewindow.\n\n\nCode\ndef calc_candidate_d_duration(candidate, data) -&gt; pd.Series:\n    try:\n        if pd.isnull(candidate['t.d_start']) or pd.isnull(candidate['t.d_end']):\n            candidate_data = get_candidate_data(candidate, data, neighbor=1)\n            d_time = candidate['d_time']\n            threshold = candidate['threshold']\n            return calc_d_duration(candidate_data, d_time, threshold)\n        else:\n            return pd.Series({\n                't.d_start': candidate['t.d_start'],\n                't.d_end': candidate['t.d_end'],\n            })\n    except Exception as e:\n        # logger.debug(f\"Error for candidate {candidate} at {candidate['time']}: {str(e)}\")\n        print(f\"Error for candidate {candidate} at {candidate['time']}: {str(e)}\")\n        raise e\n\n\n\n\nCode\ndef calc_d_duration(vec: xr.DataArray, d_time, threshold) -&gt; pd.Series:\n    vec_diff = vec.differentiate(\"time\", datetime_unit=\"s\")\n    vec_diff_mag = linalg.norm(vec_diff, dims='v_dim')\n\n    start_time, end_time = find_start_end_times(vec_diff_mag, d_time, threshold)\n\n    return pd.Series({\n        't.d_start': start_time,\n        't.d_end': end_time,\n    })\n\n\n\nCalibrates candidate duration\nThis calibration is based on the assumption that the magnetic discontinuity is symmetric around the center of time, which is not always true.\nSo instead of calibrating the duration, we drop the events. - Cons: Might influence the statistics of occurrence rate, but - Pros: More robust results about the properties of the magnetic discontinuity.\n\n\nCode\ndef calibrate_candidate_duration(\n    candidate: pd.Series, data:xr.DataArray, data_resolution, ratio = 3/4\n):\n    \"\"\"\n    Calibrates the candidate duration. \n    - If only one of 't.d_start' or 't.d_end' is provided, calculates the missing one based on the provided one and 'd_time'.\n    - Then if this is not enough points between 't.d_start' and 't.d_end', returns None for both.\n    \n    \n    Parameters\n    ----------\n    - candidate (pd.Series): The input candidate with potential missing 't.d_start' or 't.d_end'.\n    \n    Returns\n    -------\n    - pd.Series: The calibrated candidate.\n    \"\"\"\n    \n    start_notnull = pd.notnull(candidate['t.d_start'])\n    stop_notnull = pd.notnull(candidate['t.d_end']) \n    \n    match start_notnull, stop_notnull:\n        case (True, True):\n            t.d_start = candidate['t.d_start']\n            t.d_end = candidate['t.d_end']\n        case (True, False):\n            t.d_start = candidate['t.d_start']\n            t.d_end = candidate['d_time'] -  candidate['t.d_start'] + candidate['d_time']\n        case (False, True):\n            t.d_start = candidate['d_time'] -  candidate['t.d_end'] + candidate['d_time']\n            t.d_end = candidate['t.d_end']\n        case (False, False):\n            return pandas.Series({\n                't.d_start': None,\n                't.d_end': None,\n            })\n    \n    duration = t.d_end - t.d_start\n    num_of_points_between = data.time.sel(time=slice(t.d_start, t.d_end)).count().item()\n    \n    if num_of_points_between &lt;= (duration/data_resolution) * ratio:\n        t.d_start = None\n        t.d_end = None\n    \n    return pandas.Series({\n        't.d_start': t.d_start,\n        't.d_end': t.d_end,\n    })\n\n\n\n\nCode\ndef calibrate_candidates_duration(candidates, sat_fgm, data_resolution):\n    # calibrate duration\n\n    calibrate_duration = pdp.ApplyToRows(\n        lambda candidate: calibrate_candidate_duration(\n            candidate, sat_fgm, data_resolution\n        ),\n        func_desc=\"calibrating duration parameters if needed\",\n    )\n\n    temp_candidates = candidates.loc[\n        lambda df: df[\"t.d_start\"].isnull() | df[\"t.d_end\"].isnull()\n    ]  # temp_candidates = candidates.query('t.d_start.isnull() | t.d_end.isnull()') # not implemented in `modin`\n\n    if not temp_candidates.empty:\n        temp_candidates_updated = calibrate_duration(sat_fgm, data_resolution).apply(\n            temp_candidates\n        )\n        candidates.update(temp_candidates_updated)\n    return candidates",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Duration"
+    ]
+  },
+  {
+    "objectID": "02_ids_properties.html#duration",
+    "href": "02_ids_properties.html#duration",
+    "title": "ID properties",
+    "section": "Duration",
+    "text": "Duration\n\n\ncalc_candidate_duration\n\n calc_candidate_duration (candidate, data, **kwargs)",
+    "crumbs": [
+      "Home",
+      "ID properties"
+    ]
+  },
+  {
+    "objectID": "02_ids_properties.html#minimum-variance-analysis-mva-features",
+    "href": "02_ids_properties.html#minimum-variance-analysis-mva-features",
+    "title": "ID properties",
+    "section": "Minimum variance analysis (MVA) features",
+    "text": "Minimum variance analysis (MVA) features",
+    "crumbs": [
+      "Home",
+      "ID properties"
+    ]
+  },
+  {
+    "objectID": "02_ids_properties.html#field-rotation-angles",
+    "href": "02_ids_properties.html#field-rotation-angles",
+    "title": "ID properties",
+    "section": "Field rotation angles",
+    "text": "Field rotation angles\nThe PDF of the field rotation angles across the solar-wind IDs is well fitted by the exponential function exp(−θ/)…\n\n\nget_data_at_times\n\n get_data_at_times (data:xarray.core.dataarray.DataArray, times)\n\nSelect data at specified times.\n\n\n\ncalc_rotation_angle\n\n calc_rotation_angle (v1, v2)\n\n*Computes the rotation angle between two vectors.\nParameters: - v1: The first vector(s). - v2: The second vector(s).*\n\n\n\ncalc_events_rotation_angle\n\n calc_events_rotation_angle (events, data:xarray.core.dataarray.DataArray)\n\nComputes the rotation angle(s) at two different time steps.",
+    "crumbs": [
+      "Home",
+      "ID properties"
+    ]
+  },
+  {
+    "objectID": "02_ids_properties.html#normal-direction",
+    "href": "02_ids_properties.html#normal-direction",
+    "title": "ID properties",
+    "section": "Normal direction",
+    "text": "Normal direction\n\n\ncalc_normal_direction\n\n calc_normal_direction (v1, v2, normalize=True)\n\nComputes the normal direction of two vectors.\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nv1\narray_like\n\nThe first vector(s).\n\n\nv2\narray_like\n\nThe second vector(s).\n\n\nnormalize\nbool\nTrue\n\n\n\nReturns\nndarray\n\n\n\n\n\n\n\n\ncalc_events_normal_direction\n\n calc_events_normal_direction (events,\n                               data:xarray.core.dataarray.DataArray)\n\nComputes the normal directions(s) at two different time steps.\n\n\n\ncalc_events_vec_change\n\n calc_events_vec_change (events, data:xarray.core.dataarray.DataArray)\n\nUtils function to calculate features related to the change of the magnetic field",
+    "crumbs": [
+      "Home",
+      "ID properties"
+    ]
+  },
+  {
+    "objectID": "02_ids_properties.html#pipelines",
+    "href": "02_ids_properties.html#pipelines",
+    "title": "ID properties",
+    "section": "Pipelines",
+    "text": "Pipelines\npatch pdp.ApplyToRows to work with modin and xorbits DataFrames\nPipelines Class for processing IDs\nNotes: Using lambda function instead of partial because of partial freezeing the args decreasing the performance\n\n\nIDsPdPipeline\n\n IDsPdPipeline ()\n\nInitialize self. See help(type(self)) for accurate signature.\n\n\n\nprocess_events\n\n process_events (candidates_pl:polars.dataframe.frame.DataFrame,\n                 sat_fgm:xarray.core.dataarray.DataArray,\n                 data_resolution:datetime.timedelta, modin=True,\n                 method:Literal['fit','derivative']='fit', **kwargs)\n\nProcess candidates DataFrame\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ncandidates_pl\nDataFrame\n\npotential candidates DataFrame\n\n\nsat_fgm\nDataArray\n\nsatellite FGM data\n\n\ndata_resolution\ntimedelta\n\ntime resolution of the data\n\n\nmodin\nbool\nTrue\n\n\n\nmethod\nLiteral\nfit\n\n\n\nkwargs\n\n\n\n\n\nReturns\nDataFrame",
+    "crumbs": [
+      "Home",
+      "ID properties"
+    ]
+  },
+  {
+    "objectID": "02_ids_properties.html#test",
+    "href": "02_ids_properties.html#test",
+    "title": "ID properties",
+    "section": "Test",
+    "text": "Test\n\nTest parallelization\nGenerally mapply and modin are the fastest. xorbits is expected to be the fastest but it is not and it is the slowest one.\n#| notest\nsat = 'jno'\ncoord = 'se'\ncols = [\"BX\", \"BY\", \"BZ\"]\ntau = timedelta(seconds=60)\ndata_resolution = timedelta(seconds=1)\n\nif True:\n    year = 2012\n    files = f'../data/{sat}_data_{year}.parquet'\n    output = f'../data/{sat}_candidates_{year}_tau_{tau.seconds}.parquet'\n\n    data = pl.scan_parquet(files).set_sorted('time').collect()\n\n    indices = compute_indices(data, tau)\n    # filter condition\n    sparse_num = tau / data_resolution // 3\n    filter_condition = filter_indices(sparse_num = sparse_num)\n\n    candidates = indices.filter(filter_condition).with_columns(pl_format_time(tau)).sort('time')\n    \n    data_c = compress_data_by_events(data, candidates, tau)\n    sat_fgm = df2ts(data_c, cols, attrs={\"units\": \"nT\"})\n\n\nCode\ncandidates_pd = candidates.to_pandas()\ncandidates_modin = mpd.DataFrame(candidates_pd)\n# candidates_x = xpd.DataFrame(candidates_pd)\n\n\n\n\nTest different libraries to parallelize the computation\nif True:\n    pdp_test = pdp.ApplyToRows(\n        lambda candidate: calc_candidate_duration(candidate, sat_fgm),  # fast a little bit\n        # lambda candidate: calc_duration(get_candidate_data_xr(candidate, sat_fgm)),\n        # lambda candidate: calc_duration(sat_fgm.sel(time=slice(candidate['tstart'], candidate['tstop']))),\n        func_desc=\"calculating duration parameters\",\n    )\n    \n    # process_events(candidates_modin, sat_fgm, sat_state, data_resolution)\n    \n    # ---\n    # successful cases\n    # ---\n    # candidates_pd.mapply(lambda candidate: calc_candidate_duration(candidate, sat_fgm), axis=1) # this works, 4.2 secs\n    # candidates_pd.mapply(calc_candidate_duration, axis=1, data=sat_fgm) # this works, but a little bit slower, 6.7 secs\n    \n    # candidates_pd.apply(calc_candidate_duration, axis=1, data=sat_fgm) # Standard case: 24+s secs\n    # candidates_pd.swifter.apply(calc_candidate_duration, axis=1, data=sat_fgm) # this works with dask, 80 secs\n    # candidates_pd.swifter.set_dask_scheduler(scheduler=\"threads\").apply(calc_candidate_duration, axis=1, data=sat_fgm) # this works with dask, 60 secs\n    # candidates_modin.apply(lambda candidate: calc_candidate_duration(candidate, sat_fgm), axis=1) # this works with ray, 6 secs # NOTE: can not work with dask\n    # candidates_x.apply(calc_candidate_duration, axis=1, data=sat_fgm) # 30 seconds\n    # pdp_test(candidates_modin) # this works, 8 secs\n    \n    # ---\n    # failed cases\n    # ---\n    # candidates_modin.apply(calc_candidate_duration, axis=1, data=sat_fgm) # AttributeError: 'DataFrame' object has no attribute 'sel'\n\n\n\n\nCode\nimport timeit\nfrom functools import partial\n\n\n\n\nCode\ndef benchmark(task_dict, number=1):\n    results = {}\n    for name, (data, task) in task_dict.items():\n        try:\n            time_taken = timeit.timeit(\n                lambda: task(data),\n                number=number\n            )\n            results[name] = time_taken / number\n        except Exception as e:\n            results[name] = str(e)\n    return results\n\n\n\n\nCode\ndef benchmark_results(results, sat_fgm):\n    func = partial(calc_candidate_duration, data=sat_fgm)\n    task_dict = {\n        'pandas': (candidates_pd, lambda _: _.apply(func, axis=1)),\n        'pandas-mapply': (candidates_pd, lambda _: _.mapply(func, axis=1)),\n        'modin': (candidates_modin, lambda _: _.apply(func, axis=1)),\n        # 'xorbits': (candidates_x, lambda _: _.apply(func, axis=1)),\n    }\n\n    results = benchmark(task_dict)\n    return results",
+    "crumbs": [
+      "Home",
+      "ID properties"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html",
+    "href": "00_ids_finder.html",
+    "title": "Finding magnetic discontinuities",
+    "section": "",
+    "text": "It can be divided into two parts:",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html#processing-the-whole-dataset",
+    "href": "00_ids_finder.html#processing-the-whole-dataset",
+    "title": "Finding magnetic discontinuities",
+    "section": "Processing the whole dataset",
+    "text": "Processing the whole dataset\nNotes that the candidates only require a small portion of the data so we can compress the data to speed up the processing.\n\n\ncompress_data_by_events\n\n compress_data_by_events (data:polars.dataframe.frame.DataFrame,\n                          events:polars.dataframe.frame.DataFrame)\n\nCompress the data for parallel processing\n\n\n\ncompress_dfs_by_intervals\n\n compress_dfs_by_intervals (dfs:list[polars.lazyframe.frame.LazyFrame],\n                            starts:list, stops:list)\n\nCompress dataframes for parallel processing\n\n\n\ncompress_data_by_intervals\n\n compress_data_by_intervals (data:polars.dataframe.frame.DataFrame,\n                             starts:list, stops:list)\n\nCompress the data for parallel processing\n\n\n\nids_finder\n\n ids_finder (detection_df:polars.lazyframe.frame.LazyFrame,\n             tau:datetime.timedelta, ts:datetime.timedelta, bcols=None,\n             extract_df:polars.lazyframe.frame.LazyFrame=None, **kwargs)\n\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndetection_df\nLazyFrame\n\ndata used for anomaly dectection (typically low cadence data)\n\n\ntau\ntimedelta\n\n\n\n\nts\ntimedelta\n\n\n\n\nbcols\nNoneType\nNone\n\n\n\nextract_df\nLazyFrame\nNone\ndata used for feature extraction (typically high cadence data),\n\n\nkwargs\n\n\n\n\n\n\nwrapper function for partitioned input used in Kedro\n\n\n\nextract_features\n\n extract_features (partitioned_input:dict[str,typing.Callable[...,polars.l\n                   azyframe.frame.LazyFrame]], tau:float, ts:float,\n                   **kwargs)\n\nwrapper function for partitioned input\n\n\n\n\nType\nDetails\n\n\n\n\npartitioned_input\ndict\n\n\n\ntau\nfloat\nin seconds, yaml input\n\n\nts\nfloat\nin seconds, yaml input\n\n\nkwargs\n\n\n\n\nReturns\nDataFrame",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html#conventions",
+    "href": "00_ids_finder.html#conventions",
+    "title": "Finding magnetic discontinuities",
+    "section": "Conventions",
+    "text": "Conventions\nAs we are dealing with multiple spacecraft, we need to be careful about naming conventions. Here are the conventions we use in this project.\n\nsat_id: name of the spacecraft. We also use abbreviation, for example\n\nsta for STEREO-A\nthb for ARTEMIS-B\n\nsat_state: state data of the spacecraft\nb_vl: maximum variance vector of the magnetic field, (major eigenvector)\n\nData Level\n\nl0: unprocessed\nl1: cleaned data, fill null value, add useful columns\nl2: time-averaged data\n\n\nColumns naming conventions\n\nradial_distance: radial distance of the spacecraft, in units of \\(AU\\)\nplasma_speed: solar wind plasma speed, in units of \\(km/s\\)\nsw_elevation: solar wind elevation angle, in units of \\(\\degree\\)\nsw_azimuth: solar wind azimuth angle, in units of \\(\\degree\\)\nv_{x,y,z} or sw_vel_{X,Y,Z}: solar wind plasma speed in the ANY coordinate system, in units of \\(km/s\\)\n\nsw_vel_{r,t,n}: solar wind plasma speed in the RTN coordinate system, in units of \\(km/s\\)\nsw_vel_gse_{x,y,z}: solar wind plasma speed in the GSE coordinate system, in units of \\(km/s\\)\nsw_vel_lmn_{x,y,z}: solar wind plasma speed in the LMN coordinate system, in units of \\(km/s\\)\n\nv_l or sw_vel_l: abbreviation for sw_vel_lmn_1\nv_mn or sw_vel_mn (deprecated)\n\n\nplasma_density: plasma density, in units of \\(1/cm^{3}\\)\nplasma_temperature: plasma temperature, in units of \\(K\\)\nB_{x,y,z}: magnetic field in ANY coordinate system\n\nb_rtn_{x,y,z} or b_{r,t,n}: magnetic field in the RTN coordinate system\nb_gse_{x,y,z}: magnetic field in the GSE coordinate system\n\nB_mag: magnetic field magnitude\nVl_{x,y,z} or b_vecL_{X,Y,Z}: maxium variance vector of the magnetic field in ANY coordinate system\n\nb_vecL_{r,t,n}: maxium variance vector of the magnetic field in the RTN coordinate system\n\nmodel_b_{r,t,n}: modelled magnetic field in the RTN coordinate system\nstate : 1 for solar wind, 0 for non-solar wind\nL_mn{_norm}: thickness of the current sheet in MN direction, in units of \\(km\\)\nj0{_norm}: current density, in units of \\(nA/m^2\\)\n\nNotes: we recommend use unique names for each variable, for example, plasma_speed instead of speed. Because it is easier to search and replace the variable names in the code whenever necessary.\nFor the unit, by default we use\n\nlength : \\(km\\)\ntime : \\(s\\)\nmagnetic field : \\(nT\\)\ncurrent : \\(nA/m^2\\)",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html#test",
+    "href": "00_ids_finder.html#test",
+    "title": "Finding magnetic discontinuities",
+    "section": "Test",
+    "text": "Test\n\nTest feature engineering\n\n\nCode\n# from tsflex.features import MultipleFeatureDescriptors, FeatureCollection\n\n# from tsflex.features.integrations import catch22_wrapper\n# from pycatch22 import catch22_all\n\n\n\n\nCode\n# tau_pd = pd.Timedelta(tau)\n\n# catch22_feats = MultipleFeatureDescriptors(\n#     functions=catch22_wrapper(catch22_all),\n#     series_names=bcols,  # list of signal names\n#     windows = tau_pd, strides=tau_pd/2,\n# )\n\n# fc = FeatureCollection(catch22_feats)\n# features = fc.calculate(data, return_df=True)  # calculate the features on your data\n\n\n\n\nCode\n# features_pl = pl.DataFrame(features.reset_index()).sort('time')\n# df = candidates_pl.join_asof(features_pl, on='time').to_pandas()\n\n\n\n\nCode\n# profile = ProfileReport(df, title=\"JUNO Candidates Report\")\n# profile.to_file(\"jno.html\")\n\n\n\n\nBenchmark",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html#notes",
+    "href": "00_ids_finder.html#notes",
+    "title": "Finding magnetic discontinuities",
+    "section": "Notes",
+    "text": "Notes\n\nTODOs\n\nFeature engineering\nFeature selection",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html#obsolete-codes",
+    "href": "00_ids_finder.html#obsolete-codes",
+    "title": "Finding magnetic discontinuities",
+    "section": "Obsolete codes",
+    "text": "Obsolete codes",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "11_ids_config.html",
+    "href": "11_ids_config.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "standardize_plasma_data\n\n standardize_plasma_data (data:polars.lazyframe.frame.LazyFrame,\n                          meta:space_analysis.ds.meta.PlasmaMeta)\n\n*Standardize plasma data columns across different datasets.\nNotes: meta will be updated with the new column names*\n\n\n\nIDsConfig\n\n IDsConfig (name:str=None, mag_data:polars.lazyframe.frame.LazyFrame=None,\n            ts:datetime.timedelta=None, tau:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            method:Literal['fit','derivative']='fit',\n            mag_meta:space_analysis.ds.meta.Meta=Meta(dataset=None,\n            parameters=None), bcols:list[str]=None,\n            plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_meta\n            :space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset=None,\n            parameters=None, density_col=None, velocity_cols=None,\n            speed_col=None, temperature_col=None),\n            ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp_\n            meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,\n            parameters=None, para_col=None, perp_cols=None),\n            e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_meta\n            :space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,\n            parameters=None, para_col=None, perp_cols=None),\n            timerange:list[datetime.datetime]=None, split:int=1,\n            fmt:str='arrow', **extra_data:Any)\n\n*Extend the IDsDataset class to provide additional functionalities:\n\nExport and load data\nStandardize data\nSplit data to handle large datasets*\n\n\n\n\nSpeasyIDsConfig\n\n SpeasyIDsConfig (name:str=None,\n                  mag_data:polars.lazyframe.frame.LazyFrame=None,\n                  ts:datetime.timedelta=None, tau:datetime.timedelta=None,\n                  events:polars.dataframe.frame.DataFrame=None,\n                  method:Literal['fit','derivative']='fit',\n                  mag_meta:space_analysis.ds.meta.Meta=Meta(dataset=None,\n                  parameters=None), bcols:list[str]=None,\n                  plasma_data:polars.lazyframe.frame.LazyFrame=None, plasm\n                  a_meta:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(data\n                  set=None, parameters=None, density_col=None,\n                  velocity_cols=None, speed_col=None,\n                  temperature_col=None),\n                  ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion\n                  _temp_meta:space_analysis.ds.meta.TempMeta=TempMeta(data\n                  set=None, parameters=None, para_col=None,\n                  perp_cols=None),\n                  e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_tem\n                  p_meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset=\n                  None, parameters=None, para_col=None, perp_cols=None),\n                  timerange:list[datetime.datetime]=None, split:int=1,\n                  fmt:str='arrow', provider:str='cda', **extra_data:Any)\n\nBased on speasy Variables to get the data",
+    "crumbs": [
+      "Home",
+      "11 Ids Config"
+    ]
+  },
+  {
+    "objectID": "utils/00_basic.html#utils",
+    "href": "utils/00_basic.html#utils",
+    "title": "Utils",
+    "section": "Utils",
+    "text": "Utils",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "Utils"
+    ]
+  },
+  {
+    "objectID": "utils/00_basic.html#polars",
+    "href": "utils/00_basic.html#polars",
+    "title": "Utils",
+    "section": "Polars",
+    "text": "Polars\n\n\nfilter_tranges_df\n\n filter_tranges_df (df:polars.dataframe.frame.DataFrame,\n                    tranges:Tuple[list,list], time_col:str='time')\n\n- Filter data by time ranges\n\n\n\nfilter_tranges\n\n filter_tranges (time:polars.series.series.Series,\n                 tranges:Tuple[list,list])\n\n- Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)\n\n\n\nDataFrame.plot\n\n DataFrame.plot (*args, **kwargs)\n\n\nPartition the dataset by time\n\n\n\n\npartition_data_by_time\n\n partition_data_by_time\n                         (df:polars.lazyframe.frame.LazyFrame|polars.dataf\n                         rame.frame.DataFrame, method)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. method: The method to partition the data.\nReturns: Partitioned DataFrame.*\n\n\n\npartition_data_by_year_month\n\n partition_data_by_year_month (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\npartition_data_by_year\n\n partition_data_by_year (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\npartition_data_by_ts\n\n partition_data_by_ts (df:polars.dataframe.frame.DataFrame,\n                       ts:datetime.timedelta)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. ts: Time interval.\nReturns: Partitioned DataFrame.*\n\n\n\nconcat_partitions\n\n concat_partitions (partitioned_input:Dict[str,Callable])\n\n*Concatenate input partitions into one DataFrame.\nArgs: partitioned_input: A dictionary with partition ids as keys and load functions as values.*\n\n\n\nconcat_df\n\n concat_df (dfs:list[typing.Union[polars.dataframe.frame.DataFrame,polars.\n            lazyframe.frame.LazyFrame,pandas.core.frame.DataFrame]])\n\nConcatenate a list of DataFrames into one DataFrame.\n\nResample data\n\n\n\n\nformat_timedelta\n\n format_timedelta (time)\n\nFormat timedelta to timedelta\n\n\n\nresample\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\nresample\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\nresample\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\ncalc_vec_mag\n\n calc_vec_mag (vec)\n\n\n\n\ndf2ts\n\n df2ts (df:Union[pandas.core.frame.DataFrame,polars.dataframe.frame.DataFr\n        ame,polars.lazyframe.frame.LazyFrame], cols=None, time_col='time',\n        attrs=None, name=None)\n\nConvert DataFrame to TimeSeries\n\n\n\ncheck_fgm\n\n check_fgm (vec:xarray.core.dataarray.DataArray)",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "Utils"
+    ]
+  },
+  {
+    "objectID": "03_mag_plasma.html",
+    "href": "03_mag_plasma.html",
+    "title": "Combine magnetic field data and plasma data",
+    "section": "",
+    "text": "combine features from different sources/instruments (magnetic field, state data, etc.)\ngenerate new features",
+    "crumbs": [
+      "Home",
+      "Combine magnetic field data and plasma data"
+    ]
+  },
+  {
+    "objectID": "03_mag_plasma.html#additional-features-after-combining",
+    "href": "03_mag_plasma.html#additional-features-after-combining",
+    "title": "Combine magnetic field data and plasma data",
+    "section": "Additional features after combining",
+    "text": "Additional features after combining\nWith combined dataset, we calculate additional features for each candidate.\nLength\nthe length along the n direction of LMN coordinate system.\n\\[L_{n} = v_{n}  T_{duration}\\]\nHowever this may not be accurate due to the MVA method.\n\\[L_{mn} = v_{mn}  T_{duration}\\]\nIf we have the normal vector of the current sheet, we can calculate the length along the normal direction.\n\\[L_{normal} = L_{k} = v_{normal}  T_{duration}\\]\nAdditionally, we can calculate the length projected into RTN coordinate system.\n\\[L_{R} = L_{k} \\cos \\theta\\]\n\\[ j*0 = (\\frac{d B}{d t})*{max} \\frac{1}{v\\_{mn}}\\]\n\n\nvector_project_pl\n\n vector_project_pl (df:polars.dataframe.frame.DataFrame, v1_cols, v2_cols,\n                    name=None)\n\n\n\n\nvector_project\n\n vector_project (v1:xarray.core.dataarray.DataArray,\n                 v2:xarray.core.dataarray.DataArray, dim='v_dim')\n\n\n\nCode\n# test\nimport numpy as np\n\nda_a = xr.DataArray(np.arange(3 * 2).reshape(3, 2), dims=[\"v_dim\", \"time\"])\nprint(da_a)\nvector_project(da_a, da_a, dim=\"v_dim\")\n\n\n&lt;xarray.DataArray (v_dim: 3, time: 2)&gt; Size: 48B\narray([[0, 1],\n       [2, 3],\n       [4, 5]])\nDimensions without coordinates: v_dim, time\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;xarray.DataArray (time: 2)&gt; Size: 16B\narray([4.47213595, 5.91607978])\nDimensions without coordinates: timexarray.DataArraytime: 24.472 5.916array([4.47213595, 5.91607978])Coordinates: (0)Indexes: (0)Attributes: (0)\n\n\n\n\n\ncalc_rotation_angle_pl\n\n calc_rotation_angle_pl (df:polars.dataframe.frame.DataFrame, v1_cols,\n                         v2_cols, name)\n\n\n\nInertial length\n\n\n\ncompute_inertial_length\n\n compute_inertial_length (df:polars.dataframe.frame.DataFrame,\n                          density_col='plasma_density')\n\n\n\nAlfven current\n\n\n\ncompute_Alfven_current\n\n compute_Alfven_current (df:polars.dataframe.frame.DataFrame,\n                         density_col='plasma_density')",
+    "crumbs": [
+      "Home",
+      "Combine magnetic field data and plasma data"
+    ]
+  },
+  {
+    "objectID": "03_mag_plasma.html#all-features",
+    "href": "03_mag_plasma.html#all-features",
+    "title": "Combine magnetic field data and plasma data",
+    "section": "All features",
+    "text": "All features\n\n\ncalc_plasma_parameter_change\n\n calc_plasma_parameter_change (df:polars.dataframe.frame.DataFrame,\n                               plasma_meta:space_analysis.ds.meta.PlasmaMe\n                               ta=PlasmaMeta(dataset=None,\n                               parameters=None, density_col=None,\n                               velocity_cols=None, speed_col=None,\n                               temperature_col=None))\n\n\n\n\ncalc_combined_features\n\n calc_combined_features (df:polars.dataframe.frame.DataFrame,\n                         b_cols:list[str]=None, detail:bool=True,\n                         normal_cols:list[str]=['k_x', 'k_y', 'k_z'],\n                         Vl_cols=['Vl_x', 'Vl_y', 'Vl_z'],\n                         Vn_cols=['Vn_x', 'Vn_y', 'Vn_z'],\n                         thickness_cols=['L_k'], current_cols=['j0_k'], pl\n                         asma_meta:space_analysis.ds.meta.PlasmaMeta=None,\n                         **kwargs)\n\n*Calculate the combined features of the discontinuity\nArgs: df (pl.DataFrame): description normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ “k_x”, “k_y”, “k_z”, ]. detail (bool, optional): description. Defaults to True. Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ “Vl_x”, “Vl_y”, “Vl_z”, ]. Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ “Vn_x”, “Vn_y”, “Vn_z”, ]. current_cols (list, optional): description. Defaults to [“j0_mn”, “j0_k”].*\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nDataFrame\n\n\n\n\nb_cols\nlist\nNone\n[“B_background_x”, “B_background_y”, “B_background_z”]\n\n\ndetail\nbool\nTrue\n\n\n\nnormal_cols\nlist\n[‘k_x’, ‘k_y’, ‘k_z’]\n\n\n\nVl_cols\nlist\n[‘Vl_x’, ‘Vl_y’, ‘Vl_z’]\n\n\n\nVn_cols\nlist\n[‘Vn_x’, ‘Vn_y’, ‘Vn_z’]\n\n\n\nthickness_cols\nlist\n[‘L_k’]\n\n\n\ncurrent_cols\nlist\n[‘j0_k’]\n\n\n\nplasma_meta\nPlasmaMeta\nNone\n\n\n\nkwargs",
+    "crumbs": [
+      "Home",
+      "Combine magnetic field data and plasma data"
+    ]
+  },
+  {
+    "objectID": "10_datasets.html",
+    "href": "10_datasets.html",
+    "title": "Datasets",
+    "section": "",
+    "text": "Fundamental class\n\n\n\n\n IdsEvents (name:str=None, data:polars.lazyframe.frame.LazyFrame=None,\n            ts:datetime.timedelta=None, tau:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            method:Literal['fit','derivative']='fit', **extra_data:Any)\n\nCore class to handle discontinuity events in a dataset.\n\n\n\n\nType\nDetails\n\n\n\n\ndata\nAny\n\n\n\nReturns\nNone\ntype: ignore\n\n\n\n\n\n\n\n\n write (df:polars.dataframe.frame.DataFrame, fname:pathlib.Path,\n        format=None, **kwargs)\n\n\n\n\n\n\n log_event_change (event, logger=&lt;loguru.logger handlers=[(id=0, level=10,\n                   sink=&lt;_io.StringIO object at 0x10d585b40&gt;)]&gt;)\n\n\n\nCode\nfrom fastcore.all import concat\n\nls = concat([None, [1], None])\nls.remove(None)\nls\n\n\n[1, None]\n\n\n\n\nCode\n# def overview_plot(\n#     self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs\n# ):\n#     # BUG: to be fixed\n#     start = start or event[\"tstart\"]\n#     stop = stop or event[\"tstop\"]\n\n#     start -= offset\n#     stop += offset\n\n#     _plasma_data = self.plasma_data.filter(\n#         pl.col(\"time\").is_between(start, stop)\n#     ).collect()\n\n#     _mag_data = (\n#         self.data.filter(pl.col(\"time\").is_between(start, stop))\n#         .collect()\n#         .melt(\n#             id_vars=[\"time\"],\n#             value_vars=self.bcols,\n#             variable_name=\"B comp\",\n#             value_name=\"B\",\n#         )\n#     )\n\n#     v_df = _plasma_data.melt(\n#         id_vars=[\"time\"],\n#         value_vars=self.plasma_meta.velocity_cols,\n#         variable_name=\"veloity comp\",\n#         value_name=\"v\",\n#     )\n\n#     panel_mag = _mag_data.hvplot(\n#         x=\"time\", y=\"B\", by=\"B comp\", ylabel=\"Magnetic Field\", **kwargs\n#     )\n#     panel_n = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     ) * _plasma_data.hvplot.scatter(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     )\n\n#     panel_v = v_df.hvplot(\n#         x=\"time\", y=\"v\", by=\"veloity comp\", ylabel=\"Plasma Velocity\", **kwargs\n#     )\n#     panel_temp = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.temperature_col, **kwargs\n#     )\n\n#     mag_vlines = hv.VLine(event[\"t.d_start\"]) * hv.VLine(event[\"t.d_end\"])\n#     plasma_vlines = hv.VLine(event.get(\"time_before\")) * hv.VLine(\n#         event.get(\"time_after\")\n#     )\n\n#     logger.info(f\"Overview plot: {event['tstart']} - {event['tstop']}\")\n#     log_event_change(event)\n\n#     return (\n#         panel_mag * mag_vlines\n#         + panel_n * plasma_vlines\n#         + panel_v * plasma_vlines\n#         + panel_temp * plasma_vlines\n#     ).cols(1)\n\n\n\n\n\n\n\n IDsDataset (name:str=None,\n             mag_data:polars.lazyframe.frame.LazyFrame=None,\n             ts:datetime.timedelta=None, tau:datetime.timedelta=None,\n             events:polars.dataframe.frame.DataFrame=None,\n             method:Literal['fit','derivative']='fit',\n             mag_meta:space_analysis.ds.meta.Meta=Meta(dataset=None,\n             parameters=None), bcols:list[str]=None,\n             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met\n             a:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset=None,\n             parameters=None, density_col=None, velocity_cols=None,\n             speed_col=None, temperature_col=None),\n             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp\n             _meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,\n             parameters=None, para_col=None, perp_cols=None),\n             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met\n             a:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,\n             parameters=None, para_col=None, perp_cols=None),\n             **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.",
+    "crumbs": [
+      "Home",
+      "Datasets"
+    ]
+  },
+  {
+    "objectID": "10_datasets.html#datasets",
+    "href": "10_datasets.html#datasets",
+    "title": "Datasets",
+    "section": "",
+    "text": "Fundamental class\n\n\n\n\n IdsEvents (name:str=None, data:polars.lazyframe.frame.LazyFrame=None,\n            ts:datetime.timedelta=None, tau:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            method:Literal['fit','derivative']='fit', **extra_data:Any)\n\nCore class to handle discontinuity events in a dataset.\n\n\n\n\nType\nDetails\n\n\n\n\ndata\nAny\n\n\n\nReturns\nNone\ntype: ignore\n\n\n\n\n\n\n\n\n write (df:polars.dataframe.frame.DataFrame, fname:pathlib.Path,\n        format=None, **kwargs)\n\n\n\n\n\n\n log_event_change (event, logger=&lt;loguru.logger handlers=[(id=0, level=10,\n                   sink=&lt;_io.StringIO object at 0x10d585b40&gt;)]&gt;)\n\n\n\nCode\nfrom fastcore.all import concat\n\nls = concat([None, [1], None])\nls.remove(None)\nls\n\n\n[1, None]\n\n\n\n\nCode\n# def overview_plot(\n#     self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs\n# ):\n#     # BUG: to be fixed\n#     start = start or event[\"tstart\"]\n#     stop = stop or event[\"tstop\"]\n\n#     start -= offset\n#     stop += offset\n\n#     _plasma_data = self.plasma_data.filter(\n#         pl.col(\"time\").is_between(start, stop)\n#     ).collect()\n\n#     _mag_data = (\n#         self.data.filter(pl.col(\"time\").is_between(start, stop))\n#         .collect()\n#         .melt(\n#             id_vars=[\"time\"],\n#             value_vars=self.bcols,\n#             variable_name=\"B comp\",\n#             value_name=\"B\",\n#         )\n#     )\n\n#     v_df = _plasma_data.melt(\n#         id_vars=[\"time\"],\n#         value_vars=self.plasma_meta.velocity_cols,\n#         variable_name=\"veloity comp\",\n#         value_name=\"v\",\n#     )\n\n#     panel_mag = _mag_data.hvplot(\n#         x=\"time\", y=\"B\", by=\"B comp\", ylabel=\"Magnetic Field\", **kwargs\n#     )\n#     panel_n = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     ) * _plasma_data.hvplot.scatter(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     )\n\n#     panel_v = v_df.hvplot(\n#         x=\"time\", y=\"v\", by=\"veloity comp\", ylabel=\"Plasma Velocity\", **kwargs\n#     )\n#     panel_temp = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.temperature_col, **kwargs\n#     )\n\n#     mag_vlines = hv.VLine(event[\"t.d_start\"]) * hv.VLine(event[\"t.d_end\"])\n#     plasma_vlines = hv.VLine(event.get(\"time_before\")) * hv.VLine(\n#         event.get(\"time_after\")\n#     )\n\n#     logger.info(f\"Overview plot: {event['tstart']} - {event['tstop']}\")\n#     log_event_change(event)\n\n#     return (\n#         panel_mag * mag_vlines\n#         + panel_n * plasma_vlines\n#         + panel_v * plasma_vlines\n#         + panel_temp * plasma_vlines\n#     ).cols(1)\n\n\n\n\n\n\n\n IDsDataset (name:str=None,\n             mag_data:polars.lazyframe.frame.LazyFrame=None,\n             ts:datetime.timedelta=None, tau:datetime.timedelta=None,\n             events:polars.dataframe.frame.DataFrame=None,\n             method:Literal['fit','derivative']='fit',\n             mag_meta:space_analysis.ds.meta.Meta=Meta(dataset=None,\n             parameters=None), bcols:list[str]=None,\n             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met\n             a:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset=None,\n             parameters=None, density_col=None, velocity_cols=None,\n             speed_col=None, temperature_col=None),\n             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp\n             _meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,\n             parameters=None, para_col=None, perp_cols=None),\n             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met\n             a:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,\n             parameters=None, para_col=None, perp_cols=None),\n             **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.",
+    "crumbs": [
+      "Home",
+      "Datasets"
+    ]
+  },
+  {
+    "objectID": "01_ids_detection.html",
+    "href": "01_ids_detection.html",
+    "title": "ID identification",
+    "section": "",
+    "text": "There are couple of ways to identify the ID.\nTraditional methods (B-criterion and TS-criterion) rely on magnetic ﬁeld variations with a certain time lag. B-criterion has, as its main condition. In their methods, the IDs below the thresholds are artiﬁcially abandoned. Therefore, identiﬁcation criteria may affect the statistical results, and there is likely to be a discrepancy between the ﬁndings via B-criterion and TS- criterion.",
+    "crumbs": [
+      "Home",
+      "ID identification"
+    ]
+  },
+  {
+    "objectID": "01_ids_detection.html#pipelines",
+    "href": "01_ids_detection.html#pipelines",
+    "title": "ID identification",
+    "section": "Pipelines",
+    "text": "Pipelines\n\n\ndetect_events\n\n detect_events (data:polars.lazyframe.frame.LazyFrame,\n                tau:datetime.timedelta, ts:datetime.timedelta, bcols,\n                sparse_num=None, method='liu', **kwargs)",
+    "crumbs": [
+      "Home",
+      "ID identification"
+    ]
+  },
+  {
+    "objectID": "utils/02_analysis_utils.html#common-codes-used-across-notebooks",
+    "href": "utils/02_analysis_utils.html#common-codes-used-across-notebooks",
+    "title": "Analyzing Utils",
+    "section": "Common codes used across notebooks",
+    "text": "Common codes used across notebooks",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "Analyzing Utils"
+    ]
+  },
+  {
+    "objectID": "utils/01_plotting.html",
+    "href": "utils/01_plotting.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "MVA plotting\n\n\n\nsetup_mva_plot\n\n setup_mva_plot (data:xarray.core.dataarray.DataArray,\n                 tstart:datetime.datetime, tstop:datetime.datetime,\n                 mva_tstart:datetime.datetime=None,\n                 mva_tstop:datetime.datetime=None)\n\n\n\n\ntime_stamp\n\n time_stamp (ts)\n\nReturn POSIX timestamp as float.\n\n\nCode\ndef format_candidate_title(candidate: dict):\n    def format_float(x):\n        return rf\"$\\bf {x:.2f} $\" if isinstance(x, (float, int)) else rf\"$\\bf {x} $\"\n\n    base_line = rf'$\\bf {candidate.get(\"type\", \"N/A\")} $ candidate (time: {candidate.get(\"time\", \"N/A\")}) with index '\n    index_line = rf'i1: {format_float(candidate.get(\"index_std\", \"N/A\"))}, i2: {format_float(candidate.get(\"index_fluctuation\", \"N/A\"))}, i3: {format_float(candidate.get(\"index_diff\", \"N/A\"))}'\n    info_line = rf'$B_n/B$: {format_float(candidate.get(\"BnOverB\", \"N/A\"))}, $dB/B$: {format_float(candidate.get(\"dBOverB\", \"N/A\"))}, $(dB/B)_{{max}}$: {format_float(candidate.get(\"dBOverB_max\", \"N/A\"))},  $Q_{{mva}}$: {format_float(candidate.get(\"Q_mva\", \"N/A\"))}'\n    title = rf\"\"\"{base_line}\n    {index_line}\n    {info_line}\"\"\"\n    return title\n\n\n\n\n\nplot_candidate\n\n plot_candidate (event:dict, data:xarray.core.dataarray.DataArray,\n                 add_ids_properties=True, plot_current_density=False,\n                 plot_fit_data=False, add_timebars=True,\n                 add_plasma_params=False, **kwargs)",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "MVA plotting"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "DiscontinuityPy",
+    "section": "Installation",
+    "text": "Installation\npip install discontinuitypy"
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "DiscontinuityPy",
+    "section": "Getting started",
+    "text": "Getting started\nImport the package\nfrom discontinuitypy.utils.basic import *\nfrom discontinuitypy.core import *"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This python package is still in beta phrase, and we are actively working on it. If you have any questions or suggestions, please feel free to contact us.",
+    "crumbs": [
+      "Home",
+      "About"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html",
+    "href": "properties/00_mva.html",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "",
+    "text": "Notes:\nThe following method implicitly assumes the data is evenly sampled, otherwise, data resampling is needed.",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#mva-related-features",
+    "href": "properties/00_mva.html#mva-related-features",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "MVA related features",
+    "text": "MVA related features\n\n\ncalc_mva_features\n\n calc_mva_features (data:numpy.ndarray)\n\n*Compute MVA features based on the given data array.\nParameters: - data (np.ndarray): Input data\nReturns: - List: Computed features*\n\n\n\ncalc_maxiumum_variance_direction\n\n calc_maxiumum_variance_direction (data:xarray.core.dataarray.DataArray,\n                                   datetime_unit='s', **kwargs)",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#fit-maximum-variance-direction",
+    "href": "properties/00_mva.html#fit-maximum-variance-direction",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "Fit maximum variance direction",
+    "text": "Fit maximum variance direction\n\\[\nf(x; A, \\mu, \\sigma, {\\mathrm{form={}'logistic{}'}}) = A \\left[1 - \\frac{1}{1 + e^{\\alpha}} \\right]\n\\]\nwhere \\(\\alpha = (x - \\mu)/{\\sigma}\\). And the derivative is\n\\[\n\\frac{df}{dx} = \\frac{A}{\\sigma} \\frac{e^{\\alpha}}{(1 + e^{\\alpha})^2}\n\\]\nat center \\(x = \\mu\\), the derivative is\n\\[\n\\frac{df}{dx} = \\frac{A}{4 \\sigma}\n\\]\n\n\nfit_maxiumum_variance_direction\n\n fit_maxiumum_variance_direction (data:xarray.core.dataarray.DataArray,\n                                  datetime_unit='s',\n                                  return_best_fit:bool=True, **kwargs)\n\n*Fit maximum variance direction data by model\nNote: - see datetime_to_numeric in xarray.core.duck_array_ops for more details about converting datetime to numeric - Xarray uses the numpy dtypes datetime64[ns] and timedelta64[ns] to represent datetime data.*\n\n\n\ncalc_candidate_mva_features\n\n calc_candidate_mva_features (event, data:xarray.core.dataarray.DataArray,\n                              method=typing.Literal['fit', 'derivative'],\n                              **kwargs)",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#fit-examples-and-caveats",
+    "href": "properties/00_mva.html#fit-examples-and-caveats",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "Fit Examples and Caveats",
+    "text": "Fit Examples and Caveats\n\n\n\nimage.png",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#test",
+    "href": "properties/00_mva.html#test",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "Test",
+    "text": "Test\n\n\ntest for ts_max_distance function\ntime = pd.date_range(\"2000-01-01\", periods=10)\nx = np.linspace(0, np.pi, 10)\n# generate data circular in three dimensions, so the biggest distance is between the first and the last point\ndata = np.zeros((10, 3))\ndata[:, 0] = np.cos(x)\ndata[:, 1] = np.sin(x)\ndata = xr.DataArray(data, coords={\"time\": time}, dims=[\"time\", \"space\"])\nfit_maxiumum_variance_direction(data[:, 0]).best_fit\n\n\narray([ 1.01476962,  0.92001526,  0.75955714,  0.5124786 ,  0.18267077,\n       -0.18267075, -0.51247858, -0.75955714, -0.92001527, -1.01476964])\n\n\n\n\nCode\nmva_features, vrot = calc_mva_features(data)\nvrot.shape\n\n\n(10, 3)\n\n\n\n\nCode\nfrom fastcore.test import test_eq\n\n# Generate synthetic data\nnp.random.seed(42)  # for reproducibility\ndata = np.random.rand(100, 3)  # 100 time points, 3-dimensional data\n# Call the mva_features function\nfeatures, vrot = calc_mva_features(data)\n_features = [\n    0.3631060892452051,\n    0.8978455426527485,\n    -0.24905290500542857,\n    0.09753158579102299,\n    0.086943767300213,\n    0.07393142040422575,\n    1.1760056390752571,\n    0.9609421690770317,\n    0.6152039820297959,\n    -0.5922397773398479,\n    0.6402091632847049,\n    0.61631157045453,\n    1.2956351134759623,\n    0.19091785005728523,\n    0.5182488424049534,\n    0.4957624347593598,\n]\ntest_eq(features, _features)",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "12_mission_config.html",
+    "href": "12_mission_config.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "WindMeta\n\n WindMeta (name:str='Wind',\n           ts:datetime.timedelta=datetime.timedelta(microseconds=90909),\n           mag_meta:space_analysis.ds.meta.Meta=Meta(dataset='WI_H2_MFI',\n           parameters=['BGSE']), plasma_meta:space_analysis.ds.meta.Plasma\n           Meta=PlasmaMeta(dataset='WI_PM_3DP', parameters=['P_DENS',\n           'P_VELS', 'P_TEMP'], density_col=None, velocity_cols=None,\n           speed_col=None, temperature_col=None, description='Wind 3dp,\n           PESA LOW 1 spin resolution ion (proton and alpha) moments\n           (computed on spacecraft)'), ion_temp_meta:space_analysis.ds.met\n           a.TempMeta=TempMeta(dataset='WI_PLSP_3DP',\n           parameters=['MOM.P.MAGT3'], para_col='proton_MagT3_Z',\n           perp_cols=['proton_MagT3_X', 'proton_MagT3_Y']), e_temp_meta:sp\n           ace_analysis.ds.meta.TempMeta=TempMeta(dataset='WI_ELM2_3DP',\n           parameters=['MAGT3'], para_col='electron_MagT3_Para',\n           perp_cols=['electron_MagT3_Perp1', 'electron_MagT3_Perp2']))\n\n*Usage docs: https://docs.pydantic.dev/2.7/concepts/models/\nA base class for creating Pydantic models.\nAttributes: class_vars: The names of classvars defined on the model. private_attributes: Metadata about the private attributes of the model. signature: The signature for instantiating the model.\n__pydantic_complete__: Whether model building is completed, or if there are still undefined fields.\n__pydantic_core_schema__: The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.\n__pydantic_custom_init__: Whether the model has a custom `__init__` function.\n__pydantic_decorators__: Metadata containing the decorators defined on the model.\n    This replaces `Model.__validators__` and `Model.__root_validators__` from Pydantic V1.\n__pydantic_generic_metadata__: Metadata for generic models; contains data used for a similar purpose to\n    __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.\n__pydantic_parent_namespace__: Parent namespace of the model, used for automatic rebuilding of models.\n__pydantic_post_init__: The name of the post-init method for the model, if defined.\n__pydantic_root_model__: Whether the model is a `RootModel`.\n__pydantic_serializer__: The pydantic-core SchemaSerializer used to dump instances of the model.\n__pydantic_validator__: The pydantic-core SchemaValidator used to validate instances of the model.\n\n__pydantic_extra__: An instance attribute with the values of extra fields from validation when\n    `model_config['extra'] == 'allow'`.\n__pydantic_fields_set__: An instance attribute with the names of fields explicitly set.\n__pydantic_private__: Instance attribute with the values of private attributes set on the model instance.*\n\n\n\nWindConfig\n\n WindConfig (name:str='Wind',\n             mag_data:polars.lazyframe.frame.LazyFrame=None,\n             ts:datetime.timedelta=datetime.timedelta(microseconds=90909),\n             tau:datetime.timedelta=None,\n             events:polars.dataframe.frame.DataFrame=None,\n             method:Literal['fit','derivative']='fit', mag_meta:space_anal\n             ysis.ds.meta.Meta=Meta(dataset='WI_H2_MFI',\n             parameters=['BGSE']), bcols:list[str]=None,\n             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met\n             a:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset='WI_PM\n             _3DP', parameters=['P_DENS', 'P_VELS', 'P_TEMP'],\n             density_col=None, velocity_cols=None, speed_col=None,\n             temperature_col=None, description='Wind 3dp, PESA LOW 1 spin\n             resolution ion (proton and alpha) moments (computed on\n             spacecraft)'),\n             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp\n             _meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset='WI_PL\n             SP_3DP', parameters=['MOM.P.MAGT3'],\n             para_col='proton_MagT3_Z', perp_cols=['proton_MagT3_X',\n             'proton_MagT3_Y']),\n             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met\n             a:space_analysis.ds.meta.TempMeta=TempMeta(dataset='WI_ELM2_3\n             DP', parameters=['MAGT3'], para_col='electron_MagT3_Para',\n             perp_cols=['electron_MagT3_Perp1', 'electron_MagT3_Perp2']),\n             timerange:list[datetime.datetime]=None, split:int=1,\n             fmt:str='arrow', provider:str='cda', **extra_data:Any)\n\nBased on speasy Variables to get the data\n\n\nCode\nconfig = WindConfig(\n    tau=timedelta(minutes=1),\n)\nconfig.plasma_meta\n\n\nPlasmaMeta(dataset='WI_PM_3DP', parameters=['P_DENS', 'P_VELS', 'P_TEMP'], density_col=None, velocity_cols=None, speed_col=None, temperature_col=None)",
+    "crumbs": [
+      "Home",
+      "12 Mission Config"
+    ]
+  }
+]
