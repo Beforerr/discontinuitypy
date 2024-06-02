@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.37">
+<meta name="generator" content="quarto-1.5.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -318,8 +318,6 @@ window.Quarto = {
   <li><a href="#processing-the-whole-dataset" id="toc-processing-the-whole-dataset" class="nav-link active" data-scroll-target="#processing-the-whole-dataset">Processing the whole dataset</a>
   <ul class="collapse">
   <li><a href="#compress_data_by_events" id="toc-compress_data_by_events" class="nav-link" data-scroll-target="#compress_data_by_events">compress_data_by_events</a></li>
-  <li><a href="#compress_dfs_by_intervals" id="toc-compress_dfs_by_intervals" class="nav-link" data-scroll-target="#compress_dfs_by_intervals">compress_dfs_by_intervals</a></li>
-  <li><a href="#compress_data_by_intervals" id="toc-compress_data_by_intervals" class="nav-link" data-scroll-target="#compress_data_by_intervals">compress_data_by_intervals</a></li>
   <li><a href="#ids_finder" id="toc-ids_finder" class="nav-link" data-scroll-target="#ids_finder">ids_finder</a></li>
   <li><a href="#extract_features" id="toc-extract_features" class="nav-link" data-scroll-target="#extract_features">extract_features</a></li>
   </ul></li>
@@ -378,6 +376,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="processing-the-whole-dataset">Processing the whole dataset</h2>
 <p>Notes that the candidates only require a small portion of the data so we can compress the data to speed up the processing.</p>
 <hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/core/pipeline.py#L20" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="compress_data_by_events" class="level3">
 <h3 class="anchored" data-anchor-id="compress_data_by_events">compress_data_by_events</h3>
 <blockquote class="blockquote">
@@ -386,24 +385,7 @@ window.Quarto = {
 </blockquote>
 <p><em>Compress the data for parallel processing</em></p>
 <hr>
-</section>
-<section id="compress_dfs_by_intervals" class="level3">
-<h3 class="anchored" data-anchor-id="compress_dfs_by_intervals">compress_dfs_by_intervals</h3>
-<blockquote class="blockquote">
-<pre><code> compress_dfs_by_intervals (dfs:list[polars.lazyframe.frame.LazyFrame],
-                            starts:list, stops:list)</code></pre>
-</blockquote>
-<p><em>Compress dataframes for parallel processing</em></p>
-<hr>
-</section>
-<section id="compress_data_by_intervals" class="level3">
-<h3 class="anchored" data-anchor-id="compress_data_by_intervals">compress_data_by_intervals</h3>
-<blockquote class="blockquote">
-<pre><code> compress_data_by_intervals (data:polars.dataframe.frame.DataFrame,
-                             starts:list, stops:list)</code></pre>
-</blockquote>
-<p><em>Compress the data for parallel processing</em></p>
-<hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/core/pipeline.py#L29" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="ids_finder" class="level3">
 <h3 class="anchored" data-anchor-id="ids_finder">ids_finder</h3>
@@ -468,6 +450,7 @@ window.Quarto = {
 </table>
 <p>wrapper function for partitioned input used in <code>Kedro</code></p>
 <hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/core/pipeline.py#L54" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="extract_features" class="level3">
 <h3 class="anchored" data-anchor-id="extract_features">extract_features</h3>
@@ -581,42 +564,42 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="test">Test</h2>
 <section id="test-feature-engineering" class="level3">
 <h3 class="anchored" data-anchor-id="test-feature-engineering">Test feature engineering</h3>
+<div id="cell-11" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from tsflex.features import MultipleFeatureDescriptors, FeatureCollection</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># from tsflex.features.integrations import catch22_wrapper</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from pycatch22 import catch22_all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="cell-12" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tau_pd = pd.Timedelta(tau)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># catch22_feats = MultipleFeatureDescriptors(</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     functions=catch22_wrapper(catch22_all),</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     series_names=bcols,  # list of signal names</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     windows = tau_pd, strides=tau_pd/2,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fc = FeatureCollection(catch22_feats)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># features = fc.calculate(data, return_df=True)  # calculate the features on your data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div id="cell-13" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from tsflex.features import MultipleFeatureDescriptors, FeatureCollection</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># from tsflex.features.integrations import catch22_wrapper</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from pycatch22 import catch22_all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># features_pl = pl.DataFrame(features.reset_index()).sort('time')</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df = candidates_pl.join_asof(features_pl, on='time').to_pandas()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="cell-14" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tau_pd = pd.Timedelta(tau)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># catch22_feats = MultipleFeatureDescriptors(</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     functions=catch22_wrapper(catch22_all),</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     series_names=bcols,  # list of signal names</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     windows = tau_pd, strides=tau_pd/2,</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fc = FeatureCollection(catch22_feats)</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># features = fc.calculate(data, return_df=True)  # calculate the features on your data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="cell-15" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># features_pl = pl.DataFrame(features.reset_index()).sort('time')</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df = candidates_pl.join_asof(features_pl, on='time').to_pandas()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="cell-16" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># profile = ProfileReport(df, title="JUNO Candidates Report")</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># profile.to_file("jno.html")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># profile = ProfileReport(df, title="JUNO Candidates Report")</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># profile.to_file("jno.html")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>

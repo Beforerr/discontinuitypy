@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.37">
+<meta name="generator" content="quarto-1.5.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -372,13 +372,14 @@ window.Quarto = {
 <section id="maxium-distance-method" class="level2">
 <h2 class="anchored" data-anchor-id="maxium-distance-method">Maxium distance method</h2>
 <hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L16" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="ts_max_distance" class="level3">
 <h3 class="anchored" data-anchor-id="ts_max_distance">ts_max_distance</h3>
 <blockquote class="blockquote">
 <pre><code> ts_max_distance (ts:xarray.core.dataarray.DataArray, coord:str='time')</code></pre>
 </blockquote>
 <p><em>Compute the time interval when the timeseries has maxium cumulative variation</em></p>
-<div id="cell-4" class="cell" data-execution_count="3">
+<div id="cell-4" class="cell">
 <details class="code-fold">
 <summary>test for ts_max_distance function</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> pd.date_range(<span class="st">'2000-01-01'</span>, periods<span class="op">=</span><span class="dv">10</span>)</span>
@@ -398,6 +399,7 @@ window.Quarto = {
 <section id="maxium-derivative-method" class="level2">
 <h2 class="anchored" data-anchor-id="maxium-derivative-method">Maxium derivative method</h2>
 <hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L64" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="get_time_from_condition" class="level3">
 <h3 class="anchored" data-anchor-id="get_time_from_condition">get_time_from_condition</h3>
 <blockquote class="blockquote">
@@ -405,6 +407,7 @@ window.Quarto = {
                           condition_type)</code></pre>
 </blockquote>
 <hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L50" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="find_start_end_times" class="level3">
 <h3 class="anchored" data-anchor-id="find_start_end_times">find_start_end_times</h3>
@@ -413,6 +416,7 @@ window.Quarto = {
                        d_time, threshold)</code></pre>
 </blockquote>
 <hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L28" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="ts_max_derivative" class="level3">
 <h3 class="anchored" data-anchor-id="ts_max_derivative">ts_max_derivative</h3>
@@ -421,6 +425,7 @@ window.Quarto = {
                     threshold_ratio=0.25)</code></pre>
 </blockquote>
 <hr>
+<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L85" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calc_duration" class="level3">
 <h3 class="anchored" data-anchor-id="calc_duration">calc_duration</h3>
