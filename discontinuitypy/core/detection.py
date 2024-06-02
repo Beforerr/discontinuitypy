@@ -7,16 +7,7 @@ __all__ = ['pl_format_time', 'detect_events']
 from datetime import timedelta
 import polars as pl
 
-from typing import overload
-
 # %% ../../notebooks/01_ids_detection.ipynb 2
-# some helper functions
-@overload
-def pl_format_time(df: pl.DataFrame, tau: timedelta) -> pl.DataFrame: pass
-
-@overload
-def pl_format_time(df: pl.LazyFrame, tau: timedelta) -> pl.LazyFrame: pass
-
 def pl_format_time(df: pl.LazyFrame, tau: timedelta):
     return df.with_columns(
         tstart=pl.col("time"),

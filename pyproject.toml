@@ -16,6 +16,7 @@ dependencies = [
     "pydantic",
     "fastcore",
     "pdpipe",
+    "tqdm",
     "loguru",
 ]
 
