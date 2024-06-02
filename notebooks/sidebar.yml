@@ -21,4 +21,3 @@ website:
         contents:
           - utils/00_basic.ipynb
           - utils/01_plotting.ipynb
-          - utils/02_analysis_utils.ipynb
