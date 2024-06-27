@@ -12,7 +12,7 @@ from random import sample
 from datetime import timedelta
 
 from pydantic import BaseModel, Field, validate_call
-from space_analysis.ds.meta import Meta, PlasmaMeta, TempMeta
+from space_analysis.meta import PlasmaDataset, TempDataset, MagDataset
 from typing import Literal
 
 # %% ../notebooks/10_datasets.ipynb 3
@@ -119,16 +119,16 @@ class IDsDataset(IdsEvents):
     """Extend the IdsEvents class to handle plasma and temperature data."""
 
     data: pl.LazyFrame = Field(default=None, alias="mag_data")
-    mag_meta: Meta = Meta()
+    mag_meta: MagDataset = MagDataset()
     bcols: list[str] = None
 
     plasma_data: pl.LazyFrame = None
-    plasma_meta: PlasmaMeta = PlasmaMeta()
+    plasma_meta: PlasmaDataset = PlasmaDataset()
 
     ion_temp_data: pl.LazyFrame = None
-    ion_temp_meta: TempMeta = TempMeta()
+    ion_temp_meta: TempDataset = TempDataset()
     e_temp_data: pl.LazyFrame = None
-    e_temp_meta: TempMeta = TempMeta()
+    e_temp_meta: TempDataset = TempDataset()
 
     def update_events(self, **kwargs):
         return self.update_events_with_plasma_data(

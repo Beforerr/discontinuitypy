@@ -38,14 +38,14 @@ def format_time(df: pl.DataFrame, time_unit="ns"):
     )
 
 # %% ../notebooks/03_mag_plasma.ipynb 3
-from space_analysis.ds.meta import PlasmaMeta
+from space_analysis.meta import PlasmaDataset
 from fastcore.all import concat
 
 
 def combine_features(
     events: pl.DataFrame,
     states_data: pl.DataFrame,
-    plasma_meta: PlasmaMeta = PlasmaMeta(),
+    plasma_meta: PlasmaDataset = PlasmaDataset(),
     method: str = "interpolate",
 ):
 
@@ -160,12 +160,12 @@ def compute_Alfven_current(
     return df.with_columns(j_Alfven=pl.Series(result.value))
 
 # %% ../notebooks/03_mag_plasma.ipynb 14
-from space_analysis.ds.meta import PlasmaMeta
+from space_analysis.meta import PlasmaDataset
 
 
 def calc_plasma_parameter_change(
     df: pl.DataFrame,
-    plasma_meta: PlasmaMeta = PlasmaMeta(),
+    plasma_meta: PlasmaDataset = PlasmaDataset(),
 ):
     if plasma_meta.temperature_col:
         col = plasma_meta.temperature_col
@@ -239,7 +239,7 @@ def calc_plasma_parameter_change(
 
 # %% ../notebooks/03_mag_plasma.ipynb 15
 from beforerr.polars import decompose_vector
-from space_analysis.ds.meta import PlasmaMeta
+from space_analysis.meta import PlasmaDataset
 
 J_FACTOR = ((u.nT / u.s) * (1 / mu0 / (u.km / u.s))).to(u.nA / u.m**2)
 
@@ -253,7 +253,7 @@ def calc_combined_features(
     Vn_cols=["Vn_x", "Vn_y", "Vn_z"],
     thickness_cols=["L_k"],
     current_cols=["j0_k"],
-    plasma_meta: PlasmaMeta = None,
+    plasma_meta: PlasmaDataset = None,
     **kwargs,
 ):
     """Calculate the combined features of the discontinuity

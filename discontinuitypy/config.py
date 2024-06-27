@@ -6,7 +6,7 @@ __all__ = ['standardize_plasma_data', 'IDsConfig', 'SpeasyIDsConfig']
 # %% ../notebooks/11_ids_config.ipynb 0
 from datetime import datetime
 from .datasets import IDsDataset
-from space_analysis.ds.meta import Meta, PlasmaMeta
+from space_analysis.meta import MagDataset, PlasmaDataset
 from space_analysis.utils.speasy import Variables
 import polars as pl
 from loguru import logger
@@ -16,7 +16,7 @@ from functools import cached_property
 from tqdm.auto import tqdm
 
 # %% ../notebooks/11_ids_config.ipynb 1
-def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaMeta):
+def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaDataset):
     """
     Standardize plasma data columns across different datasets.
     
