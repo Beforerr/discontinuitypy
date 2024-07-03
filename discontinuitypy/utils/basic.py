@@ -7,6 +7,8 @@ __all__ = ['DF_TYPE', 'filter_tranges', 'filter_tranges_df', 'partition_data_by_
 
 # %% ../../notebooks/utils/00_basic.ipynb 1
 from typing import overload
+from typing import Union, Collection, Callable, Tuple
+from typing import Any, Dict
 
 # %% ../../notebooks/utils/00_basic.ipynb 3
 import polars as pl
@@ -24,9 +26,6 @@ from datetime import timedelta
 from loguru import logger
 
 from xarray import DataArray
-from typing import Union, Collection, Callable, Optional, Tuple
-from typing import Any, Dict
-
 
 # %% ../../notebooks/utils/00_basic.ipynb 6
 from fastcore.utils import patch
@@ -50,7 +49,10 @@ def filter_tranges(time: pl.Series, tranges: Tuple[list, list]):
         ]
     )
 
-def filter_tranges_df(df: pl.DataFrame, tranges: Tuple[list, list], time_col: str = "time"):
+
+def filter_tranges_df(
+    df: pl.DataFrame, tranges: Tuple[list, list], time_col: str = "time"
+):
     """
     - Filter data by time ranges
     """
@@ -61,7 +63,7 @@ def filter_tranges_df(df: pl.DataFrame, tranges: Tuple[list, list], time_col: st
 
 # %% ../../notebooks/utils/00_basic.ipynb 8
 @patch
-def plot(self:pl.DataFrame, *args, **kwargs):
+def plot(self: pl.DataFrame, *args, **kwargs):
     return self.to_pandas().plot(*args, **kwargs)
 
 # %% ../../notebooks/utils/00_basic.ipynb 9
@@ -125,8 +127,11 @@ def partition_data_by_year_month(df: pl.DataFrame) -> Dict[str, pl.DataFrame]:
         + "_"
         + pl.col("time").dt.month().cast(pl.Utf8).str.zfill(2),
     ).partition_by("year_month", include_key=False, as_dict=True)
-    
-def partition_data_by_time(df: pl.LazyFrame | pl.DataFrame, method) -> Dict[str, pl.DataFrame]:
+
+
+def partition_data_by_time(
+    df: pl.LazyFrame | pl.DataFrame, method
+) -> Dict[str, pl.DataFrame]:
     """Partition the dataset by time
 
     Args:
@@ -138,7 +143,7 @@ def partition_data_by_time(df: pl.LazyFrame | pl.DataFrame, method) -> Dict[str,
     """
     if isinstance(df, pl.LazyFrame):
         df = df.collect()
-    
+
     if method == "year":
         return partition_data_by_year(df)
     elif method == "year_month":
@@ -149,10 +154,11 @@ def partition_data_by_time(df: pl.LazyFrame | pl.DataFrame, method) -> Dict[str,
 
 # %% ../../notebooks/utils/00_basic.ipynb 12
 DF_TYPE = Union[pl.DataFrame, pl.LazyFrame, pd.DataFrame]
+
+
 def concat_df(dfs: list[DF_TYPE]) -> DF_TYPE:
-    """Concatenate a list of DataFrames into one DataFrame.
-    """
-    
+    """Concatenate a list of DataFrames into one DataFrame."""
+
     match type(dfs[0]):
         case pl.DataFrame | pl.LazyFrame:
             concat_func = pl.concat
@@ -160,9 +166,10 @@ def concat_df(dfs: list[DF_TYPE]) -> DF_TYPE:
             concat_func = pandas.concat
         case _:
             raise ValueError(f"Unsupported DataFrame type: {type(dfs[0])}")
-    
+
     return concat_func(dfs)
-                     
+
+
 def concat_partitions(partitioned_input: Dict[str, Callable]):
     """Concatenate input partitions into one DataFrame.
 
@@ -172,7 +179,7 @@ def concat_partitions(partitioned_input: Dict[str, Callable]):
     partitions_data = [
         partition_load_func() for partition_load_func in partitioned_input.values()
     ]  # load the actual partition data
-    
+
     result = concat_df(partitions_data)
     return result
 
@@ -197,8 +204,8 @@ def resample(
     offset: timedelta = None,
     shift: timedelta = None,
     time_column="time",
-)-> pl.DataFrame:
-    ...
+) -> pl.DataFrame: ...
+
 
 @overload
 def resample(
@@ -208,8 +215,8 @@ def resample(
     offset: timedelta = None,
     shift: timedelta = None,
     time_column="time",
-)-> pl.LazyFrame:
-    ...
+) -> pl.LazyFrame: ...
+
 
 def resample(
     df: pl.LazyFrame | pl.DataFrame,
@@ -280,4 +287,3 @@ def check_fgm(vec: xr.DataArray):
     logger.info(
         f"Available time delta: {vec.time.diff(dim='time').to_series().unique()}"
     )
-

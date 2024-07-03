@@ -6,7 +6,7 @@ __all__ = ['standardize_plasma_data', 'IDsConfig', 'SpeasyIDsConfig']
 # %% ../notebooks/11_ids_config.ipynb 0
 from datetime import datetime
 from .datasets import IDsDataset
-from space_analysis.meta import MagDataset, PlasmaDataset
+from space_analysis.meta import PlasmaDataset, Dataset
 from space_analysis.utils.speasy import Variables
 import polars as pl
 from loguru import logger
@@ -19,7 +19,7 @@ from tqdm.auto import tqdm
 def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaDataset):
     """
     Standardize plasma data columns across different datasets.
-    
+
     Notes: meta will be updated with the new column names
     """
 
@@ -32,18 +32,19 @@ def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaDataset):
 class IDsConfig(IDsDataset):
     """
     Extend the IDsDataset class to provide additional functionalities:
-    
+
     - Export and load data
     - Standardize data
     - Split data to handle large datasets
     """
+
     timerange: list[datetime] = None
 
     split: int = 1
     fmt: str = "arrow"
-    
+
     _data_dir = Path("data")
-    
+
     @property
     def fname(self):
         ts_str = f"ts_{self.ts.total_seconds():.2f}s"
@@ -53,14 +54,14 @@ class IDsConfig(IDsDataset):
     @property
     def path(self):
         return self._data_dir / self.fname
-    
+
     @property
     def timeranges(self):
         from sunpy.time import TimeRange
 
         trs: list[TimeRange] = TimeRange(self.timerange).split(self.split)
         return [[tr.start.value, tr.end.value] for tr in trs]
-    
+
     def export(self, **kwargs):
         return super().export(self.path, format=self.fmt, **kwargs)
 
@@ -75,6 +76,7 @@ class IDsConfig(IDsDataset):
 # %% ../notebooks/11_ids_config.ipynb 3
 class SpeasyIDsConfig(IDsConfig):
     """Based on `speasy` Variables to get the data"""
+
     provider: str = "cda"
 
     def model_post_init(self, __context):
@@ -84,7 +86,7 @@ class SpeasyIDsConfig(IDsConfig):
         pass
 
     def get_vars(self, vars: str):
-        meta: Meta = getattr(self, f"{vars}_meta")
+        meta: Dataset = getattr(self, f"{vars}_meta")
         return Variables(
             timerange=self.timerange,
             provider=self.provider,
@@ -132,10 +134,12 @@ class SpeasyIDsConfig(IDsConfig):
                 standardize_plasma_data, ids_ds.plasma_meta
             )
 
-            yield ids_ds.find_events(
-                return_best_fit=False
-            ).update_events_with_plasma_data().events
-            
+            yield (
+                ids_ds.find_events(return_best_fit=False)
+                .update_events_with_plasma_data()
+                .events
+            )
+
     def get_and_process_data(self, **kwargs):
         self.events = pl.concat(self._get_and_process_data(**kwargs))
         return self

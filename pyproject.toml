@@ -12,7 +12,8 @@ dependencies = [
     "xarray[accel]",
     "xarray_einstats",
     "polars",
-    "modin",
+    "pyarrow",
+    "modin[ray]",
     "pydantic",
     "fastcore",
     "pdpipe",
@@ -46,7 +47,7 @@ pytables = "*"   # for `pyspedas`
 
 [tool.pixi.pypi-dependencies]
 discontinuitypy = { path = ".", editable = true }
-space_analysis = { path = "../../src/space-analysis.py", editable = true }
+space_analysis = { path = "../../src/space-analysis.py", editable = true, extras = ["io"] }
 nbdev = "*"
 setuptools = "*"
 pyspedas = "*"

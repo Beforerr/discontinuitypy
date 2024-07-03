@@ -5,10 +5,10 @@ __all__ = ['write', 'IdsEvents', 'log_event_change', 'IDsDataset']
 
 # %% ../notebooks/10_datasets.ipynb 1
 import polars as pl
+
 # import holoviews as hv
 import polars.selectors as cs
 from loguru import logger
-from random import sample
 from datetime import timedelta
 
 from pydantic import BaseModel, Field, validate_call
@@ -26,9 +26,8 @@ from pathlib import Path
 
 
 def write(df: pl.DataFrame, fname: Path, format=None, **kwargs):
-    if format is None:
-        format = fname.suffix
-        format = format[1:] if format.startswith(".") else format
+    format = format or fname.suffix
+    format = format[1:] if format.startswith(".") else format
     match format:
         case "arrow":
             df.write_ipc(fname, **kwargs)
@@ -38,10 +37,16 @@ def write(df: pl.DataFrame, fname: Path, format=None, **kwargs):
             df.write_parquet(fname, **kwargs)
 
     logger.info(f"Dataframe written to {fname}")
-
     return fname
 
+# %% ../notebooks/10_datasets.ipynb 5
+def select_row(df: pl.DataFrame, index: int):
+    if "index" not in df.columns:
+        df = df.with_row_index()
+    predicate = pl.col("index") == index
+    return df.row(by_predicate=predicate, named=True)
 
+# %% ../notebooks/10_datasets.ipynb 6
 class IdsEvents(BaseModel):
     """Core class to handle discontinuity events in a dataset."""
 
@@ -51,6 +56,8 @@ class IdsEvents(BaseModel):
 
     name: str = None
     data: pl.LazyFrame = None
+    mag_meta: MagDataset = MagDataset()
+
     ts: timedelta = None
     """time resolution of the dataset"""
     tau: timedelta = None
@@ -72,20 +79,19 @@ class IdsEvents(BaseModel):
         return self
 
     def find_events(self, **kwargs):
+        bcols = self.mag_meta.B_cols
         self.events = ids_finder(
-            self.data, ts=self.ts, tau=self.tau, method=self.method, **kwargs
+            self.data,
+            ts=self.ts,
+            tau=self.tau,
+            method=self.method,
+            bcols=bcols,
+            **kwargs,
         )
         return self
 
     def get_event(self, index: int):
-        events = self.events
-        if "index" not in events.columns:
-            events = events.with_row_index()
-        predicate = pl.col("index") == index
-        return events.row(by_predicate=predicate, named=True)
-
-    def get_events(self, indices=None, predicate=None):
-        pass
+        return select_row(self.events, index)
 
     def get_event_data(
         self,
@@ -99,9 +105,9 @@ class IdsEvents(BaseModel):
         end = event[end_col] + offset
 
         _data = self.data.filter(pl.col("time").is_between(start, end))
-        return df2ts(_data, self.bcols)
+        return df2ts(_data, self.mag_meta.B_cols)
 
-# %% ../notebooks/10_datasets.ipynb 5
+# %% ../notebooks/10_datasets.ipynb 7
 def log_event_change(event, logger=logger):
     logger.debug(
         f"""CHANGE INFO
@@ -114,13 +120,11 @@ def log_event_change(event, logger=logger):
         """
     )
 
-# %% ../notebooks/10_datasets.ipynb 8
+# %% ../notebooks/10_datasets.ipynb 9
 class IDsDataset(IdsEvents):
     """Extend the IdsEvents class to handle plasma and temperature data."""
 
     data: pl.LazyFrame = Field(default=None, alias="mag_data")
-    mag_meta: MagDataset = MagDataset()
-    bcols: list[str] = None
 
     plasma_data: pl.LazyFrame = None
     plasma_meta: PlasmaDataset = PlasmaDataset()
@@ -174,7 +178,6 @@ class IDsDataset(IdsEvents):
         return self
 
     def plot(self, type="overview", event=None, index=None, **kwargs):
-
         event = event or self.get_event(index)
         if type == "overview":
             return self.overview_plot(event, **kwargs)

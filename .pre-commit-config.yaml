@@ -1,0 +1,14 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.7
+    hooks:
+      - id: ruff
+        types_or: [python, pyi, jupyter]
+        args: [--fix]
+      - id: ruff-format
+        types_or: [jupyter]
+  - repo: https://github.com/fastai/nbdev
+    rev: 2.2.10
+    hooks:
+      - id: nbdev_clean
+      - id: nbdev_export
