@@ -17,7 +17,6 @@ from typing import Literal
 
 # %% ../notebooks/10_datasets.ipynb 3
 from .utils.basic import df2ts
-from .utils.plot import plot_candidate as _plot_candidate
 from .integration import combine_features, calc_combined_features
 from .core.pipeline import ids_finder
 
@@ -181,29 +180,3 @@ class IDsDataset(IdsEvents):
         event = event or self.get_event(index)
         if type == "overview":
             return self.overview_plot(event, **kwargs)
-
-    def plot_candidate(self, event=None, index=None, **kwargs):
-        if event is None:
-            event = self.get_event(index)
-        data = self.get_event_data(event, **kwargs)
-
-        return _plot_candidate(event, data, **kwargs)
-
-    def plot_candidates(
-        self, indices=None, num=4, random=True, predicate=None, **kwargs
-    ):
-        events = self.events
-        if "index" not in events.columns:
-            events = events.with_row_index()
-
-        if indices is None:  # the truth value of an Expr is ambiguous
-            if predicate is not None:
-                events = events.filter(predicate)
-            indices = events.get_column("index")
-            if random:
-                indices = indices.sample(num).to_numpy()
-            else:
-                indices = indices.head(num).to_numpy()
-            logger.info(f"Candidates indices: {indices}")
-
-        return [self.plot_candidate(index=i, **kwargs) for i in indices]

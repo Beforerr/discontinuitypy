@@ -5,12 +5,12 @@ __all__ = ['standardize_plasma_data', 'IDsConfig', 'SpeasyIDsConfig']
 
 # %% ../notebooks/11_ids_config.ipynb 0
 from datetime import datetime
+from beforerr.project import datadir
 from .datasets import IDsDataset
 from space_analysis.meta import PlasmaDataset, Dataset
 from space_analysis.utils.speasy import Variables
 import polars as pl
 from loguru import logger
-from pathlib import Path
 from functools import cached_property
 
 from tqdm.auto import tqdm
@@ -43,7 +43,7 @@ class IDsConfig(IDsDataset):
     split: int = 1
     fmt: str = "arrow"
 
-    _data_dir = Path("data")
+    _data_dir = datadir()
 
     @property
     def fname(self):
