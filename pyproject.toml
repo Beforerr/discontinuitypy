@@ -7,7 +7,7 @@ readme = "README.md"
 requires-python = ">= 3.10"
 dependencies = [
     # "space-analysis.py[io]",
-    "beforerr",
+    # "beforerr",
     "plasmapy",
     "xarray[accel]",
     "xarray_einstats",
@@ -46,6 +46,7 @@ netcdf4 = "*"
 pytables = "*"   # for `pyspedas`
 
 [tool.pixi.pypi-dependencies]
+beforerr = { path = "../../src/beforerr_dev", editable = true }
 discontinuitypy = { path = ".", editable = true }
 space_analysis = { path = "../../src/space-analysis.py", editable = true, extras = ["io"] }
 nbdev = "*"

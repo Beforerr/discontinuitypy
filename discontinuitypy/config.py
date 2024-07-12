@@ -5,12 +5,10 @@ __all__ = ['standardize_plasma_data', 'IDsConfig', 'SpeasyIDsConfig']
 
 # %% ../notebooks/11_ids_config.ipynb 0
 from datetime import datetime
-from beforerr.project import datadir
 from .datasets import IDsDataset
 from space_analysis.meta import PlasmaDataset, Dataset
 from space_analysis.utils.speasy import Variables
 import polars as pl
-from loguru import logger
 from functools import cached_property
 
 from tqdm.auto import tqdm
@@ -39,21 +37,7 @@ class IDsConfig(IDsDataset):
     """
 
     timerange: list[datetime] = None
-
     split: int = 1
-    fmt: str = "arrow"
-
-    _data_dir = datadir()
-
-    @property
-    def fname(self):
-        ts_str = f"ts_{self.ts.total_seconds():.2f}s"
-        tau_str = f"tau_{self.tau.total_seconds():.0f}s"
-        return f"events.{self.name}.{self.method}.{ts_str}_{tau_str}.{self.fmt}"
-
-    @property
-    def path(self):
-        return self._data_dir / self.fname
 
     @property
     def timeranges(self):
@@ -61,17 +45,6 @@ class IDsConfig(IDsDataset):
 
         trs: list[TimeRange] = TimeRange(self.timerange).split(self.split)
         return [[tr.start.value, tr.end.value] for tr in trs]
-
-    def export(self, **kwargs):
-        return super().export(self.path, format=self.fmt, **kwargs)
-
-    def load(self):
-        if self.path.exists():
-            logger.info(f"Loading data from {self.path}")
-            self.events = pl.read_ipc(self.path)
-        else:
-            logger.warning(f"Data not found at {self.path}")
-        return self
 
 # %% ../notebooks/11_ids_config.ipynb 3
 class SpeasyIDsConfig(IDsConfig):
