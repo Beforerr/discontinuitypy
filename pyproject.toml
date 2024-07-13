@@ -6,7 +6,7 @@ authors = [{ name = "Beforerr", email = "zzj956959688@gmail.com" }]
 readme = "README.md"
 requires-python = ">= 3.10"
 dependencies = [
-    # "space-analysis.py[io]",
+    "space-analysis.py[io]",
     # "beforerr",
     "plasmapy",
     "xarray[accel]",
@@ -25,13 +25,15 @@ dependencies = [
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+[project.optional-dependencies]
+plot = ["matplotlib", "pyspedas"]
+
 [project.urls]
 Homepage = "https://beforerr.github.io/discontinuitypy"
 Repository = "https://github.com/Beforerr/discontinuitypy"
 
 [tool.pdm.version]
-source = "file"
-path = "discontinuitypy/__init__.py"
+source = "scm"
 
 [tool.pixi.project]
 channels = ["conda-forge"]
@@ -41,16 +43,12 @@ platforms = ["osx-arm64"]
 python = "<3.12"
 ipykernel = "*"
 scipy = "*"
-matplotlib = "*"
-netcdf4 = "*"
 pytables = "*"   # for `pyspedas`
 
 [tool.pixi.pypi-dependencies]
 beforerr = { path = "../../src/beforerr_dev", editable = true }
-discontinuitypy = { path = ".", editable = true }
-space_analysis = { path = "../../src/space-analysis.py", editable = true, extras = ["io"] }
+discontinuitypy = { path = ".", editable = true, extras = ["plot"]}
 nbdev = "*"
 setuptools = "*"
-pyspedas = "*"
 
 [tool.pixi.tasks]
