@@ -6,7 +6,7 @@ authors = [{ name = "Beforerr", email = "zzj956959688@gmail.com" }]
 readme = "README.md"
 requires-python = ">= 3.10"
 dependencies = [
-    "space-analysis.py[io]",
+    # "space-analysis.py[io]",
     # "beforerr",
     "plasmapy",
     "xarray[accel]",
@@ -44,10 +44,12 @@ python = "<3.12"
 ipykernel = "*"
 scipy = "*"
 pytables = "*"   # for `pyspedas`
+netcdf4 = "*"    # for `pytables`
 
 [tool.pixi.pypi-dependencies]
 beforerr = { path = "../../src/beforerr_dev", editable = true }
 discontinuitypy = { path = ".", editable = true, extras = ["plot"]}
+space_analysis = { path = "../../src/space-analysis.py", editable = true, extras = ["io"] }
 nbdev = "*"
 setuptools = "*"
 

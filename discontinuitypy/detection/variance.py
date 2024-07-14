@@ -9,10 +9,9 @@ __all__ = ['INDEX_STD_THRESHOLD', 'INDEX_FLUC_THRESHOLD', 'INDEX_DIFF_THRESHOLD'
 import polars as pl
 import polars.selectors as cs
 from datetime import timedelta
+from beforerr.polars import pl_norm, format_time
 
 # %% ../../notebooks/detection/01_variance.ipynb 4
-from beforerr.polars import pl_norm
-
 def compute_std(
     df: pl.LazyFrame,
     period: timedelta,  # period to group by
@@ -21,8 +20,7 @@ def compute_std(
     every: timedelta = None,  # every to group by (default: period / 2)
     result_column="std",
 ):
-    if every is None:
-        every = period / 2
+    every = every or period / 2
 
     std_cols = [col_name + "_std" for col_name in cols]
 
@@ -65,12 +63,12 @@ def add_neighbor_std(
     prev_std_df = df.select(
         pl.col(time_column) + tau,
         cs.by_name(std_column, "len").name.suffix("_prev"),
-    )
+    ).pipe(format_time)
 
     next_std_df = df.select(
         pl.col(time_column) - tau,
         cs.by_name(std_column, "len").name.suffix("_next"),
-    )
+    ).pipe(format_time)
 
     return df.join(prev_std_df, on=time_column, how=join_strategy).join(
         next_std_df, on=time_column, how=join_strategy
@@ -123,6 +121,7 @@ def compute_combinded_std(
             index_column,
             pl_norm([col_name + "_combined" for col_name in cols]).alias(result_column),
         )
+        .pipe(format_time)
     )
 
 

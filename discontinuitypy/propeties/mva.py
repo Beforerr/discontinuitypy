@@ -144,7 +144,7 @@ def calc_maxiumum_variance_direction(data: xr.DataArray, datetime_unit="s", **kw
 
 # %% ../../notebooks/properties/00_mva.ipynb 9
 def fit_maxiumum_variance_direction(
-    data: xr.DataArray, datetime_unit="s", return_best_fit: bool = True, **kwargs
+    data: xr.DataArray, datetime_unit="s", return_best_fit: bool = False, **kwargs
 ):
     """
     Fit maximum variance direction data by model

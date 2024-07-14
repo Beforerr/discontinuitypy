@@ -34,14 +34,13 @@ def ids_finder(
     extract_df: pl.LazyFrame = None, # data used for feature extraction (typically high cadence data),
     **kwargs
 ):
-    if extract_df is None:
-        extract_df = detection_df
+    extract_df = extract_df or detection_df
     if bcols is None:
         bcols = detection_df.columns
         bcols.remove("time")
     
-    detection_df = detection_df.sort("time").with_columns(pl.col("time").dt.cast_time_unit("us")) # https://github.com/pola-rs/polars/issues/12023
-    extract_df = extract_df.sort("time").with_columns(pl.col("time").dt.cast_time_unit("us"))
+    detection_df = detection_df.sort("time") # https://github.com/pola-rs/polars/issues/12023
+    extract_df = extract_df.sort("time")
 
     events = detect_events(detection_df, tau, ts, bcols, **kwargs)
     
