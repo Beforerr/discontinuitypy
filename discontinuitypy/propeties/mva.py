@@ -117,23 +117,23 @@ def calc_mva_features(data: np.ndarray):
     dvec_mag = vec_mag[-1] - vec_mag[0]
     dBOverB = np.abs(dvec_mag / vec_mag_mean)
     dBOverB_max = (np.max(vec_mag) - np.min(vec_mag)) / vec_mag_mean
-    
+
     result = {
         "Vl": Vl,
         "Vn": Vn,
         "b_mag": vec_mag_mean,
         "b_n": vec_n_mean,
-        'B.vec.before': vrot[0],
-        'B.vec.after': vrot[-1],
-        'B.before': vec_mag[0],
-        'B.after': vec_mag[-1],
+        "B.vec.before": vrot[0],
+        "B.vec.after": vrot[-1],
+        "B.before": vec_mag[0],
+        "B.after": vec_mag[-1],
         "db_mag": dvec_mag,
         "bn_over_b": VnOverVmag,
         "db_over_b": dBOverB,
         "db_over_b_max": dBOverB_max,
         "dB_lmn": dvec,
     }
-    
+
     result = pd.Series(result)
     return result, vrot
 
@@ -237,6 +237,17 @@ def fit_maxiumum_variance_direction(
     return result
 
 # %% ../../notebooks/properties/00_mva.ipynb 10
+# def calc_ts_mva_features(data, method=Literal["fit", "derivative"], **kwargs):
+#     mva_features, vrot = calc_mva_features(data.to_numpy())
+#     event_data_l = xr.DataArray(vrot[:, 0], dims=["time"], coords={"time": data.time})
+
+#     if method == "fit":
+#         result = fit_maxiumum_variance_direction(event_data_l, **kwargs)
+#     elif method == "derivative":
+#         result = calc_maxiumum_variance_direction(event_data_l, **kwargs)
+#     return pd.concat([mva_features, result])
+
+
 def calc_candidate_mva_features(
     event, data: xr.DataArray, method=Literal["fit", "derivative"], **kwargs
 ):

@@ -2,7 +2,7 @@
 
 # %% auto 0
 __all__ = ['interpolate', 'interpolate2', 'combine_features', 'calc_plasma_parameter_change', 'calc_combined_features',
-           'update_events_with_plasma_data']
+           'update_events_with_plasma_data', 'update_events_with_temp_data', 'update_events']
 
 # %% ../notebooks/03_mag_plasma.ipynb 1
 import polars as pl
@@ -17,14 +17,16 @@ from space_analysis.plasma.formulary.polars import (
 from space_analysis.meta import PlasmaDataset
 from .utils.ops import vector_project_pl
 from .core.propeties import df_rotation_angle
-
+from .naming import DENSITY_COL, FIT_AMPL_COL
+from .utils.naming import standardize_plasma_data
 from loguru import logger
 
 # %% ../notebooks/03_mag_plasma.ipynb 2
-def interpolate(
+def _interpolate(
     df: pl.DataFrame, on="time", method="index", limit=1, limit_direction="both"
 ):
     # Note: limit is set to 1 to improve the confidence of the interpolation
+    # Related: https://github.com/pola-rs/polars/issues/9616
     return pl.from_pandas(
         df.to_pandas()
         .set_index(on)
@@ -36,6 +38,10 @@ def interpolate(
         )
         .reset_index()
     )
+
+
+def interpolate(df: pl.DataFrame, on="time"):
+    return df.sort(on).with_columns(cs.numeric().interpolate_by(on))
 
 
 def interpolate2(df1: pl.DataFrame, df2, **kwargs):
@@ -77,14 +83,14 @@ def combine_features(
                 before_df,
                 left_on="t.d_start",
                 right_on="time",
-                suffix="_before",
+                suffix=".before",
             )
             .sort("t.d_end")
             .join(
                 after_df,
                 left_on="t.d_end",
                 right_on="time",
-                suffix="_after",
+                suffix=".after",
             )
         )
 
@@ -96,7 +102,7 @@ def combine_features(
                 left_on="t.d_start",
                 right_on="time",
                 strategy="backward",
-                suffix="_before",
+                suffix=".before",
             )
             .sort("t.d_end")
             .join_asof(
@@ -104,7 +110,7 @@ def combine_features(
                 left_on="t.d_end",
                 right_on="time",
                 strategy="forward",
-                suffix="_after",
+                suffix=".after",
             )
         )
     else:
@@ -115,49 +121,46 @@ def calc_plasma_parameter_change(
     df: pl.DataFrame,
     plasma_meta: PlasmaDataset = PlasmaDataset(),
 ):
+    n_col = plasma_meta.density_col or DENSITY_COL
+    n_before_col = f"{n_col}.before"
+    n_after_col = f"{n_col}.after"
+
     if plasma_meta.temperature_col:
         col = plasma_meta.temperature_col
-        df = df.rename(
-            {
-                f"{col}_before": "T.before",
-                f"{col}_after": "T.after",
-            }
-        ).with_columns((pl.col("T.after") - pl.col("T.before")).alias("T.change"))
+        df = df.with_columns(
+            (pl.col(f"{col}.after") - pl.col(f"{col}.before")).alias(f"{col}.change")
+        )
 
     if plasma_meta.speed_col:
         col = plasma_meta.speed_col
-        df = df.rename(
-            {
-                f"{col}_before": "v.ion.before",
-                f"{col}_after": "v.ion.after",
-            }
-        ).with_columns(
+        df = df.with_columns(
             (pl.col("v.ion.after") - pl.col("v.ion.before")).alias("v.ion.change")
         )
 
     return (
-        df.rename(
-            {
-                "plasma_density_before": "n.before",
-                "plasma_density_after": "n.after",
-            }
-        )
-        .pipe(
+        df.pipe(
             df_Alfven_speed,
-            density="n.before",
+            density=n_before_col,
             B="B.vec.before.l",
             col_name="v.Alfven.before.l",
             sign=True,
         )
         .pipe(
             df_Alfven_speed,
-            density="n.after",
+            density=n_after_col,
             B="B.vec.after.l",
             col_name="v.Alfven.after.l",
             sign=True,
         )
+        .pipe(
+            df_Alfven_speed,
+            B=FIT_AMPL_COL,
+            density=n_col,
+            col_name="v.Alfven.change.l.fit",
+            sign=False,
+        )
         .with_columns(
-            (pl.col("n.after") - pl.col("n.before")).alias("n.change"),
+            (pl.col(n_after_col) - pl.col(n_before_col)).alias("n.change"),
             (pl.col("v.ion.after.l") - pl.col("v.ion.before.l")).alias(
                 "v.ion.change.l"
             ),
@@ -245,13 +248,13 @@ def calc_combined_features(
         result = (
             result.pipe(
                 vector_project_pl,
-                [_ + "_before" for _ in vec_cols],
+                [_ + ".before" for _ in vec_cols],
                 Vl_cols,
                 name="v.ion.before.l",
             )
             .pipe(
                 vector_project_pl,
-                [_ + "_after" for _ in vec_cols],
+                [_ + ".after" for _ in vec_cols],
                 Vl_cols,
                 name="v.ion.after.l",
             )
@@ -285,4 +288,41 @@ def update_events_with_plasma_data(
     else:
         logger.info("Plasma data is not available.")
 
+    return events
+
+# %% ../notebooks/03_mag_plasma.ipynb 10
+def update_events_with_temp_data(
+    events: pl.DataFrame,
+    ion_temp_data: pl.LazyFrame | None,
+    e_temp_data: pl.LazyFrame | None,
+):
+    left_on = "t.d_time"
+    right_on = "time"
+
+    events = events.pipe(format_time).sort(left_on)
+
+    if ion_temp_data is not None:
+        ion_temp_data = ion_temp_data.pipe(format_time).sort(right_on)
+        events = events.join_asof(
+            ion_temp_data.collect(), left_on=left_on, right_on=right_on
+        )
+    else:
+        logger.info("Ion temperature data is not available.")
+
+    if e_temp_data is not None:
+        e_temp_data = e_temp_data.pipe(format_time).sort(right_on)
+        events = events.join_asof(
+            e_temp_data.collect(), left_on=left_on, right_on=right_on
+        )
+    else:
+        logger.info("Electron temperature data is not available.")
+    return events
+
+# %% ../notebooks/03_mag_plasma.ipynb 11
+def update_events(
+    events, plasma_data, plasma_meta, ion_temp_data, e_temp_data, **kwargs
+):
+    plasma_data = standardize_plasma_data(plasma_data, meta=plasma_meta)
+    events = update_events_with_plasma_data(events, plasma_data, plasma_meta, **kwargs)
+    events = update_events_with_temp_data(events, ion_temp_data, e_temp_data)
     return events

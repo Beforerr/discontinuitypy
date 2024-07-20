@@ -10,7 +10,7 @@ from typing import overload
 from typing import Union, Collection, Callable, Tuple
 from typing import Any, Dict
 
-# %% ../../notebooks/utils/00_basic.ipynb 3
+# %% ../../notebooks/utils/00_basic.ipynb 2
 import polars as pl
 import polars.selectors as cs
 
@@ -27,10 +27,10 @@ from loguru import logger
 
 from xarray import DataArray
 
-# %% ../../notebooks/utils/00_basic.ipynb 6
+# %% ../../notebooks/utils/00_basic.ipynb 4
 from fastcore.utils import patch
 
-# %% ../../notebooks/utils/00_basic.ipynb 7
+# %% ../../notebooks/utils/00_basic.ipynb 5
 def filter_tranges(time: pl.Series, tranges: Tuple[list, list]):
     """
     - Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)
@@ -61,12 +61,12 @@ def filter_tranges_df(
     filtered_indices = filter_tranges(time, tranges)
     return df[filtered_indices]
 
-# %% ../../notebooks/utils/00_basic.ipynb 8
+# %% ../../notebooks/utils/00_basic.ipynb 6
 @patch
 def plot(self: pl.DataFrame, *args, **kwargs):
     return self.to_pandas().plot(*args, **kwargs)
 
-# %% ../../notebooks/utils/00_basic.ipynb 9
+# %% ../../notebooks/utils/00_basic.ipynb 7
 def _expand_selectors(items: Any, *more_items: Any) -> list[Any]:
     """
     See `_expand_selectors` in `polars`.
@@ -83,7 +83,7 @@ def _expand_selectors(items: Any, *more_items: Any) -> list[Any]:
         expanded.append(item)
     return expanded
 
-# %% ../../notebooks/utils/00_basic.ipynb 11
+# %% ../../notebooks/utils/00_basic.ipynb 9
 def partition_data_by_ts(df: pl.DataFrame, ts: timedelta) -> Dict[str, pl.DataFrame]:
     """Partition the dataset by time
 
@@ -152,7 +152,7 @@ def partition_data_by_time(
         ts = pd.Timedelta(method)
         return partition_data_by_ts(df, ts)
 
-# %% ../../notebooks/utils/00_basic.ipynb 12
+# %% ../../notebooks/utils/00_basic.ipynb 10
 DF_TYPE = Union[pl.DataFrame, pl.LazyFrame, pd.DataFrame]
 
 
@@ -183,7 +183,7 @@ def concat_partitions(partitioned_input: Dict[str, Callable]):
     result = concat_df(partitions_data)
     return result
 
-# %% ../../notebooks/utils/00_basic.ipynb 14
+# %% ../../notebooks/utils/00_basic.ipynb 12
 def format_timedelta(time):
     """Format timedelta to `timedelta`"""
     if isinstance(time, timedelta):
@@ -195,7 +195,7 @@ def format_timedelta(time):
     else:
         raise TypeError(f"Unsupported type: {type(time)}")
 
-# %% ../../notebooks/utils/00_basic.ipynb 15
+# %% ../../notebooks/utils/00_basic.ipynb 13
 @overload
 def resample(
     df: pl.DataFrame,
@@ -238,7 +238,7 @@ def resample(
         .with_columns((pl.col(time_column) + shift))
     )
 
-# %% ../../notebooks/utils/00_basic.ipynb 16
+# %% ../../notebooks/utils/00_basic.ipynb 14
 def df2ts(
     df: Union[pandas.DataFrame, pl.DataFrame, pl.LazyFrame],
     cols=None,
@@ -278,7 +278,7 @@ def df2ts(
 def calc_vec_mag(vec) -> DataArray:
     return linalg.norm(vec, dims="v_dim")
 
-# %% ../../notebooks/utils/00_basic.ipynb 17
+# %% ../../notebooks/utils/00_basic.ipynb 15
 def check_fgm(vec: xr.DataArray):
     # check if time is monotonic increasing
     logger.info("Check if time is monotonic increasing")

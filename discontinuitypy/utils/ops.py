@@ -11,7 +11,7 @@ from .basic import df2ts
 
 # %% ../../notebooks/utils/02_ops.ipynb 1
 def vector_project(v1: xr.DataArray, v2: xr.DataArray, dim="v_dim"):
-    return xr.dot(v1, v2, dims=dim) / linalg.norm(v2, dims=dim)
+    return xr.dot(v1, v2, dim=dim) / linalg.norm(v2, dims=dim)
 
 
 def vector_project_pl(df: pl.DataFrame, v1_cols, v2_cols, name=None):

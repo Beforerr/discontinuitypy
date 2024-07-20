@@ -5,11 +5,18 @@ __all__ = ['ThemisConfigBase']
 
 # %% ../../notebooks/missions/themis.ipynb 0
 from ..datasets import IDsDataset
-from space_analysis.meta import MagDataset, PlasmaDataset
-from space_analysis.missions.themis import thb_l2_fgm, thb_l2_mom
+from space_analysis.meta import MagDataset, PlasmaDataset, TempDataset
+from space_analysis.missions.themis import (
+    thb_l2_fgm,
+    thb_l2_mom,
+    thb_l2_mom_e_temp,
+    thb_l2_mom_ion_temp,
+)
 
 # %% ../../notebooks/missions/themis.ipynb 1
 class ThemisConfigBase(IDsDataset):
     name: str = "THEMIS"
     mag_meta: MagDataset = thb_l2_fgm
     plasma_meta: PlasmaDataset = thb_l2_mom
+    ion_temp_meta: TempDataset = thb_l2_mom_ion_temp
+    e_temp_meta: TempDataset = thb_l2_mom_e_temp
