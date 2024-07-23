@@ -47,7 +47,7 @@ def interpolate(df: pl.DataFrame, on="time"):
 def interpolate2(df1: pl.DataFrame, df2, **kwargs):
     return pl.concat([df1, df2], how="diagonal_relaxed").pipe(interpolate, **kwargs)
 
-# %% ../notebooks/03_mag_plasma.ipynb 3
+# %% ../notebooks/03_mag_plasma.ipynb 4
 from fastcore.all import concat  # noqa: E402
 
 
@@ -56,21 +56,23 @@ def combine_features(
     states_data: pl.DataFrame,
     plasma_meta: PlasmaDataset = PlasmaDataset(),
     method: str = "interpolate",
+    left_on="t.d_time",
+    right_on="time",
 ):
     m = plasma_meta
     subset_cols = concat([m.density_col, m.velocity_cols, m.temperature_col])
-    subset_cols = [item for item in subset_cols if item is not None]
+    subset_cols = [item for item in subset_cols if item is not None]  # remove None
+    subset_cols = subset_cols + [right_on]
 
     # change time format: see issue: https://github.com/pola-rs/polars/issues/12023
-    time_unit = events["time"].dtype.time_unit
-    states_data = states_data.sort("time").pipe(format_time, time_unit)
-    events = events.sort("time").pipe(format_time, time_unit)
+    states_data_subset = (
+        states_data.select(subset_cols).pipe(format_time).sort(right_on)
+    )
+    events = events.pipe(format_time).sort(left_on)
 
-    subset_cols = (
-        subset_cols + ["time"]
-    )  # https://stackoverflow.com/questions/2347265/why-does-behave-unexpectedly-on-lists
-    states_data_subset = states_data.select(subset_cols)
-    df = events.join_asof(states_data, on="time", strategy="nearest")
+    df = events.join_asof(
+        states_data_subset, left_on=left_on, right_on=right_on, strategy="nearest"
+    ).drop(right_on + "_right")
 
     if method == "interpolate":
         before_df = interpolate2(
@@ -82,14 +84,14 @@ def combine_features(
             .join(
                 before_df,
                 left_on="t.d_start",
-                right_on="time",
+                right_on=right_on,
                 suffix=".before",
             )
             .sort("t.d_end")
             .join(
                 after_df,
                 left_on="t.d_end",
-                right_on="time",
+                right_on=right_on,
                 suffix=".after",
             )
         )
@@ -100,7 +102,7 @@ def combine_features(
             .join_asof(
                 states_data_subset,
                 left_on="t.d_start",
-                right_on="time",
+                right_on=right_on,
                 strategy="backward",
                 suffix=".before",
             )
@@ -108,7 +110,7 @@ def combine_features(
             .join_asof(
                 states_data_subset,
                 left_on="t.d_end",
-                right_on="time",
+                right_on=right_on,
                 strategy="forward",
                 suffix=".after",
             )
@@ -116,7 +118,7 @@ def combine_features(
     else:
         return df
 
-# %% ../notebooks/03_mag_plasma.ipynb 6
+# %% ../notebooks/03_mag_plasma.ipynb 7
 def calc_plasma_parameter_change(
     df: pl.DataFrame,
     plasma_meta: PlasmaDataset = PlasmaDataset(),
@@ -171,7 +173,7 @@ def calc_plasma_parameter_change(
         )
     )
 
-# %% ../notebooks/03_mag_plasma.ipynb 7
+# %% ../notebooks/03_mag_plasma.ipynb 8
 def calc_mag_features(
     df: pl.DataFrame,
     b_cols: list[str],
@@ -185,7 +187,7 @@ def calc_mag_features(
         (cs.by_name(b_cols) / b_norm).name.suffix("_norm"),
     )
 
-# %% ../notebooks/03_mag_plasma.ipynb 8
+# %% ../notebooks/03_mag_plasma.ipynb 9
 def calc_combined_features(
     df: pl.DataFrame,
     detail: bool = True,
@@ -265,7 +267,7 @@ def calc_combined_features(
 
     return result
 
-# %% ../notebooks/03_mag_plasma.ipynb 9
+# %% ../notebooks/03_mag_plasma.ipynb 10
 def update_events_with_plasma_data(
     events: pl.DataFrame,
     plasma_data: pl.LazyFrame | None,
@@ -290,7 +292,7 @@ def update_events_with_plasma_data(
 
     return events
 
-# %% ../notebooks/03_mag_plasma.ipynb 10
+# %% ../notebooks/03_mag_plasma.ipynb 11
 def update_events_with_temp_data(
     events: pl.DataFrame,
     ion_temp_data: pl.LazyFrame | None,
@@ -305,7 +307,7 @@ def update_events_with_temp_data(
         ion_temp_data = ion_temp_data.pipe(format_time).sort(right_on)
         events = events.join_asof(
             ion_temp_data.collect(), left_on=left_on, right_on=right_on
-        )
+        ).drop(right_on + "_right")
     else:
         logger.info("Ion temperature data is not available.")
 
@@ -313,12 +315,12 @@ def update_events_with_temp_data(
         e_temp_data = e_temp_data.pipe(format_time).sort(right_on)
         events = events.join_asof(
             e_temp_data.collect(), left_on=left_on, right_on=right_on
-        )
+        ).drop(right_on + "_right")
     else:
         logger.info("Electron temperature data is not available.")
     return events
 
-# %% ../notebooks/03_mag_plasma.ipynb 11
+# %% ../notebooks/03_mag_plasma.ipynb 12
 def update_events(
     events, plasma_data, plasma_meta, ion_temp_data, e_temp_data, **kwargs
 ):
