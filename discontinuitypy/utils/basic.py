@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['DF_TYPE', 'filter_tranges', 'filter_tranges_df', 'partition_data_by_ts', 'partition_data_by_year',
            'partition_data_by_year_month', 'partition_data_by_time', 'concat_df', 'concat_partitions',
-           'format_timedelta', 'resample', 'df2ts', 'calc_vec_mag', 'check_fgm']
+           'format_timedelta', 'resample', 'calc_vec_mag', 'check_fgm']
 
 # %% ../../notebooks/utils/00_basic.ipynb 1
 from typing import overload
@@ -26,6 +26,7 @@ from datetime import timedelta
 from loguru import logger
 
 from xarray import DataArray
+from space_analysis.ds.ts.io import df2ts as df2ts
 
 # %% ../../notebooks/utils/00_basic.ipynb 4
 from fastcore.utils import patch
@@ -239,42 +240,6 @@ def resample(
     )
 
 # %% ../../notebooks/utils/00_basic.ipynb 14
-def df2ts(
-    df: Union[pandas.DataFrame, pl.DataFrame, pl.LazyFrame],
-    cols=None,
-    time_col="time",
-    attrs=None,
-    name=None,
-):
-    """Convert DataFrame to TimeSeries"""
-
-    if cols is None:
-        if isinstance(df, (pl.DataFrame, pl.LazyFrame)):
-            cols = df.columns
-            cols.remove(time_col)
-        else:
-            cols = df.columns.tolist()
-
-    if isinstance(df, pl.LazyFrame):
-        df = df.collect()
-
-    # Prepare data
-    data = df[cols].to_numpy()
-
-    # Prepare coordinates
-    time = df.index if isinstance(df, pandas.DataFrame) else df[time_col]
-    if isinstance(cols, str) and len(data.shape) > 1:
-        element_len = data.shape[1]
-        v_dim = [cols + str(i) for i in range(element_len)]
-    else:
-        v_dim = cols
-
-    # Create the DataArray
-    coords = {"time": time, "v_dim": v_dim}
-
-    return xr.DataArray(data, coords=coords, attrs=attrs, name=name)
-
-
 def calc_vec_mag(vec) -> DataArray:
     return linalg.norm(vec, dims="v_dim")
 
