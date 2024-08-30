@@ -8,11 +8,21 @@ website:
       - 03_mag_plasma.ipynb
       - 10_datasets.ipynb
       - 11_ids_config.ipynb
-      - 12_mission_config.ipynb
       - about.qmd
       - section: detection
         contents:
           - detection/01_variance.ipynb
+      - section: missions
+        contents:
+          - missions/solo.ipynb
+          - missions/stereo.ipynb
+          - missions/themis.ipynb
+          - missions/wind.ipynb
+        href: missions/index.ipynb
+      - section: plot
+        contents:
+          - plot/alfvenicity.ipynb
+        href: plot/index.ipynb
       - section: properties
         contents:
           - properties/00_duration.ipynb
@@ -20,4 +30,7 @@ website:
       - section: utils
         contents:
           - utils/00_basic.ipynb
+          - utils/00_dataset.ipynb
           - utils/01_plotting.ipynb
+          - utils/02_ops.ipynb
+          - utils/05_naming.ipynb

@@ -15,19 +15,19 @@ from .utils.naming import standardize_plasma_data
 from typing import Literal
 from loguru import logger
 
-# %% ../notebooks/10_datasets.ipynb 4
+# %% ../notebooks/10_datasets.ipynb 3
 from .utils.basic import df2ts
 from .integration import update_events
 from .core.pipeline import ids_finder
 
-# %% ../notebooks/10_datasets.ipynb 5
+# %% ../notebooks/10_datasets.ipynb 4
 def select_row(df: pl.DataFrame, index: int):
     if "index" not in df.columns:
         df = df.with_row_index()
     predicate = pl.col("index") == index
     return df.row(by_predicate=predicate, named=True)
 
-# %% ../notebooks/10_datasets.ipynb 7
+# %% ../notebooks/10_datasets.ipynb 6
 class IdsEvents(BaseModel):
     """Core class to handle discontinuity events in a dataset."""
 
@@ -62,7 +62,7 @@ class IdsEvents(BaseModel):
         return dict(
             detection_df=self.data,
             tau=self.tau,
-            ts=self.ts,
+            ts=self.ts or self.mag_meta.ts,
             method=self.method,
             bcols=self.mag_meta.B_cols,
         )
@@ -104,7 +104,7 @@ class IdsEvents(BaseModel):
         _data = self.data.filter(pl.col("time").is_between(start, end))
         return df2ts(_data, self.mag_meta.B_cols)
 
-# %% ../notebooks/10_datasets.ipynb 8
+# %% ../notebooks/10_datasets.ipynb 7
 def log_event_change(event, logger=logger):
     logger.debug(
         f"""CHANGE INFO
@@ -117,7 +117,7 @@ def log_event_change(event, logger=logger):
         """
     )
 
-# %% ../notebooks/10_datasets.ipynb 9
+# %% ../notebooks/10_datasets.ipynb 8
 class IDsDataset(IdsEvents):
     """Extend the IdsEvents class to handle plasma and temperature data."""
 

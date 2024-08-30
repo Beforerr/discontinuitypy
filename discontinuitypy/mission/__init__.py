@@ -7,3 +7,4 @@ __all__ = []
 from .wind import WindConfigBase as WindConfigBase
 from .stereo import StereoConfigBase as StereoConfigBase
 from .themis import ThemisConfigBase as ThemisConfigBase
+from .solo import SoloConfigBase as SoloConfigBase

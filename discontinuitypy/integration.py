@@ -47,7 +47,7 @@ def interpolate(df: pl.DataFrame, on="time"):
 def interpolate2(df1: pl.DataFrame, df2, **kwargs):
     return pl.concat([df1, df2], how="diagonal_relaxed").pipe(interpolate, **kwargs)
 
-# %% ../notebooks/03_mag_plasma.ipynb 4
+# %% ../notebooks/03_mag_plasma.ipynb 3
 from fastcore.all import concat  # noqa: E402
 
 
@@ -118,7 +118,7 @@ def combine_features(
     else:
         return df
 
-# %% ../notebooks/03_mag_plasma.ipynb 7
+# %% ../notebooks/03_mag_plasma.ipynb 6
 def calc_plasma_parameter_change(
     df: pl.DataFrame,
     plasma_meta: PlasmaDataset = PlasmaDataset(),
@@ -173,7 +173,7 @@ def calc_plasma_parameter_change(
         )
     )
 
-# %% ../notebooks/03_mag_plasma.ipynb 8
+# %% ../notebooks/03_mag_plasma.ipynb 7
 def calc_mag_features(
     df: pl.DataFrame,
     b_cols: list[str],
@@ -187,7 +187,7 @@ def calc_mag_features(
         (cs.by_name(b_cols) / b_norm).name.suffix("_norm"),
     )
 
-# %% ../notebooks/03_mag_plasma.ipynb 9
+# %% ../notebooks/03_mag_plasma.ipynb 8
 def calc_combined_features(
     df: pl.DataFrame,
     detail: bool = True,
@@ -267,7 +267,7 @@ def calc_combined_features(
 
     return result
 
-# %% ../notebooks/03_mag_plasma.ipynb 10
+# %% ../notebooks/03_mag_plasma.ipynb 9
 def update_events_with_plasma_data(
     events: pl.DataFrame,
     plasma_data: pl.LazyFrame | None,
@@ -292,7 +292,7 @@ def update_events_with_plasma_data(
 
     return events
 
-# %% ../notebooks/03_mag_plasma.ipynb 11
+# %% ../notebooks/03_mag_plasma.ipynb 10
 def update_events_with_temp_data(
     events: pl.DataFrame,
     ion_temp_data: pl.LazyFrame | None,
@@ -320,7 +320,7 @@ def update_events_with_temp_data(
         logger.info("Electron temperature data is not available.")
     return events
 
-# %% ../notebooks/03_mag_plasma.ipynb 12
+# %% ../notebooks/03_mag_plasma.ipynb 11
 def update_events(
     events, plasma_data, plasma_meta, ion_temp_data, e_temp_data, **kwargs
 ):
