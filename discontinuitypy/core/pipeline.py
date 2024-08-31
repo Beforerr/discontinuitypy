@@ -4,10 +4,10 @@
 __all__ = ['compress_data_by_events', 'ids_finder', 'extract_features']
 
 # %% ../../notebooks/00_ids_finder.ipynb 2
-#| code-summary: "Import all the packages needed for the project"
+# | code-summary: "Import all the packages needed for the project"
 import polars as pl
-from .propeties import process_events
 from .detection import detect_events
+from .propeties import process_events
 from ..utils.basic import df2ts
 
 from datetime import timedelta
@@ -17,9 +17,8 @@ from typing import Callable
 # %% ../../notebooks/00_ids_finder.ipynb 5
 from beforerr.polars import filter_df_by_ranges
 
-def compress_data_by_events(
-    data: pl.DataFrame, events: pl.DataFrame
-):
+
+def compress_data_by_events(data: pl.DataFrame, events: pl.DataFrame):
     """Compress the data for parallel processing"""
     starts = events["tstart"]
     ends = events["tstop"]
@@ -27,23 +26,25 @@ def compress_data_by_events(
 
 # %% ../../notebooks/00_ids_finder.ipynb 6
 def ids_finder(
-    detection_df: pl.LazyFrame, # data used for anomaly dectection (typically low cadence data)
+    detection_df: pl.LazyFrame,  # data used for anomaly dectection (typically low cadence data)
     tau: timedelta,
-    ts: timedelta, 
-    bcols = None,
-    extract_df: pl.LazyFrame = None, # data used for feature extraction (typically high cadence data),
-    **kwargs
+    ts: timedelta,
+    bcols=None,
+    extract_df: pl.LazyFrame = None,  # data used for feature extraction (typically high cadence data),
+    **kwargs,
 ):
     extract_df = extract_df or detection_df
     if bcols is None:
         bcols = detection_df.columns
         bcols.remove("time")
-    
-    detection_df = detection_df.sort("time") # https://github.com/pola-rs/polars/issues/12023
+
+    detection_df = detection_df.sort(
+        "time"
+    )  # https://github.com/pola-rs/polars/issues/12023
     extract_df = extract_df.sort("time")
 
     events = detect_events(detection_df, tau, ts, bcols, **kwargs)
-    
+
     data_c = compress_data_by_events(extract_df.collect(), events)
     sat_fgm = df2ts(data_c, bcols)
     ids = process_events(events, sat_fgm, ts, **kwargs)

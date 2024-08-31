@@ -6,8 +6,8 @@ authors = [{ name = "Beforerr", email = "zzj956959688@gmail.com" }]
 readme = "README.md"
 requires-python = ">= 3.10"
 dependencies = [
-    # "space-analysis.py[io]",
-    # "beforerr",
+    "space-analysis[io]",
+    "beforerr",
     "xarray[accel]",
     "xarray_einstats",
     "polars",
