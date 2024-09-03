@@ -10,6 +10,7 @@ import polars as pl
 import polars.selectors as cs
 from datetime import timedelta
 from beforerr.polars import pl_norm, format_time
+from ..utils.basic import _expand_selectors
 
 # %% ../../notebooks/detection/01_variance.ipynb 4
 def compute_std(
@@ -131,13 +132,9 @@ def compute_index_fluctuation(df: pl.LazyFrame, std_column="std", clean=True):
     std_added = pl.sum_horizontal(f"{std_column}_prev", f"{std_column}_next")
 
     index_df = df.with_columns(index_fluctuation=std_combined / std_added)
-    if clean:
-        return index_df.drop(f"{std_column}_combined")
+    return index_df.drop(f"{std_column}_combined") if clean else index_df
 
 # %% ../../notebooks/detection/01_variance.ipynb 10
-from ..utils.basic import _expand_selectors
-
-
 def pl_dvec(columns, *more_columns):
     all_columns = _expand_selectors(columns, *more_columns)
     return [
@@ -167,7 +164,7 @@ def compute_index_diff(
     )
 
     if clean:
-        return index_diff.drop("_vec_mag", "_vec_mag_mean", "_dvec_mag", *db_cols)
+        return index_diff.drop("_vec_mag_mean", "_dvec_mag", *db_cols)
     else:
         return index_diff
 
@@ -175,7 +172,7 @@ def compute_index_diff(
 def compute_indices(
     df: pl.LazyFrame,
     tau: timedelta,
-    cols: list[str] = ["BX", "BY", "BZ"],
+    cols: list[str],
     clean=True,
     join_strategy="inner",
 ) -> pl.LazyFrame:
@@ -188,6 +185,8 @@ def compute_indices(
         Input DataFrame.
     tau : datetime.timedelta
         Time interval value.
+    cols : list
+        List of column names.
 
     Returns
     -------
@@ -227,13 +226,11 @@ def compute_indices(
         .join(stds_df, on="time")
         .join(combined_std_df, on="time", how=join_strategy)
         .pipe(compute_index_std)
-        .pipe(compute_index_fluctuation)
+        .pipe(compute_index_fluctuation, clean=clean)
     )
 
     if clean:
-        return indices.drop(
-            ["B_std_prev", "B_std_next", "B_added_std", "B_std_combined"]
-        )
+        return indices.drop(["std_prev", "std_next"])
     else:
         return indices
 

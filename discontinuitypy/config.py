@@ -79,6 +79,9 @@ class SpeasyIDsConfig(IDsConfig):
         return self.get_vars("plasma")
 
     def get_data(self):
+        return self._get_mag_data()._get_plasma_data()
+
+    def _get_plasma_data(self):
         # TODO: directly get columns from the data without loading them
         self.plasma_meta.density_col = (
             self.plasma_meta.density_col or self.plasma_vars.data[0].columns[0]
@@ -86,10 +89,13 @@ class SpeasyIDsConfig(IDsConfig):
         self.plasma_meta.velocity_cols = (
             self.plasma_meta.velocity_cols or self.plasma_vars.data[1].columns
         )
-        if self.data is None:
-            self.data = self.get_vars_df("mag")
         if self.plasma_data is None:
             self.plasma_data = self.get_vars_df("plasma")
+        return self
+
+    def _get_mag_data(self):
+        if self.data is None:
+            self.data = self.get_vars_df("mag")
         return self
 
     def produce_or_load(self, **kwargs):
@@ -99,9 +105,7 @@ class SpeasyIDsConfig(IDsConfig):
         else:
             updates = [{"timerange": tr, "split": 1} for tr in self.timeranges]
             configs = [self.model_copy(update=update, deep=True) for update in updates]
-            datas, files = zip(
-                config.produce_or_load(**kwargs) for config in tqdm(configs)
-            )
+            datas, _ = zip(config.produce_or_load(**kwargs) for config in tqdm(configs))
 
             return produce_or_load_file(
                 f=pl.concat,

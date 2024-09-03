@@ -9,6 +9,7 @@ import polars as pl
 from .detection import detect_events
 from .propeties import process_events
 from ..utils.basic import df2ts
+from loguru import logger
 
 from datetime import timedelta
 
@@ -37,6 +38,9 @@ def ids_finder(
     if bcols is None:
         bcols = detection_df.columns
         bcols.remove("time")
+
+    if len(bcols) == 3:
+        logger.warning("Expect 3 magnetic field components, may need to check the data")
 
     detection_df = detection_df.sort(
         "time"
