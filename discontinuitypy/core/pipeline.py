@@ -34,17 +34,16 @@ def ids_finder(
     extract_df: pl.LazyFrame = None,  # data used for feature extraction (typically high cadence data),
     **kwargs,
 ):
-    extract_df = extract_df or detection_df
     if bcols is None:
         bcols = detection_df.columns
         bcols.remove("time")
+    if len(bcols) != 3:
+        logger.error("Expect 3 field components")
 
-    if len(bcols) == 3:
-        logger.warning("Expect 3 magnetic field components, may need to check the data")
+    detection_df = detection_df.select(bcols + ["time"])
+    extract_df = extract_df or detection_df
 
-    detection_df = detection_df.sort(
-        "time"
-    )  # https://github.com/pola-rs/polars/issues/12023
+    detection_df = detection_df.sort("time")
     extract_df = extract_df.sort("time")
 
     events = detect_events(detection_df, tau, ts, bcols, **kwargs)
