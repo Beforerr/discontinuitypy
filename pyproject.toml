@@ -25,7 +25,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.optional-dependencies]
-plot = ["matplotlib", "pyspedas", "hvplot", "holoviews"]
+plot = ["matplotlib", "pyspedas", "hvplot>=0.10.0", "holoviews"]
 
 [project.urls]
 Homepage = "https://beforerr.github.io/discontinuitypy"
