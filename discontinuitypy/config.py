@@ -11,6 +11,7 @@ from space_analysis.meta import Dataset
 from space_analysis.utils.speasy import Variables
 import polars as pl
 from functools import cached_property
+from abc import abstractmethod
 
 from tqdm.auto import tqdm
 
@@ -29,7 +30,7 @@ class IDsConfig(IDsDataset):
     """
     Extend the IDsDataset class to provide additional functionalities:
 
-    - Split data to handle large datasets
+    - Split data to handle large datasets (thus often requiring getting data lazily)
     """
 
     timerange: list[datetime] = None
@@ -46,6 +47,25 @@ class IDsConfig(IDsDataset):
         else:
             tr_str = "-".join(t.strftime("%Y%m%d") for t in self.timerange)
             return super().file_prefix + f"_tr={tr_str}"
+
+    @abstractmethod
+    def get_data(self):
+        pass
+
+    def produce_or_load(self, **kwargs):
+        if self.split == 1:
+            self.file.exists() or self.get_data()
+            return super().produce_or_load(**kwargs)
+        else:
+            updates = [{"timerange": tr, "split": 1} for tr in self.timeranges]
+            configs = [self.model_copy(update=update, deep=True) for update in updates]
+            datas, _ = zip(config.produce_or_load(**kwargs) for config in tqdm(configs))
+
+            return produce_or_load_file(
+                f=pl.concat,
+                c=dict(items=datas),
+                file=self.file,
+            )
 
 # %% ../notebooks/11_ids_config.ipynb 2
 def get_vars(self, vars: str, timerange: list[datetime] = None):
@@ -97,18 +117,3 @@ class SpeasyIDsConfig(IDsConfig):
         if self.data is None:
             self.data = self.get_vars_df("mag")
         return self
-
-    def produce_or_load(self, **kwargs):
-        if self.split == 1:
-            self.file.exists() or self.get_data()
-            return super().produce_or_load(**kwargs)
-        else:
-            updates = [{"timerange": tr, "split": 1} for tr in self.timeranges]
-            configs = [self.model_copy(update=update, deep=True) for update in updates]
-            datas, _ = zip(config.produce_or_load(**kwargs) for config in tqdm(configs))
-
-            return produce_or_load_file(
-                f=pl.concat,
-                c=dict(items=datas),
-                file=self.file,
-            )
