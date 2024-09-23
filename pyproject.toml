@@ -40,15 +40,19 @@ platforms = ["osx-arm64"]
 
 [tool.pixi.environments]
 default = ["plot"]
+local = ["local"]
 
 [tool.pixi.dependencies]
 ipykernel = "*"
 scipy = "*"
+numba = "*"
 pytables = "*"  # for `pyspedas`
 netcdf4 = "*"   # for `pytables`
 
 [tool.pixi.pypi-dependencies]
-beforerr = { path = "../../src/beforerr_dev", editable = true }
 discontinuitypy = { path = ".", editable = true }
-space_analysis = { path = "../../src/space-analysis.py", editable = true, extras = ["io"] }
 nbdev = "*"
+
+[tool.pixi.feature.local.pypi-dependencies]
+beforerr = { path = "../../src/beforerr_dev", editable = true }
+space_analysis = { path = "../../src/space-analysis.py", editable = true, extras = ["io"] }
