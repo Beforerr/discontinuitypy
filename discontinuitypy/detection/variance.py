@@ -175,6 +175,7 @@ def compute_indices(
     cols: list[str],
     clean=True,
     join_strategy="inner",
+    on="time",
 ) -> pl.LazyFrame:
     """
     Compute all index based on the given DataFrame and tau value.
@@ -215,6 +216,8 @@ def compute_indices(
     every = tau / 2
     period = tau
 
+    df = df.pipe(format_time).sort(on)
+
     stds_df = df.pipe(compute_std, period=period, cols=cols).pipe(
         add_neighbor_std, tau=tau
     )
@@ -223,8 +226,8 @@ def compute_indices(
 
     indices = (
         df.pipe(compute_index_diff, every=every, period=period, cols=cols)
-        .join(stds_df, on="time")
-        .join(combined_std_df, on="time", how=join_strategy)
+        .join(stds_df, on=on)
+        .join(combined_std_df, on=on, how=join_strategy)
         .pipe(compute_index_std)
         .pipe(compute_index_fluctuation, clean=clean)
     )
