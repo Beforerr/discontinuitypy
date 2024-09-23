@@ -58,27 +58,26 @@ def combine_features(
     method: str = "interpolate",
     left_on="t.d_time",
     right_on="time",
+    subset=False,
 ):
-    m = plasma_meta
-    subset_cols = concat([m.density_col, m.velocity_cols, m.temperature_col])
-    subset_cols = [item for item in subset_cols if item is not None]  # remove None
-    subset_cols = subset_cols + [right_on]
+    if subset:
+        m = plasma_meta
+        subset_cols = concat([m.density_col, m.velocity_cols, m.temperature_col])
+        subset_cols = [item for item in subset_cols if item is not None]  # remove None
+        subset_cols = subset_cols + [right_on]
+        states_data = states_data.select(subset_cols)
 
     # change time format: see issue: https://github.com/pola-rs/polars/issues/12023
-    states_data_subset = (
-        states_data.select(subset_cols).pipe(format_time).sort(right_on)
-    )
+    states_data = states_data.pipe(format_time).sort(right_on)
     events = events.pipe(format_time).sort(left_on)
 
     df = events.join_asof(
-        states_data_subset, left_on=left_on, right_on=right_on, strategy="nearest"
+        states_data, left_on=left_on, right_on=right_on, strategy="nearest"
     ).drop(right_on + "_right")
 
     if method == "interpolate":
-        before_df = interpolate2(
-            df.select(time=pl.col("t.d_start")), states_data_subset
-        )
-        after_df = interpolate2(df.select(time=pl.col("t.d_end")), states_data_subset)
+        before_df = interpolate2(df.select(time=pl.col("t.d_start")), states_data)
+        after_df = interpolate2(df.select(time=pl.col("t.d_end")), states_data)
         return (
             df.sort("t.d_start")
             .join(
@@ -100,7 +99,7 @@ def combine_features(
         return (
             df.sort("t.d_start")
             .join_asof(
-                states_data_subset,
+                states_data,
                 left_on="t.d_start",
                 right_on=right_on,
                 strategy="backward",
@@ -108,7 +107,7 @@ def combine_features(
             )
             .sort("t.d_end")
             .join_asof(
-                states_data_subset,
+                states_data,
                 left_on="t.d_end",
                 right_on=right_on,
                 strategy="forward",
