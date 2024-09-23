@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Publishing (GitHub Pages and PyPI)
 
 permissions:
   contents: write
@@ -10,33 +10,12 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: mamba-org/setup-micromamba@v1
-        with:
-          environment-file: environment.yml
-          init-shell: >-
-            bash
-          cache-environment: true
-          create-args: r-base r-arrow
-      - name: Install Dependencies
-        run: |
-          set -ux
-          # pip install -Uq nbdev
-          test -f setup.py && pip install -e ".[dev]"
-          nbdev_docs
-        shell: bash -el {0}
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force_orphan: true
-          publish_dir: ./_docs
-          # The following lines assign commit authorship to the official GH-Actions bot for deploys to `gh-pages` branch.
-          # You can swap them out with your own user credentials.
-          user_name: github-actions[bot]
-          user_email: 41898282+github-actions[bot]@users.noreply.github.com
-        # - uses: fastai/workflows/quarto-ghp@master
-        #   with:
-        #     version: "3.10"
+    uses: Beforerr/workflows/.github/workflows/pixi_nbdev.yml@main
+    secrets: inherit
+    permissions: { contents: write }
+  pypi-publish:
+    uses: Beforerr/workflows/.github/workflows/pypi_publish.yml@main
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      id-token: write
+      contents: write
