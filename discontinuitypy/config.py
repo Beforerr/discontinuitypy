@@ -59,11 +59,11 @@ class IDsConfig(IDsDataset):
         else:
             updates = [{"timerange": tr, "split": 1} for tr in self.timeranges]
             configs = [self.model_copy(update=update, deep=True) for update in updates]
-            datas, _ = zip(config.produce_or_load(**kwargs) for config in tqdm(configs))
+            datas, _ = zip(*(config.produce_or_load(**kwargs) for config in tqdm(configs)))
 
             return produce_or_load_file(
                 f=pl.concat,
-                c=dict(items=datas),
+                config=dict(items=datas),
                 file=self.file,
             )
 
