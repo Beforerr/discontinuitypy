@@ -40,7 +40,6 @@ platforms = ["osx-arm64", "linux-64"]
 
 [tool.pixi.environments]
 default = ["plot"]
-local = ["local"]
 
 [tool.pixi.dependencies]
 ipykernel = "*"
@@ -52,7 +51,3 @@ netcdf4 = "*"   # for `pytables`
 [tool.pixi.pypi-dependencies]
 discontinuitypy = { path = ".", editable = true }
 nbdev = "*"
-
-[tool.pixi.feature.local.pypi-dependencies]
-beforerr = { path = "../../src/beforerr_dev", editable = true }
-space_analysis = { path = "../../src/space-analysis.py", editable = true, extras = ["io"] }
