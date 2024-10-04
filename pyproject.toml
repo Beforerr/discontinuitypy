@@ -12,7 +12,6 @@ dependencies = [
     "xarray_einstats",
     "polars",
     "pyarrow",
-    "modin[ray]",
     "pydantic",
     "fastcore",
     "pdpipe",
@@ -46,7 +45,6 @@ default = ["plot", "accel"]
 ipykernel = "*"
 scipy = "*"
 numba = "*"
-pytables = "*"  # for `pyspedas`
 netcdf4 = "*"   # for `pytables`
 
 [tool.pixi.pypi-dependencies]
