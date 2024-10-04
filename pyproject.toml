@@ -8,7 +8,7 @@ requires-python = ">= 3.10"
 dependencies = [
     "space-analysis[io]",
     "beforerr",
-    "xarray[accel]",
+    "xarray",
     "xarray_einstats",
     "polars",
     "pyarrow",
@@ -25,6 +25,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.optional-dependencies]
+accel = ["xarray[accel]", "modin[ray]"]
 plot = ["matplotlib", "pyspedas", "hvplot>=0.10.0", "holoviews"]
 
 [project.urls]
@@ -39,7 +40,7 @@ channels = ["conda-forge"]
 platforms = ["osx-arm64", "linux-64"]
 
 [tool.pixi.environments]
-default = ["plot"]
+default = ["plot", "accel"]
 
 [tool.pixi.dependencies]
 ipykernel = "*"
