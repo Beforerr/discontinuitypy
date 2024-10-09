@@ -44,6 +44,22 @@ from discontinuitypy.core import *
 
 <!-- We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable) -->
 
+# Properties of Discontinuities
+
+Notations:
+
+- $\vec{B}$ : Magnetic field
+- $B$ : Magnetic field magnitude
+
+## Outputs
+
+- `b_mag` : mean of magnetic field magnitude across the discontinuity
+- `db_over_b` : $|\Delta B|/\bar{B}$
+    - see Fig.14 in @tsurutaniInterplanetaryDiscontinuitiesTemporal1979
+- `rotation_angle` : Rotation angle across the discontinuity
+    - see Fig.12 in @tsurutaniInterplanetaryDiscontinuitiesTemporal1979
+    - see Fig.11 in @sodingRadialLatitudinalDependencies2001
+
 # TODOs
 
 Science part
@@ -75,7 +91,3 @@ Code part
     -   [x] renaming feature layer `candidates`
 -   [x] Kedro
     -   [x] Modular pipelines
-
-### bugs
-
--   [ ] STEREO `B` less than zero (after downsampling?)
