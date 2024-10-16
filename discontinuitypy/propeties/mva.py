@@ -197,13 +197,7 @@ def fit_maxiumum_variance_direction(
     # Ensure there are enough data points to fit the model
     if len(y) < 4:
         # Not enough data points, return None or an empty result instead of raising an error
-        amplitude = np.nan
-        sigma = np.nan
-        center = np.nan
-        rsquared = np.nan
-        chisqr = np.nan
-        c = np.nan
-        best_fit = np.nan
+        amplitude = sigma = center = rsquared = chisqr = c = best_fit = np.nan
     else:
         out = mod.fit(y, params, x=x)
         amplitude = out.params["amplitude"].value
