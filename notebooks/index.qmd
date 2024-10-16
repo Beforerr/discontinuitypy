@@ -54,11 +54,12 @@ Notations:
 ## Outputs
 
 - `b_mag` : mean of magnetic field magnitude across the discontinuity
-- `db_over_b` : $|\Delta B|/\bar{B}$
+- `db_over_b` : $|\Delta B|/\bar{B}$ , Change in magnetic field magnitude over magnetic field magnitude (mean)
     - see Fig.14 in @tsurutaniInterplanetaryDiscontinuitiesTemporal1979
 - `rotation_angle` : Rotation angle across the discontinuity
     - see Fig.12 in @tsurutaniInterplanetaryDiscontinuitiesTemporal1979
     - see Fig.11 in @sodingRadialLatitudinalDependencies2001
+- `bn_over_b` : $\bar{B}_N/\bar{B}$ : Normal component of magnetic field over magnetic field magnitude (mean)
 
 # TODOs
 
