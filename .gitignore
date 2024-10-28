@@ -3,7 +3,6 @@ _proc/
 
 *.html
 *.bak
-.gitattributes
 .last_checked
 .gitconfig
 *.bak
