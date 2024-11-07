@@ -13,6 +13,7 @@ dependencies = [
     "polars",
     "pyarrow",
     "pydantic",
+    "scipy",
     "fastcore",
     "pdpipe",
     "tqdm",
@@ -24,8 +25,9 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.optional-dependencies]
-accel = ["xarray[accel]", "modin[ray]"]
+accel = ["xarray[accel]", "modin[ray]", "numba"]
 plot = ["matplotlib", "pyspedas", "hvplot>=0.10.0", "holoviews"]
+dev = ["ipykernel", "nbdev"]
 
 [project.urls]
 Homepage = "https://beforerr.github.io/discontinuitypy"
@@ -39,14 +41,10 @@ channels = ["conda-forge"]
 platforms = ["osx-arm64", "linux-64"]
 
 [tool.pixi.environments]
-default = ["plot", "accel"]
+default = ["dev", "plot", "accel"]
 
 [tool.pixi.dependencies]
-ipykernel = "*"
-scipy = "*"
-numba = "*"
 netcdf4 = "*"   # for `pytables`
 
 [tool.pixi.pypi-dependencies]
 discontinuitypy = { path = ".", editable = true }
-nbdev = "*"
