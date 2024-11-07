@@ -13,6 +13,7 @@ publish-qrcode:
 publish: pypi-publish quarto-publish
 
 pypi-publish: export
+    nbdev_readme --path notebooks/index.qmd
     pdm publish
 
 test:

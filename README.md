@@ -46,39 +46,46 @@ from discontinuitypy.core import *
 
 <!-- We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable) -->
 
-# TODOs
+# Properties of Discontinuities
 
-Science part
+Notations:
 
-- Analysis
-  - [ ] Contribution of discontinuities to the power spectrum
-  - [ ] Check Datagap
-  - [ ] Distribution of \|B\| over radius
-  - [ ] Add error bar
-  - [ ] More accurate way to obtain the properties of the
-    discontinuities
-- Identifaction
-  - [ ] Ensemble forest?
-  - [ ] Smoothing is important?
-  - [ ] Check change point algorithm
-- Features
-  - [ ] Thickness in N direction
-  - [ ] Use high resolution data for feature extraction
-- Compare with other methods of identifying IDs
-  - [ ] Verify with other methods of identifying IDs
+- $\vec{B}$ : Magnetic field
+- $B$ : Magnetic field magnitude
 
-Code part
+## Outputs
 
-- Optimization
-  - [ ] `dask` for parallel computing instead of `modin`
-  - [ ] `JAX` library for `numpy` optimization
-  - [ ] shorten import time
-- Refactor
-  - [x] `process_candidates` to exclude `sat_state` logics
-  - [x] renaming feature layer `candidates`
-- [x] Kedro
-  - [x] Modular pipelines
+- `b_mag` : mean of magnetic field magnitude across the discontinuity
+- `db_over_b` : $|\Delta B|/\bar{B}$ , Change in magnetic field
+  magnitude over magnetic field magnitude (mean)
+  - see Fig.14 in Tsurutani and Smith (1979)
+- `rotation_angle` : Rotation angle across the discontinuity
+  - see Fig.12 in Tsurutani and Smith (1979)
+  - see Fig.11 in Söding et al. (2001)
+- `bn_over_b` : $\bar{B}_N/\bar{B}$ : Normal component of magnetic field
+  over magnetic field magnitude (mean)
 
-### bugs
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
-- [ ] STEREO `B` less than zero (after downsampling?)
+<div id="ref-sodingRadialLatitudinalDependencies2001" class="csl-entry">
+
+Söding, A., F. M. Neubauer, B. T. Tsurutani, N. F. Ness, and R. P.
+Lepping. 2001. “Radial and Latitudinal Dependencies of Discontinuities
+in the Solar Wind Between 0.3 and 19 AU and -80$^\circ$ and
++10$^\circ$.” *Annales Geophysicae* 19 (7): 667–80.
+<https://doi.org/10.5194/angeo-19-667-2001>.
+
+</div>
+
+<div id="ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979"
+class="csl-entry">
+
+Tsurutani, Bruce T., and Edward J. Smith. 1979. “Interplanetary
+Discontinuities: Temporal Variations and the Radial Gradient from 1 to
+8.5 AU.” *Journal of Geophysical Research: Space Physics* 84 (A6):
+2773–87. <https://doi.org/10.1029/JA084iA06p02773>.
+
+</div>
+
+</div>
