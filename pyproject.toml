@@ -41,10 +41,14 @@ channels = ["conda-forge"]
 platforms = ["osx-arm64", "linux-64"]
 
 [tool.pixi.environments]
-default = ["dev", "plot", "accel"]
+local = ["dev", "plot", "accel", "local"]
 
 [tool.pixi.dependencies]
+python = "<3.13"
+numba = "*"
 netcdf4 = "*"   # for `pytables`
 
-[tool.pixi.pypi-dependencies]
+[tool.pixi.feature.local.pypi-dependencies]
 discontinuitypy = { path = ".", editable = true }
+beforerr = { path = "../../src/beforerr_dev", editable = true }
+space_analysis = { path = "../../src/space-analysis.py", extras = ["io"], editable = true }
