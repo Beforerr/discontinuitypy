@@ -4,16 +4,18 @@
 __all__ = ['split_timerange', 'IDsConfig', 'get_vars', 'SpeasyIDsConfig']
 
 # %% ../../notebooks/11_ids_config.ipynb 0
-from datetime import datetime
+from datetime import datetime, timedelta
 from beforerr.project import produce_or_load_file
 from .datasets import IDsDataset
 from space_analysis.meta import Dataset
-from space_analysis.utils.speasy import Variables
+from space_analysis.utils.speasy import Variables, get_data, get_time_resolution
+from space_analysis.ds.spz.io import spzvars2pldf
 import polars as pl
 from functools import cached_property
 from abc import abstractmethod
 
 from tqdm.auto import tqdm
+from loguru import logger
 
 # %% ../../notebooks/11_ids_config.ipynb 1
 def split_timerange(timerange: list[datetime], split: int = 1):
@@ -59,7 +61,9 @@ class IDsConfig(IDsDataset):
         else:
             updates = [{"timerange": tr, "split": 1} for tr in self.timeranges]
             configs = [self.model_copy(update=update, deep=True) for update in updates]
-            datas, _ = zip(*(config.produce_or_load(**kwargs) for config in tqdm(configs)))
+            datas, _ = zip(
+                *(config.produce_or_load(**kwargs) for config in tqdm(configs))
+            )
 
             return produce_or_load_file(
                 f=pl.concat,
@@ -89,11 +93,6 @@ class SpeasyIDsConfig(IDsConfig):
     def get_vars_df(self, vars: str, **kwargs):
         return get_vars(self, vars, **kwargs).to_polars()
 
-    # Variables
-    @cached_property
-    def mag_vars(self):
-        return self.get_vars("mag")
-
     @cached_property
     def plasma_vars(self):
         return self.get_vars("plasma")
@@ -115,5 +114,11 @@ class SpeasyIDsConfig(IDsConfig):
 
     def _get_mag_data(self):
         if self.data is None:
-            self.data = self.get_vars_df("mag")
+            data = get_data(self.mag_meta, self.provider, self.timerange)
+            self.mag_meta.data = data
+            if self.mag_meta.ts is None:
+                ts = timedelta(seconds=get_time_resolution(data[0])["median"])
+                logger.info(f"Setting time resolution to {ts}")
+                self.mag_meta.ts = ts
+            self.data = spzvars2pldf(data)
         return self

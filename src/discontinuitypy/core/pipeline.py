@@ -6,7 +6,7 @@ __all__ = ['compress_data_by_events', 'ids_finder', 'extract_features']
 # %% ../../../notebooks/00_ids_finder.ipynb 2
 # | code-summary: "Import all the packages needed for the project"
 import polars as pl
-from .detection import detect_events
+from ..detection.variance import detect_variance
 from .propeties import process_events
 from ..utils.basic import df2ts
 from loguru import logger
@@ -31,11 +31,12 @@ def ids_finder(
     tau: timedelta,
     ts: timedelta,
     bcols=None,
+    detect_func: Callable[..., pl.LazyFrame] = detect_variance,
     extract_df: pl.LazyFrame = None,  # data used for feature extraction (typically high cadence data),
     **kwargs,
 ):
     if bcols is None:
-        bcols = detection_df.columns
+        bcols = detection_df.collect_schema().names()
         bcols.remove("time")
     if len(bcols) != 3:
         logger.error("Expect 3 field components")
@@ -46,7 +47,7 @@ def ids_finder(
     detection_df = detection_df.sort("time")
     extract_df = extract_df.sort("time")
 
-    events = detect_events(detection_df, tau, ts, bcols, **kwargs)
+    events = detect_func(detection_df, tau, ts, bcols, **kwargs)
 
     data_c = compress_data_by_events(extract_df.collect(), events)
     sat_fgm = df2ts(data_c, bcols)

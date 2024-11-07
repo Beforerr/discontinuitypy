@@ -3,7 +3,7 @@
 # %% auto 0
 __all__ = ['INDEX_STD_THRESHOLD', 'INDEX_FLUC_THRESHOLD', 'INDEX_DIFF_THRESHOLD', 'SPARSE_THRESHOLD', 'compute_std',
            'add_neighbor_std', 'compute_index_std', 'compute_combinded_std', 'compute_index_fluctuation', 'pl_dvec',
-           'compute_index_diff', 'compute_indices', 'filter_indices']
+           'compute_index_diff', 'compute_indices', 'filter_indices', 'detect_variance']
 
 # %% ../../../notebooks/detection/01_variance.ipynb 3
 import polars as pl
@@ -11,6 +11,8 @@ import polars.selectors as cs
 from datetime import timedelta
 from beforerr.polars import pl_norm, format_time
 from ..utils.basic import _expand_selectors
+from space_analysis.ds.ts.utils import get_time_resolution
+from loguru import logger
 
 # %% ../../../notebooks/detection/01_variance.ipynb 4
 def compute_std(
@@ -266,3 +268,34 @@ def filter_indices(
         pl.col("len_next")
         > sparse_num,  # filter out sparse intervals, which may give unreasonable results.
     ).drop(["len_prev", "len_next"])
+
+# %% ../../../notebooks/detection/01_variance.ipynb 16
+def _pl_format_time(df: pl.LazyFrame, tau: timedelta):
+    return df.with_columns(
+        tstart=pl.col("time"),
+        tstop=(pl.col("time") + tau),
+        time=(pl.col("time") + tau / 2),
+    )
+
+
+def _time_resolution(data: pl.LazyFrame):
+    time_np = data.select("time").collect().to_series().to_numpy()
+    ts = get_time_resolution(time_np)["median"]
+    logger.info(f"Time resolution not provided. Using median time difference: {ts}")
+    return ts
+
+
+def detect_variance(
+    data: pl.LazyFrame, tau: timedelta, bcols, ts: timedelta = None, sparse_num=None
+):
+    ts = ts or _time_resolution(data)
+    sparse_num = sparse_num or tau / ts // 3
+
+    indices = compute_indices(data, tau, bcols)
+    events = (
+        indices.pipe(filter_indices, sparse_num=sparse_num)
+        .pipe(_pl_format_time, tau)
+        .collect()
+    )
+
+    return events

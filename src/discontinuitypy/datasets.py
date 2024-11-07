@@ -9,8 +9,10 @@ from datetime import timedelta
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from beforerr.project import savename, datadir, produce_or_load, produce_or_load_file
-from space_analysis.meta import PlasmaDataset, TempDataset, MagDataset
+from space_analysis.core import MagVariable
+from space_analysis.meta import PlasmaDataset, TempDataset
 from .utils.naming import standardize_plasma_data
+from .detection.variance import detect_variance
 
 from typing import Literal
 from loguru import logger
@@ -35,13 +37,14 @@ class IdsEvents(BaseModel):
 
     name: str = None
     data: pl.LazyFrame = None
-    mag_meta: MagDataset = MagDataset()
+    mag_meta: MagVariable = MagVariable()
 
     ts: timedelta = None
     """time resolution of the dataset"""
     tau: timedelta
     """time interval used to find events"""
     events: pl.DataFrame = None
+    detect_func = detect_variance
     method: Literal["fit", "derivative"] = "fit"
 
     file_fmt: str = "arrow"
