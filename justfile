@@ -14,3 +14,6 @@ publish: pypi-publish quarto-publish
 
 pypi-publish: export
     pdm publish
+
+test:
+    nbdev_test --n_workers 4 --do_print
