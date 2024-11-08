@@ -8,7 +8,7 @@ __all__ = ['compress_data_by_events', 'ids_finder', 'extract_features']
 import polars as pl
 from ..detection.variance import detect_variance
 from .propeties import process_events
-from ..utils.basic import df2ts
+from space_analysis.ds.ts.io import df2ts
 from loguru import logger
 
 from datetime import timedelta
@@ -28,10 +28,9 @@ def compress_data_by_events(data: pl.DataFrame, events: pl.DataFrame):
 # %% ../../../notebooks/00_ids_finder.ipynb 6
 def ids_finder(
     detection_df: pl.LazyFrame,  # data used for anomaly dectection (typically low cadence data)
-    tau: timedelta,
-    ts: timedelta,
     bcols=None,
     detect_func: Callable[..., pl.LazyFrame] = detect_variance,
+    detect_kwargs: dict = {},
     extract_df: pl.LazyFrame = None,  # data used for feature extraction (typically high cadence data),
     **kwargs,
 ):
@@ -47,11 +46,11 @@ def ids_finder(
     detection_df = detection_df.sort("time")
     extract_df = extract_df.sort("time")
 
-    events = detect_func(detection_df, tau, ts, bcols, **kwargs)
+    events = detect_func(detection_df, bcols=bcols, **detect_kwargs)
 
     data_c = compress_data_by_events(extract_df.collect(), events)
     sat_fgm = df2ts(data_c, bcols)
-    ids = process_events(events, sat_fgm, ts, **kwargs)
+    ids = process_events(events, sat_fgm, **kwargs)
     return ids
 
 # %% ../../../notebooks/00_ids_finder.ipynb 8

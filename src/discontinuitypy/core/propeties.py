@@ -22,7 +22,6 @@ try:
 except ImportError:
     import pandas as pd
 
-from datetime import timedelta
 from loguru import logger
 
 from beforerr.polars import convert_to_pd_dataframe, decompose_vector
@@ -254,7 +253,6 @@ class IDsPdPipeline:
 def process_events(
     candidates_pl: pl.DataFrame,  # potential candidates DataFrame
     sat_fgm: xr.DataArray,  # satellite FGM data
-    data_resolution: timedelta,  # time resolution of the data
     method: Literal["fit", "derivative"] = "fit",
     **kwargs,
 ) -> pl.DataFrame:
