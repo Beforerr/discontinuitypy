@@ -1,0 +1,73 @@
+---
+jupyter: python3
+---
+
+A step-by-step guide to using the package
+
+```{python}
+%load_ext autoreload
+%autoreload 2
+```
+
+```{python}
+from datetime import timedelta
+from space_analysis.utils.speasy import get_polars_ldf
+from discontinuitypy.mission.wind import WindConfigBase, wi_mfi_h2_bgse
+from discontinuitypy.config import SpeasyIDsConfig
+from discontinuitypy.core.pipeline import ids_finder
+from discontinuitypy.detection import detect_variance, detect_gradient
+from rich import print
+```
+
+```{python}
+timerange = ["2021-05-03", "2021-05-04"]
+tau = timedelta(seconds=30)
+```
+
+```{python}
+data = get_polars_ldf(wi_mfi_h2_bgse, 'cda', timerange)
+data
+```
+
+```{python}
+bcols = data.collect_schema().names()
+bcols.remove("time")
+detect_gradient(data, bcols)
+```
+
+```{python}
+ids_finder(data, detect_kwargs={"tau": tau})
+```
+
+```{python}
+detect_variance(data, tau, bcols)
+```
+
+We could use the print from rich to print the output in a more readable way.
+
+```{python}
+class WindConfig(WindConfigBase, SpeasyIDsConfig):
+    pass
+    
+config = WindConfig(
+    timerange = timerange,
+    tau = 30
+)
+```
+
+```{python}
+print(config.model_dump(exclude_none=True))
+```
+
+```{python}
+config.produce_or_load()
+```
+
+```{python}
+config.get_data()
+```
+
+```{python}
+config.mag_meta.data[0].plot()
+```
+

@@ -12,6 +12,7 @@ website:
       - section: detection
         contents:
           - detection/01_variance.ipynb
+          - detection/02_TS_criterion.ipynb
       - section: missions
         contents:
           - missions/solo.ipynb
@@ -27,6 +28,9 @@ website:
         contents:
           - properties/00_duration.ipynb
           - properties/00_mva.ipynb
+      - section: tutorials
+        contents:
+          - tutorials/tutorial.qmd
       - section: utils
         contents:
           - utils/00_basic.ipynb
