@@ -10,6 +10,7 @@ __all__ = ['get_data_at_times', 'select_data_by_timerange', 'get_candidate_data'
 import polars as pl
 import xarray as xr
 import numpy as np
+import ray
 
 try:
     import modin.pandas as pd
@@ -24,6 +25,8 @@ from loguru import logger
 from ..propeties.duration import calc_duration
 from ..propeties.mva import calc_mva_features_all
 from typing import Literal
+
+ray.init(ignore_reinit_error=True)
 
 # %% ../../../notebooks/02_ids_properties.ipynb 2
 def get_data_at_times(data: xr.DataArray, times) -> np.ndarray:
@@ -85,16 +88,18 @@ def calc_events_duration(df: pl.DataFrame, data, tr_cols=["tstart", "tstop"], **
 def calc_events_mva_features(
     df: pl.DataFrame,
     data: xr.DataArray,
-    method: Literal["fit", "derivative"],
     tr_cols=["t.d_start", "t.d_end"],
     **kwargs,
 ):
-    results = [
-        calc_mva_features_all(
-            select_data_by_timerange(data, row[0], row[1]), method=method, **kwargs
-        )
-        for row in df.select(tr_cols).iter_rows()
-    ]
+    tranges = df.select(tr_cols).to_numpy()
+    data_ref = ray.put(data)
+
+    @ray.remote
+    def remote(tr, **kwargs):
+        data = select_data_by_timerange(ray.get(data_ref), tr[0], tr[1])
+        return calc_mva_features_all(data, **kwargs)
+
+    results = ray.get([remote.remote(tr, **kwargs) for tr in tranges])
     return df.with_columns(**ld2dl(results))
 
 # %% ../../../notebooks/02_ids_properties.ipynb 8
