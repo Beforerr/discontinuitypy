@@ -2,8 +2,8 @@
 
 # %% auto 0
 __all__ = ['get_data_at_times', 'select_data_by_timerange', 'get_candidate_data', 'calc_candidate_duration',
-           'calc_events_duration', 'calc_events_mva_features', 'calc_normal_direction', 'calc_events_normal_direction',
-           'calc_events_vec_change', 'process_events']
+           'calc_events_features', 'calc_events_duration', 'calc_events_mva_features', 'calc_normal_direction',
+           'calc_events_normal_direction', 'calc_events_vec_change', 'process_events']
 
 # %% ../../../notebooks/02_ids_properties.ipynb 1
 # | code-summary: "Import all the packages needed for the project"
@@ -50,20 +50,8 @@ def calc_candidate_duration(candidate, data, **kwargs):
     return calc_duration(candidate_data, **kwargs)
 
 # %% ../../../notebooks/02_ids_properties.ipynb 6
-def calc_events_duration(df: pl.DataFrame, data, tr_cols=["tstart", "tstop"], **kwargs):
-    # TODO: Add support for parallel processing
-    results = [
-        calc_duration(select_data_by_timerange(data, row[0], row[1]), **kwargs)
-        for row in df.select(tr_cols).iter_rows()
-    ]
-    return df.with_columns(**ld2dl(results)).drop_nulls()
-
-
-def calc_events_mva_features(
-    df: pl.DataFrame,
-    data: xr.DataArray,
-    tr_cols=["t.d_start", "t.d_end"],
-    **kwargs,
+def calc_events_features(
+    df: pl.DataFrame, data, tr_cols=["tstart", "tstop"], func=None, **kwargs
 ):
     tranges = df.select(tr_cols).to_numpy()
     data_ref = ray.put(data)
@@ -71,10 +59,20 @@ def calc_events_mva_features(
     @ray.remote
     def remote(tr, **kwargs):
         data = select_data_by_timerange(ray.get(data_ref), tr[0], tr[1])
-        return calc_mva_features_all(data, **kwargs)
+        return func(data, **kwargs)
 
     results = ray.get([remote.remote(tr, **kwargs) for tr in tranges])
     return df.with_columns(**ld2dl(results))
+
+
+def calc_events_duration(df, data, tr_cols=["tstart", "tstop"], **kwargs):
+    return calc_events_features(
+        df, data, tr_cols, func=calc_duration, **kwargs
+    ).drop_nulls()
+
+
+def calc_events_mva_features(df, data, tr_cols=["t.d_start", "t.d_end"], **kwargs):
+    return calc_events_features(df, data, tr_cols, func=calc_mva_features_all, **kwargs)
 
 # %% ../../../notebooks/02_ids_properties.ipynb 8
 def calc_normal_direction(v1, v2, normalize=True) -> np.ndarray:
