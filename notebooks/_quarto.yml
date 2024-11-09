@@ -37,6 +37,6 @@ website:
         # contents: analysis/*
 
 bibliography:
-  - files/discontinuitypy.bib
+  - ../files/discontinuitypy.bib
 
 metadata-files: [nbdev.yml]
