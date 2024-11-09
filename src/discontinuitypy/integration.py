@@ -7,7 +7,7 @@ __all__ = ['interpolate', 'interpolate2', 'combine_features', 'calc_plasma_param
 # %% ../../notebooks/03_mag_plasma.ipynb 1
 import polars as pl
 import polars.selectors as cs
-from beforerr.polars import decompose_vector, format_time
+from beforerr.polars import format_time
 from space_analysis.plasma.formulary.polars import (
     df_Alfven_speed,
     df_Alfven_current,
@@ -16,13 +16,15 @@ from space_analysis.plasma.formulary.polars import (
 )
 from space_analysis.meta import PlasmaDataset
 from .utils.ops import vector_project_pl
+from typing_extensions import deprecated
 
 # from discontinuitypy.core.propeties import df_rotation_angle
-from .naming import DENSITY_COL, FIT_AMPL_COL
+from .naming import DENSITY_COL, TEMP_COL, FIT_AMPL_COL
 from .utils.naming import standardize_plasma_data
 from loguru import logger
 
 # %% ../../notebooks/03_mag_plasma.ipynb 2
+@deprecated("Not used anymore")
 def _interpolate(
     df: pl.DataFrame, on="time", method="index", limit=1, limit_direction="both"
 ):
@@ -42,30 +44,23 @@ def _interpolate(
 
 
 def interpolate(df: pl.DataFrame, on="time"):
-    return df.sort(on).with_columns(cs.numeric().interpolate_by(on))
+    return df.sort(on).with_columns(cs.numeric().interpolate_by(on)).unique(on)
 
 
 def interpolate2(df1: pl.DataFrame, df2, **kwargs):
     return pl.concat([df1, df2], how="diagonal_relaxed").pipe(interpolate, **kwargs)
 
 # %% ../../notebooks/03_mag_plasma.ipynb 3
-from fastcore.all import concat  # noqa: E402
-
-
 def combine_features(
     events: pl.DataFrame,
     states_data: pl.DataFrame,
-    plasma_meta: PlasmaDataset = PlasmaDataset(),
     method: str = "interpolate",
     left_on="t.d_time",
     right_on="time",
     subset=False,
 ):
     if subset:
-        m = plasma_meta
-        subset_cols = concat([m.density_col, m.velocity_cols, m.temperature_col])
-        subset_cols = [item for item in subset_cols if item is not None]  # remove None
-        subset_cols = subset_cols + [right_on]
+        subset_cols = [DENSITY_COL, TEMP_COL, right_on]
         states_data = states_data.select(subset_cols)
 
     # change time format: see issue: https://github.com/pola-rs/polars/issues/12023
@@ -119,6 +114,9 @@ def combine_features(
         return df
 
 # %% ../../notebooks/03_mag_plasma.ipynb 6
+@deprecated(
+    "Not used anymore, maybe outdated. Prefer to calculate the plasma parameters change separately"
+)
 def calc_plasma_parameter_change(
     df: pl.DataFrame,
     plasma_meta: PlasmaDataset = PlasmaDataset(),
@@ -178,9 +176,9 @@ def calc_combined_features(
     df: pl.DataFrame,
     detail: bool = True,
     b_norm_col="b_mag",
-    normal_cols: list[str] = ["k_x", "k_y", "k_z"],
-    Vl_cols=["Vl_x", "Vl_y", "Vl_z"],
-    Vn_cols=["Vn_x", "Vn_y", "Vn_z"],
+    normal_cols="k",
+    Vl_cols="Vl",
+    Vn_cols="Vn",
     thickness_cols=["L_k"],
     current_cols=["j0_k"],
     plasma_meta: PlasmaDataset = None,
@@ -200,7 +198,6 @@ def calc_combined_features(
     current_norm = pl.col("j_Alfven")
 
     vec_cols = plasma_meta.velocity_cols
-    density_col = plasma_meta.density_col
 
     result = (
         df.pipe(vector_project_pl, vec_cols, Vl_cols, name="v_l")
@@ -223,9 +220,9 @@ def calc_combined_features(
         .pipe(
             df_gradient_current, B_gradient="d_star", speed="v_k", col_name="j0_k"
         )  # TODO: d_star corresponding to dB/dt, which direction is not exactly perpendicular to the k direction
-        .pipe(df_inertial_length, density=density_col)
-        .pipe(df_Alfven_speed, B=b_norm_col, density=density_col)
-        .pipe(df_Alfven_current, density=density_col)
+        .pipe(df_inertial_length, density=DENSITY_COL)
+        .pipe(df_Alfven_speed, B=b_norm_col, density=DENSITY_COL)
+        .pipe(df_Alfven_current, density=DENSITY_COL)
         .with_columns(
             (cs.by_name(thickness_cols) / length_norm).name.suffix("_norm"),
             (cs.by_name(current_cols) / current_norm).name.suffix("_norm"),
@@ -233,22 +230,16 @@ def calc_combined_features(
     )
 
     if detail:
-        result = (
-            result.pipe(
-                vector_project_pl,
-                [_ + ".before" for _ in vec_cols],
-                Vl_cols,
-                name="v.ion.before.l",
-            )
-            .pipe(
-                vector_project_pl,
-                [_ + ".after" for _ in vec_cols],
-                Vl_cols,
-                name="v.ion.after.l",
-            )
-            .pipe(decompose_vector, "B.vec.before", suffixes=[".l", ".m", ".n"])
-            .pipe(decompose_vector, "B.vec.after", suffixes=[".l", ".m", ".n"])
-            .pipe(calc_plasma_parameter_change, plasma_meta=plasma_meta)
+        result = result.pipe(
+            vector_project_pl,
+            [_ + ".before" for _ in vec_cols],
+            Vl_cols,
+            name="v.ion.before.l",
+        ).pipe(
+            vector_project_pl,
+            [_ + ".after" for _ in vec_cols],
+            Vl_cols,
+            name="v.ion.after.l",
         )
 
     return result
@@ -264,7 +255,6 @@ def update_events_with_plasma_data(
         events = combine_features(
             events,
             plasma_data.collect(),
-            plasma_meta=plasma_meta,
             **kwargs,
         )
 
