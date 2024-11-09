@@ -17,6 +17,7 @@ dependencies = [
     "fastcore",
     "tqdm",
     "loguru",
+    "ray",
 ]
 
 [build-system]
@@ -24,7 +25,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.optional-dependencies]
-accel = ["xarray[accel]", "modin[ray]", "numba"]
+accel = ["xarray[accel]", "numba"]
 plot = ["matplotlib", "pyspedas", "hvplot>=0.10.0", "holoviews"]
 dev = ["ipykernel", "nbdev"]
 
