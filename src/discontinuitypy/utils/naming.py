@@ -19,9 +19,6 @@ def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaDataset):
     mapping = dict()
     if meta.density_col:
         mapping[meta.density_col] = DENSITY_COL
-        meta.density_col = DENSITY_COL
     if meta.temperature_col:
         mapping[meta.temperature_col] = TEMP_COL
-        meta.temperature_col = TEMP_COL
-    data = data.rename(mapping=mapping)
-    return data
+    return data.rename(mapping=mapping)
