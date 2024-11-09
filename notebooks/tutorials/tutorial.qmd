@@ -5,11 +5,6 @@ jupyter: python3
 A step-by-step guide to using the package
 
 ```{python}
-%load_ext autoreload
-%autoreload 2
-```
-
-```{python}
 from datetime import timedelta
 from space_analysis.utils.speasy import get_polars_ldf
 from discontinuitypy.mission.wind import WindConfigBase, wi_mfi_h2_bgse
@@ -33,20 +28,9 @@ data
 ```
 
 ```{python}
-bcols = data.collect_schema().names()
-bcols.remove("time")
-detect_gradient(data, bcols)
+detect_kwargs = {"tau": tau}
+ids_finder(data, detect_kwargs=detect_kwargs)
 ```
-
-```{python}
-ids_finder(data, detect_kwargs={"tau": tau})
-```
-
-```{python}
-detect_variance(data, tau, bcols)
-```
-
-We could use the print from rich to print the output in a more readable way.
 
 ```{python}
 class WindConfig(WindConfigBase, SpeasyIDsConfig):
@@ -54,23 +38,21 @@ class WindConfig(WindConfigBase, SpeasyIDsConfig):
     
 config = WindConfig(
     timerange = timerange,
-    tau = 30
+    detect_kwargs=detect_kwargs,
 )
 ```
 
 ```{python}
-print(config.model_dump(exclude_none=True))
+result, path = config.produce_or_load()
 ```
 
-```{python}
-config.produce_or_load()
-```
-
-```{python}
-config.get_data()
-```
+Inspecting the magnetic data...
 
 ```{python}
 config.mag_meta.data[0].plot()
 ```
+
+
+
+
 
