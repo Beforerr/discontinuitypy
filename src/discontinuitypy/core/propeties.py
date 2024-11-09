@@ -88,12 +88,12 @@ def calc_normal_direction(v1, v2):
 
 # %% ../../../notebooks/02_ids_properties.ipynb 7
 def calc_events_normal_direction(
-    df: pl.DataFrame, data: xr.DataArray, name="k", tr_cols=["t.d_start", "t.d_end"]
+    df: pl.DataFrame, data: xr.DataArray, name="k", start="t.d_start", end="t.d_end"
 ):
     """
     Computes the normal directions(s) at two different time steps.
     """
-    tstart, tstop = df.select(tr_cols).to_numpy()
+    tstart, tstop = df[start].to_numpy(), df[end].to_numpy()
 
     vecs_before = get_data_at_times(data, tstart)
     vecs_after = get_data_at_times(data, tstop)
@@ -105,12 +105,12 @@ def calc_events_normal_direction(
 
 # | export
 def calc_events_vec_change(
-    df: pl.DataFrame, data: xr.DataArray, name="dB", tr_cols=["t.d_start", "t.d_end"]
+    df: pl.DataFrame, data: xr.DataArray, name="dB", start="t.d_start", end="t.d_end"
 ):
     """
     Utils function to calculate features related to the change of the magnetic field
     """
-    tstart, tstop = df.select(tr_cols).to_numpy()
+    tstart, tstop = df[start].to_numpy(), df[end].to_numpy()
 
     vecs_before = get_data_at_times(data, tstart)
     vecs_after = get_data_at_times(data, tstop)
