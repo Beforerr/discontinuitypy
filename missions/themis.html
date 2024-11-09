@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Combine magnetic field data and plasma data – discontinuitypy</title>
+<title>themis – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,40 +67,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Combine magnetic field data and plasma data – discontinuitypy">
+<meta property="og:title" content="discontinuitypy">
 <meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="Combine magnetic field data and plasma data – discontinuitypy">
+<meta name="twitter:title" content="discontinuitypy">
 <meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -112,7 +83,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">discontinuitypy</span>
     </a>
   </div>
@@ -123,15 +94,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link active" href="../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tutorials/tutorial.html"> 
+    <a class="nav-link" href="../tutorials/tutorial.html"> 
 <span class="menu-text">Tutorial</span></a>
   </li>  
 </ul>
@@ -146,7 +117,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_mag_plasma.html">Combine magnetic field data and plasma data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../missions/index.html">Mission-Ready Configurations</a></li><li class="breadcrumb-item"><a href="../missions/themis.html">Themis</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -160,43 +131,43 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_ids_finder.html" class="sidebar-item-text sidebar-link">
+  <a href="../00_ids_finder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID identification</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_ids_properties.html" class="sidebar-item-text sidebar-link">
+  <a href="../02_ids_properties.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID properties</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_mag_plasma.html" class="sidebar-item-text sidebar-link active">
+  <a href="../03_mag_plasma.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combine magnetic field data and plasma data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11_ids_config.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_ids_config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 Ids Config</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -211,13 +182,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./detection/01_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../detection/01_variance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+  <a href="../detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gradient method</span></a>
   </div>
 </li>
@@ -225,7 +196,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -234,25 +205,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/solo.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/solo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Solo</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/stereo.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stereo</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/themis.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/themis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Themis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/wind.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wind</span></a>
   </div>
 </li>
@@ -260,7 +231,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./plot/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../plot/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">index.html</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -269,7 +240,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+  <a href="../plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Alfvenicity</span></a>
   </div>
 </li>
@@ -286,13 +257,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_duration.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Duration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_mva.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/00_mva.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Minimum variance analysis (MVA)</span></a>
   </div>
 </li>
@@ -309,7 +280,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial</span></a>
   </div>
 </li>
@@ -326,31 +297,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/00_basic.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/00_basic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Utilities functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/00_dataset.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00 Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/01_plotting.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/01_plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MVA plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/02_ops.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/02_ops.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02 Ops</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/naming.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/naming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Standardization</span></a>
   </div>
 </li>
@@ -366,145 +337,58 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#interpolate2" id="toc-interpolate2" class="nav-link active" data-scroll-target="#interpolate2">interpolate2</a></li>
-  <li><a href="#interpolate" id="toc-interpolate" class="nav-link" data-scroll-target="#interpolate">interpolate</a></li>
-  <li><a href="#combine_features" id="toc-combine_features" class="nav-link" data-scroll-target="#combine_features">combine_features</a></li>
-  <li><a href="#additional-features-after-combining" id="toc-additional-features-after-combining" class="nav-link" data-scroll-target="#additional-features-after-combining">Additional features after combining</a></li>
-  <li><a href="#all-features" id="toc-all-features" class="nav-link" data-scroll-target="#all-features">All features</a>
-  <ul class="collapse">
-  <li><a href="#calc_plasma_parameter_change" id="toc-calc_plasma_parameter_change" class="nav-link" data-scroll-target="#calc_plasma_parameter_change">calc_plasma_parameter_change</a></li>
-  <li><a href="#calc_combined_features" id="toc-calc_combined_features" class="nav-link" data-scroll-target="#calc_combined_features">calc_combined_features</a></li>
-  <li><a href="#update_events_with_plasma_data" id="toc-update_events_with_plasma_data" class="nav-link" data-scroll-target="#update_events_with_plasma_data">update_events_with_plasma_data</a></li>
-  <li><a href="#update_events_with_temp_data" id="toc-update_events_with_temp_data" class="nav-link" data-scroll-target="#update_events_with_temp_data">update_events_with_temp_data</a></li>
-  <li><a href="#update_events" id="toc-update_events" class="nav-link" data-scroll-target="#update_events">update_events</a></li>
-  </ul></li>
+  <li><a href="#themisconfigbase" id="toc-themisconfigbase" class="nav-link active" data-scroll-target="#themisconfigbase">ThemisConfigBase</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Combine magnetic field data and plasma data</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<ul>
-<li>combine features from different sources/instruments (magnetic field, state data, etc.)</li>
-<li>generate new features</li>
-</ul>
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <hr>
-<section id="interpolate2" class="level3">
-<h3 class="anchored" data-anchor-id="interpolate2">interpolate2</h3>
+<section id="themisconfigbase" class="level3">
+<h3 class="anchored" data-anchor-id="themisconfigbase">ThemisConfigBase</h3>
 <blockquote class="blockquote">
-<pre><code> interpolate2 (df1:polars.dataframe.frame.DataFrame, df2, **kwargs)</code></pre>
+<pre><code> ThemisConfigBase (name:str='THEMIS',
+                   mag_data:polars.lazyframe.frame.LazyFrame=None, mag_met
+                   a:space_analysis.meta.MagDataset=MagDataset(timerange=N
+                   one, variables=None, name=None, dataset='THB_L2_FGM',
+                   parameters=['thb_fgl_gse'], ts=None, B_cols=None),
+                   ts:datetime.timedelta=None,
+                   events:polars.dataframe.frame.DataFrame=None,
+                   detect_func:Callable=&lt;function detect_variance&gt;,
+                   detect_kwargs:dict=None,
+                   method:Literal['fit','derivative']='fit',
+                   file_fmt:str='arrow', file_path:pathlib.Path=Path('/hom
+                   e/runner/work/discontinuitypy/discontinuitypy/data'),
+                   plasma_data:polars.lazyframe.frame.LazyFrame=None, plas
+                   ma_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset
+                   (timerange=None, variables=None, name=None,
+                   dataset='THB_L2_MOM', parameters=['thb_peim_densityQ',
+                   'thb_peim_velocity_gseQ', 'thb_peim_ptotQ'], ts=None,
+                   temperature_col=None, para_col=None, perp_cols=None,
+                   velocity_cols=None, speed_col=None, density_col=None),
+                   ion_temp_data:polars.lazyframe.frame.LazyFrame=None, io
+                   n_temp_meta:space_analysis.meta.TempDataset=TempDataset
+                   (timerange=None, variables=None, name=None,
+                   dataset='THB_L2_MOM', parameters=['thb_peim_t3_magQ'],
+                   ts=None, temperature_col=None, para_col='Tz_ion FA MOM
+                   ESA-B', perp_cols=['Tx_ion FA MOM ESA-B', 'Ty_ion FA
+                   MOM ESA-B']),
+                   e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_te
+                   mp_meta:space_analysis.meta.TempDataset=TempDataset(tim
+                   erange=None, variables=None, name=None,
+                   dataset='THB_L2_MOM', parameters=['thb_peem_t3_magQ'],
+                   ts=None, temperature_col=None, para_col='Tz_elec FA MOM
+                   ESA-B', perp_cols=['Tx_elec FA MOM ESA-B', 'Ty_elec FA
+                   MOM ESA-B']), **extra_data:Any)</code></pre>
 </blockquote>
-<hr>
-</section>
-<section id="interpolate" class="level3">
-<h3 class="anchored" data-anchor-id="interpolate">interpolate</h3>
-<blockquote class="blockquote">
-<pre><code> interpolate (df:polars.dataframe.frame.DataFrame, on='time')</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="combine_features" class="level3">
-<h3 class="anchored" data-anchor-id="combine_features">combine_features</h3>
-<blockquote class="blockquote">
-<pre><code> combine_features (events:polars.dataframe.frame.DataFrame,
-                   states_data:polars.dataframe.frame.DataFrame,
-                   method:str='interpolate', left_on='t.d_time',
-                   right_on='time', subset=False)</code></pre>
-</blockquote>
-</section>
-<section id="additional-features-after-combining" class="level2">
-<h2 class="anchored" data-anchor-id="additional-features-after-combining">Additional features after combining</h2>
-<p>With combined dataset, we calculate additional features for each candidate.</p>
-<p>Length</p>
-<p>the length along the n direction of LMN coordinate system.</p>
-<p><span class="math display">\[L_{n} = v_{n}  T_{duration}\]</span></p>
-<p>However this may not be accurate due to the MVA method.</p>
-<p><span class="math display">\[L_{mn} = v_{mn}  T_{duration}\]</span></p>
-<p>If we have the normal vector of the current sheet, we can calculate the length along the normal direction.</p>
-<p><span class="math display">\[L_{normal} = L_{k} = v_{normal}  T_{duration}\]</span></p>
-<p>Additionally, we can calculate the length projected into RTN coordinate system.</p>
-<p><span class="math display">\[L_{R} = L_{k} \cos \theta\]</span></p>
-<p><span class="math display">\[ j*0 = (\frac{d B}{d t})*{max} \frac{1}{v\_{mn}}\]</span></p>
-</section>
-<section id="all-features" class="level2">
-<h2 class="anchored" data-anchor-id="all-features">All features</h2>
-<hr>
-<section id="calc_plasma_parameter_change" class="level3">
-<h3 class="anchored" data-anchor-id="calc_plasma_parameter_change">calc_plasma_parameter_change</h3>
-<blockquote class="blockquote">
-<pre><code> calc_plasma_parameter_change (df:polars.dataframe.frame.DataFrame, plasma
-                               _meta:space_analysis.meta.PlasmaDataset=Pla
-                               smaDataset(timerange=None, variables=None,
-                               name=None, dataset=None, parameters=None,
-                               ts=None, temperature_col=None,
-                               para_col=None, perp_cols=None,
-                               velocity_cols=None, speed_col=None,
-                               density_col=None))</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="calc_combined_features" class="level3">
-<h3 class="anchored" data-anchor-id="calc_combined_features">calc_combined_features</h3>
-<blockquote class="blockquote">
-<pre><code> calc_combined_features (df:polars.dataframe.frame.DataFrame,
-                         detail:bool=True, b_norm_col='b_mag',
-                         normal_cols='k', Vl_cols='Vl', Vn_cols='Vn',
-                         thickness_cols=['L_k'], current_cols=['j0_k'], pl
-                         asma_meta:space_analysis.meta.PlasmaDataset=None)</code></pre>
-</blockquote>
-<p>*Calculate the combined features of the discontinuity</p>
-<p>Args: df (pl.DataFrame): <em>description</em> normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ “k_x”, “k_y”, “k_z”, ]. detail (bool, optional): <em>description</em>. Defaults to True. Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ “Vl_x”, “Vl_y”, “Vl_z”, ]. Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ “Vn_x”, “Vn_y”, “Vn_z”, ]. current_cols (list, optional): <em>description</em>. Defaults to [“j0_mn”, “j0_k”].*</p>
-<hr>
-</section>
-<section id="update_events_with_plasma_data" class="level3">
-<h3 class="anchored" data-anchor-id="update_events_with_plasma_data">update_events_with_plasma_data</h3>
-<blockquote class="blockquote">
-<pre><code> update_events_with_plasma_data (events:polars.dataframe.frame.DataFrame,
-                                 plasma_data:polars.lazyframe.frame.LazyFr
-                                 ame|None, plasma_meta:space_analysis.meta
-                                 .PlasmaDataset, **kwargs)</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="update_events_with_temp_data" class="level3">
-<h3 class="anchored" data-anchor-id="update_events_with_temp_data">update_events_with_temp_data</h3>
-<blockquote class="blockquote">
-<pre><code> update_events_with_temp_data (events:polars.dataframe.frame.DataFrame,
-                               ion_temp_data:polars.lazyframe.frame.LazyFr
-                               ame|None, e_temp_data:polars.lazyframe.fram
-                               e.LazyFrame|None)</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="update_events" class="level3">
-<h3 class="anchored" data-anchor-id="update_events">update_events</h3>
-<blockquote class="blockquote">
-<pre><code> update_events (events, plasma_data, plasma_meta, ion_temp_data,
-                e_temp_data, **kwargs)</code></pre>
-</blockquote>
+<p><em>Extend the IdsEvents class to handle plasma and temperature data.</em></p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

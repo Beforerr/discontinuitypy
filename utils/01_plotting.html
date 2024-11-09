@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.33">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>discontinuitypy – plotting</title>
+<title>plotting – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -135,6 +101,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/tutorial.html"> 
+<span class="menu-text">Tutorial</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -197,12 +167,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../12_mission_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12 Mission Config</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
@@ -222,17 +186,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient method</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Properties</span></a>
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/solo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stereo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Themis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../plot/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Alfvenicity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
@@ -249,17 +271,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../utils/00_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
+ <span class="menu-text">Utilities functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00 Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,8 +315,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analyzing Utils</span></a>
+  <a href="../utils/02_ops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 Ops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/naming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standardization</span></a>
   </div>
 </li>
       </ul>
@@ -287,9 +338,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#mva-plotting" id="toc-mva-plotting" class="nav-link active" data-scroll-target="#mva-plotting">MVA plotting</a></li>
-  <li><a href="#setup_mva_plot" id="toc-setup_mva_plot" class="nav-link" data-scroll-target="#setup_mva_plot">setup_mva_plot</a></li>
   <li><a href="#time_stamp" id="toc-time_stamp" class="nav-link" data-scroll-target="#time_stamp">time_stamp</a></li>
+  <li><a href="#ts_mva" id="toc-ts_mva" class="nav-link" data-scroll-target="#ts_mva">ts_mva</a></li>
+  <li><a href="#setup_mva_tplot_base" id="toc-setup_mva_tplot_base" class="nav-link" data-scroll-target="#setup_mva_tplot_base">setup_mva_tplot_base</a></li>
+  <li><a href="#set_mva_tname_option" id="toc-set_mva_tname_option" class="nav-link" data-scroll-target="#set_mva_tname_option">set_mva_tname_option</a></li>
+  <li><a href="#setup_mva_plot" id="toc-setup_mva_plot" class="nav-link" data-scroll-target="#setup_mva_plot">setup_mva_plot</a></li>
   <li><a href="#plot_candidate" id="toc-plot_candidate" class="nav-link" data-scroll-target="#plot_candidate">plot_candidate</a></li>
+  <li><a href="#plot_candidates" id="toc-plot_candidates" class="nav-link" data-scroll-target="#plot_candidates">plot_candidates</a></li>
+  <li><a href="#plot_event" id="toc-plot_event" class="nav-link" data-scroll-target="#plot_event">plot_event</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -303,7 +359,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mva-plotting" class="level3">
 <h3 class="anchored" data-anchor-id="mva-plotting">MVA plotting</h3>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/plot.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="time_stamp" class="level3">
+<h3 class="anchored" data-anchor-id="time_stamp">time_stamp</h3>
+<blockquote class="blockquote">
+<pre><code> time_stamp (ts)</code></pre>
+</blockquote>
+<p><em>Return POSIX timestamp as float.</em></p>
+<hr>
+</section>
+<section id="ts_mva" class="level3">
+<h3 class="anchored" data-anchor-id="ts_mva">ts_mva</h3>
+<blockquote class="blockquote">
+<pre><code> ts_mva (data:xarray.core.dataarray.DataArray,
+         mva_data:xarray.core.dataarray.DataArray, **kwargs)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="setup_mva_tplot_base" class="level3">
+<h3 class="anchored" data-anchor-id="setup_mva_tplot_base">setup_mva_tplot_base</h3>
+<blockquote class="blockquote">
+<pre><code> setup_mva_tplot_base (tname:str, mva_tname:str,
+                       mva_tstart:datetime.datetime=None,
+                       mva_tstop:datetime.datetime=None,
+                       calc_magnitude=True)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="set_mva_tname_option" class="level3">
+<h3 class="anchored" data-anchor-id="set_mva_tname_option">set_mva_tname_option</h3>
+<blockquote class="blockquote">
+<pre><code> set_mva_tname_option (tname, type='B')</code></pre>
+</blockquote>
+<hr>
 </section>
 <section id="setup_mva_plot" class="level3">
 <h3 class="anchored" data-anchor-id="setup_mva_plot">setup_mva_plot</h3>
@@ -314,32 +402,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                  mva_tstop:datetime.datetime=None)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/plot.py#L31" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="time_stamp" class="level3">
-<h3 class="anchored" data-anchor-id="time_stamp">time_stamp</h3>
-<blockquote class="blockquote">
-<pre><code> time_stamp (ts)</code></pre>
-</blockquote>
-<p><em>Return POSIX timestamp as float.</em></p>
-<div id="cell-4" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> format_candidate_title(candidate: <span class="bu">dict</span>):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> format_float(x):</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="vs">rf"$\bf </span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="vs"> $"</span> <span class="cf">if</span> <span class="bu">isinstance</span>(x, (<span class="bu">float</span>, <span class="bu">int</span>)) <span class="cf">else</span> <span class="vs">rf"$\bf </span><span class="sc">{</span>x<span class="sc">}</span><span class="vs"> $"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    base_line <span class="op">=</span> <span class="vs">rf'$\bf </span><span class="sc">{</span>candidate<span class="sc">.</span>get(<span class="st">"type"</span>, <span class="st">"N/A"</span>)<span class="sc">}</span><span class="vs"> $ candidate (time: </span><span class="sc">{</span>candidate<span class="sc">.</span>get(<span class="st">"time"</span>, <span class="st">"N/A"</span>)<span class="sc">}</span><span class="vs">) with index '</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    index_line <span class="op">=</span> <span class="vs">rf'i1: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_std"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, i2: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_fluctuation"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, i3: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"index_diff"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">'</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    info_line <span class="op">=</span> <span class="vs">rf'$B_n/B$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"BnOverB"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, $dB/B$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"dBOverB"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">, $(dB/B)_</span><span class="ch">{{</span><span class="vs">max</span><span class="ch">}}</span><span class="vs">$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"dBOverB_max"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">,  $Q_</span><span class="ch">{{</span><span class="vs">mva</span><span class="ch">}}</span><span class="vs">$: </span><span class="sc">{</span>format_float(candidate.get(<span class="st">"Q_mva"</span>, <span class="st">"N/A"</span>))<span class="sc">}</span><span class="vs">'</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="vs">rf"""</span><span class="sc">{</span>base_line<span class="sc">}</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">{</span>index_line<span class="sc">}</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">{</span>info_line<span class="sc">}</span><span class="vs">"""</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> title</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/plot.py#L74" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="plot_candidate" class="level3">
 <h3 class="anchored" data-anchor-id="plot_candidate">plot_candidate</h3>
@@ -348,6 +410,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                  add_ids_properties=True, plot_current_density=False,
                  plot_fit_data=False, add_timebars=True,
                  add_plasma_params=False, **kwargs)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="plot_candidates" class="level3">
+<h3 class="anchored" data-anchor-id="plot_candidates">plot_candidates</h3>
+<blockquote class="blockquote">
+<pre><code> plot_candidates (indices=None, num=4, random=True, predicate=None,
+                  **kwargs)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="plot_event" class="level3">
+<h3 class="anchored" data-anchor-id="plot_event">plot_event</h3>
+<blockquote class="blockquote">
+<pre><code> plot_event (event=None, index=None, **kwargs)</code></pre>
 </blockquote>
 
 

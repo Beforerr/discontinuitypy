@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.33">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="All statistics are wrong, but some may be useful:)">
 
-<title>discontinuitypy – DiscontinuityPy</title>
+<title>DiscontinuityPy – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -102,11 +122,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="discontinuitypy - DiscontinuityPy">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="DiscontinuityPy – discontinuitypy">
 <meta property="og:description" content="All statistics are wrong, but some may be useful:)">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - DiscontinuityPy">
+<meta name="twitter:title" content="DiscontinuityPy – discontinuitypy">
 <meta name="twitter:description" content="All statistics are wrong, but some may be useful:)">
 <meta name="twitter:card" content="summary">
 </head>
@@ -135,6 +184,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tutorials/tutorial.html"> 
+<span class="menu-text">Tutorial</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -198,12 +251,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12_mission_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12 Mission Config</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
@@ -223,17 +270,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient method</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Properties</span></a>
+            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/solo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/stereo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stereo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/themis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Themis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./plot/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Alfvenicity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./properties/00_duration.html" class="sidebar-item-text sidebar-link">
@@ -250,23 +355,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./utils/00_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
+ <span class="menu-text">Utilities functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00 Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./utils/01_plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MVA plotting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/02_ops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 Ops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/naming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standardization</span></a>
   </div>
 </li>
       </ul>
@@ -287,9 +427,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
   </ul></li>
   <li><a href="#related-projects-and-publications" id="toc-related-projects-and-publications" class="nav-link" data-scroll-target="#related-projects-and-publications">Related projects and publications</a></li>
-  <li><a href="#todos" id="toc-todos" class="nav-link" data-scroll-target="#todos">TODOs</a>
+  <li><a href="#properties-of-discontinuities" id="toc-properties-of-discontinuities" class="nav-link" data-scroll-target="#properties-of-discontinuities">Properties of Discontinuities</a>
   <ul class="collapse">
-  <li><a href="#bugs" id="toc-bugs" class="nav-link" data-scroll-target="#bugs">bugs</a></li>
+  <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -356,63 +496,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <!-- We have developed a pipeline to identify solar wind discontinuities. (Modular, Performant, Scalable) -->
 </section>
-<section id="todos" class="level1">
-<h1>TODOs</h1>
-<p>Science part</p>
+<section id="properties-of-discontinuities" class="level1">
+<h1>Properties of Discontinuities</h1>
+<p>Notations:</p>
 <ul>
-<li>Analysis
-<ul class="task-list">
-<li><label><input type="checkbox">Contribution of discontinuities to the power spectrum</label></li>
-<li><label><input type="checkbox">Check Datagap</label></li>
-<li><label><input type="checkbox">Distribution of |B| over radius</label></li>
-<li><label><input type="checkbox">Add error bar</label></li>
-<li><label><input type="checkbox">More accurate way to obtain the properties of the discontinuities</label></li>
-</ul></li>
-<li>Identifaction
-<ul class="task-list">
-<li><label><input type="checkbox">Ensemble forest?</label></li>
-<li><label><input type="checkbox">Smoothing is important?</label></li>
-<li><label><input type="checkbox">Check change point algorithm</label></li>
-</ul></li>
-<li>Features
-<ul class="task-list">
-<li><label><input type="checkbox">Thickness in N direction</label></li>
-<li><label><input type="checkbox">Use high resolution data for feature extraction</label></li>
-</ul></li>
-<li>Compare with other methods of identifying IDs
-<ul class="task-list">
-<li><label><input type="checkbox">Verify with other methods of identifying IDs</label></li>
-</ul></li>
+<li><span class="math inline">\(\vec{B}\)</span> : Magnetic field</li>
+<li><span class="math inline">\(B\)</span> : Magnetic field magnitude</li>
 </ul>
-<p>Code part</p>
+<section id="outputs" class="level2">
+<h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
 <ul>
-<li>Optimization
-<ul class="task-list">
-<li><label><input type="checkbox"><code>dask</code> for parallel computing instead of <code>modin</code></label></li>
-<li><label><input type="checkbox"><code>JAX</code> library for <code>numpy</code> optimization</label></li>
-<li><label><input type="checkbox">shorten import time</label></li>
+<li><code>b_mag</code> : mean of magnetic field magnitude across the discontinuity</li>
+<li><code>db_over_b</code> : <span class="math inline">\(|\Delta B|/\bar{B}\)</span> , Change in magnetic field magnitude over magnetic field magnitude (mean)
+<ul>
+<li>see Fig.14 in <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesTemporal1979">Tsurutani and Smith (<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" role="doc-biblioref">1979</a>)</span></li>
 </ul></li>
-<li>Refactor
-<ul class="task-list">
-<li><label><input type="checkbox" checked=""><code>process_candidates</code> to exclude <code>sat_state</code> logics</label></li>
-<li><label><input type="checkbox" checked="">renaming feature layer <code>candidates</code></label></li>
+<li><code>rotation_angle</code> : Rotation angle across the discontinuity
+<ul>
+<li>see Fig.12 in <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesTemporal1979">Tsurutani and Smith (<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" role="doc-biblioref">1979</a>)</span></li>
+<li>see Fig.11 in <span class="citation" data-cites="sodingRadialLatitudinalDependencies2001">Söding et al. (<a href="#ref-sodingRadialLatitudinalDependencies2001" role="doc-biblioref">2001</a>)</span></li>
 </ul></li>
-<li><label><input type="checkbox" checked="">Kedro</label>
-<ul class="task-list">
-<li><label><input type="checkbox" checked="">Modular pipelines</label></li>
-</ul></li>
+<li><code>bn_over_b</code> : <span class="math inline">\(\bar{B}_N/\bar{B}\)</span> : Normal component of magnetic field over magnetic field magnitude (mean)</li>
 </ul>
-<section id="bugs" class="level3">
-<h3 class="anchored" data-anchor-id="bugs">bugs</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">STEREO <code>B</code> less than zero (after downsampling?)</label></li>
-</ul>
+
 
 
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-sodingRadialLatitudinalDependencies2001" class="csl-entry" role="listitem">
+Söding, A., F. M. Neubauer, B. T. Tsurutani, N. F. Ness, and R. P. Lepping. 2001. <span>“Radial and Latitudinal Dependencies of Discontinuities in the Solar Wind Between 0.3 and 19 <span>AU</span> and -80<span><span class="math inline">\(^\circ\)</span></span> and +10<span><span class="math inline">\(^\circ\)</span></span>.”</span> <em>Annales Geophysicae</em> 19 (7): 667–80. <a href="https://doi.org/10.5194/angeo-19-667-2001">https://doi.org/10.5194/angeo-19-667-2001</a>.
+</div>
+<div id="ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" class="csl-entry" role="listitem">
+Tsurutani, Bruce T., and Edward J. Smith. 1979. <span>“Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 <span>AU</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 84 (A6): 2773–87. <a href="https://doi.org/10.1029/JA084iA06p02773">https://doi.org/10.1029/JA084iA06p02773</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

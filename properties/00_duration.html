@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.33">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>discontinuitypy – Duration</title>
+<title>Duration – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,10 +131,10 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="discontinuitypy - Duration">
+<meta property="og:title" content="Duration – discontinuitypy">
 <meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - Duration">
+<meta name="twitter:title" content="Duration – discontinuitypy">
 <meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -163,6 +163,10 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link active" href="../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/tutorial.html"> 
+<span class="menu-text">Tutorial</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -226,12 +230,6 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../12_mission_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12 Mission Config</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
@@ -251,17 +249,75 @@ window.Quarto = {
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient method</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Properties</span></a>
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/solo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stereo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Themis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../plot/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Alfvenicity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link active">
@@ -278,17 +334,40 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../utils/00_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
+ <span class="menu-text">Utilities functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00 Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -299,8 +378,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analyzing Utils</span></a>
+  <a href="../utils/02_ops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 Ops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/naming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standardization</span></a>
   </div>
 </li>
       </ul>
@@ -325,9 +410,6 @@ window.Quarto = {
   <li><a href="#find_start_end_times" id="toc-find_start_end_times" class="nav-link" data-scroll-target="#find_start_end_times">find_start_end_times</a></li>
   <li><a href="#ts_max_derivative" id="toc-ts_max_derivative" class="nav-link" data-scroll-target="#ts_max_derivative">ts_max_derivative</a></li>
   <li><a href="#calc_duration" id="toc-calc_duration" class="nav-link" data-scroll-target="#calc_duration">calc_duration</a></li>
-  </ul></li>
-  <li><a href="#obsolete-codes" id="toc-obsolete-codes" class="nav-link" data-scroll-target="#obsolete-codes">Obsolete codes</a>
-  <ul class="collapse">
   <li><a href="#calibrates-candidate-duration" id="toc-calibrates-candidate-duration" class="nav-link" data-scroll-target="#calibrates-candidate-duration">Calibrates candidate duration</a></li>
   </ul></li>
   </ul>
@@ -372,7 +454,6 @@ window.Quarto = {
 <section id="maxium-distance-method" class="level2">
 <h2 class="anchored" data-anchor-id="maxium-distance-method">Maxium distance method</h2>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L16" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="ts_max_distance" class="level3">
 <h3 class="anchored" data-anchor-id="ts_max_distance">ts_max_distance</h3>
 <blockquote class="blockquote">
@@ -382,13 +463,13 @@ window.Quarto = {
 <div id="cell-4" class="cell">
 <details class="code-fold">
 <summary>test for ts_max_distance function</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> pd.date_range(<span class="st">'2000-01-01'</span>, periods<span class="op">=</span><span class="dv">10</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> pd.date_range(<span class="st">"2000-01-01"</span>, periods<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, np.pi, <span class="dv">10</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># generate data circular in three dimensions, so the biggest distance is between the first and the last point    </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># generate data circular in three dimensions, so the biggest distance is between the first and the last point</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.zeros((<span class="dv">10</span>, <span class="dv">3</span>))</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data[:, <span class="dv">0</span>] <span class="op">=</span> np.sin(x)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>data[:, <span class="dv">1</span>] <span class="op">=</span> np.cos(x)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> xr.DataArray(data, coords<span class="op">=</span>{<span class="st">'time'</span>: time}, dims<span class="op">=</span>[<span class="st">'time'</span>, <span class="st">'space'</span>])</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> xr.DataArray(data, coords<span class="op">=</span>{<span class="st">"time"</span>: time}, dims<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"space"</span>])</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>start, end <span class="op">=</span> ts_max_distance(ts)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> start <span class="op">==</span> time[<span class="dv">0</span>]</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> end <span class="op">==</span> time[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -399,7 +480,6 @@ window.Quarto = {
 <section id="maxium-derivative-method" class="level2">
 <h2 class="anchored" data-anchor-id="maxium-derivative-method">Maxium derivative method</h2>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L64" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="get_time_from_condition" class="level3">
 <h3 class="anchored" data-anchor-id="get_time_from_condition">get_time_from_condition</h3>
 <blockquote class="blockquote">
@@ -407,7 +487,6 @@ window.Quarto = {
                           condition_type)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L50" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="find_start_end_times" class="level3">
 <h3 class="anchored" data-anchor-id="find_start_end_times">find_start_end_times</h3>
@@ -416,7 +495,6 @@ window.Quarto = {
                        d_time, threshold)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L28" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="ts_max_derivative" class="level3">
 <h3 class="anchored" data-anchor-id="ts_max_derivative">ts_max_derivative</h3>
@@ -425,7 +503,6 @@ window.Quarto = {
                     threshold_ratio=0.25)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/propeties/duration.py#L85" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calc_duration" class="level3">
 <h3 class="anchored" data-anchor-id="calc_duration">calc_duration</h3>
@@ -434,127 +511,104 @@ window.Quarto = {
                 method:Literal['distance','derivative']='distance',
                 **kwargs)</code></pre>
 </blockquote>
+<div id="cell-10" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_d_duration(vec: xr.DataArray, d_time, threshold) <span class="op">-&gt;</span> pd.Series:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    vec_diff <span class="op">=</span> vec.differentiate(<span class="st">"time"</span>, datetime_unit<span class="op">=</span><span class="st">"s"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    vec_diff_mag <span class="op">=</span> linalg.norm(vec_diff, dims<span class="op">=</span><span class="st">"v_dim"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    start_time, end_time <span class="op">=</span> find_start_end_times(vec_diff_mag, d_time, threshold)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"t.d_start"</span>: start_time,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"t.d_end"</span>: end_time,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
-</section>
-<section id="obsolete-codes" class="level2">
-<h2 class="anchored" data-anchor-id="obsolete-codes">Obsolete codes</h2>
-<p>This is obsolete codes because the timewindow now is overlapping. No need to consider where magnetic discontinuities happens in the boundary of one timewindow.</p>
+<section id="calibrates-candidate-duration" class="level3">
+<h3 class="anchored" data-anchor-id="calibrates-candidate-duration">Calibrates candidate duration</h3>
+<p>This calibration is based on the assumption that the magnetic discontinuity is symmetric around the center of time, which is not always true.</p>
+<p>So instead of calibrating the duration, we drop the events. - Cons: Might influence the statistics of occurrence rate, but - Pros: More robust results about the properties of the magnetic discontinuity.</p>
 <div id="cell-12" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_candidate_d_duration(candidate, data) <span class="op">-&gt;</span> pd.Series:</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pd.isnull(candidate[<span class="st">'t.d_start'</span>]) <span class="kw">or</span> pd.isnull(candidate[<span class="st">'t.d_end'</span>]):</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            candidate_data <span class="op">=</span> get_candidate_data(candidate, data, neighbor<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            d_time <span class="op">=</span> candidate[<span class="st">'d_time'</span>]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            threshold <span class="op">=</span> candidate[<span class="st">'threshold'</span>]</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> calc_d_duration(candidate_data, d_time, threshold)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> pd.Series({</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">'t.d_start'</span>: candidate[<span class="st">'t.d_start'</span>],</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">'t.d_end'</span>: candidate[<span class="st">'t.d_end'</span>],</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            })</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># logger.debug(f"Error for candidate {candidate} at {candidate['time']}: {str(e)}")</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error for candidate </span><span class="sc">{</span>candidate<span class="sc">}</span><span class="ss"> at </span><span class="sc">{</span>candidate[<span class="st">'time'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> e</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># def calibrate_candidate_duration(</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     candidate: pd.Series, data:xr.DataArray, data_resolution, ratio = 3/4</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ):</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     """</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     Calibrates the candidate duration.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     - If only one of 't.d_start' or 't.d_end' is provided, calculates the missing one based on the provided one and 'd_time'.</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     - Then if this is not enough points between 't.d_start' and 't.d_end', returns None for both.</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     Parameters</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     ----------</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     - candidate (pd.Series): The input candidate with potential missing 't.d_start' or 't.d_end'.</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     Returns</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     -------</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     - pd.Series: The calibrated candidate.</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     """</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#     start_notnull = pd.notnull(candidate['t.d_start'])</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     stop_notnull = pd.notnull(candidate['t.d_end'])</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#     match start_notnull, stop_notnull:</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#         case (True, True):</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#             t.d_start = candidate['t.d_start']</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#             t.d_end = candidate['t.d_end']</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#         case (True, False):</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">#             t.d_start = candidate['t.d_start']</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#             t.d_end = candidate['d_time'] -  candidate['t.d_start'] + candidate['d_time']</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">#         case (False, True):</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">#             t.d_start = candidate['d_time'] -  candidate['t.d_end'] + candidate['d_time']</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#             t.d_end = candidate['t.d_end']</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">#         case (False, False):</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co">#             return pandas.Series({</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">#                 't.d_start': None,</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">#                 't.d_end': None,</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#             })</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#     duration = t.d_end - t.d_start</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">#     num_of_points_between = data.time.sel(time=slice(t.d_start, t.d_end)).count().item()</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co">#     if num_of_points_between &lt;= (duration/data_resolution) * ratio:</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co">#         t.d_start = None</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co">#         t.d_end = None</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="co">#     return pandas.Series({</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="co">#         't.d_start': t.d_start,</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="co">#         't.d_end': t.d_end,</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="co">#     })</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="cell-13" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_d_duration(vec: xr.DataArray, d_time, threshold) <span class="op">-&gt;</span> pd.Series:</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    vec_diff <span class="op">=</span> vec.differentiate(<span class="st">"time"</span>, datetime_unit<span class="op">=</span><span class="st">"s"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    vec_diff_mag <span class="op">=</span> linalg.norm(vec_diff, dims<span class="op">=</span><span class="st">'v_dim'</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    start_time, end_time <span class="op">=</span> find_start_end_times(vec_diff_mag, d_time, threshold)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series({</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'t.d_start'</span>: start_time,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'t.d_end'</span>: end_time,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<section id="calibrates-candidate-duration" class="level3">
-<h3 class="anchored" data-anchor-id="calibrates-candidate-duration">Calibrates candidate duration</h3>
-<p>This calibration is based on the assumption that the magnetic discontinuity is symmetric around the center of time, which is not always true.</p>
-<p>So instead of calibrating the duration, we drop the events. - Cons: Might influence the statistics of occurrence rate, but - Pros: More robust results about the properties of the magnetic discontinuity.</p>
-<div id="cell-15" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calibrate_candidate_duration(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    candidate: pd.Series, data:xr.DataArray, data_resolution, ratio <span class="op">=</span> <span class="dv">3</span><span class="op">/</span><span class="dv">4</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Calibrates the candidate duration. </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - If only one of 't.d_start' or 't.d_end' is provided, calculates the missing one based on the provided one and 'd_time'.</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - Then if this is not enough points between 't.d_start' and 't.d_end', returns None for both.</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">    - candidate (pd.Series): The input candidate with potential missing 't.d_start' or 't.d_end'.</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">    - pd.Series: The calibrated candidate.</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    start_notnull <span class="op">=</span> pd.notnull(candidate[<span class="st">'t.d_start'</span>])</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    stop_notnull <span class="op">=</span> pd.notnull(candidate[<span class="st">'t.d_end'</span>]) </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> start_notnull, stop_notnull:</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">True</span>, <span class="va">True</span>):</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            t.d_start <span class="op">=</span> candidate[<span class="st">'t.d_start'</span>]</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            t.d_end <span class="op">=</span> candidate[<span class="st">'t.d_end'</span>]</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">True</span>, <span class="va">False</span>):</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            t.d_start <span class="op">=</span> candidate[<span class="st">'t.d_start'</span>]</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>            t.d_end <span class="op">=</span> candidate[<span class="st">'d_time'</span>] <span class="op">-</span>  candidate[<span class="st">'t.d_start'</span>] <span class="op">+</span> candidate[<span class="st">'d_time'</span>]</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">False</span>, <span class="va">True</span>):</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>            t.d_start <span class="op">=</span> candidate[<span class="st">'d_time'</span>] <span class="op">-</span>  candidate[<span class="st">'t.d_end'</span>] <span class="op">+</span> candidate[<span class="st">'d_time'</span>]</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            t.d_end <span class="op">=</span> candidate[<span class="st">'t.d_end'</span>]</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        case (<span class="va">False</span>, <span class="va">False</span>):</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> pandas.Series({</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                <span class="st">'t.d_start'</span>: <span class="va">None</span>,</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                <span class="st">'t.d_end'</span>: <span class="va">None</span>,</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            })</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    duration <span class="op">=</span> t.d_end <span class="op">-</span> t.d_start</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    num_of_points_between <span class="op">=</span> data.time.sel(time<span class="op">=</span><span class="bu">slice</span>(t.d_start, t.d_end)).count().item()</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num_of_points_between <span class="op">&lt;=</span> (duration<span class="op">/</span>data_resolution) <span class="op">*</span> ratio:</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        t.d_start <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        t.d_end <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pandas.Series({</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">'t.d_start'</span>: t.d_start,</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">'t.d_end'</span>: t.d_end,</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="cell-16" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calibrate_candidates_duration(candidates, sat_fgm, data_resolution):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calibrate duration</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    calibrate_duration <span class="op">=</span> pdp.ApplyToRows(</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> candidate: calibrate_candidate_duration(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            candidate, sat_fgm, data_resolution</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        func_desc<span class="op">=</span><span class="st">"calibrating duration parameters if needed"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    temp_candidates <span class="op">=</span> candidates.loc[</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> df: df[<span class="st">"t.d_start"</span>].isnull() <span class="op">|</span> df[<span class="st">"t.d_end"</span>].isnull()</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ]  <span class="co"># temp_candidates = candidates.query('t.d_start.isnull() | t.d_end.isnull()') # not implemented in `modin`</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> temp_candidates.empty:</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        temp_candidates_updated <span class="op">=</span> calibrate_duration(sat_fgm, data_resolution).<span class="bu">apply</span>(</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            temp_candidates</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        candidates.update(temp_candidates_updated)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> candidates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># def calibrate_candidates_duration(candidates, sat_fgm, data_resolution):</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     # calibrate duration</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     calibrate_duration = pdp.ApplyToRows(</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#         lambda candidate: calibrate_candidate_duration(</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#             candidate, sat_fgm, data_resolution</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#         ),</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#         func_desc="calibrating duration parameters if needed",</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     temp_candidates = candidates.loc[</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#         lambda df: df["t.d_start"].isnull() | df["t.d_end"].isnull()</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     ]  # temp_candidates = candidates.query('t.d_start.isnull() | t.d_end.isnull()') # not implemented in `modin`</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     if not temp_candidates.empty:</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#         temp_candidates_updated = calibrate_duration(sat_fgm, data_resolution).apply(</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#             temp_candidates</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#         candidates.update(temp_candidates_updated)</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     return candidates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 

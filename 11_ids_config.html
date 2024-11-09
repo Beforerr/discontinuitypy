@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.33">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>discontinuitypy – ids_config</title>
+<title>ids_config – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,6 +101,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tutorials/tutorial.html"> 
+<span class="menu-text">Tutorial</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -163,12 +167,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12_mission_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12 Mission Config</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
@@ -188,17 +186,75 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient method</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Properties</span></a>
+            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/solo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/stereo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stereo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/themis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Themis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missions/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./plot/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Alfvenicity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./properties/00_duration.html" class="sidebar-item-text sidebar-link">
@@ -215,17 +271,40 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./utils/00_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
+ <span class="menu-text">Utilities functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00 Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -236,8 +315,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analyzing Utils</span></a>
+  <a href="./utils/02_ops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 Ops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utils/naming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standardization</span></a>
   </div>
 </li>
       </ul>
@@ -252,9 +337,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#standardize_plasma_data" id="toc-standardize_plasma_data" class="nav-link active" data-scroll-target="#standardize_plasma_data">standardize_plasma_data</a></li>
-  <li><a href="#idsconfig" id="toc-idsconfig" class="nav-link" data-scroll-target="#idsconfig">IDsConfig</a></li>
+  <li><a href="#idsconfig" id="toc-idsconfig" class="nav-link active" data-scroll-target="#idsconfig">IDsConfig</a></li>
+  <li><a href="#split_timerange" id="toc-split_timerange" class="nav-link" data-scroll-target="#split_timerange">split_timerange</a></li>
   <li><a href="#speasyidsconfig" id="toc-speasyidsconfig" class="nav-link" data-scroll-target="#speasyidsconfig">SpeasyIDsConfig</a></li>
+  <li><a href="#get_vars" id="toc-get_vars" class="nav-link" data-scroll-target="#get_vars">get_vars</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -266,75 +352,92 @@ ul.task-list li input[type="checkbox"] {
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/config.py#L19" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="standardize_plasma_data" class="level3">
-<h3 class="anchored" data-anchor-id="standardize_plasma_data">standardize_plasma_data</h3>
-<blockquote class="blockquote">
-<pre><code> standardize_plasma_data (data:polars.lazyframe.frame.LazyFrame,
-                          meta:space_analysis.ds.meta.PlasmaMeta)</code></pre>
-</blockquote>
-<p>*Standardize plasma data columns across different datasets.</p>
-<p>Notes: meta will be updated with the new column names*</p>
-<hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/config.py#L32" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
 <section id="idsconfig" class="level3">
 <h3 class="anchored" data-anchor-id="idsconfig">IDsConfig</h3>
 <blockquote class="blockquote">
 <pre><code> IDsConfig (name:str=None, mag_data:polars.lazyframe.frame.LazyFrame=None,
-            ts:datetime.timedelta=None, tau:datetime.timedelta=None,
+            mag_meta:space_analysis.core.MagVariable=MagVariable(name=None
+            , description=None, unit=None, ts=None, timerange=None,
+            dataset=None, parameter=None, B_cols=None),
+            ts:datetime.timedelta=None,
             events:polars.dataframe.frame.DataFrame=None,
+            detect_func:Callable=&lt;function detect_variance&gt;,
+            detect_kwargs:dict=None,
             method:Literal['fit','derivative']='fit',
-            mag_meta:space_analysis.ds.meta.Meta=Meta(dataset=None,
-            parameters=None), bcols:list[str]=None,
+            file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runne
+            r/work/discontinuitypy/discontinuitypy/data'),
             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_meta
-            :space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset=None,
-            parameters=None, density_col=None, velocity_cols=None,
-            speed_col=None, temperature_col=None),
+            :space_analysis.meta.PlasmaDataset=PlasmaDataset(timerange=Non
+            e, variables=None, name=None, dataset=None, parameters=None,
+            ts=None, temperature_col=None, para_col=None, perp_cols=None,
+            velocity_cols=None, speed_col=None, density_col=None),
             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp_
-            meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,
-            parameters=None, para_col=None, perp_cols=None),
+            meta:space_analysis.meta.TempDataset=TempDataset(timerange=Non
+            e, variables=None, name=None, dataset=None, parameters=None,
+            ts=None, temperature_col=None, para_col=None, perp_cols=None),
             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_meta
-            :space_analysis.ds.meta.TempMeta=TempMeta(dataset=None,
-            parameters=None, para_col=None, perp_cols=None),
+            :space_analysis.meta.TempDataset=TempDataset(timerange=None,
+            variables=None, name=None, dataset=None, parameters=None,
+            ts=None, temperature_col=None, para_col=None, perp_cols=None),
             timerange:list[datetime.datetime]=None, split:int=1,
-            fmt:str='arrow', **extra_data:Any)</code></pre>
+            **extra_data:Any)</code></pre>
 </blockquote>
 <p>*Extend the IDsDataset class to provide additional functionalities:</p>
 <ul>
-<li>Export and load data</li>
-<li>Standardize data</li>
-<li>Split data to handle large datasets*</li>
+<li>Split data to handle large datasets (thus often requiring getting data lazily)*</li>
 </ul>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/config.py#L76" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="split_timerange" class="level3">
+<h3 class="anchored" data-anchor-id="split_timerange">split_timerange</h3>
+<blockquote class="blockquote">
+<pre><code> split_timerange (timerange:list[datetime.datetime], split:int=1)</code></pre>
+</blockquote>
+<p><em>Split a timerange into multiple timeranges.</em></p>
+<hr>
 </section>
 <section id="speasyidsconfig" class="level3">
 <h3 class="anchored" data-anchor-id="speasyidsconfig">SpeasyIDsConfig</h3>
 <blockquote class="blockquote">
 <pre><code> SpeasyIDsConfig (name:str=None,
-                  mag_data:polars.lazyframe.frame.LazyFrame=None,
-                  ts:datetime.timedelta=None, tau:datetime.timedelta=None,
+                  mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta
+                  :space_analysis.core.MagVariable=MagVariable(name=None,
+                  description=None, unit=None, ts=None, timerange=None,
+                  dataset=None, parameter=None, B_cols=None),
+                  ts:datetime.timedelta=None,
                   events:polars.dataframe.frame.DataFrame=None,
+                  detect_func:Callable=&lt;function detect_variance&gt;,
+                  detect_kwargs:dict=None,
                   method:Literal['fit','derivative']='fit',
-                  mag_meta:space_analysis.ds.meta.Meta=Meta(dataset=None,
-                  parameters=None), bcols:list[str]=None,
+                  file_fmt:str='arrow', file_path:pathlib.Path=Path('/home
+                  /runner/work/discontinuitypy/discontinuitypy/data'),
                   plasma_data:polars.lazyframe.frame.LazyFrame=None, plasm
-                  a_meta:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(data
-                  set=None, parameters=None, density_col=None,
-                  velocity_cols=None, speed_col=None,
-                  temperature_col=None),
+                  a_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset(t
+                  imerange=None, variables=None, name=None, dataset=None,
+                  parameters=None, ts=None, temperature_col=None,
+                  para_col=None, perp_cols=None, velocity_cols=None,
+                  speed_col=None, density_col=None),
                   ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion
-                  _temp_meta:space_analysis.ds.meta.TempMeta=TempMeta(data
-                  set=None, parameters=None, para_col=None,
-                  perp_cols=None),
+                  _temp_meta:space_analysis.meta.TempDataset=TempDataset(t
+                  imerange=None, variables=None, name=None, dataset=None,
+                  parameters=None, ts=None, temperature_col=None,
+                  para_col=None, perp_cols=None),
                   e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_tem
-                  p_meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset=
-                  None, parameters=None, para_col=None, perp_cols=None),
+                  p_meta:space_analysis.meta.TempDataset=TempDataset(timer
+                  ange=None, variables=None, name=None, dataset=None,
+                  parameters=None, ts=None, temperature_col=None,
+                  para_col=None, perp_cols=None),
                   timerange:list[datetime.datetime]=None, split:int=1,
-                  fmt:str='arrow', provider:str='cda', **extra_data:Any)</code></pre>
+                  provider:str='cda', **extra_data:Any)</code></pre>
 </blockquote>
 <p><em>Based on <code>speasy</code> Variables to get the data</em></p>
+<hr>
+</section>
+<section id="get_vars" class="level3">
+<h3 class="anchored" data-anchor-id="get_vars">get_vars</h3>
+<blockquote class="blockquote">
+<pre><code> get_vars (vars:str, timerange:list[datetime.datetime]=None)</code></pre>
+</blockquote>
 
 
 </section>

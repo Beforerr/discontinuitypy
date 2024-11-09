@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.33">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>discontinuitypy – mission_config</title>
+<title>ops – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,10 +69,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <meta property="og:title" content="discontinuitypy">
-<meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta property="og:site_name" content="discontinuitypy">
 <meta name="twitter:title" content="discontinuitypy">
-<meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -117,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">discontinuitypy</span>
     </a>
   </div>
@@ -128,12 +92,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link active" href="../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/tutorial.html"> 
+<span class="menu-text">Tutorial</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -147,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12_mission_config.html">12 Mission Config</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/02_ops.html">02 Ops</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -161,49 +129,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_ids_finder.html" class="sidebar-item-text sidebar-link">
+  <a href="../00_ids_finder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID identification</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_ids_properties.html" class="sidebar-item-text sidebar-link">
+  <a href="../02_ids_properties.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID properties</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_mag_plasma.html" class="sidebar-item-text sidebar-link">
+  <a href="../03_mag_plasma.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combine magnetic field data and plasma data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11_ids_config.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_ids_config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 Ids Config</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12_mission_config.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">12 Mission Config</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -218,16 +180,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./detection/01_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../detection/01_variance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient method</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Properties</span></a>
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -235,22 +203,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_duration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Duration</span></a>
+  <a href="../missions/solo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solo</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_mva.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Minimum variance analysis (MVA)</span></a>
+  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stereo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Themis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
+            <a href="../plot/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -258,20 +238,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/00_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Utils</span></a>
+  <a href="../plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Alfvenicity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Duration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/01_plotting.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/00_mva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Minimum variance analysis (MVA)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/00_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Utilities functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00 Dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/01_plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MVA plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analyzing Utils</span></a>
+  <a href="../utils/02_ops.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">02 Ops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/naming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standardization</span></a>
   </div>
 </li>
       </ul>
@@ -286,8 +335,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#windmeta" id="toc-windmeta" class="nav-link active" data-scroll-target="#windmeta">WindMeta</a></li>
-  <li><a href="#windconfig" id="toc-windconfig" class="nav-link" data-scroll-target="#windconfig">WindConfig</a></li>
+  <li><a href="#vector_project_pl" id="toc-vector_project_pl" class="nav-link active" data-scroll-target="#vector_project_pl">vector_project_pl</a></li>
+  <li><a href="#vector_project" id="toc-vector_project" class="nav-link" data-scroll-target="#vector_project">vector_project</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -299,92 +348,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/missions.py#L28" target="_blank" style="float:right; font-size:smaller">source</a></p>
-<section id="windmeta" class="level3">
-<h3 class="anchored" data-anchor-id="windmeta">WindMeta</h3>
+<section id="vector_project_pl" class="level3">
+<h3 class="anchored" data-anchor-id="vector_project_pl">vector_project_pl</h3>
 <blockquote class="blockquote">
-<pre><code> WindMeta (name:str='Wind',
-           ts:datetime.timedelta=datetime.timedelta(microseconds=90909),
-           mag_meta:space_analysis.ds.meta.Meta=Meta(dataset='WI_H2_MFI',
-           parameters=['BGSE']), plasma_meta:space_analysis.ds.meta.Plasma
-           Meta=PlasmaMeta(dataset='WI_PM_3DP', parameters=['P_DENS',
-           'P_VELS', 'P_TEMP'], density_col=None, velocity_cols=None,
-           speed_col=None, temperature_col=None, description='Wind 3dp,
-           PESA LOW 1 spin resolution ion (proton and alpha) moments
-           (computed on spacecraft)'), ion_temp_meta:space_analysis.ds.met
-           a.TempMeta=TempMeta(dataset='WI_PLSP_3DP',
-           parameters=['MOM.P.MAGT3'], para_col='proton_MagT3_Z',
-           perp_cols=['proton_MagT3_X', 'proton_MagT3_Y']), e_temp_meta:sp
-           ace_analysis.ds.meta.TempMeta=TempMeta(dataset='WI_ELM2_3DP',
-           parameters=['MAGT3'], para_col='electron_MagT3_Para',
-           perp_cols=['electron_MagT3_Perp1', 'electron_MagT3_Perp2']))</code></pre>
+<pre><code> vector_project_pl (df:polars.dataframe.frame.DataFrame, v1_cols, v2_cols,
+                    name=None)</code></pre>
 </blockquote>
-<p>*Usage docs: https://docs.pydantic.dev/2.7/concepts/models/</p>
-<p>A base class for creating Pydantic models.</p>
-<p>Attributes: <strong>class_vars</strong>: The names of classvars defined on the model. <strong>private_attributes</strong>: Metadata about the private attributes of the model. <strong>signature</strong>: The signature for instantiating the model.</p>
-<pre><code>__pydantic_complete__: Whether model building is completed, or if there are still undefined fields.
-__pydantic_core_schema__: The pydantic-core schema used to build the SchemaValidator and SchemaSerializer.
-__pydantic_custom_init__: Whether the model has a custom `__init__` function.
-__pydantic_decorators__: Metadata containing the decorators defined on the model.
-    This replaces `Model.__validators__` and `Model.__root_validators__` from Pydantic V1.
-__pydantic_generic_metadata__: Metadata for generic models; contains data used for a similar purpose to
-    __args__, __origin__, __parameters__ in typing-module generics. May eventually be replaced by these.
-__pydantic_parent_namespace__: Parent namespace of the model, used for automatic rebuilding of models.
-__pydantic_post_init__: The name of the post-init method for the model, if defined.
-__pydantic_root_model__: Whether the model is a `RootModel`.
-__pydantic_serializer__: The pydantic-core SchemaSerializer used to dump instances of the model.
-__pydantic_validator__: The pydantic-core SchemaValidator used to validate instances of the model.
-
-__pydantic_extra__: An instance attribute with the values of extra fields from validation when
-    `model_config['extra'] == 'allow'`.
-__pydantic_fields_set__: An instance attribute with the names of fields explicitly set.
-__pydantic_private__: Instance attribute with the values of private attributes set on the model instance.*</code></pre>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/missions.py#L50" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
-<section id="windconfig" class="level3">
-<h3 class="anchored" data-anchor-id="windconfig">WindConfig</h3>
+<section id="vector_project" class="level3">
+<h3 class="anchored" data-anchor-id="vector_project">vector_project</h3>
 <blockquote class="blockquote">
-<pre><code> WindConfig (name:str='Wind',
-             mag_data:polars.lazyframe.frame.LazyFrame=None,
-             ts:datetime.timedelta=datetime.timedelta(microseconds=90909),
-             tau:datetime.timedelta=None,
-             events:polars.dataframe.frame.DataFrame=None,
-             method:Literal['fit','derivative']='fit', mag_meta:space_anal
-             ysis.ds.meta.Meta=Meta(dataset='WI_H2_MFI',
-             parameters=['BGSE']), bcols:list[str]=None,
-             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met
-             a:space_analysis.ds.meta.PlasmaMeta=PlasmaMeta(dataset='WI_PM
-             _3DP', parameters=['P_DENS', 'P_VELS', 'P_TEMP'],
-             density_col=None, velocity_cols=None, speed_col=None,
-             temperature_col=None, description='Wind 3dp, PESA LOW 1 spin
-             resolution ion (proton and alpha) moments (computed on
-             spacecraft)'),
-             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp
-             _meta:space_analysis.ds.meta.TempMeta=TempMeta(dataset='WI_PL
-             SP_3DP', parameters=['MOM.P.MAGT3'],
-             para_col='proton_MagT3_Z', perp_cols=['proton_MagT3_X',
-             'proton_MagT3_Y']),
-             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met
-             a:space_analysis.ds.meta.TempMeta=TempMeta(dataset='WI_ELM2_3
-             DP', parameters=['MAGT3'], para_col='electron_MagT3_Para',
-             perp_cols=['electron_MagT3_Perp1', 'electron_MagT3_Perp2']),
-             timerange:list[datetime.datetime]=None, split:int=1,
-             fmt:str='arrow', provider:str='cda', **extra_data:Any)</code></pre>
+<pre><code> vector_project (v1:xarray.core.dataarray.DataArray,
+                 v2:xarray.core.dataarray.DataArray, dim='v_dim')</code></pre>
 </blockquote>
-<p><em>Based on <code>speasy</code> Variables to get the data</em></p>
-<div id="cell-3" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> WindConfig(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    tau<span class="op">=</span>timedelta(minutes<span class="op">=</span><span class="dv">1</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>config.plasma_meta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<pre><code>PlasmaMeta(dataset='WI_PM_3DP', parameters=['P_DENS', 'P_VELS', 'P_TEMP'], density_col=None, velocity_cols=None, speed_col=None, temperature_col=None)</code></pre>
-</div>
-</div>
 
 
 </section>

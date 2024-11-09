@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.33">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>discontinuitypy – Utils</title>
+<title>Utilities functions – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,11 +68,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="discontinuitypy - Utils">
-<meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
+<meta property="og:title" content="Utilities functions – discontinuitypy">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="discontinuitypy - Utils">
-<meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
+<meta name="twitter:title" content="Utilities functions – discontinuitypy">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -101,6 +99,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/tutorial.html"> 
+<span class="menu-text">Tutorial</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -113,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utils</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utilities functions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -163,12 +165,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../12_mission_config.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12 Mission Config</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
@@ -188,17 +184,75 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient method</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Properties</span></a>
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/solo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stereo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/themis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Themis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wind</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../plot/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">index.html</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Alfvenicity</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Properties</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
@@ -215,17 +269,40 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Utils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../utils/00_basic.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Utils</span></a>
+ <span class="menu-text">Utilities functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00 Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -236,8 +313,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../utils/02_analysis_utils.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analyzing Utils</span></a>
+  <a href="../utils/02_ops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 Ops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../utils/naming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Standardization</span></a>
   </div>
 </li>
       </ul>
@@ -252,9 +335,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#utilities-functions" id="toc-utilities-functions" class="nav-link active" data-scroll-target="#utilities-functions">Utilities functions</a></li>
-  <li><a href="#utils" id="toc-utils" class="nav-link" data-scroll-target="#utils">Utils</a></li>
-  <li><a href="#polars" id="toc-polars" class="nav-link" data-scroll-target="#polars"><code>Polars</code></a>
+  <li><a href="#polars" id="toc-polars" class="nav-link active" data-scroll-target="#polars"><code>Polars</code></a>
   <ul class="collapse">
   <li><a href="#filter_tranges_df" id="toc-filter_tranges_df" class="nav-link" data-scroll-target="#filter_tranges_df">filter_tranges_df</a></li>
   <li><a href="#filter_tranges" id="toc-filter_tranges" class="nav-link" data-scroll-target="#filter_tranges">filter_tranges</a></li>
@@ -270,7 +351,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#resample-1" id="toc-resample-1" class="nav-link" data-scroll-target="#resample-1">resample</a></li>
   <li><a href="#resample-2" id="toc-resample-2" class="nav-link" data-scroll-target="#resample-2">resample</a></li>
   <li><a href="#calc_vec_mag" id="toc-calc_vec_mag" class="nav-link" data-scroll-target="#calc_vec_mag">calc_vec_mag</a></li>
-  <li><a href="#df2ts" id="toc-df2ts" class="nav-link" data-scroll-target="#df2ts">df2ts</a></li>
   <li><a href="#check_fgm" id="toc-check_fgm" class="nav-link" data-scroll-target="#check_fgm">check_fgm</a></li>
   </ul></li>
   </ul>
@@ -279,9 +359,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utils</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utils</a></li><li class="breadcrumb-item"><a href="../utils/00_basic.html">Utilities functions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Utils</h1>
+<h1 class="title">Utilities functions</h1>
 </div>
 
 
@@ -299,16 +379,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<section id="utilities-functions" class="level2">
-<h2 class="anchored" data-anchor-id="utilities-functions">Utilities functions</h2>
-</section>
-<section id="utils" class="level2">
-<h2 class="anchored" data-anchor-id="utils">Utils</h2>
-</section>
 <section id="polars" class="level2">
 <h2 class="anchored" data-anchor-id="polars"><code>Polars</code></h2>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L53" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="filter_tranges_df" class="level3">
 <h3 class="anchored" data-anchor-id="filter_tranges_df">filter_tranges_df</h3>
 <blockquote class="blockquote">
@@ -317,7 +390,6 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p><em>- Filter data by time ranges</em></p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L35" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="filter_tranges" class="level3">
 <h3 class="anchored" data-anchor-id="filter_tranges">filter_tranges</h3>
@@ -336,7 +408,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="partition-the-dataset-by-time" class="level4">
 <h4 class="anchored" data-anchor-id="partition-the-dataset-by-time">Partition the dataset by time</h4>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L129" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 </section>
 <section id="partition_data_by_time" class="level3">
@@ -350,7 +421,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame. method: The method to partition the data.</p>
 <p>Returns: Partitioned DataFrame.*</p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L114" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="partition_data_by_year_month" class="level3">
 <h3 class="anchored" data-anchor-id="partition_data_by_year_month">partition_data_by_year_month</h3>
@@ -361,7 +431,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame.</p>
 <p>Returns: Partitioned DataFrame.*</p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L100" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="partition_data_by_year" class="level3">
 <h3 class="anchored" data-anchor-id="partition_data_by_year">partition_data_by_year</h3>
@@ -372,7 +441,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame.</p>
 <p>Returns: Partitioned DataFrame.*</p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L85" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="partition_data_by_ts" class="level3">
 <h3 class="anchored" data-anchor-id="partition_data_by_ts">partition_data_by_ts</h3>
@@ -384,7 +452,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Args: df: Input DataFrame. ts: Time interval.</p>
 <p>Returns: Partitioned DataFrame.*</p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L166" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="concat_partitions" class="level3">
 <h3 class="anchored" data-anchor-id="concat_partitions">concat_partitions</h3>
@@ -394,7 +461,6 @@ ul.task-list li input[type="checkbox"] {
 <p>*Concatenate input partitions into one DataFrame.</p>
 <p>Args: partitioned_input: A dictionary with partition ids as keys and load functions as values.*</p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L152" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="concat_df" class="level3">
 <h3 class="anchored" data-anchor-id="concat_df">concat_df</h3>
@@ -406,7 +472,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="resample-data" class="level4">
 <h4 class="anchored" data-anchor-id="resample-data">Resample data</h4>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L180" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 </section>
 <section id="format_timedelta" class="level3">
@@ -416,7 +481,6 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p><em>Format timedelta to <code>timedelta</code></em></p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L214" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="resample" class="level3">
 <h3 class="anchored" data-anchor-id="resample">resample</h3>
@@ -429,7 +493,6 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p><em>Resample the DataFrame</em></p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L214" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="resample-1" class="level3">
 <h3 class="anchored" data-anchor-id="resample-1">resample</h3>
@@ -442,7 +505,6 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p><em>Resample the DataFrame</em></p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L214" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="resample-2" class="level3">
 <h3 class="anchored" data-anchor-id="resample-2">resample</h3>
@@ -455,7 +517,6 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <p><em>Resample the DataFrame</em></p>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L271" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="calc_vec_mag" class="level3">
 <h3 class="anchored" data-anchor-id="calc_vec_mag">calc_vec_mag</h3>
@@ -463,18 +524,6 @@ ul.task-list li input[type="checkbox"] {
 <pre><code> calc_vec_mag (vec)</code></pre>
 </blockquote>
 <hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L235" target="_blank" style="float:right; font-size:smaller">source</a></p>
-</section>
-<section id="df2ts" class="level3">
-<h3 class="anchored" data-anchor-id="df2ts">df2ts</h3>
-<blockquote class="blockquote">
-<pre><code> df2ts (df:Union[pandas.core.frame.DataFrame,polars.dataframe.frame.DataFr
-        ame,polars.lazyframe.frame.LazyFrame], cols=None, time_col='time',
-        attrs=None, name=None)</code></pre>
-</blockquote>
-<p><em>Convert DataFrame to TimeSeries</em></p>
-<hr>
-<p><a href="https://github.com/Beforerr/discontinuitypy/blob/main/discontinuitypy/utils/basic.py#L275" target="_blank" style="float:right; font-size:smaller">source</a></p>
 </section>
 <section id="check_fgm" class="level3">
 <h3 class="anchored" data-anchor-id="check_fgm">check_fgm</h3>

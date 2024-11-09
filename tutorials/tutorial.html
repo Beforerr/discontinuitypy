@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Combine magnetic field data and plasma data – discontinuitypy</title>
+<title>tutorial – discontinuitypy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,41 +100,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
-<meta property="og:title" content="Combine magnetic field data and plasma data – discontinuitypy">
+<meta property="og:title" content="discontinuitypy">
 <meta property="og:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta property="og:site_name" content="discontinuitypy">
-<meta name="twitter:title" content="Combine magnetic field data and plasma data – discontinuitypy">
+<meta name="twitter:title" content="discontinuitypy">
 <meta name="twitter:description" content="A python package for identifying and analyzing discontinuities for time series data.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -112,7 +120,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">discontinuitypy</span>
     </a>
   </div>
@@ -123,15 +131,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link active" href="../about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tutorials/tutorial.html"> 
+    <a class="nav-link" href="../tutorials/tutorial.html"> 
 <span class="menu-text">Tutorial</span></a>
   </li>  
 </ul>
@@ -146,7 +154,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_mag_plasma.html">Combine magnetic field data and plasma data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/tutorial.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/tutorial.html">Tutorial</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -160,43 +168,43 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_ids_finder.html" class="sidebar-item-text sidebar-link">
+  <a href="../00_ids_finder.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding magnetic discontinuities</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_ids_detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../01_ids_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID identification</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_ids_properties.html" class="sidebar-item-text sidebar-link">
+  <a href="../02_ids_properties.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ID properties</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_mag_plasma.html" class="sidebar-item-text sidebar-link active">
+  <a href="../03_mag_plasma.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Combine magnetic field data and plasma data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10_datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_datasets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Datasets</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11_ids_config.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_ids_config.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 Ids Config</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -211,13 +219,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./detection/01_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../detection/01_variance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variance method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
+  <a href="../detection/02_TS_criterion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Gradient method</span></a>
   </div>
 </li>
@@ -225,7 +233,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./missions/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../missions/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mission-Ready Configurations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -234,25 +242,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/solo.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/solo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Solo</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/stereo.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/stereo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stereo</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/themis.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/themis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Themis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missions/wind.html" class="sidebar-item-text sidebar-link">
+  <a href="../missions/wind.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wind</span></a>
   </div>
 </li>
@@ -260,7 +268,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./plot/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../plot/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">index.html</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -269,7 +277,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
+  <a href="../plot/alfvenicity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Alfvenicity</span></a>
   </div>
 </li>
@@ -286,13 +294,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_duration.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/00_duration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Duration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./properties/00_mva.html" class="sidebar-item-text sidebar-link">
+  <a href="../properties/00_mva.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Minimum variance analysis (MVA)</span></a>
   </div>
 </li>
@@ -309,7 +317,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/tutorial.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/tutorial.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tutorial</span></a>
   </div>
 </li>
@@ -326,31 +334,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/00_basic.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/00_basic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Utilities functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/00_dataset.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/00_dataset.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00 Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/01_plotting.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/01_plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MVA plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/02_ops.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/02_ops.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02 Ops</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./utils/naming.html" class="sidebar-item-text sidebar-link">
+  <a href="../utils/naming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Standardization</span></a>
   </div>
 </li>
@@ -361,151 +369,590 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#interpolate2" id="toc-interpolate2" class="nav-link active" data-scroll-target="#interpolate2">interpolate2</a></li>
-  <li><a href="#interpolate" id="toc-interpolate" class="nav-link" data-scroll-target="#interpolate">interpolate</a></li>
-  <li><a href="#combine_features" id="toc-combine_features" class="nav-link" data-scroll-target="#combine_features">combine_features</a></li>
-  <li><a href="#additional-features-after-combining" id="toc-additional-features-after-combining" class="nav-link" data-scroll-target="#additional-features-after-combining">Additional features after combining</a></li>
-  <li><a href="#all-features" id="toc-all-features" class="nav-link" data-scroll-target="#all-features">All features</a>
-  <ul class="collapse">
-  <li><a href="#calc_plasma_parameter_change" id="toc-calc_plasma_parameter_change" class="nav-link" data-scroll-target="#calc_plasma_parameter_change">calc_plasma_parameter_change</a></li>
-  <li><a href="#calc_combined_features" id="toc-calc_combined_features" class="nav-link" data-scroll-target="#calc_combined_features">calc_combined_features</a></li>
-  <li><a href="#update_events_with_plasma_data" id="toc-update_events_with_plasma_data" class="nav-link" data-scroll-target="#update_events_with_plasma_data">update_events_with_plasma_data</a></li>
-  <li><a href="#update_events_with_temp_data" id="toc-update_events_with_temp_data" class="nav-link" data-scroll-target="#update_events_with_temp_data">update_events_with_temp_data</a></li>
-  <li><a href="#update_events" id="toc-update_events" class="nav-link" data-scroll-target="#update_events">update_events</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Combine magnetic field data and plasma data</h1>
+
+
+
+<p>A step-by-step guide to using the package</p>
+<div id="9873448b" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> timedelta</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> space_analysis.utils.speasy <span class="im">import</span> get_polars_ldf</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.mission.wind <span class="im">import</span> WindConfigBase, wi_mfi_h2_bgse</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.config <span class="im">import</span> SpeasyIDsConfig</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.core.pipeline <span class="im">import</span> ids_finder</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> discontinuitypy.detection <span class="im">import</span> detect_variance, detect_gradient</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> speasy.core.requests_scheduling.request_dispatch <span class="im">import</span> init_cdaweb</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>init_cdaweb()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>2024-11-09 08:03:00,931 INFO worker.py:1816 -- Started a local Ray instance.</code></pre>
+</div>
+</div>
+<div id="e374e8cd" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>timerange <span class="op">=</span> [<span class="st">"2021-05-03"</span>, <span class="st">"2021-05-04"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> timedelta(seconds<span class="op">=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="5de2be9f" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> get_polars_ldf(wi_mfi_h2_bgse, <span class="st">'cda'</span>, timerange)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/work/discontinuitypy/discontinuitypy/.pixi/envs/default/lib/python3.12/site-packages/speasy/core/data_containers.py:17: UserWarning: no explicit representation of timezones available for np.datetime64
+  return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<i>naive plan: (run <b>LazyFrame.explain(optimized=True)</b> to see the optimized plan)</i>
+    <p></p>
+    <div>DF ["Bx (GSE)", "By (GSE)", "Bz (GSE)", "time"]; PROJECT */4 COLUMNS; SELECTION: None</div>
+</div>
+</div>
+<div id="59e5abb5" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>detect_kwargs <span class="op">=</span> {<span class="st">"tau"</span>: tau}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ids_finder(data, detect_kwargs<span class="op">=</span>detect_kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>2024-11-09 08:03:11.174 | INFO     | discontinuitypy.detection.variance:_time_resolution:284 - Time resolution not provided. Using median time difference: 0:00:00.092000</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (179, 33)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">index_diff</th>
+<th data-quarto-table-cell-role="th">len</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">index_std</th>
+<th data-quarto-table-cell-role="th">index_fluctuation</th>
+<th data-quarto-table-cell-role="th">tstart</th>
+<th data-quarto-table-cell-role="th">tstop</th>
+<th data-quarto-table-cell-role="th">t.d_start</th>
+<th data-quarto-table-cell-role="th">t.d_end</th>
+<th data-quarto-table-cell-role="th">fit.vars.amplitude</th>
+<th data-quarto-table-cell-role="th">fit.vars.sigma</th>
+<th data-quarto-table-cell-role="th">t.d_time</th>
+<th data-quarto-table-cell-role="th">d_star</th>
+<th data-quarto-table-cell-role="th">fit.vars.c</th>
+<th data-quarto-table-cell-role="th">fit.stat.rsquared</th>
+<th data-quarto-table-cell-role="th">fit.stat.chisqr</th>
+<th data-quarto-table-cell-role="th">Vl</th>
+<th data-quarto-table-cell-role="th">Vn</th>
+<th data-quarto-table-cell-role="th">b_mag</th>
+<th data-quarto-table-cell-role="th">b_n</th>
+<th data-quarto-table-cell-role="th">B.vec.before</th>
+<th data-quarto-table-cell-role="th">B.vec.after</th>
+<th data-quarto-table-cell-role="th">B.before</th>
+<th data-quarto-table-cell-role="th">B.after</th>
+<th data-quarto-table-cell-role="th">db_mag</th>
+<th data-quarto-table-cell-role="th">bn_over_b</th>
+<th data-quarto-table-cell-role="th">db_over_b</th>
+<th data-quarto-table-cell-role="th">db_over_b_max</th>
+<th data-quarto-table-cell-role="th">dB_lmn</th>
+<th data-quarto-table-cell-role="th">dB</th>
+<th data-quarto-table-cell-role="th">k</th>
+<th data-quarto-table-cell-role="th">duration</th>
+</tr>
+<tr class="odd">
+<th>datetime[μs]</th>
+<th>f64</th>
+<th>u32</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>datetime[ns]</th>
+<th>datetime[μs]</th>
+<th>datetime[ns]</th>
+<th>datetime[ns]</th>
+<th>f64</th>
+<th>f64</th>
+<th>datetime[ns]</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>array[f64, 3]</th>
+<th>array[f64, 3]</th>
+<th>f64</th>
+<th>f64</th>
+<th>array[f64, 3]</th>
+<th>array[f64, 3]</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>array[f64, 3]</th>
+<th>array[f64, 3]</th>
+<th>array[f64, 3]</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2021-05-03 00:30:30</td>
+<td>0.125344</td>
+<td>326</td>
+<td>0.6324</td>
+<td>2.345717</td>
+<td>1.298162</td>
+<td>2021-05-03 00:30:15</td>
+<td>2021-05-03 00:30:45</td>
+<td>2021-05-03 00:30:24.214500</td>
+<td>2021-05-03 00:30:38.658500</td>
+<td>1.313742</td>
+<td>1.476119</td>
+<td>2021-05-03 00:30:31.730145047</td>
+<td>0.222499</td>
+<td>5.899705</td>
+<td>0.959526</td>
+<td>1.720214</td>
+<td>[-0.673699, 0.228118, 0.702916]</td>
+<td>[0.456659, -0.619326, 0.638669]</td>
+<td>9.71777</td>
+<td>-0.531629</td>
+<td>[5.675399, -7.288656, -0.50505]</td>
+<td>[7.440135, -6.891409, -0.574069]</td>
+<td>9.251473</td>
+<td>10.157593</td>
+<td>0.90612</td>
+<td>-0.054707</td>
+<td>0.093244</td>
+<td>0.105107</td>
+<td>[-1.764736, -0.397247, 0.069019]</td>
+<td>[-1.45123, 0.146876, 1.072016]</td>
+<td>[0.443778, -0.582931, 0.680626]</td>
+<td>2.952238</td>
+</tr>
+<tr class="even">
+<td>2021-05-03 00:34:30</td>
+<td>0.208116</td>
+<td>326</td>
+<td>0.992148</td>
+<td>2.78534</td>
+<td>1.870381</td>
+<td>2021-05-03 00:34:15</td>
+<td>2021-05-03 00:34:45</td>
+<td>2021-05-03 00:34:23.414500</td>
+<td>2021-05-03 00:34:40.894500</td>
+<td>-6.408313</td>
+<td>10.905394</td>
+<td>2021-05-03 00:34:28.029424257</td>
+<td>-0.146907</td>
+<td>2.743311</td>
+<td>0.816297</td>
+<td>21.829383</td>
+<td>[-0.816711, -0.489086, 0.306232]</td>
+<td>[-0.356477, 0.84494, 0.398748]</td>
+<td>9.750112</td>
+<td>8.781124</td>
+<td>[1.063286, 4.503267, 8.553347]</td>
+<td>[-2.962921, 3.783238, 8.59017]</td>
+<td>9.724698</td>
+<td>9.842907</td>
+<td>0.118209</td>
+<td>0.900618</td>
+<td>0.012124</td>
+<td>0.097433</td>
+<td>[4.026207, 0.720029, -0.036822]</td>
+<td>[2.948395, 2.156157, -1.840676]</td>
+<td>[-0.690227, 0.48683, -0.535336]</td>
+<td>21.810788</td>
+</tr>
+<tr class="odd">
+<td>2021-05-03 00:39:45</td>
+<td>0.552096</td>
+<td>326</td>
+<td>2.190388</td>
+<td>5.495312</td>
+<td>4.506598</td>
+<td>2021-05-03 00:39:30</td>
+<td>2021-05-03 00:40:00</td>
+<td>2021-05-03 00:39:30.418500</td>
+<td>2021-05-03 00:39:55.350500</td>
+<td>7.710203</td>
+<td>6.123306</td>
+<td>2021-05-03 00:39:46.375026413</td>
+<td>0.314789</td>
+<td>-3.437745</td>
+<td>0.86063</td>
+<td>148.377987</td>
+<td>[-0.616492, -0.671008, 0.411929]</td>
+<td>[-0.374726, 0.710173, 0.596016]</td>
+<td>11.34035</td>
+<td>10.858305</td>
+<td>[-3.969673, 1.634949, 10.270444]</td>
+<td>[3.180624, 2.280405, 10.644852]</td>
+<td>11.131638</td>
+<td>11.341494</td>
+<td>0.209856</td>
+<td>0.957493</td>
+<td>0.018505</td>
+<td>0.059703</td>
+<td>[-7.150297, -0.645457, -0.374409]</td>
+<td>[-4.101444, -4.669544, 3.613455]</td>
+<td>[0.796464, -0.288207, 0.531584]</td>
+<td>12.246613</td>
+</tr>
+<tr class="even">
+<td>2021-05-03 00:47:00</td>
+<td>0.201195</td>
+<td>326</td>
+<td>0.764962</td>
+<td>2.750701</td>
+<td>1.5489</td>
+<td>2021-05-03 00:46:45</td>
+<td>2021-05-03 00:47:15</td>
+<td>2021-05-03 00:46:57.998500</td>
+<td>2021-05-03 00:47:14.926500</td>
+<td>5.052715</td>
+<td>7.302624</td>
+<td>2021-05-03 00:47:01.640399350</td>
+<td>0.172976</td>
+<td>-3.231779</td>
+<td>0.775804</td>
+<td>28.786461</td>
+<td>[-0.133932, -0.662663, 0.736845]</td>
+<td>[-0.207375, 0.745823, 0.633043]</td>
+<td>12.379368</td>
+<td>12.345059</td>
+<td>[-2.449219, 0.500697, 12.196131]</td>
+<td>[1.716941, -0.054783, 12.269261]</td>
+<td>12.449698</td>
+<td>12.388933</td>
+<td>-0.060765</td>
+<td>0.997229</td>
+<td>0.004909</td>
+<td>0.018874</td>
+<td>[-4.166161, 0.55548, -0.07313]</td>
+<td>[-1.111435, -2.743999, 2.984289]</td>
+<td>[0.945615, -0.030835, 0.323822]</td>
+<td>14.605248</td>
+</tr>
+<tr class="odd">
+<td>2021-05-03 00:52:00</td>
+<td>0.16337</td>
+<td>326</td>
+<td>1.164931</td>
+<td>2.635435</td>
+<td>1.224977</td>
+<td>2021-05-03 00:51:45</td>
+<td>2021-05-03 00:52:15</td>
+<td>2021-05-03 00:51:58.654500</td>
+<td>2021-05-03 00:52:02.610500</td>
+<td>3.296497</td>
+<td>0.13873</td>
+<td>2021-05-03 00:51:58.997959953</td>
+<td>5.940484</td>
+<td>-2.456942</td>
+<td>0.99365</td>
+<td>0.172111</td>
+<td>[-0.041939, -0.824516, 0.564282]</td>
+<td>[-0.407089, 0.529874, 0.743984]</td>
+<td>12.286048</td>
+<td>12.170159</td>
+<td>[-2.230594, 1.312538, 12.16445]</td>
+<td>[0.953278, 1.477694, 12.157318]</td>
+<td>12.436726</td>
+<td>12.283839</td>
+<td>-0.152887</td>
+<td>0.990567</td>
+<td>0.012444</td>
+<td>0.016755</td>
+<td>[-3.183873, -0.165156, 0.007132]</td>
+<td>[0.020068, -2.596148, 1.850402]</td>
+<td>[0.954578, 0.177797, 0.2391]</td>
+<td>0.27746</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>2021-05-03 21:38:15</td>
+<td>0.466696</td>
+<td>326</td>
+<td>0.887063</td>
+<td>2.105667</td>
+<td>1.89228</td>
+<td>2021-05-03 21:38:00</td>
+<td>2021-05-03 21:38:30</td>
+<td>2021-05-03 21:38:00.422500</td>
+<td>2021-05-03 21:38:11.186500</td>
+<td>-2.160909</td>
+<td>0.245154</td>
+<td>2021-05-03 21:38:09.971531761</td>
+<td>-2.203624</td>
+<td>0.442165</td>
+<td>0.769161</td>
+<td>14.877331</td>
+<td>[0.529513, 0.158648, 0.833335]</td>
+<td>[-0.847946, 0.070547, 0.525367]</td>
+<td>4.760393</td>
+<td>0.244848</td>
+<td>[1.415673, 4.550119, 0.197403]</td>
+<td>[-2.0199, 4.405272, 0.257623]</td>
+<td>4.769348</td>
+<td>4.853121</td>
+<td>0.083773</td>
+<td>0.051435</td>
+<td>0.017598</td>
+<td>0.085579</td>
+<td>[3.435572, 0.144847, -0.06022]</td>
+<td>[-1.866688, -0.683444, -2.806448]</td>
+<td>[-0.835162, 0.024889, 0.549441]</td>
+<td>0.490308</td>
+</tr>
+<tr class="even">
+<td>2021-05-03 22:33:30</td>
+<td>0.170299</td>
+<td>326</td>
+<td>0.545855</td>
+<td>2.079462</td>
+<td>1.260535</td>
+<td>2021-05-03 22:33:15</td>
+<td>2021-05-03 22:33:45</td>
+<td>2021-05-03 22:33:24.750500</td>
+<td>2021-05-03 22:33:34.686500</td>
+<td>3.048572</td>
+<td>4.436167</td>
+<td>2021-05-03 22:33:28.742676129</td>
+<td>0.171802</td>
+<td>-1.759264</td>
+<td>0.945931</td>
+<td>1.342413</td>
+<td>[-0.935648, -0.242784, 0.256162]</td>
+<td>[-0.227557, 0.969783, 0.087972]</td>
+<td>4.718245</td>
+<td>4.621603</td>
+<td>[-0.863235, -0.828505, 4.613656]</td>
+<td>[0.798578, -0.774968, 4.605322]</td>
+<td>4.766279</td>
+<td>4.737858</td>
+<td>-0.028421</td>
+<td>0.979517</td>
+<td>0.006024</td>
+<td>0.033057</td>
+<td>[-1.661812, -0.053538, 0.008334]</td>
+<td>[-1.538531, -0.41283, 0.476497]</td>
+<td>[0.255627, 0.149739, 0.955109]</td>
+<td>8.872334</td>
+</tr>
+<tr class="odd">
+<td>2021-05-03 22:50:45</td>
+<td>0.32467</td>
+<td>326</td>
+<td>0.907223</td>
+<td>2.209682</td>
+<td>1.208073</td>
+<td>2021-05-03 22:50:30</td>
+<td>2021-05-03 22:51:00</td>
+<td>2021-05-03 22:50:33.954500</td>
+<td>2021-05-03 22:50:53.090500</td>
+<td>-2.033492</td>
+<td>0.718609</td>
+<td>2021-05-03 22:50:39.467709402</td>
+<td>-0.70744</td>
+<td>1.189105</td>
+<td>0.942473</td>
+<td>8.871784</td>
+<td>[0.994594, 0.003999, 0.103763]</td>
+<td>[-0.004575, 0.999975, 0.005322]</td>
+<td>4.878452</td>
+<td>4.786009</td>
+<td>[1.533312, 0.102907, 4.677923]</td>
+<td>[-1.405932, -0.108679, 4.694377]</td>
+<td>4.923881</td>
+<td>4.901595</td>
+<td>-0.022286</td>
+<td>0.981051</td>
+<td>0.004568</td>
+<td>0.056296</td>
+<td>[2.939245, 0.211586, -0.016454]</td>
+<td>[-2.94538, 0.00348, -0.094455]</td>
+<td>[-0.03206, -0.007056, 0.999461]</td>
+<td>1.437219</td>
+</tr>
+<tr class="even">
+<td>2021-05-03 22:52:45</td>
+<td>0.310895</td>
+<td>326</td>
+<td>0.797825</td>
+<td>3.197615</td>
+<td>1.347189</td>
+<td>2021-05-03 22:52:30</td>
+<td>2021-05-03 22:53:00</td>
+<td>2021-05-03 22:52:36.590500</td>
+<td>2021-05-03 22:52:46.066500</td>
+<td>-2.489106</td>
+<td>1.558663</td>
+<td>2021-05-03 22:52:40.073399098</td>
+<td>-0.399237</td>
+<td>1.207817</td>
+<td>0.949772</td>
+<td>3.125453</td>
+<td>[-0.556024, -0.026706, 0.830737]</td>
+<td>[-0.009756, 0.999625, 0.025605]</td>
+<td>4.98287</td>
+<td>4.878115</td>
+<td>[0.997896, 0.097368, 4.806209]</td>
+<td>[-1.603642, 0.642649, 4.67341]</td>
+<td>4.909676</td>
+<td>4.982512</td>
+<td>0.072836</td>
+<td>0.978977</td>
+<td>0.014617</td>
+<td>0.048194</td>
+<td>[2.601538, -0.545281, 0.132799]</td>
+<td>[1.901002, -0.066617, -1.861377]</td>
+<td>[-0.696347, 0.074434, -0.713835]</td>
+<td>3.117326</td>
+</tr>
+<tr class="odd">
+<td>2021-05-03 23:40:30</td>
+<td>0.430462</td>
+<td>326</td>
+<td>0.926707</td>
+<td>2.399418</td>
+<td>1.270198</td>
+<td>2021-05-03 23:40:15</td>
+<td>2021-05-03 23:40:45</td>
+<td>2021-05-03 23:40:15.766500</td>
+<td>2021-05-03 23:40:40.054500</td>
+<td>-3.682839</td>
+<td>4.194496</td>
+<td>2021-05-03 23:40:20.731550908</td>
+<td>-0.219504</td>
+<td>2.464244</td>
+<td>0.962084</td>
+<td>8.113988</td>
+<td>[-0.720814, -0.370653, 0.585699]</td>
+<td>[0.667771, -0.597827, 0.443492]</td>
+<td>5.361672</td>
+<td>-3.940375</td>
+<td>[1.937234, -3.358265, -3.662144]</td>
+<td>[-1.431728, -3.455101, -3.837568]</td>
+<td>5.333115</td>
+<td>5.358591</td>
+<td>0.025476</td>
+<td>-0.734915</td>
+<td>0.004751</td>
+<td>0.049321</td>
+<td>[3.368961, 0.096836, 0.175424]</td>
+<td>[2.329242, 1.422418, -1.985299]</td>
+<td>[-0.596089, -0.129799, -0.792357]</td>
+<td>8.388992</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="ae68c1a1" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> WindConfig(WindConfigBase, SpeasyIDsConfig):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>config <span class="op">=</span> WindConfig(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    timerange <span class="op">=</span> timerange,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    detect_kwargs<span class="op">=</span>detect_kwargs,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="b3deaff7" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>result, path <span class="op">=</span> config.produce_or_load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/runner/work/discontinuitypy/discontinuitypy/.pixi/envs/default/lib/python3.12/site-packages/speasy/core/data_containers.py:17: UserWarning: no explicit representation of timezones available for np.datetime64
+  return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')
+2024-11-09 08:03:14.374 | INFO     | discontinuitypy.config:_get_mag_data:121 - Setting time resolution to 0:00:00.092000</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>File /home/runner/work/discontinuitypy/discontinuitypy/data/events_Wind_tr=20210503-20210504_method=fit.arrow does not exist. Producing it now...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>2024-11-09 08:03:20.977 | INFO     | discontinuitypy.integration:update_events_with_temp_data:288 - Ion temperature data is not available.
+2024-11-09 08:03:20.978 | INFO     | discontinuitypy.integration:update_events_with_temp_data:296 - Electron temperature data is not available.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Could not save file. Error: No such file or directory (os error 2)
+File /home/runner/work/discontinuitypy/discontinuitypy/data/updated_events_Wind_tr=20210503-20210504_method=fit.arrow does not exist. Producing it now...
+Could not save file. Error: No such file or directory (os error 2)</code></pre>
+</div>
+</div>
+<p>Inspecting the magnetic data…</p>
+<div id="2760f0d7" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>config.mag_meta.data[<span class="dv">0</span>].plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/cell-8-output-1.png" width="602" height="468" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<ul>
-<li>combine features from different sources/instruments (magnetic field, state data, etc.)</li>
-<li>generate new features</li>
-</ul>
-<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<hr>
-<section id="interpolate2" class="level3">
-<h3 class="anchored" data-anchor-id="interpolate2">interpolate2</h3>
-<blockquote class="blockquote">
-<pre><code> interpolate2 (df1:polars.dataframe.frame.DataFrame, df2, **kwargs)</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="interpolate" class="level3">
-<h3 class="anchored" data-anchor-id="interpolate">interpolate</h3>
-<blockquote class="blockquote">
-<pre><code> interpolate (df:polars.dataframe.frame.DataFrame, on='time')</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="combine_features" class="level3">
-<h3 class="anchored" data-anchor-id="combine_features">combine_features</h3>
-<blockquote class="blockquote">
-<pre><code> combine_features (events:polars.dataframe.frame.DataFrame,
-                   states_data:polars.dataframe.frame.DataFrame,
-                   method:str='interpolate', left_on='t.d_time',
-                   right_on='time', subset=False)</code></pre>
-</blockquote>
-</section>
-<section id="additional-features-after-combining" class="level2">
-<h2 class="anchored" data-anchor-id="additional-features-after-combining">Additional features after combining</h2>
-<p>With combined dataset, we calculate additional features for each candidate.</p>
-<p>Length</p>
-<p>the length along the n direction of LMN coordinate system.</p>
-<p><span class="math display">\[L_{n} = v_{n}  T_{duration}\]</span></p>
-<p>However this may not be accurate due to the MVA method.</p>
-<p><span class="math display">\[L_{mn} = v_{mn}  T_{duration}\]</span></p>
-<p>If we have the normal vector of the current sheet, we can calculate the length along the normal direction.</p>
-<p><span class="math display">\[L_{normal} = L_{k} = v_{normal}  T_{duration}\]</span></p>
-<p>Additionally, we can calculate the length projected into RTN coordinate system.</p>
-<p><span class="math display">\[L_{R} = L_{k} \cos \theta\]</span></p>
-<p><span class="math display">\[ j*0 = (\frac{d B}{d t})*{max} \frac{1}{v\_{mn}}\]</span></p>
-</section>
-<section id="all-features" class="level2">
-<h2 class="anchored" data-anchor-id="all-features">All features</h2>
-<hr>
-<section id="calc_plasma_parameter_change" class="level3">
-<h3 class="anchored" data-anchor-id="calc_plasma_parameter_change">calc_plasma_parameter_change</h3>
-<blockquote class="blockquote">
-<pre><code> calc_plasma_parameter_change (df:polars.dataframe.frame.DataFrame, plasma
-                               _meta:space_analysis.meta.PlasmaDataset=Pla
-                               smaDataset(timerange=None, variables=None,
-                               name=None, dataset=None, parameters=None,
-                               ts=None, temperature_col=None,
-                               para_col=None, perp_cols=None,
-                               velocity_cols=None, speed_col=None,
-                               density_col=None))</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="calc_combined_features" class="level3">
-<h3 class="anchored" data-anchor-id="calc_combined_features">calc_combined_features</h3>
-<blockquote class="blockquote">
-<pre><code> calc_combined_features (df:polars.dataframe.frame.DataFrame,
-                         detail:bool=True, b_norm_col='b_mag',
-                         normal_cols='k', Vl_cols='Vl', Vn_cols='Vn',
-                         thickness_cols=['L_k'], current_cols=['j0_k'], pl
-                         asma_meta:space_analysis.meta.PlasmaDataset=None)</code></pre>
-</blockquote>
-<p>*Calculate the combined features of the discontinuity</p>
-<p>Args: df (pl.DataFrame): <em>description</em> normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ “k_x”, “k_y”, “k_z”, ]. detail (bool, optional): <em>description</em>. Defaults to True. Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ “Vl_x”, “Vl_y”, “Vl_z”, ]. Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ “Vn_x”, “Vn_y”, “Vn_z”, ]. current_cols (list, optional): <em>description</em>. Defaults to [“j0_mn”, “j0_k”].*</p>
-<hr>
-</section>
-<section id="update_events_with_plasma_data" class="level3">
-<h3 class="anchored" data-anchor-id="update_events_with_plasma_data">update_events_with_plasma_data</h3>
-<blockquote class="blockquote">
-<pre><code> update_events_with_plasma_data (events:polars.dataframe.frame.DataFrame,
-                                 plasma_data:polars.lazyframe.frame.LazyFr
-                                 ame|None, plasma_meta:space_analysis.meta
-                                 .PlasmaDataset, **kwargs)</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="update_events_with_temp_data" class="level3">
-<h3 class="anchored" data-anchor-id="update_events_with_temp_data">update_events_with_temp_data</h3>
-<blockquote class="blockquote">
-<pre><code> update_events_with_temp_data (events:polars.dataframe.frame.DataFrame,
-                               ion_temp_data:polars.lazyframe.frame.LazyFr
-                               ame|None, e_temp_data:polars.lazyframe.fram
-                               e.LazyFrame|None)</code></pre>
-</blockquote>
-<hr>
-</section>
-<section id="update_events" class="level3">
-<h3 class="anchored" data-anchor-id="update_events">update_events</h3>
-<blockquote class="blockquote">
-<pre><code> update_events (events, plasma_data, plasma_meta, ion_temp_data,
-                e_temp_data, **kwargs)</code></pre>
-</blockquote>
-
-
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -933,4 +1380,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
