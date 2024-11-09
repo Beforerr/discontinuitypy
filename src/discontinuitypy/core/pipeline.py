@@ -17,11 +17,14 @@ from typing import Callable
 
 # %% ../../../notebooks/00_ids_finder.ipynb 5
 from beforerr.polars import filter_df_by_ranges
+
+
 def compress_data_by_events(data: pl.DataFrame, events: pl.DataFrame):
     """Compress the data for parallel processing"""
     starts = events["tstart"]
     ends = events["tstop"]
     return filter_df_by_ranges(data, starts, ends)
+
 
 def get_bcols(df: pl.LazyFrame):
     """Get the magnetic field components"""

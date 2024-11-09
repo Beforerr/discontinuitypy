@@ -13,9 +13,7 @@ from xarray_einstats import linalg
 from typing import Literal
 
 # %% ../../../notebooks/properties/00_duration.ipynb 3
-def ts_max_distance(
-    ts: xr.DataArray, coord: str = "time"
-):
+def ts_max_distance(ts: xr.DataArray, coord: str = "time"):
     "Compute the time interval when the timeseries has maxium cumulative variation"
     distance = distance_matrix(ts.data, ts.data)
     max_distance_index = np.unravel_index(np.argmax(distance), distance.shape)
@@ -81,6 +79,7 @@ def get_time_from_condition(
 
 # %% ../../../notebooks/properties/00_duration.ipynb 7
 AvailableMethod = Literal["distance", "derivative"]
+
 
 def calc_duration(ts: xr.DataArray, method: AvailableMethod = "distance", **kwargs):
     if method == "distance":

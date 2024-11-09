@@ -2,12 +2,11 @@
 
 # %% auto 0
 __all__ = ['minvar', 'calc_mva_features', 'calc_maxiumum_variance_direction', 'fit_maxiumum_variance_direction',
-           'calc_candidate_mva_features']
+           'calc_mva_features_all']
 
 # %% ../../../notebooks/properties/00_mva.ipynb 1
 import xarray as xr
 import numpy as np
-import pandas as pd
 
 from lmfit.models import StepModel, ConstantModel
 from lmfit import Parameters
@@ -97,7 +96,7 @@ def calc_mva_features(data: np.ndarray):
     """
 
     # Compute variance properties
-    vrot, v, eigs = minvar(data)
+    vrot, v, _ = minvar(data)
 
     # Maximum variance direction eigenvector
     Vl = v[:, 0]
@@ -133,14 +132,12 @@ def calc_mva_features(data: np.ndarray):
         "db_over_b_max": dBOverB_max,
         "dB_lmn": dvec,
     }
-
-    result = pd.Series(result)
     return result, vrot
 
 # %% ../../../notebooks/properties/00_mva.ipynb 6
 def calc_maxiumum_variance_direction(data: xr.DataArray, datetime_unit="s", **kwargs):
     d_data = data.differentiate("time", datetime_unit=datetime_unit)
-    return pd.Series({"d_star": abs(d_data).max(dim="time").item()})
+    return {"d_star": abs(d_data).max(dim="time").item()}
 
 # %% ../../../notebooks/properties/00_mva.ipynb 9
 def fit_maxiumum_variance_direction(
@@ -214,47 +211,29 @@ def fit_maxiumum_variance_direction(
         "timedelta64[ns]"
     )
 
-    result = pd.Series(
-        {
-            "fit.vars.amplitude": amplitude,
-            "fit.vars.sigma": sigma,
-            "t.d_time": d_time,
-            "d_star": max_df,
-            "fit.vars.c": c,
-            "fit.stat.rsquared": rsquared,
-            "fit.stat.chisqr": chisqr,
-        }
-    )
+    result = {
+        "fit.vars.amplitude": amplitude,
+        "fit.vars.sigma": sigma,
+        "t.d_time": d_time,
+        "d_star": max_df,
+        "fit.vars.c": c,
+        "fit.stat.rsquared": rsquared,
+        "fit.stat.chisqr": chisqr,
+    }
     if return_best_fit:
         result["fit.best_fit"] = best_fit
         result["fit.time"] = time
     return result
 
 # %% ../../../notebooks/properties/00_mva.ipynb 10
-# def calc_ts_mva_features(data, method=Literal["fit", "derivative"], **kwargs):
-#     mva_features, vrot = calc_mva_features(data.to_numpy())
-#     event_data_l = xr.DataArray(vrot[:, 0], dims=["time"], coords={"time": data.time})
-
-#     if method == "fit":
-#         result = fit_maxiumum_variance_direction(event_data_l, **kwargs)
-#     elif method == "derivative":
-#         result = calc_maxiumum_variance_direction(event_data_l, **kwargs)
-#     return pd.concat([mva_features, result])
-
-
-def calc_candidate_mva_features(
-    event, data: xr.DataArray, method=Literal["fit", "derivative"], **kwargs
+def calc_mva_features_all(
+    data: xr.DataArray, method=Literal["fit", "derivative"], **kwargs
 ):
-    event_data = data.sel(time=slice(event["t.d_start"], event["t.d_end"]))
-
-    mva_features, vrot = calc_mva_features(event_data.to_numpy())
-
-    event_data_l = xr.DataArray(
-        vrot[:, 0], dims=["time"], coords={"time": event_data.time}
-    )
+    mva_features, vrot = calc_mva_features(data.to_numpy())
+    data_l = xr.DataArray(vrot[:, 0], dims=["time"], coords={"time": data.time})
 
     if method == "fit":
-        result = fit_maxiumum_variance_direction(event_data_l, **kwargs)
+        result = fit_maxiumum_variance_direction(data_l, **kwargs)
     elif method == "derivative":
-        result = calc_maxiumum_variance_direction(event_data_l, **kwargs)
-    return pd.concat([mva_features, result])
+        result = calc_maxiumum_variance_direction(data_l, **kwargs)
+    return result | mva_features

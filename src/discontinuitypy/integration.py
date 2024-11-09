@@ -16,7 +16,8 @@ from space_analysis.plasma.formulary.polars import (
 )
 from space_analysis.meta import PlasmaDataset
 from .utils.ops import vector_project_pl
-from .core.propeties import df_rotation_angle
+
+# from discontinuitypy.core.propeties import df_rotation_angle
 from .naming import DENSITY_COL, FIT_AMPL_COL
 from .utils.naming import standardize_plasma_data
 from loguru import logger
@@ -173,20 +174,6 @@ def calc_plasma_parameter_change(
     )
 
 # %% ../../notebooks/03_mag_plasma.ipynb 7
-def calc_mag_features(
-    df: pl.DataFrame,
-    b_cols: list[str],
-    normal_cols: list[str] = ["k_x", "k_y", "k_z"],
-):
-    b_norm = pl.col("b_mag")
-
-    return df.pipe(
-        df_rotation_angle, b_cols, normal_cols, name="theta_n_b"
-    ).with_columns(
-        (cs.by_name(b_cols) / b_norm).name.suffix("_norm"),
-    )
-
-# %% ../../notebooks/03_mag_plasma.ipynb 8
 def calc_combined_features(
     df: pl.DataFrame,
     detail: bool = True,
@@ -266,7 +253,7 @@ def calc_combined_features(
 
     return result
 
-# %% ../../notebooks/03_mag_plasma.ipynb 9
+# %% ../../notebooks/03_mag_plasma.ipynb 8
 def update_events_with_plasma_data(
     events: pl.DataFrame,
     plasma_data: pl.LazyFrame | None,
@@ -291,7 +278,7 @@ def update_events_with_plasma_data(
 
     return events
 
-# %% ../../notebooks/03_mag_plasma.ipynb 10
+# %% ../../notebooks/03_mag_plasma.ipynb 9
 def update_events_with_temp_data(
     events: pl.DataFrame,
     ion_temp_data: pl.LazyFrame | None,
@@ -319,7 +306,7 @@ def update_events_with_temp_data(
         logger.info("Electron temperature data is not available.")
     return events
 
-# %% ../../notebooks/03_mag_plasma.ipynb 11
+# %% ../../notebooks/03_mag_plasma.ipynb 10
 def update_events(
     events, plasma_data, plasma_meta, ion_temp_data, e_temp_data, **kwargs
 ):
