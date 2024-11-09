@@ -4,7 +4,7 @@
 __all__ = ['split_timerange', 'IDsConfig', 'get_vars', 'SpeasyIDsConfig']
 
 # %% ../../notebooks/11_ids_config.ipynb 0
-from datetime import datetime, timedelta
+from datetime import datetime
 from beforerr.project import produce_or_load_file
 from .datasets import IDsDataset
 from space_analysis.meta import Dataset
@@ -117,7 +117,7 @@ class SpeasyIDsConfig(IDsConfig):
             data = get_data(self.mag_meta, self.provider, self.timerange)
             self.mag_meta.data = data
             if self.mag_meta.ts is None:
-                ts = timedelta(seconds=get_time_resolution(data[0])["median"])
+                ts = get_time_resolution(data[0])["median"]
                 logger.info(f"Setting time resolution to {ts}")
                 self.mag_meta.ts = ts
             self.data = spzvars2pldf(data)

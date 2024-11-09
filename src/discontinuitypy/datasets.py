@@ -14,7 +14,7 @@ from space_analysis.meta import PlasmaDataset, TempDataset
 from .utils.naming import standardize_plasma_data
 from .detection.variance import detect_variance
 
-from typing import Literal
+from typing import Callable, Literal
 from loguru import logger
 
 # %% ../../notebooks/10_datasets.ipynb 3
@@ -41,10 +41,9 @@ class IdsEvents(BaseModel):
 
     ts: timedelta = None
     """time resolution of the dataset"""
-    tau: timedelta
-    """time interval used to find events"""
     events: pl.DataFrame = None
-    detect_func = detect_variance
+    detect_func: Callable = detect_variance
+    detect_kwargs: dict = Field(default_factory=dict)
     method: Literal["fit", "derivative"] = "fit"
 
     file_fmt: str = "arrow"
@@ -62,12 +61,13 @@ class IdsEvents(BaseModel):
 
     @property
     def config_detection(self):
+        detect_kwargs = dict(ts=self.ts or self.mag_meta.ts) | self.detect_kwargs
         return dict(
             detection_df=self.data,
-            tau=self.tau,
-            ts=self.ts or self.mag_meta.ts,
-            method=self.method,
+            detect_func=self.detect_func,
+            detect_kwargs=detect_kwargs,
             bcols=self.mag_meta.B_cols,
+            method=self.method,
         )
 
     def produce_or_load(self, **kwargs):
