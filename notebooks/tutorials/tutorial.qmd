@@ -16,7 +16,10 @@ from discontinuitypy.mission.wind import WindConfigBase, wi_mfi_h2_bgse
 from discontinuitypy.config import SpeasyIDsConfig
 from discontinuitypy.core.pipeline import ids_finder
 from discontinuitypy.detection import detect_variance, detect_gradient
+from speasy.core.requests_scheduling.request_dispatch import init_cdaweb
 from rich import print
+
+init_cdaweb()
 ```
 
 ```{python}
