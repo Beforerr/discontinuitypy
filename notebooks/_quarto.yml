@@ -22,7 +22,7 @@ website:
       - text: "About"
         href: about.qmd
       - text: Tutorial
-        href: notebooks/tutorial.qmd
+        href: tutorials/tutorial.qmd
     tools:
       - icon: github
         href: "https://github.com/Beforerr/discontinuitypy"
