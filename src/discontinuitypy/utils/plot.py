@@ -11,10 +11,7 @@ import xarray as xr
 import pandas as pd
 from datetime import datetime
 
-from pyspedas.cotrans.minvar_matrix_make import minvar_matrix_make
-from pyspedas import tvector_rotate
-from pyspedas.analysis.tvectot import tvectot
-from pyspedas.analysis.deriv_data import deriv_data
+from pyspedas import tvector_rotate, minvar_matrix_make, tvectot, deriv_data
 
 import pytplot
 from pytplot import tplot, split_vec
