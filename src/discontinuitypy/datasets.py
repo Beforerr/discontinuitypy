@@ -8,12 +8,13 @@ import polars as pl
 from datetime import timedelta
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from beforerr.project import savename, datadir, produce_or_load, produce_or_load_file
+from beforerr.project import savename, datadir, produce_or_load_file
 from space_analysis.core import MagVariable
 from space_analysis.meta import PlasmaDataset, TempDataset
 from .utils.naming import standardize_plasma_data
 from .detection.variance import detect_variance
 
+from typing_extensions import deprecated
 from typing import Callable, Literal
 from loguru import logger
 
@@ -29,7 +30,7 @@ def select_row(df: pl.DataFrame, index: int):
     predicate = pl.col("index") == index
     return df.row(by_predicate=predicate, named=True)
 
-# %% ../../notebooks/10_datasets.ipynb 6
+# %% ../../notebooks/10_datasets.ipynb 5
 class IdsEvents(BaseModel):
     """Core class to handle discontinuity events in a dataset."""
 
@@ -49,8 +50,8 @@ class IdsEvents(BaseModel):
     file_fmt: str = "arrow"
     file_path: Path = datadir()
 
+    @deprecated("Use `find_events` instead")
     def find_events(self, **kwargs):
-        # To be deprecated, use `produce_or_load_file` instead
         data, _ = self.produce_or_load(**kwargs)
         self.events = data
         return self
@@ -72,21 +73,20 @@ class IdsEvents(BaseModel):
 
     def produce_or_load(self, **kwargs):
         config = self.config_detection | kwargs
-        return produce_or_load(
+        return produce_or_load_file(
             f=ids_finder,
             config=config,
-            path=self.file_path,
-            prefix=self.file_prefix,
-            suffix=self.file_fmt,
+            file=self.file,
         )
 
-    # BUG
     @property
     def file(self):
         fname = savename(
             c=self.config_detection,
             prefix=self.file_prefix,
             suffix=self.file_fmt,
+            allowedtypes=(str, timedelta, dict, Callable),
+            expand=["detect_kwargs"],
         )
         return self.file_path / fname
 
@@ -107,7 +107,7 @@ class IdsEvents(BaseModel):
         _data = self.data.filter(pl.col("time").is_between(start, end))
         return df2ts(_data, self.mag_meta.B_cols)
 
-# %% ../../notebooks/10_datasets.ipynb 7
+# %% ../../notebooks/10_datasets.ipynb 6
 def log_event_change(event, logger=logger):
     logger.debug(
         f"""CHANGE INFO
@@ -120,7 +120,7 @@ def log_event_change(event, logger=logger):
         """
     )
 
-# %% ../../notebooks/10_datasets.ipynb 8
+# %% ../../notebooks/10_datasets.ipynb 7
 class IDsDataset(IdsEvents):
     """Extend the IdsEvents class to handle plasma and temperature data."""
 
