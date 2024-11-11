@@ -17,8 +17,6 @@ from space_analysis.plasma.formulary.polars import (
 from space_analysis.meta import PlasmaDataset
 from .utils.ops import vector_project_pl
 from typing_extensions import deprecated
-
-# from discontinuitypy.core.propeties import df_rotation_angle
 from .naming import DENSITY_COL, TEMP_COL, FIT_AMPL_COL
 from .utils.naming import standardize_plasma_data
 from loguru import logger
@@ -176,20 +174,28 @@ def calc_combined_features(
     df: pl.DataFrame,
     b_norm_col="b_mag",
     normal_cols="k",
-    Vl_cols="Vl",
-    Vn_cols="Vn",
-    thickness_cols=["L_k"],
-    current_cols=["j0_k"],
+    e_max: str | list[str] = "e_max",
+    e_min: str | list[str] = "e_min",
+    thickness_cols: str | list[str] = ["L_n"],
+    current_cols: str | list[str] = ["j0_n"],
     plasma_meta: PlasmaDataset = None,
 ):
     """Calculate the combined features of the discontinuity
 
-    Args:
-        df (pl.DataFrame): _description_
-        normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ "k_x", "k_y", "k_z", ].
-        Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ "Vl_x", "Vl_y", "Vl_z", ].
-        Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ "Vn_x", "Vn_y", "Vn_z", ].
-        current_cols (list, optional): _description_. Defaults to ["j0_mn", "j0_k"].
+    Parameters
+    ----------
+    df : pl.DataFrame
+        Input dataframe with discontinuity data
+    b_norm_col :
+        Column name for mean magnetic field magnitude
+    normal_cols :
+        Normal vector of the discontinuity plane (n)
+    e_max :
+        Column name(s) for maximum variance direction vector (e_max)
+    e_min :
+        Column name(s) for minimum variance direction vector (e_min)
+    current_cols :
+        Current density along normal direction (j0_n). Defaults to ["j0_n"].
     """
 
     length_norm = pl.col("ion_inertial_length")
@@ -198,8 +204,8 @@ def calc_combined_features(
     vec_cols = plasma_meta.velocity_cols
 
     result = (
-        df.pipe(vector_project_pl, vec_cols, Vl_cols, name="v_l")
-        .pipe(vector_project_pl, vec_cols, Vn_cols, name="v_n")
+        df.pipe(vector_project_pl, vec_cols, e_max, name="v_l")
+        .pipe(vector_project_pl, vec_cols, e_min, name="v_n")
         .pipe(vector_project_pl, vec_cols, normal_cols, name="v_k")
         .with_columns(
             pl.col("v_n").abs(),

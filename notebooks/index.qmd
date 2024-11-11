@@ -62,3 +62,9 @@ Notations:
     - see Fig.12 in @tsurutaniInterplanetaryDiscontinuitiesTemporal1979
     - see Fig.11 in @sodingRadialLatitudinalDependencies2001
 - `bn_over_b` : $\bar{B}_N/\bar{B}$ : Normal component of magnetic field over magnetic field magnitude (mean)
+
+
+- $\vec{e}_l, \vec{e}_m, \vec{e}_n$ : unit vector in the direction of the maxium, medium, minium variance magnetic field in *ANY* coordinate system `e_{max/med/min}{x,y,z}`
+- $\vec{n}$ : normal of the discontinuity plane
+- $\vec{n}_{\text{MVA}}$ : normal from minimum variance analysis (unit vector in the minium variance direction) `n_mva = e_min`
+- $\vec{n}_{\text{cross}}$ : cross product of the magnetic field vector $B_u$ upstream and the field vector $B_d$ downstream of the transition `n_cross`

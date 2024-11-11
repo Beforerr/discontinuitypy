@@ -98,9 +98,9 @@ def calc_mva_features(data: np.ndarray):
     # Compute variance properties
     vrot, v, _ = minvar(data)
 
-    # Maximum variance direction eigenvector
-    Vl = v[:, 0]
-    Vn = v[:, 2]
+    # Unit vector in the direction of the maxium, medium, minium variance magnetic field
+    e_max = v[:, 0]
+    e_min = v[:, 2]
 
     vec_mag = np.linalg.norm(vrot, axis=1)
 
@@ -118,8 +118,8 @@ def calc_mva_features(data: np.ndarray):
     dBOverB_max = (np.max(vec_mag) - np.min(vec_mag)) / vec_mag_mean
 
     result = {
-        "Vl": Vl,
-        "Vn": Vn,
+        "e_max": e_max,
+        "e_min": e_min,
         "b_mag": vec_mag_mean,
         "b_n": vec_n_mean,
         "B.vec.before": vrot[0],
