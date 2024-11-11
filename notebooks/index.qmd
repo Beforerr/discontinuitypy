@@ -21,6 +21,8 @@ This package is designed to identify and analyze discontinuities in time series 
 
 For how to use this project as a python library, please see [this page](./00_ids_finder.ipynb).
 
+See accompanying package [Discontinuity.jl](https://beforerr.github.io/Discontinuity.jl) for Julia about data processing and visualization.
+
 ## Installation
 
 ```shell

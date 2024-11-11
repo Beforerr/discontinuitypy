@@ -3,12 +3,12 @@
 # %% auto 0
 __all__ = ['preview']
 
-# %% ../../../notebooks/plot/index.ipynb 0
+# %% ../../../notebooks/plot/index.ipynb 1
 from ..datasets import IDsDataset
 from space_analysis.ds.ts.plot import tsplot
 from space_analysis.ds.ts.io import df2ts
 
-# %% ../../../notebooks/plot/index.ipynb 1
+# %% ../../../notebooks/plot/index.ipynb 2
 def preview(ds: IDsDataset):
     dfs = [ds.data, ds.plasma_data]
     ts = [df2ts(df) for df in dfs]
