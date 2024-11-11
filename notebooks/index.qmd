@@ -50,8 +50,15 @@ from discontinuitypy.core import *
 
 Notations:
 
-- $\vec{B}$ : Magnetic field
+- $\vec{B}$ : Magnetic field in *ANY* coordinate system
 - $B$ : Magnetic field magnitude
+
+For the unit, by default we use
+
+-   length : $km$
+-   time : $s$
+-   magnetic field : $nT$
+-   current : $nA/m^2$
 
 ## Outputs
 
@@ -68,3 +75,16 @@ Notations:
 - $\vec{n}$ : normal of the discontinuity plane
 - $\vec{n}_{\text{MVA}}$ : normal from minimum variance analysis (unit vector in the minium variance direction) `n_mva = e_min`
 - $\vec{n}_{\text{cross}}$ : cross product of the magnetic field vector $B_u$ upstream and the field vector $B_d$ downstream of the transition `n_cross`
+
+
+-   `v_{x,y,z}`: plasma speed in the *ANY* coordinate system, in units of $km/s$
+
+-   `plasma_speed`: plasma speed, in units of $km/s$
+
+-   `plasma_density`: plasma density, in units of $1/cm^{3}$
+
+-   `plasma_temperature`: plasma temperature, in units of $K$
+
+-   `L_mn{_norm}`: thickness of the current sheet in MN direction, in units of $km$
+
+-   `j0{_norm}`: current density, in units of $nA/m^2$
