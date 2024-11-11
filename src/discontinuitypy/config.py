@@ -28,6 +28,10 @@ def split_timerange(timerange: list[datetime], split: int = 1):
     return [[tr.start.value, tr.end.value] for tr in trs]
 
 
+def _timerange2str(timerange: list[datetime]):
+    return "_tr=" + "-".join(t.strftime("%Y%m%d") for t in timerange)
+
+
 class IDsConfig(IDsDataset):
     """
     Extend the IDsDataset class to provide additional functionalities:
@@ -37,39 +41,40 @@ class IDsConfig(IDsDataset):
 
     timerange: list[datetime] = None
     split: int = 1
+    tmp: bool = False  # temporary flag
 
     @property
     def timeranges(self):
         return split_timerange(self.timerange, self.split)
 
     @property
-    def file_prefix(self):
-        if self.timerange is None:
-            return super().file_prefix
-        else:
-            tr_str = "-".join(t.strftime("%Y%m%d") for t in self.timerange)
-            return super().file_prefix + f"_tr={tr_str}"
+    def _file_prefix(self):
+        tr_str = _timerange2str(self.timerange) if self.timerange else ""
+        _fp = self.name + tr_str
+        return "_" + _fp if self.tmp else _fp
 
-    @abstractmethod
-    def get_data(self):
-        pass
+    def update_timerange(self, timerange, **kwargs):
+        update = dict(timerange=timerange) | kwargs
+        return self.model_copy(update=update, deep=True)
 
     def produce_or_load(self, **kwargs):
         if self.split == 1:
             self.file.exists() or self.get_data()
             return super().produce_or_load(**kwargs)
         else:
-            updates = [{"timerange": tr, "split": 1} for tr in self.timeranges]
-            configs = [self.model_copy(update=update, deep=True) for update in updates]
-            datas, _ = zip(
-                *(config.produce_or_load(**kwargs) for config in tqdm(configs))
-            )
+            update_kw = dict(tmp=True, split=1)
+            configs = [self.update_timerange(tr, **update_kw) for tr in self.timeranges]
+            datas, _ = zip(*(c.produce_or_load(**kwargs) for c in tqdm(configs)))
 
             return produce_or_load_file(
                 f=pl.concat,
                 config=dict(items=datas),
                 file=self.file,
             )
+
+    @abstractmethod
+    def get_data(self):
+        pass
 
 # %% ../../notebooks/11_ids_config.ipynb 2
 def get_vars(self, vars: str, timerange: list[datetime] = None):
