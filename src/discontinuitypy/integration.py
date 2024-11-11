@@ -174,7 +174,6 @@ def calc_plasma_parameter_change(
 # %% ../../notebooks/03_mag_plasma.ipynb 7
 def calc_combined_features(
     df: pl.DataFrame,
-    detail: bool = True,
     b_norm_col="b_mag",
     normal_cols="k",
     Vl_cols="Vl",
@@ -188,7 +187,6 @@ def calc_combined_features(
     Args:
         df (pl.DataFrame): _description_
         normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ "k_x", "k_y", "k_z", ].
-        detail (bool, optional): _description_. Defaults to True.
         Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ "Vl_x", "Vl_y", "Vl_z", ].
         Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ "Vn_x", "Vn_y", "Vn_z", ].
         current_cols (list, optional): _description_. Defaults to ["j0_mn", "j0_k"].
@@ -228,19 +226,6 @@ def calc_combined_features(
             (cs.by_name(current_cols) / current_norm).name.suffix("_norm"),
         )
     )
-
-    if detail:
-        result = result.pipe(
-            vector_project_pl,
-            [_ + ".before" for _ in vec_cols],
-            Vl_cols,
-            name="v.ion.before.l",
-        ).pipe(
-            vector_project_pl,
-            [_ + ".after" for _ in vec_cols],
-            Vl_cols,
-            name="v.ion.after.l",
-        )
 
     return result
 
