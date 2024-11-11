@@ -261,7 +261,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./plot/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">index.html</span></a>
+ <span class="menu-text">Plot</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -467,13 +467,13 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="calc_combined_features">calc_combined_features</h3>
 <blockquote class="blockquote">
 <pre><code> calc_combined_features (df:polars.dataframe.frame.DataFrame,
-                         detail:bool=True, b_norm_col='b_mag',
-                         normal_cols='k', Vl_cols='Vl', Vn_cols='Vn',
+                         b_norm_col='b_mag', normal_cols='k',
+                         Vl_cols='Vl', Vn_cols='Vn',
                          thickness_cols=['L_k'], current_cols=['j0_k'], pl
                          asma_meta:space_analysis.meta.PlasmaDataset=None)</code></pre>
 </blockquote>
 <p>*Calculate the combined features of the discontinuity</p>
-<p>Args: df (pl.DataFrame): <em>description</em> normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ “k_x”, “k_y”, “k_z”, ]. detail (bool, optional): <em>description</em>. Defaults to True. Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ “Vl_x”, “Vl_y”, “Vl_z”, ]. Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ “Vn_x”, “Vn_y”, “Vn_z”, ]. current_cols (list, optional): <em>description</em>. Defaults to [“j0_mn”, “j0_k”].*</p>
+<p>Args: df (pl.DataFrame): <em>description</em> normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ “k_x”, “k_y”, “k_z”, ]. Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ “Vl_x”, “Vl_y”, “Vl_z”, ]. Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ “Vn_x”, “Vn_y”, “Vn_z”, ]. current_cols (list, optional): <em>description</em>. Defaults to [“j0_mn”, “j0_k”].*</p>
 <hr>
 </section>
 <section id="update_events_with_plasma_data" class="level3">

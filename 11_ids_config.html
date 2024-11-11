@@ -232,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./plot/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">index.html</span></a>
+ <span class="menu-text">Plot</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -355,9 +355,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="idsconfig" class="level3">
 <h3 class="anchored" data-anchor-id="idsconfig">IDsConfig</h3>
 <blockquote class="blockquote">
-<pre><code> IDsConfig (name:str=None, mag_data:polars.lazyframe.frame.LazyFrame=None,
-            mag_meta:space_analysis.core.MagVariable=MagVariable(name=None
-            , description=None, unit=None, ts=None, timerange=None,
+<pre><code> IDsConfig (name:str='events',
+            mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta:space
+            _analysis.core.MagVariable=MagVariable(name=None,
+            description=None, unit=None, ts=None, timerange=None,
             dataset=None, parameter=None, B_cols=None),
             ts:datetime.timedelta=None,
             events:polars.dataframe.frame.DataFrame=None,
@@ -380,7 +381,7 @@ ul.task-list li input[type="checkbox"] {
             variables=None, name=None, dataset=None, parameters=None,
             ts=None, temperature_col=None, para_col=None, perp_cols=None),
             timerange:list[datetime.datetime]=None, split:int=1,
-            **extra_data:Any)</code></pre>
+            tmp:bool=False, **extra_data:Any)</code></pre>
 </blockquote>
 <p>*Extend the IDsDataset class to provide additional functionalities:</p>
 <ul>
@@ -399,7 +400,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="speasyidsconfig" class="level3">
 <h3 class="anchored" data-anchor-id="speasyidsconfig">SpeasyIDsConfig</h3>
 <blockquote class="blockquote">
-<pre><code> SpeasyIDsConfig (name:str=None,
+<pre><code> SpeasyIDsConfig (name:str='events',
                   mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta
                   :space_analysis.core.MagVariable=MagVariable(name=None,
                   description=None, unit=None, ts=None, timerange=None,
@@ -428,7 +429,7 @@ ul.task-list li input[type="checkbox"] {
                   parameters=None, ts=None, temperature_col=None,
                   para_col=None, perp_cols=None),
                   timerange:list[datetime.datetime]=None, split:int=1,
-                  provider:str='cda', **extra_data:Any)</code></pre>
+                  tmp:bool=False, provider:str='cda', **extra_data:Any)</code></pre>
 </blockquote>
 <p><em>Based on <code>speasy</code> Variables to get the data</em></p>
 <hr>
