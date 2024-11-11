@@ -210,16 +210,11 @@ def calc_combined_features(
         .with_columns(
             pl.col("v_n").abs(),
             pl.col("v_k").abs(),
-            # v_mn=(pl.col("plasma_speed") ** 2 - pl.col("v_l") ** 2).sqrt(),
         )
         .with_columns(
             L_k=pl.col("v_k") * pl.col("duration"),
-            # NOTE: n direction is not properly determined for MVA analysis
             # j0_mn=pl.col("d_star") / pl.col("v_mn"),
             # L_n=pl.col("v_n") * pl.col("duration"),
-            # L_mn=pl.col("v_mn") * pl.col("duration"),
-            # NOTE: the duration is not properly determined for `max distance` method
-            # L_k=pl.col("v_k") * pl.col("duration"),
         )
         .pipe(
             df_gradient_current, B_gradient="d_star", speed="v_k", col_name="j0_k"
