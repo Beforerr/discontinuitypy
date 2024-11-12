@@ -66,10 +66,10 @@ class IdsEvents(BaseModel):
             method=self.method,
         )
 
-    def produce_or_load(self, file=None, **kwargs):
+    def produce_or_load(self, file=None, force=False, **kwargs):
         file = file or self.file
         config = self.config_detection | kwargs
-        return produce_or_load_file(f=ids_finder, config=config, file=file)
+        return produce_or_load_file(f=ids_finder, config=config, file=file, force=force)
 
     @property
     def file(self):
@@ -130,11 +130,13 @@ class IDsDataset(IdsEvents):
             e_temp_data=self.e_temp_data,
         )
 
-    def produce_or_load(self, file=None, **kwargs):
+    def produce_or_load(self, file=None, force=False, **kwargs):
         file = file or self._file(prefix=self._file_prefix + "_updated")
-        events, _ = super().produce_or_load(**kwargs)
+        events, _ = super().produce_or_load(force=force, **kwargs)
         config = self.config_updates | dict(events=events) | kwargs
-        return produce_or_load_file(update_events, config=config, file=file)
+        return produce_or_load_file(
+            update_events, config=config, file=file, force=force
+        )
 
     def standardize(self):
         self.plasma_data = standardize_plasma_data(self.plasma_data, self.plasma_meta)

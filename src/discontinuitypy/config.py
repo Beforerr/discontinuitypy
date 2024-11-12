@@ -57,19 +57,23 @@ class IDsConfig(IDsDataset):
         update = dict(timerange=timerange) | kwargs
         return self.model_copy(update=update, deep=True)
 
-    def produce_or_load(self, **kwargs):
+    def produce_or_load(self, force=False, **kwargs):
         if self.split == 1:
-            self.file.exists() or self.get_data()
-            return super().produce_or_load(**kwargs)
+            if force or not self.file.exists():
+                self.get_data()
+            return super().produce_or_load(**kwargs, force=force)
         else:
             update_kw = dict(tmp=True, split=1)
             configs = [self.update_timerange(tr, **update_kw) for tr in self.timeranges]
-            datas, _ = zip(*(c.produce_or_load(**kwargs) for c in tqdm(configs)))
+            datas, _ = zip(
+                *(c.produce_or_load(**kwargs, force=force) for c in tqdm(configs))
+            )
 
             return produce_or_load_file(
                 f=pl.concat,
                 config=dict(items=datas),
                 file=self.file,
+                force=force,
             )
 
     @abstractmethod
