@@ -26,5 +26,6 @@ def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaDataset):
             data = data.with_columns(
                 pl.concat_list(*meta.velocity_cols).list.to_array(3).alias(VELOCITY_COL)
             )
-        mapping[meta.velocity_cols] = VELOCITY_COL
+        else:
+            mapping[meta.velocity_cols] = VELOCITY_COL
     return data.rename(mapping=mapping)
