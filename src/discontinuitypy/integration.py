@@ -18,7 +18,7 @@ from space_analysis.meta import PlasmaDataset
 from .utils.ops import vector_project_pl
 from typing_extensions import deprecated
 from . import UPSTREAM_TIME, DOWNSTREAM_TIME
-from .naming import DENSITY_COL, TEMP_COL, FIT_AMPL_COL
+from .naming import DENSITY_COL, VELOCITY_COL, TEMP_COL, FIT_AMPL_COL
 from .utils.naming import standardize_plasma_data
 from loguru import logger
 
@@ -113,11 +113,7 @@ def combine_features(
         return df
 
 # %% ../../notebooks/03_mag_plasma.ipynb 6
-def calc_combined_features(
-    df: pl.DataFrame,
-    b_norm_col="b_mag",
-    plasma_meta: PlasmaDataset = None,
-):
+def calc_combined_features(df: pl.DataFrame, b_norm_col="b_mag"):
     """Calculate the combined features of the discontinuity
 
     Parameters
@@ -127,11 +123,8 @@ def calc_combined_features(
     b_norm_col :
         Column name for mean magnetic field magnitude
     """
-
-    vec_cols = plasma_meta.velocity_cols
-
     result = (
-        df.pipe(vector_project_pl, vec_cols, "n_cross", name="V_n_cross")
+        df.pipe(vector_project_pl, VELOCITY_COL, "n_cross", name="V_n_cross")
         .with_columns(L_n_cross=pl.col("V_n_cross").abs() * pl.col("duration"))
         .pipe(
             df_gradient_current, B_gradient="d_star", speed="V_n_cross", col_name="j0_k"
@@ -147,21 +140,11 @@ def calc_combined_features(
 def update_events_with_plasma_data(
     events: pl.DataFrame,
     plasma_data: pl.LazyFrame | None,
-    plasma_meta: PlasmaDataset,
     **kwargs,
 ):
     if plasma_data is not None:
-        events = combine_features(
-            events,
-            plasma_data.collect(),
-            **kwargs,
-        )
-
-        events = calc_combined_features(
-            events,
-            plasma_meta=plasma_meta,
-            **kwargs,
-        )
+        events = combine_features(events, plasma_data.collect(), **kwargs)
+        events = calc_combined_features(events, **kwargs)
     else:
         logger.info("Plasma data is not available.")
 
@@ -200,7 +183,7 @@ def update_events(
     events, plasma_data, plasma_meta, ion_temp_data, e_temp_data, **kwargs
 ):
     plasma_data = standardize_plasma_data(plasma_data, meta=plasma_meta)
-    events = update_events_with_plasma_data(events, plasma_data, plasma_meta, **kwargs)
+    events = update_events_with_plasma_data(events, plasma_data, **kwargs)
     events = update_events_with_temp_data(events, ion_temp_data, e_temp_data)
     return events
 
