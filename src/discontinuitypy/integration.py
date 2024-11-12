@@ -116,7 +116,6 @@ def combine_features(
 def calc_combined_features(
     df: pl.DataFrame,
     b_norm_col="b_mag",
-    normal_cols="k",
     plasma_meta: PlasmaDataset = None,
 ):
     """Calculate the combined features of the discontinuity
@@ -127,17 +126,15 @@ def calc_combined_features(
         Input dataframe with discontinuity data
     b_norm_col :
         Column name for mean magnetic field magnitude
-    normal_cols :
-        Normal vector of the discontinuity plane (n)
     """
 
     vec_cols = plasma_meta.velocity_cols
 
     result = (
-        df.pipe(vector_project_pl, vec_cols, normal_cols, name="v_k")
-        .with_columns(L_k=pl.col("v_k").abs() * pl.col("duration"))
+        df.pipe(vector_project_pl, vec_cols, "n_cross", name="V_n_cross")
+        .with_columns(L_n_cross=pl.col("V_n_cross").abs() * pl.col("duration"))
         .pipe(
-            df_gradient_current, B_gradient="d_star", speed="v_k", col_name="j0_k"
+            df_gradient_current, B_gradient="d_star", speed="V_n_cross", col_name="j0_k"
         )  # TODO: d_star corresponding to dB/dt, which direction is not exactly perpendicular to the k direction
         .pipe(df_inertial_length, density=DENSITY_COL)
         .pipe(df_Alfven_speed, B=b_norm_col, density=DENSITY_COL)

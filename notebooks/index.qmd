@@ -77,6 +77,11 @@ For the unit, by default we use
 - $\vec{n}_{\text{MVA}}$ : normal from minimum variance analysis (unit vector in the minium variance direction) `n_mva = e_min`
 - $\vec{n}_{\text{cross}}$ : cross product of the magnetic field vector $B_u$ upstream and the field vector $B_d$ downstream of the transition `n_cross`
 
+- $V$ : Velocity vector in *ANY* coordinate system `V`
+- $V_l$ : Velocity component along the maximum variance direction `V_l`
+- $V_{n,MVA}$ : Velocity component along the normal direction from minimum variance analysis `V_n_mva`
+- $V_{n,cross}$ : Velocity component along the normal direction from cross product of upstream and downstream magnetic field `V_n_cross`
+
 
 -   `v_{x,y,z}`: plasma speed in the *ANY* coordinate system, in units of $km/s$
 

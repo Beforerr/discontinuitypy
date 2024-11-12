@@ -6,7 +6,7 @@ __all__ = ['standardize_plasma_data']
 # %% ../../../notebooks/utils/05_naming.ipynb 2
 import polars as pl
 from space_analysis.meta import PlasmaDataset
-from ..naming import DENSITY_COL, TEMP_COL
+from ..naming import DENSITY_COL, VELOCITY_COL, TEMP_COL
 
 # %% ../../../notebooks/utils/05_naming.ipynb 3
 def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaDataset):
@@ -21,4 +21,10 @@ def standardize_plasma_data(data: pl.LazyFrame, meta: PlasmaDataset):
         mapping[meta.density_col] = DENSITY_COL
     if meta.temperature_col:
         mapping[meta.temperature_col] = TEMP_COL
+    if meta.velocity_cols:
+        if isinstance(meta.velocity_cols, list):
+            data = data.with_columns(
+                pl.concat_list(*meta.velocity_cols).list.to_array(3).alias(VELOCITY_COL)
+            )
+        mapping[meta.velocity_cols] = VELOCITY_COL
     return data.rename(mapping=mapping)
