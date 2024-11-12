@@ -137,13 +137,13 @@ def plot_candidate(
     add_plasma_params=False,
     **kwargs,
 ):
-    if pd.notnull(event.get("t.d_start")) and pd.notnull(event.get("t.d_end")):
+    if pd.notnull(event.get("t_us")) and pd.notnull(event.get("t_ds")):
         tvar = setup_mva_plot(
             data,
             event["tstart"],
             event["tstop"],
-            event["t.d_start"],
-            event["t.d_end"],
+            event["t_us"],
+            event["t_ds"],
         )
     else:
         tvar = setup_mva_plot(data, event["tstart"], event["tstop"])
@@ -163,8 +163,8 @@ def plot_candidate(
 
     if add_timebars:
         d_time = event.get("t.d_time")
-        d_start = event.get("t.d_start")
-        d_stop = event.get("t.d_end")
+        d_start = event.get("t_us")
+        d_stop = event.get("t_ds")
 
         if d_time:
             timebar(time_stamp(d_time), color="red")

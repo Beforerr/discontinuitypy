@@ -62,6 +62,7 @@ For the unit, by default we use
 
 ## Outputs
 
+- `t_{us,ds}` :  moments of time corresponding to upstream and downstream boundaries of the current sheet
 - `b_mag` : mean of magnetic field magnitude across the discontinuity
 - `db_over_b` : $|\Delta B|/\bar{B}$ , Change in magnetic field magnitude over magnetic field magnitude (mean)
     - see Fig.14 in @tsurutaniInterplanetaryDiscontinuitiesTemporal1979

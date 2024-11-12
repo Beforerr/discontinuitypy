@@ -84,10 +84,10 @@ AvailableMethod = Literal["distance", "derivative"]
 def calc_duration(ts: xr.DataArray, method: AvailableMethod = "distance", **kwargs):
     if method == "distance":
         result = np.sort(ts_max_distance(ts))
-        keys = ["t.d_start", "t.d_end"]
+        keys = ["t_us", "t_ds"]
 
     elif method == "derivative":
         result = ts_max_derivative(ts)
-        keys = ["t.d_start", "t.d_end", "t.d_time", "d_star_max"]
+        keys = ["t_us", "t_ds", "t.d_time", "d_star_max"]
 
     return dict(zip(keys, result))

@@ -17,6 +17,7 @@ from space_analysis.plasma.formulary.polars import (
 from space_analysis.meta import PlasmaDataset
 from .utils.ops import vector_project_pl
 from typing_extensions import deprecated
+from . import UPSTREAM_TIME, DOWNSTREAM_TIME
 from .naming import DENSITY_COL, TEMP_COL, FIT_AMPL_COL
 from .utils.naming import standardize_plasma_data
 from loguru import logger
@@ -70,20 +71,20 @@ def combine_features(
     ).drop(right_on + "_right")
 
     if method == "interpolate":
-        before_df = interpolate2(df.select(time=pl.col("t.d_start")), states_data)
-        after_df = interpolate2(df.select(time=pl.col("t.d_end")), states_data)
+        before_df = interpolate2(df.select(time=pl.col(UPSTREAM_TIME)), states_data)
+        after_df = interpolate2(df.select(time=pl.col(DOWNSTREAM_TIME)), states_data)
         return (
-            df.sort("t.d_start")
+            df.sort(UPSTREAM_TIME)
             .join(
                 before_df,
-                left_on="t.d_start",
+                left_on=UPSTREAM_TIME,
                 right_on=right_on,
                 suffix=".before",
             )
-            .sort("t.d_end")
+            .sort(DOWNSTREAM_TIME)
             .join(
                 after_df,
-                left_on="t.d_end",
+                left_on=DOWNSTREAM_TIME,
                 right_on=right_on,
                 suffix=".after",
             )
@@ -91,18 +92,18 @@ def combine_features(
 
     elif method == "nearest":
         return (
-            df.sort("t.d_start")
+            df.sort(UPSTREAM_TIME)
             .join_asof(
                 states_data,
-                left_on="t.d_start",
+                left_on=UPSTREAM_TIME,
                 right_on=right_on,
                 strategy="backward",
                 suffix=".before",
             )
-            .sort("t.d_end")
+            .sort(DOWNSTREAM_TIME)
             .join_asof(
                 states_data,
-                left_on="t.d_end",
+                left_on=DOWNSTREAM_TIME,
                 right_on=right_on,
                 strategy="forward",
                 suffix=".after",

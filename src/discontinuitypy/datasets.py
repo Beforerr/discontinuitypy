@@ -96,8 +96,8 @@ class IdsEvents(BaseModel):
     def get_event_data(
         self,
         event,
-        start_col="t.d_start",
-        end_col="t.d_end",
+        start_col="t_us",
+        end_col="t_ds",
         offset=timedelta(seconds=1),
         **kwargs,
     ):

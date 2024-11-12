@@ -2,11 +2,12 @@
 
 # %% auto 0
 __all__ = ['get_data_at_times', 'select_data_by_timerange', 'get_candidate_data', 'calc_events_tr_features',
-           'calc_events_duration', 'calc_events_mva_features', 'calc_normal_direction', 'calc_events_normal_direction',
-           'calc_events_vec_change', 'process_events']
+           'calc_events_duration', 'calc_events_mva_features', 'calc_events_cross_normal', 'calc_events_vec_change',
+           'process_events']
 
 # %% ../../../notebooks/02_ids_properties.ipynb 1
 # | code-summary: "Import all the packages needed for the project"
+from .. import CROSS_NORMAL, UPSTREAM_TIME, DOWNSTREAM_TIME
 import polars as pl
 import xarray as xr
 import numpy as np
@@ -14,17 +15,15 @@ import ray
 
 from ..propeties.duration import calc_duration
 from ..propeties.mva import calc_mva_features_all
+from ..propeties.normal import cross_normal
 from typing import Literal
 
 ray.init(ignore_reinit_error=True)
 
 # %% ../../../notebooks/02_ids_properties.ipynb 2
-def get_data_at_times(data: xr.DataArray, times) -> np.ndarray:
-    """
-    Select data at specified times.
-    """
-    # Use xarray's selection capability if data supports it
-    return data.sel(time=times, method="nearest").to_numpy()
+def get_data_at_times(data: xr.DataArray, times, method="nearest"):
+    """Select data at specified times."""
+    return data.sel(time=times, method=method).to_numpy()
 
 
 def select_data_by_timerange(data: xr.DataArray, tstart, tstop, neighbor: int = 0):
@@ -66,29 +65,18 @@ def calc_events_duration(df, data, tr_cols=["tstart", "tstop"], **kwargs):
     ).drop_nulls()
 
 
-def calc_events_mva_features(df, data, tr_cols=["t.d_start", "t.d_end"], **kwargs):
+def calc_events_mva_features(df, data, tr_cols=["t_us", "t_ds"], **kwargs):
     return calc_events_tr_features(
         df, data, tr_cols, func=calc_mva_features_all, **kwargs
     )
 
 # %% ../../../notebooks/02_ids_properties.ipynb 6
-def calc_normal_direction(v1, v2):
-    """
-    Computes the normal direction of two vectors.
-
-    Parameters
-    ----------
-    v1 : array_like
-        The first vector(s).
-    v2 : array_like
-        The second vector(s).
-    """
-    c = np.cross(v1, v2)
-    return c / np.linalg.norm(c, axis=-1, keepdims=True)
-
-# %% ../../../notebooks/02_ids_properties.ipynb 7
-def calc_events_normal_direction(
-    df: pl.DataFrame, data: xr.DataArray, name="k", start="t.d_start", end="t.d_end"
+def calc_events_cross_normal(
+    df: pl.DataFrame,
+    data: xr.DataArray,
+    name=CROSS_NORMAL,
+    start=UPSTREAM_TIME,
+    end=DOWNSTREAM_TIME,
 ):
     """
     Computes the normal directions(s) at two different time steps.
@@ -98,14 +86,17 @@ def calc_events_normal_direction(
     vecs_before = get_data_at_times(data, tstart)
     vecs_after = get_data_at_times(data, tstop)
 
-    normal_directions = calc_normal_direction(vecs_before, vecs_after)
-    # need to convert to list first, as only 1D array is supported
+    normal_directions = cross_normal(vecs_before, vecs_after)
     return df.with_columns(pl.Series(name, normal_directions))
 
 
 # | export
 def calc_events_vec_change(
-    df: pl.DataFrame, data: xr.DataArray, name="dB", start="t.d_start", end="t.d_end"
+    df: pl.DataFrame,
+    data: xr.DataArray,
+    name="dB",
+    start=UPSTREAM_TIME,
+    end=DOWNSTREAM_TIME,
 ):
     """
     Utils function to calculate features related to the change of the magnetic field
@@ -118,7 +109,7 @@ def calc_events_vec_change(
 
     return df.with_columns(pl.Series(name, dvecs))
 
-# %% ../../../notebooks/02_ids_properties.ipynb 9
+# %% ../../../notebooks/02_ids_properties.ipynb 8
 def process_events(
     events: pl.DataFrame,  # potential candidates DataFrame
     data: xr.DataArray,
@@ -133,12 +124,12 @@ def process_events(
     else:
         duration_method = "derivative"
         duration_expr = (
-            pl.col("t.d_end") - pl.col("t.d_start")
+            pl.col(DOWNSTREAM_TIME) - pl.col(UPSTREAM_TIME)
         ).dt.total_nanoseconds() / 1e9
 
     return (
         events.pipe(calc_events_duration, data=data, method=duration_method)
         .pipe(calc_events_mva_features, data=data, method=method)
         .pipe(calc_events_vec_change, data=data, name="dB")
-        .pipe(calc_events_normal_direction, data=data, name="k")
+        .pipe(calc_events_cross_normal, data=data)
     ).with_columns(duration=duration_expr)
