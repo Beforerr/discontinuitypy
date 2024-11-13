@@ -12,7 +12,6 @@ from space_analysis.utils.speasy import Variables, get_data, get_time_resolution
 from space_analysis.ds.spz.io import spzvars2pldf
 import polars as pl
 from functools import cached_property
-from abc import abstractmethod
 
 from tqdm.auto import tqdm
 from loguru import logger
@@ -57,26 +56,32 @@ class IDsConfig(IDsDataset):
         update = dict(timerange=timerange) | kwargs
         return self.model_copy(update=update, deep=True)
 
+    @property
+    def splitted_configs(self):
+        update_kw = dict(tmp=True, split=1)
+        return [self.update_timerange(tr, **update_kw) for tr in self.timeranges]
+
+    def _func(self, force=False, **kwargs):
+        configs = self.splitted_configs
+        datas, _ = zip(
+            *(c.produce_or_load(force=force, **kwargs) for c in tqdm(configs))
+        )
+        return pl.concat(datas)
+
     def produce_or_load(self, force=False, **kwargs):
+        config = dict(force=force, **kwargs)
         if self.split == 1:
             if force or not self.file.exists():
                 self.get_data()
-            return super().produce_or_load(**kwargs, force=force)
+            return super().produce_or_load(**config)
         else:
-            update_kw = dict(tmp=True, split=1)
-            configs = [self.update_timerange(tr, **update_kw) for tr in self.timeranges]
-            datas, _ = zip(
-                *(c.produce_or_load(**kwargs, force=force) for c in tqdm(configs))
-            )
-
             return produce_or_load_file(
-                f=pl.concat,
-                config=dict(items=datas),
+                f=self._func,
+                config=config,
                 file=self.file,
                 force=force,
             )
 
-    @abstractmethod
     def get_data(self):
         pass
 
