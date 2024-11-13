@@ -126,14 +126,12 @@ class SpeasyIDsConfig(IDsConfig):
 
     def _get_plasma_data(self):
         # TODO: directly get columns from the data without loading them
-        self.plasma_meta.density_col = (
-            self.plasma_meta.density_col or self.plasma_vars.data[0].columns[0]
-        )
-        self.plasma_meta.velocity_cols = (
-            self.plasma_meta.velocity_cols or self.plasma_vars.data[1].columns
-        )
-        if self.plasma_data is None:
-            self.plasma_data = self.get_vars_df("plasma")
+        plasma_vars = self.plasma_vars
+        pm = self.plasma_meta
+        pm.density_col = pm.density_col or plasma_vars.data[0].columns[0]
+        pm.velocity_cols = pm.velocity_cols or plasma_vars.data[1].columns
+        pm.temperature_col = pm.temperature_col or plasma_vars.data[2].columns[0]
+        self.plasma_data = self.plasma_data or self.get_vars_df("plasma")
         return self
 
     def _get_mag_data(self):
