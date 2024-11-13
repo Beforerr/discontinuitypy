@@ -17,16 +17,26 @@ from tqdm.auto import tqdm
 from loguru import logger
 
 # %% ../../notebooks/11_ids_config.ipynb 1
-def split_timerange(timerange: list[datetime], split: int = 1):
+def split_timerange(timerange: list[datetime], n: int = 1):
     """
     Split a timerange into multiple timeranges.
+
+    Reference: `TimeRange` in `sunpy.time`
     """
-    from sunpy.time import TimeRange
+    if n <= 0:
+        raise ValueError("n must be greater than or equal to 1")
+    subtimeranges = []
+    previous_time = timerange[0]
+    dt = timerange[1] - timerange[0]
+    next_time = None
+    for _ in range(n):
+        next_time = previous_time + dt / n
+        next_range = [previous_time, next_time]
+        subtimeranges.append(next_range)
+        previous_time = next_time
+    return subtimeranges
 
-    trs: list[TimeRange] = TimeRange(timerange).split(split)
-    return [[tr.start.value, tr.end.value] for tr in trs]
-
-
+# %% ../../notebooks/11_ids_config.ipynb 2
 def _timerange2str(timerange: list[datetime]):
     return "_tr=" + "-".join(t.strftime("%Y%m%d") for t in timerange)
 
@@ -85,7 +95,7 @@ class IDsConfig(IDsDataset):
     def get_data(self):
         pass
 
-# %% ../../notebooks/11_ids_config.ipynb 2
+# %% ../../notebooks/11_ids_config.ipynb 3
 def get_vars(self, vars: str, timerange: list[datetime] = None):
     meta: Dataset = getattr(self, f"{vars}_meta")
     timerange = timerange or self.timerange or meta.timerange

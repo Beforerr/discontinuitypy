@@ -46,7 +46,7 @@ default = ["dev", "plot", "accel"]
 [tool.pixi.dependencies]
 python = "<3.13"
 numba = "*"
-netcdf4 = "*"   # for `pytables`
+netcdf4 = "*"    # for `pytables`
 
 [tool.pixi.pypi-dependencies]
 discontinuitypy = { path = ".", editable = true }
