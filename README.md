@@ -21,6 +21,10 @@ series data.
 For how to use this project as a python library, please see [this
 page](./00_ids_finder.ipynb).
 
+See accompanying package
+[Discontinuity.jl](https://beforerr.github.io/Discontinuity.jl) for
+Julia about data processing and visualization.
+
 ## Installation
 
 ``` shell
@@ -50,33 +54,63 @@ from discontinuitypy.core import *
 
 Notations:
 
-- $\vec{B}$ : Magnetic field
+- $\vec{B}$ : Magnetic field in *ANY* coordinate system
 - $B$ : Magnetic field magnitude
+- $V$ : Ion velocity in *ANY* coordinate system, in units of $km/s$
+- $n$ : Plasma density, in units of $1/cm^3$
+
+For the unit, by default we use
+
+- length : $km$
+- time : $s$
+- magnetic field : $nT$
+- current : $nA/m^2$
 
 ## Outputs
 
+For more derivable outputs, please see
+[Discontinuity.jl](https://beforerr.github.io/Discontinuity.jl)
+
+- `t_{us,ds}` : moments of time corresponding to upstream and downstream
+  boundaries of the current sheet
+
 - `b_mag` : mean of magnetic field magnitude across the discontinuity
-- `db_over_b` : $|\Delta B|/\bar{B}$ , Change in magnetic field
-  magnitude over magnetic field magnitude (mean)
+
+- $|Δ B|/B$ : Change in magnetic field magnitude over magnetic field
+  magnitude (mean) `db_over_b`
+
   - see Fig.14 in Tsurutani and Smith (1979)
-- `rotation_angle` : Rotation angle across the discontinuity
-  - see Fig.12 in Tsurutani and Smith (1979)
-  - see Fig.11 in Söding et al. (2001)
+
 - `bn_over_b` : $\bar{B}_N/\bar{B}$ : Normal component of magnetic field
   over magnetic field magnitude (mean)
 
+- $\vec{e}_l, \vec{e}_m, \vec{e}_n$ : unit vector in the direction of
+  the maxium, medium, minium variance magnetic field in *ANY* coordinate
+  system `e_{max/med/min}{x,y,z}`
+
+- $\vec{n}$ : normal of the discontinuity plane
+
+- $\vec{n}_{\text{MVA}}$ : normal from minimum variance analysis (unit
+  vector in the minium variance direction) `n_mva = e_min`
+
+- $\vec{n}_{\text{cross}}$ : cross product of the magnetic field vector
+  $B_u$ upstream and the field vector $B_d$ downstream of the transition
+  `n_cross`
+
+- $V$ : Velocity vector in *ANY* coordinate system `V`
+
+- $V_l$ : Velocity component along the maximum variance direction `V_l`
+
+- $V_{n,MVA}$ : Velocity component along the normal direction from
+  minimum variance analysis `V_n_mva`
+
+- $V_{n,cross}$ : Velocity component along the normal direction from
+  cross product of upstream and downstream magnetic field `V_n_cross`
+
+- `j0{_norm}`: current density, in units of $nA/m^2$
+
 <div id="refs" class="references csl-bib-body hanging-indent"
 entry-spacing="0">
-
-<div id="ref-sodingRadialLatitudinalDependencies2001" class="csl-entry">
-
-Söding, A., F. M. Neubauer, B. T. Tsurutani, N. F. Ness, and R. P.
-Lepping. 2001. “Radial and Latitudinal Dependencies of Discontinuities
-in the Solar Wind Between 0.3 and 19 AU and -80$^\circ$ and
-+10$^\circ$.” *Annales Geophysicae* 19 (7): 667–80.
-<https://doi.org/10.5194/angeo-19-667-2001>.
-
-</div>
 
 <div id="ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979"
 class="csl-entry">
