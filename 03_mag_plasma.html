@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -368,15 +402,16 @@ window.Quarto = {
   <ul>
   <li><a href="#interpolate2" id="toc-interpolate2" class="nav-link active" data-scroll-target="#interpolate2">interpolate2</a></li>
   <li><a href="#interpolate" id="toc-interpolate" class="nav-link" data-scroll-target="#interpolate">interpolate</a></li>
+  <li><a href="#interpolate_arr_dtype" id="toc-interpolate_arr_dtype" class="nav-link" data-scroll-target="#interpolate_arr_dtype">interpolate_arr_dtype</a></li>
   <li><a href="#combine_features" id="toc-combine_features" class="nav-link" data-scroll-target="#combine_features">combine_features</a></li>
   <li><a href="#additional-features-after-combining" id="toc-additional-features-after-combining" class="nav-link" data-scroll-target="#additional-features-after-combining">Additional features after combining</a></li>
   <li><a href="#all-features" id="toc-all-features" class="nav-link" data-scroll-target="#all-features">All features</a>
   <ul class="collapse">
-  <li><a href="#calc_plasma_parameter_change" id="toc-calc_plasma_parameter_change" class="nav-link" data-scroll-target="#calc_plasma_parameter_change">calc_plasma_parameter_change</a></li>
   <li><a href="#calc_combined_features" id="toc-calc_combined_features" class="nav-link" data-scroll-target="#calc_combined_features">calc_combined_features</a></li>
   <li><a href="#update_events_with_plasma_data" id="toc-update_events_with_plasma_data" class="nav-link" data-scroll-target="#update_events_with_plasma_data">update_events_with_plasma_data</a></li>
   <li><a href="#update_events_with_temp_data" id="toc-update_events_with_temp_data" class="nav-link" data-scroll-target="#update_events_with_temp_data">update_events_with_temp_data</a></li>
   <li><a href="#update_events" id="toc-update_events" class="nav-link" data-scroll-target="#update_events">update_events</a></li>
+  <li><a href="#calc_plasma_parameter_change" id="toc-calc_plasma_parameter_change" class="nav-link" data-scroll-target="#calc_plasma_parameter_change">calc_plasma_parameter_change</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/discontinuitypy/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -423,6 +458,28 @@ window.Quarto = {
 </blockquote>
 <hr>
 </section>
+<section id="interpolate_arr_dtype" class="level3">
+<h3 class="anchored" data-anchor-id="interpolate_arr_dtype">interpolate_arr_dtype</h3>
+<blockquote class="blockquote">
+<pre><code> interpolate_arr_dtype (df:polars.dataframe.frame.DataFrame, on)</code></pre>
+</blockquote>
+<div id="cell-5" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_interpolate():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> pl.Series(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"c"</span>, [[<span class="dv">4</span>, <span class="dv">3</span>], [<span class="dv">1</span>, <span class="dv">1</span>], [<span class="va">None</span>, <span class="va">None</span>], [<span class="dv">2</span>, <span class="dv">2</span>]], dtype<span class="op">=</span>pl.Array(pl.Int64, <span class="dv">2</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    c_interp <span class="op">=</span> [[<span class="dv">4</span>, <span class="dv">3</span>], [<span class="dv">1</span>, <span class="dv">1</span>], [<span class="fl">1.5</span>, <span class="fl">1.5</span>], [<span class="dv">2</span>, <span class="dv">2</span>]]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    on <span class="op">=</span> <span class="st">"b"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pl.DataFrame({<span class="st">"a"</span>: [<span class="dv">1</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="dv">3</span>], <span class="st">"b"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], <span class="st">"c"</span>: c})</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    df.with_columns(a_interpolated<span class="op">=</span>pl.col(<span class="st">"a"</span>).interpolate_by(on))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df.pipe(interpolate_arr_dtype, on)[<span class="st">"c"</span>].to_list() <span class="op">==</span> c_interp</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> df.pipe(interpolate, on)[<span class="st">"c"</span>].to_list() <span class="op">==</span> c_interp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<hr>
+</section>
 <section id="combine_features" class="level3">
 <h3 class="anchored" data-anchor-id="combine_features">combine_features</h3>
 <blockquote class="blockquote">
@@ -449,31 +506,43 @@ window.Quarto = {
 <section id="all-features" class="level2">
 <h2 class="anchored" data-anchor-id="all-features">All features</h2>
 <hr>
-<section id="calc_plasma_parameter_change" class="level3">
-<h3 class="anchored" data-anchor-id="calc_plasma_parameter_change">calc_plasma_parameter_change</h3>
-<blockquote class="blockquote">
-<pre><code> calc_plasma_parameter_change (df:polars.dataframe.frame.DataFrame, plasma
-                               _meta:space_analysis.meta.PlasmaDataset=Pla
-                               smaDataset(timerange=None, variables=None,
-                               name=None, dataset=None, parameters=None,
-                               ts=None, temperature_col=None,
-                               para_col=None, perp_cols=None,
-                               velocity_cols=None, speed_col=None,
-                               density_col=None))</code></pre>
-</blockquote>
-<hr>
-</section>
 <section id="calc_combined_features" class="level3">
 <h3 class="anchored" data-anchor-id="calc_combined_features">calc_combined_features</h3>
 <blockquote class="blockquote">
 <pre><code> calc_combined_features (df:polars.dataframe.frame.DataFrame,
-                         b_norm_col='b_mag', normal_cols='k',
-                         Vl_cols='Vl', Vn_cols='Vn',
-                         thickness_cols=['L_k'], current_cols=['j0_k'], pl
-                         asma_meta:space_analysis.meta.PlasmaDataset=None)</code></pre>
+                         b_norm_col='b_mag')</code></pre>
 </blockquote>
-<p>*Calculate the combined features of the discontinuity</p>
-<p>Args: df (pl.DataFrame): <em>description</em> normal_cols (list[str], optional): normal vector of the discontinuity plane. Defaults to [ “k_x”, “k_y”, “k_z”, ]. Vl_cols (list, optional): maxium variance direction vector of the magnetic field. Defaults to [ “Vl_x”, “Vl_y”, “Vl_z”, ]. Vn_cols (list, optional): minimum variance direction vector of the magnetic field. Defaults to [ “Vn_x”, “Vn_y”, “Vn_z”, ]. current_cols (list, optional): <em>description</em>. Defaults to [“j0_mn”, “j0_k”].*</p>
+<p><em>Calculate the combined features of the discontinuity</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>df</td>
+<td>DataFrame</td>
+<td></td>
+<td>Input dataframe with discontinuity data</td>
+</tr>
+<tr class="even">
+<td>b_norm_col</td>
+<td>str</td>
+<td>b_mag</td>
+<td>Column name for mean magnetic field magnitude</td>
+</tr>
+</tbody>
+</table>
 <hr>
 </section>
 <section id="update_events_with_plasma_data" class="level3">
@@ -481,8 +550,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <pre><code> update_events_with_plasma_data (events:polars.dataframe.frame.DataFrame,
                                  plasma_data:polars.lazyframe.frame.LazyFr
-                                 ame|None, plasma_meta:space_analysis.meta
-                                 .PlasmaDataset, **kwargs)</code></pre>
+                                 ame|None, **kwargs)</code></pre>
 </blockquote>
 <hr>
 </section>
@@ -501,6 +569,20 @@ window.Quarto = {
 <blockquote class="blockquote">
 <pre><code> update_events (events, plasma_data, plasma_meta, ion_temp_data,
                 e_temp_data, **kwargs)</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="calc_plasma_parameter_change" class="level3">
+<h3 class="anchored" data-anchor-id="calc_plasma_parameter_change">calc_plasma_parameter_change</h3>
+<blockquote class="blockquote">
+<pre><code> calc_plasma_parameter_change (df:polars.dataframe.frame.DataFrame, plasma
+                               _meta:space_analysis.meta.PlasmaDataset=Pla
+                               smaDataset(timerange=None, variables=None,
+                               name=None, dataset=None, parameters=None,
+                               ts=None, temperature_col=None,
+                               para_col=None, perp_cols=None,
+                               velocity_cols=None, speed_col=None,
+                               density_col=None))</code></pre>
 </blockquote>
 
 

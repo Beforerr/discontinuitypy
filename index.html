@@ -501,23 +501,45 @@ window.Quarto = {
 <h1>Properties of Discontinuities</h1>
 <p>Notations:</p>
 <ul>
-<li><span class="math inline">\(\vec{B}\)</span> : Magnetic field</li>
+<li><span class="math inline">\(\vec{B}\)</span> : Magnetic field in <em>ANY</em> coordinate system</li>
 <li><span class="math inline">\(B\)</span> : Magnetic field magnitude</li>
+</ul>
+<p>For the unit, by default we use</p>
+<ul>
+<li>length : <span class="math inline">\(km\)</span></li>
+<li>time : <span class="math inline">\(s\)</span></li>
+<li>magnetic field : <span class="math inline">\(nT\)</span></li>
+<li>current : <span class="math inline">\(nA/m^2\)</span></li>
 </ul>
 <section id="outputs" class="level2">
 <h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
 <ul>
-<li><code>b_mag</code> : mean of magnetic field magnitude across the discontinuity</li>
-<li><code>db_over_b</code> : <span class="math inline">\(|\Delta B|/\bar{B}\)</span> , Change in magnetic field magnitude over magnetic field magnitude (mean)
+<li><p><code>t_{us,ds}</code> : moments of time corresponding to upstream and downstream boundaries of the current sheet</p></li>
+<li><p><code>b_mag</code> : mean of magnetic field magnitude across the discontinuity</p></li>
+<li><p><code>db_over_b</code> : <span class="math inline">\(|\Delta B|/\bar{B}\)</span> , Change in magnetic field magnitude over magnetic field magnitude (mean)</p>
 <ul>
 <li>see Fig.14 in <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesTemporal1979">Tsurutani and Smith (<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" role="doc-biblioref">1979</a>)</span></li>
 </ul></li>
-<li><code>rotation_angle</code> : Rotation angle across the discontinuity
+<li><p><code>rotation_angle</code> : Rotation angle across the discontinuity</p>
 <ul>
 <li>see Fig.12 in <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesTemporal1979">Tsurutani and Smith (<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" role="doc-biblioref">1979</a>)</span></li>
 <li>see Fig.11 in <span class="citation" data-cites="sodingRadialLatitudinalDependencies2001">Söding et al. (<a href="#ref-sodingRadialLatitudinalDependencies2001" role="doc-biblioref">2001</a>)</span></li>
 </ul></li>
-<li><code>bn_over_b</code> : <span class="math inline">\(\bar{B}_N/\bar{B}\)</span> : Normal component of magnetic field over magnetic field magnitude (mean)</li>
+<li><p><code>bn_over_b</code> : <span class="math inline">\(\bar{B}_N/\bar{B}\)</span> : Normal component of magnetic field over magnetic field magnitude (mean)</p></li>
+<li><p><span class="math inline">\(\vec{e}_l, \vec{e}_m, \vec{e}_n\)</span> : unit vector in the direction of the maxium, medium, minium variance magnetic field in <em>ANY</em> coordinate system <code>e_{max/med/min}{x,y,z}</code></p></li>
+<li><p><span class="math inline">\(\vec{n}\)</span> : normal of the discontinuity plane</p></li>
+<li><p><span class="math inline">\(\vec{n}_{\text{MVA}}\)</span> : normal from minimum variance analysis (unit vector in the minium variance direction) <code>n_mva = e_min</code></p></li>
+<li><p><span class="math inline">\(\vec{n}_{\text{cross}}\)</span> : cross product of the magnetic field vector <span class="math inline">\(B_u\)</span> upstream and the field vector <span class="math inline">\(B_d\)</span> downstream of the transition <code>n_cross</code></p></li>
+<li><p><span class="math inline">\(V\)</span> : Velocity vector in <em>ANY</em> coordinate system <code>V</code></p></li>
+<li><p><span class="math inline">\(V_l\)</span> : Velocity component along the maximum variance direction <code>V_l</code></p></li>
+<li><p><span class="math inline">\(V_{n,MVA}\)</span> : Velocity component along the normal direction from minimum variance analysis <code>V_n_mva</code></p></li>
+<li><p><span class="math inline">\(V_{n,cross}\)</span> : Velocity component along the normal direction from cross product of upstream and downstream magnetic field <code>V_n_cross</code></p></li>
+<li><p><code>v_{x,y,z}</code>: plasma speed in the <em>ANY</em> coordinate system, in units of <span class="math inline">\(km/s\)</span></p></li>
+<li><p><code>plasma_speed</code>: plasma speed, in units of <span class="math inline">\(km/s\)</span></p></li>
+<li><p><code>plasma_density</code>: plasma density, in units of <span class="math inline">\(1/cm^{3}\)</span></p></li>
+<li><p><code>plasma_temperature</code>: plasma temperature, in units of <span class="math inline">\(K\)</span></p></li>
+<li><p><code>L_mn{_norm}</code>: thickness of the current sheet in MN direction, in units of <span class="math inline">\(km\)</span></p></li>
+<li><p><code>j0{_norm}</code>: current density, in units of <span class="math inline">\(nA/m^2\)</span></p></li>
 </ul>
 
 

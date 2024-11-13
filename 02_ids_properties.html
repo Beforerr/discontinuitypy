@@ -345,9 +345,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#calc_events_mva_features" id="toc-calc_events_mva_features" class="nav-link" data-scroll-target="#calc_events_mva_features">calc_events_mva_features</a></li>
   <li><a href="#calc_events_duration" id="toc-calc_events_duration" class="nav-link" data-scroll-target="#calc_events_duration">calc_events_duration</a></li>
   <li><a href="#calc_events_tr_features" id="toc-calc_events_tr_features" class="nav-link" data-scroll-target="#calc_events_tr_features">calc_events_tr_features</a></li>
-  <li><a href="#calc_normal_direction" id="toc-calc_normal_direction" class="nav-link" data-scroll-target="#calc_normal_direction">calc_normal_direction</a></li>
   <li><a href="#calc_events_vec_change" id="toc-calc_events_vec_change" class="nav-link" data-scroll-target="#calc_events_vec_change">calc_events_vec_change</a></li>
-  <li><a href="#calc_events_normal_direction" id="toc-calc_events_normal_direction" class="nav-link" data-scroll-target="#calc_events_normal_direction">calc_events_normal_direction</a></li>
+  <li><a href="#calc_events_cross_normal" id="toc-calc_events_cross_normal" class="nav-link" data-scroll-target="#calc_events_cross_normal">calc_events_cross_normal</a></li>
   </ul></li>
   <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing">Data processing</a>
   <ul class="collapse">
@@ -400,7 +399,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="get_data_at_times" class="level3">
 <h3 class="anchored" data-anchor-id="get_data_at_times">get_data_at_times</h3>
 <blockquote class="blockquote">
-<pre><code> get_data_at_times (data:xarray.core.dataarray.DataArray, times)</code></pre>
+<pre><code> get_data_at_times (data:xarray.core.dataarray.DataArray, times,
+                    method='nearest')</code></pre>
 </blockquote>
 <p><em>Select data at specified times.</em></p>
 </section>
@@ -410,8 +410,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="calc_events_mva_features" class="level3">
 <h3 class="anchored" data-anchor-id="calc_events_mva_features">calc_events_mva_features</h3>
 <blockquote class="blockquote">
-<pre><code> calc_events_mva_features (df, data, tr_cols=['t.d_start', 't.d_end'],
-                           **kwargs)</code></pre>
+<pre><code> calc_events_mva_features (df, data, tr_cols=['t_us', 't_ds'], **kwargs)</code></pre>
 </blockquote>
 <hr>
 </section>
@@ -431,51 +430,22 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 <hr>
 </section>
-<section id="calc_normal_direction" class="level3">
-<h3 class="anchored" data-anchor-id="calc_normal_direction">calc_normal_direction</h3>
-<blockquote class="blockquote">
-<pre><code> calc_normal_direction (v1, v2)</code></pre>
-</blockquote>
-<p><em>Computes the normal direction of two vectors.</em></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Type</strong></th>
-<th><strong>Details</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>v1</td>
-<td>array_like</td>
-<td>The first vector(s).</td>
-</tr>
-<tr class="even">
-<td>v2</td>
-<td>array_like</td>
-<td>The second vector(s).</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
 <section id="calc_events_vec_change" class="level3">
 <h3 class="anchored" data-anchor-id="calc_events_vec_change">calc_events_vec_change</h3>
 <blockquote class="blockquote">
 <pre><code> calc_events_vec_change (df:polars.dataframe.frame.DataFrame,
                          data:xarray.core.dataarray.DataArray, name='dB',
-                         start='t.d_start', end='t.d_end')</code></pre>
+                         start='t_us', end='t_ds')</code></pre>
 </blockquote>
 <p><em>Utils function to calculate features related to the change of the magnetic field</em></p>
 <hr>
 </section>
-<section id="calc_events_normal_direction" class="level3">
-<h3 class="anchored" data-anchor-id="calc_events_normal_direction">calc_events_normal_direction</h3>
+<section id="calc_events_cross_normal" class="level3">
+<h3 class="anchored" data-anchor-id="calc_events_cross_normal">calc_events_cross_normal</h3>
 <blockquote class="blockquote">
-<pre><code> calc_events_normal_direction (df:polars.dataframe.frame.DataFrame,
-                               data:xarray.core.dataarray.DataArray,
-                               name='k', start='t.d_start', end='t.d_end')</code></pre>
+<pre><code> calc_events_cross_normal (df:polars.dataframe.frame.DataFrame,
+                           data:xarray.core.dataarray.DataArray,
+                           name='n_cross', start='t_us', end='t_ds')</code></pre>
 </blockquote>
 <p><em>Computes the normal directions(s) at two different time steps.</em></p>
 </section>
