@@ -503,6 +503,8 @@ window.Quarto = {
 <ul>
 <li><span class="math inline">\(\vec{B}\)</span> : Magnetic field in <em>ANY</em> coordinate system</li>
 <li><span class="math inline">\(B\)</span> : Magnetic field magnitude</li>
+<li><span class="math inline">\(V\)</span> : Ion velocity in <em>ANY</em> coordinate system, in units of <span class="math inline">\(km/s\)</span></li>
+<li><span class="math inline">\(n\)</span> : Plasma density, in units of <span class="math inline">\(1/cm^3\)</span></li>
 </ul>
 <p>For the unit, by default we use</p>
 <ul>
@@ -513,17 +515,13 @@ window.Quarto = {
 </ul>
 <section id="outputs" class="level2">
 <h2 class="anchored" data-anchor-id="outputs">Outputs</h2>
+<p>For more derivable outputs, please see <a href="https://beforerr.github.io/Discontinuity.jl">Discontinuity.jl</a></p>
 <ul>
 <li><p><code>t_{us,ds}</code> : moments of time corresponding to upstream and downstream boundaries of the current sheet</p></li>
 <li><p><code>b_mag</code> : mean of magnetic field magnitude across the discontinuity</p></li>
-<li><p><code>db_over_b</code> : <span class="math inline">\(|\Delta B|/\bar{B}\)</span> , Change in magnetic field magnitude over magnetic field magnitude (mean)</p>
+<li><p><span class="math inline">\(|Δ B|/B\)</span> : Change in magnetic field magnitude over magnetic field magnitude (mean) <code>db_over_b</code></p>
 <ul>
 <li>see Fig.14 in <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesTemporal1979">Tsurutani and Smith (<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" role="doc-biblioref">1979</a>)</span></li>
-</ul></li>
-<li><p><code>rotation_angle</code> : Rotation angle across the discontinuity</p>
-<ul>
-<li>see Fig.12 in <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesTemporal1979">Tsurutani and Smith (<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" role="doc-biblioref">1979</a>)</span></li>
-<li>see Fig.11 in <span class="citation" data-cites="sodingRadialLatitudinalDependencies2001">Söding et al. (<a href="#ref-sodingRadialLatitudinalDependencies2001" role="doc-biblioref">2001</a>)</span></li>
 </ul></li>
 <li><p><code>bn_over_b</code> : <span class="math inline">\(\bar{B}_N/\bar{B}\)</span> : Normal component of magnetic field over magnetic field magnitude (mean)</p></li>
 <li><p><span class="math inline">\(\vec{e}_l, \vec{e}_m, \vec{e}_n\)</span> : unit vector in the direction of the maxium, medium, minium variance magnetic field in <em>ANY</em> coordinate system <code>e_{max/med/min}{x,y,z}</code></p></li>
@@ -534,11 +532,6 @@ window.Quarto = {
 <li><p><span class="math inline">\(V_l\)</span> : Velocity component along the maximum variance direction <code>V_l</code></p></li>
 <li><p><span class="math inline">\(V_{n,MVA}\)</span> : Velocity component along the normal direction from minimum variance analysis <code>V_n_mva</code></p></li>
 <li><p><span class="math inline">\(V_{n,cross}\)</span> : Velocity component along the normal direction from cross product of upstream and downstream magnetic field <code>V_n_cross</code></p></li>
-<li><p><code>v_{x,y,z}</code>: plasma speed in the <em>ANY</em> coordinate system, in units of <span class="math inline">\(km/s\)</span></p></li>
-<li><p><code>plasma_speed</code>: plasma speed, in units of <span class="math inline">\(km/s\)</span></p></li>
-<li><p><code>plasma_density</code>: plasma density, in units of <span class="math inline">\(1/cm^{3}\)</span></p></li>
-<li><p><code>plasma_temperature</code>: plasma temperature, in units of <span class="math inline">\(K\)</span></p></li>
-<li><p><code>L_mn{_norm}</code>: thickness of the current sheet in MN direction, in units of <span class="math inline">\(km\)</span></p></li>
 <li><p><code>j0{_norm}</code>: current density, in units of <span class="math inline">\(nA/m^2\)</span></p></li>
 </ul>
 
@@ -548,9 +541,6 @@ window.Quarto = {
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-sodingRadialLatitudinalDependencies2001" class="csl-entry" role="listitem">
-Söding, A., F. M. Neubauer, B. T. Tsurutani, N. F. Ness, and R. P. Lepping. 2001. <span>“Radial and Latitudinal Dependencies of Discontinuities in the Solar Wind Between 0.3 and 19 <span>AU</span> and -80<span><span class="math inline">\(^\circ\)</span></span> and +10<span><span class="math inline">\(^\circ\)</span></span>.”</span> <em>Annales Geophysicae</em> 19 (7): 667–80. <a href="https://doi.org/10.5194/angeo-19-667-2001">https://doi.org/10.5194/angeo-19-667-2001</a>.
-</div>
 <div id="ref-tsurutaniInterplanetaryDiscontinuitiesTemporal1979" class="csl-entry" role="listitem">
 Tsurutani, Bruce T., and Edward J. Smith. 1979. <span>“Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 <span>AU</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 84 (A6): 2773–87. <a href="https://doi.org/10.1029/JA084iA06p02773">https://doi.org/10.1029/JA084iA06p02773</a>.
 </div>

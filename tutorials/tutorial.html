@@ -379,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>A step-by-step guide to using the package</p>
-<div id="2fb94f4b" class="cell" data-execution_count="1">
+<div id="6ffddf26" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> timedelta</span>
@@ -394,17 +394,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>init_cdaweb()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>2024-11-13 05:01:13,292 INFO worker.py:1819 -- Started a local Ray instance.</code></pre>
+<pre><code>2024-11-13 18:20:30,584 INFO worker.py:1819 -- Started a local Ray instance.</code></pre>
 </div>
 </div>
-<div id="d7a0d2e1" class="cell" data-execution_count="2">
+<div id="89c142c6" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>timerange <span class="op">=</span> [<span class="st">"2021-05-03"</span>, <span class="st">"2021-05-04"</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> timedelta(seconds<span class="op">=</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="92ef827b" class="cell" data-execution_count="3">
+<div id="980ecb3d" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> get_polars_ldf(wi_mfi_h2_bgse, <span class="st">'cda'</span>, timerange)</span>
@@ -420,14 +420,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>DF ["Bx (GSE)", "By (GSE)", "Bz (GSE)", "time"]; PROJECT */4 COLUMNS; SELECTION: None</div>
 </div>
 </div>
-<div id="57f1a78e" class="cell" data-execution_count="4">
+<div id="2d48ce3b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>detect_kwargs <span class="op">=</span> {<span class="st">"tau"</span>: tau}</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ids_finder(data, detect_kwargs<span class="op">=</span>detect_kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>2024-11-13 05:01:24.639 | INFO     | discontinuitypy.detection.variance:_time_resolution:284 - Time resolution not provided. Using median time difference: 0:00:00.092000</code></pre>
+<pre><code>2024-11-13 18:20:45.698 | INFO     | discontinuitypy.detection.variance:_time_resolution:284 - Time resolution not provided. Using median time difference: 0:00:00.092000</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
@@ -902,7 +902,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="3045d349" class="cell" data-execution_count="5">
+<div id="d646b756" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> WindConfig(WindConfigBase, SpeasyIDsConfig):</span>
@@ -914,7 +914,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6491ac63" class="cell" data-execution_count="6">
+<div id="042486b6" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>result, path <span class="op">=</span> config.produce_or_load()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -922,14 +922,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/runner/work/discontinuitypy/discontinuitypy/.pixi/envs/default/lib/python3.12/site-packages/speasy/core/data_containers.py:17: UserWarning: no explicit representation of timezones available for np.datetime64
   return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')
-2024-11-13 05:01:27.959 | INFO     | discontinuitypy.config:_get_mag_data:143 - Setting time resolution to 0:00:00.092000</code></pre>
+2024-11-13 18:20:48.995 | INFO     | discontinuitypy.config:_get_mag_data:143 - Setting time resolution to 0:00:00.092000</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>File /home/runner/work/discontinuitypy/discontinuitypy/data/Wind_tr=20210503-20210504_detect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow does not exist. Producing it now...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>2024-11-13 05:01:35.201 | INFO     | discontinuitypy.integration:update_events_with_temp_data:193 - Ion temperature data is not available.
-2024-11-13 05:01:35.202 | INFO     | discontinuitypy.integration:update_events_with_temp_data:201 - Electron temperature data is not available.</code></pre>
+<pre><code>2024-11-13 18:20:57.983 | INFO     | discontinuitypy.integration:update_events_with_temp_data:193 - Ion temperature data is not available.
+2024-11-13 18:20:57.984 | INFO     | discontinuitypy.integration:update_events_with_temp_data:201 - Electron temperature data is not available.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Could not save file. Error: No such file or directory (os error 2)
@@ -938,7 +938,7 @@ Could not save file. Error: No such file or directory (os error 2)</code></pre>
 </div>
 </div>
 <p>Inspecting the magnetic data…</p>
-<div id="79156b54" class="cell" data-execution_count="7">
+<div id="042ff1c6" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>config.mag_meta.data[<span class="dv">0</span>].plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
