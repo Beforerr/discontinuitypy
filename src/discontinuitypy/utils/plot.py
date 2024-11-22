@@ -5,8 +5,6 @@ __all__ = ['time_stamp', 'setup_mva_tplot_base', 'ts_mva', 'setup_mva_plot', 'se
            'plot_event', 'plot_candidates']
 
 # %% ../../../notebooks/utils/01_plotting.ipynb 0
-import matplotlib.pyplot as plt
-
 import xarray as xr
 import pandas as pd
 from datetime import datetime
@@ -24,17 +22,11 @@ from ..datasets import IDsDataset
 from loguru import logger
 
 # %% ../../../notebooks/utils/01_plotting.ipynb 2
-import importlib.util
-
-if importlib.util.find_spec("scienceplots") is not None:
-    plt.style.use(["science", "nature", "notebook"])
-
-# %% ../../../notebooks/utils/01_plotting.ipynb 3
 def time_stamp(ts):
     "Return POSIX timestamp as float."
     return pd.Timestamp(ts, tz="UTC").timestamp()
 
-# %% ../../../notebooks/utils/01_plotting.ipynb 4
+# %% ../../../notebooks/utils/01_plotting.ipynb 3
 def setup_mva_tplot_base(
     tname: str,
     mva_tname: str,
@@ -69,7 +61,7 @@ def ts_mva(
 
     return ts
 
-# %% ../../../notebooks/utils/01_plotting.ipynb 5
+# %% ../../../notebooks/utils/01_plotting.ipynb 4
 def setup_mva_plot(
     data: xr.DataArray,
     tstart: datetime,
@@ -113,7 +105,7 @@ def set_mva_tname_option(
         options(tname, "ysubtitle", type_options["subtitle"])
         options(tname, "legend_names", type_options["legend_names"])
 
-# %% ../../../notebooks/utils/01_plotting.ipynb 6
+# %% ../../../notebooks/utils/01_plotting.ipynb 5
 def format_candidate_title(candidate: dict):
     def format_float(x):
         return rf"$\bf {x:.2f} $" if isinstance(x, (float, int)) else rf"$\bf {x} $"
@@ -126,7 +118,7 @@ def format_candidate_title(candidate: dict):
     {info_line}"""
     return title
 
-# %% ../../../notebooks/utils/01_plotting.ipynb 7
+# %% ../../../notebooks/utils/01_plotting.ipynb 6
 def plot_candidate(
     event: dict,
     data: xr.DataArray,
@@ -235,7 +227,7 @@ def plot_candidate(
 
     return fig, axes
 
-# %% ../../../notebooks/utils/01_plotting.ipynb 8
+# %% ../../../notebooks/utils/01_plotting.ipynb 7
 def plot_event(self: IDsDataset, event=None, index=None, **kwargs):
     if event is None:
         event = self.get_event(index)
