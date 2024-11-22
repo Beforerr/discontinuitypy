@@ -624,7 +624,7 @@ f(x; A, \mu, \sigma, {\mathrm{form={}'logistic{}'}}) = A \left[1 - \frac{1}{1 + 
 </section>
 <section id="test" class="level2">
 <h2 class="anchored" data-anchor-id="test">Test</h2>
-<div id="cell-14" class="cell" data-execution_count="6">
+<div id="cell-14" class="cell">
 <details class="code-fold">
 <summary>test for ts_max_distance function</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -638,7 +638,7 @@ f(x; A, \mu, \sigma, {\mathrm{form={}'logistic{}'}}) = A \left[1 - \frac{1}{1 + 
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> xr.DataArray(data, coords<span class="op">=</span>{<span class="st">"time"</span>: time}, dims<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"space"</span>])</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>fit_maxiumum_variance_direction(data[:, <span class="dv">0</span>], return_best_fit<span class="op">=</span><span class="va">True</span>)[<span class="st">"fit.best_fit"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display">
 <pre><code>array([ 1.01473047,  0.91997617,  0.75951811,  0.51243958,  0.18263172,
        -0.18270987, -0.51251774, -0.75959627, -0.92005434, -1.01480865])</code></pre>
 </div>
