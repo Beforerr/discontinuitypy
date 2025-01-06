@@ -130,7 +130,7 @@ class SpeasyIDsConfig(IDsConfig):
         pm = self.plasma_meta
         pm.density_col = pm.density_col or plasma_vars.data[0].columns[0]
         pm.velocity_cols = pm.velocity_cols or plasma_vars.data[1].columns
-        pm.temperature_col = pm.temperature_col or plasma_vars.data[2].columns[0]
+        pm.temperature_col = pm.temperature_col or plasma_vars.data[-1].columns[0]
         self.plasma_data = self.plasma_data or self.get_vars_df("plasma")
         return self
 
