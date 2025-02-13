@@ -11,11 +11,12 @@ type: software
 authors:
   - given-names: Zijin
     family-names: Zhang
-    orcid: 'https://orcid.org/0000-0002-9968-067X'
+    orcid: "https://orcid.org/0000-0002-9968-067X"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.14868016
-repository-code: 'https://github.com/Beforerr/discontinuitypy'
-url: 'https://beforerr.github.io/discontinuitypy/'
+repository-code: "https://github.com/Beforerr/discontinuitypy"
+url: "https://beforerr.github.io/discontinuitypy/"
 license: MIT
-date-released: '2025-02-13'
+date-released: "2025-02-13"
+doi: 10.5281/zenodo.14868016
