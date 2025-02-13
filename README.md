@@ -1,10 +1,10 @@
 # DiscontinuityPy
 
-
 [![PyPI](https://img.shields.io/pypi/v/discontinuitypy.png)](https://pypi.org/project/discontinuitypy)
 [![Pixi
 Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json)](https://pixi.sh)
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet.png)](https://pdm-project.org)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14867975.svg)](https://doi.org/10.5281/zenodo.14867975)
 
 # User Guide
 
@@ -27,7 +27,7 @@ Julia about data processing and visualization.
 
 ## Installation
 
-``` shell
+```shell
 pip install discontinuitypy
 ```
 
@@ -35,7 +35,7 @@ pip install discontinuitypy
 
 Import the package
 
-``` python
+```python
 from discontinuitypy.utils.basic import *
 from discontinuitypy.core import *
 ```
@@ -54,9 +54,9 @@ from discontinuitypy.core import *
 
 Notations:
 
-- $\vec{B}$ : Magnetic field in *ANY* coordinate system
+- $\vec{B}$ : Magnetic field in _ANY_ coordinate system
 - $B$ : Magnetic field magnitude
-- $V$ : Ion velocity in *ANY* coordinate system, in units of $km/s$
+- $V$ : Ion velocity in _ANY_ coordinate system, in units of $km/s$
 - $n$ : Plasma density, in units of $1/cm^3$
 
 For the unit, by default we use
@@ -85,7 +85,7 @@ For more derivable outputs, please see
   over magnetic field magnitude (mean)
 
 - $\vec{e}_l, \vec{e}_m, \vec{e}_n$ : unit vector in the direction of
-  the maxium, medium, minium variance magnetic field in *ANY* coordinate
+  the maxium, medium, minium variance magnetic field in _ANY_ coordinate
   system `e_{max/med/min}{x,y,z}`
 
 - $\vec{n}$ : normal of the discontinuity plane
@@ -97,7 +97,7 @@ For more derivable outputs, please see
   $B_u$ upstream and the field vector $B_d$ downstream of the transition
   `n_cross`
 
-- $V$ : Velocity vector in *ANY* coordinate system `V`
+- $V$ : Velocity vector in _ANY_ coordinate system `V`
 
 - $V_l$ : Velocity component along the maximum variance direction `V_l`
 
@@ -117,7 +117,7 @@ class="csl-entry">
 
 Tsurutani, Bruce T., and Edward J. Smith. 1979. “Interplanetary
 Discontinuities: Temporal Variations and the Radial Gradient from 1 to
-8.5 AU.” *Journal of Geophysical Research: Space Physics* 84 (A6):
+8.5 AU.” _Journal of Geophysical Research: Space Physics_ 84 (A6):
 2773–87. <https://doi.org/10.1029/JA084iA06p02773>.
 
 </div>
