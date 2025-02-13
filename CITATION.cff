@@ -2,7 +2,8 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: discontinuitypy
+title: "discontinuitypy: A python package for identifying and analyzing
+  discontinuities for time series"
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -13,9 +14,8 @@ authors:
     orcid: 'https://orcid.org/0000-0002-9968-067X'
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.14867975
+    value: 10.5281/zenodo.14868016
 repository-code: 'https://github.com/Beforerr/discontinuitypy'
 url: 'https://beforerr.github.io/discontinuitypy/'
-abstract: >-
-  A python package for identifying and analyzing
-  discontinuities for time series data.
+license: MIT
+date-released: '2025-02-13'

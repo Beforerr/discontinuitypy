@@ -4,7 +4,7 @@
 [![Pixi
 Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json)](https://pixi.sh)
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet.png)](https://pdm-project.org)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14867975.svg)](https://doi.org/10.5281/zenodo.14867975)
+[![DOI](https://zenodo.org/badge/704810588.svg)](https://doi.org/10.5281/zenodo.14868016)
 
 # User Guide
 
