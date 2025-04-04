@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/01_ids_detection.html</loc>
-    <lastmod>2025-02-13T23:34:30.463Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/missions/index.html</loc>
-    <lastmod>2025-02-13T23:34:35.065Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/missions/themis.html</loc>
-    <lastmod>2025-02-13T23:34:34.968Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/missions/stereo.html</loc>
-    <lastmod>2025-02-13T23:34:34.875Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/index.html</loc>
-    <lastmod>2025-02-13T23:33:52.700Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/detection/02_TS_criterion.html</loc>
-    <lastmod>2025-02-13T23:34:34.715Z</lastmod>
+    <loc>https://Beforerr.github.io/discontinuitypy/11_ids_config.html</loc>
+    <lastmod>2025-04-04T22:30:39.035Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/discontinuitypy/plot/index.html</loc>
-    <lastmod>2025-02-13T23:34:36.933Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/utils/00_dataset.html</loc>
-    <lastmod>2025-02-13T23:34:32.243Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/utils/00_basic.html</loc>
-    <lastmod>2025-02-13T23:34:32.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/utils/02_ops.html</loc>
-    <lastmod>2025-02-13T23:34:31.626Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/properties/00_duration.html</loc>
-    <lastmod>2025-02-13T23:34:30.795Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/about.html</loc>
-    <lastmod>2025-02-13T23:33:52.700Z</lastmod>
+    <lastmod>2025-04-04T22:30:02.274Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/discontinuitypy/03_mag_plasma.html</loc>
-    <lastmod>2025-02-13T23:34:25.189Z</lastmod>
+    <lastmod>2025-04-04T22:29:50.318Z</lastmod>
   </url>
   <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/00_ids_finder.html</loc>
-    <lastmod>2025-02-13T23:34:30.267Z</lastmod>
+    <loc>https://Beforerr.github.io/discontinuitypy/utils/00_dataset.html</loc>
+    <lastmod>2025-04-04T22:29:56.443Z</lastmod>
   </url>
   <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/tutorials/tutorial.html</loc>
-    <lastmod>2025-02-13T23:33:52.702Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/properties/00_mva.html</loc>
-    <lastmod>2025-02-13T23:34:31.461Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/utils/01_plotting.html</loc>
-    <lastmod>2025-02-13T23:34:34.658Z</lastmod>
+    <loc>https://Beforerr.github.io/discontinuitypy/utils/02_ops.html</loc>
+    <lastmod>2025-04-04T22:29:56.147Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/discontinuitypy/utils/naming.html</loc>
-    <lastmod>2025-02-13T23:34:32.160Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/plot/alfvenicity.html</loc>
-    <lastmod>2025-02-13T23:34:36.940Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/10_datasets.html</loc>
-    <lastmod>2025-02-13T23:34:32.168Z</lastmod>
+    <lastmod>2025-04-04T22:29:55.879Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/discontinuitypy/detection/01_variance.html</loc>
-    <lastmod>2025-02-13T23:34:34.826Z</lastmod>
+    <lastmod>2025-04-04T22:29:56.618Z</lastmod>
   </url>
   <url>
-    <loc>https://Beforerr.github.io/discontinuitypy/11_ids_config.html</loc>
-    <lastmod>2025-02-13T23:35:15.932Z</lastmod>
+    <loc>https://Beforerr.github.io/discontinuitypy/01_ids_detection.html</loc>
+    <lastmod>2025-04-04T22:29:45.399Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/missions/themis.html</loc>
+    <lastmod>2025-04-04T22:29:55.434Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/discontinuitypy/missions/solo.html</loc>
-    <lastmod>2025-02-13T23:34:34.921Z</lastmod>
+    <lastmod>2025-04-04T22:29:55.241Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/about.html</loc>
+    <lastmod>2025-04-04T22:29:14.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/properties/00_mva.html</loc>
+    <lastmod>2025-04-04T22:29:54.812Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/index.html</loc>
+    <lastmod>2025-04-04T22:29:14.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/properties/00_duration.html</loc>
+    <lastmod>2025-04-04T22:29:54.367Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/00_ids_finder.html</loc>
+    <lastmod>2025-04-04T22:29:55.991Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/missions/stereo.html</loc>
+    <lastmod>2025-04-04T22:29:55.064Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/discontinuitypy/missions/wind.html</loc>
-    <lastmod>2025-02-13T23:34:35.015Z</lastmod>
+    <lastmod>2025-04-04T22:29:55.347Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/missions/index.html</loc>
+    <lastmod>2025-04-04T22:29:55.551Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/detection/02_TS_criterion.html</loc>
+    <lastmod>2025-04-04T22:29:55.701Z</lastmod>
   </url>
   <url>
     <loc>https://Beforerr.github.io/discontinuitypy/02_ids_properties.html</loc>
-    <lastmod>2025-02-13T23:34:31.774Z</lastmod>
+    <lastmod>2025-04-04T22:29:55.635Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/utils/00_basic.html</loc>
+    <lastmod>2025-04-04T22:29:56.305Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/utils/01_plotting.html</loc>
+    <lastmod>2025-04-04T22:29:59.271Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/tutorials/tutorial.html</loc>
+    <lastmod>2025-04-04T22:29:14.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/plot/alfvenicity.html</loc>
+    <lastmod>2025-04-04T22:30:02.281Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Beforerr.github.io/discontinuitypy/10_datasets.html</loc>
+    <lastmod>2025-04-04T22:29:54.077Z</lastmod>
   </url>
 </urlset>

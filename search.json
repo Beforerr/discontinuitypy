@@ -1,81 +1,13 @@
 [
   {
-    "objectID": "01_ids_detection.html",
-    "href": "01_ids_detection.html",
-    "title": "ID identification",
-    "section": "",
-    "text": "There are couple of ways to identify the ID.\n\nVariance method (liuMagneticDiscontinuitiesSolar2022?) : Large variance in the magnetic field compared with neighboring intervals (see notebook)\nPartial variance increment (PVI) method :\n\n(vaskoKineticscaleCurrentSheets2022?)\n\nB-criterion (burlagaTangentialDiscontinuitiesSolar1969?) : a directional change of the magnetic ﬁeld larger than 30° during 60 s\nTS-criterion (Tsurutani and Smith 1979) : \\(|ΔB|/|B| \\geq 0.5\\) within 3 minutes (see notebook)\n\nTraditional methods (B-criterion and TS-criterion) rely on magnetic ﬁeld variations with a certain time lag. B-criterion has, as its main condition. In their methods, the IDs below the thresholds are artiﬁcially abandoned. Therefore, identiﬁcation criteria may affect the statistical results, and there is likely to be a discrepancy between the ﬁndings via B-criterion and TS-criterion.\n\n\n\n\n\nReferences\n\nTsurutani, Bruce T., and Edward J. Smith. 1979. “Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 AU.” Journal of Geophysical Research: Space Physics 84 (A6): 2773–87. https://doi.org/10.1029/JA084iA06p02773.",
-    "crumbs": [
-      "Home",
-      "ID identification"
-    ]
-  },
-  {
-    "objectID": "missions/index.html",
-    "href": "missions/index.html",
-    "title": "Mission-Ready Configurations",
-    "section": "",
-    "text": "Re-export all mission base configs",
-    "crumbs": [
-      "Home",
-      "Mission-Ready Configurations"
-    ]
-  },
-  {
-    "objectID": "missions/themis.html",
-    "href": "missions/themis.html",
+    "objectID": "11_ids_config.html",
+    "href": "11_ids_config.html",
     "title": "discontinuitypy",
     "section": "",
-    "text": "ThemisConfigBase\n\n ThemisConfigBase (name:str='THEMIS',\n                   mag_data:polars.lazyframe.frame.LazyFrame=None, mag_met\n                   a:space_analysis.meta.MagDataset=MagDataset(timerange=N\n                   one, variables=None, name=None, dataset='THB_L2_FGM',\n                   parameters=['thb_fgl_gse'], ts=None, B_cols=None),\n                   ts:datetime.timedelta=None,\n                   events:polars.dataframe.frame.DataFrame=None,\n                   detect_func:Callable=&lt;function detect_variance&gt;,\n                   detect_kwargs:dict=&lt;factory&gt;,\n                   method:Literal['fit','derivative']='fit',\n                   file_fmt:str='arrow', file_path:pathlib.Path=Path('/hom\n                   e/runner/work/discontinuitypy/discontinuitypy/data'),\n                   plasma_data:polars.lazyframe.frame.LazyFrame=None, plas\n                   ma_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset='THB_L2_MOM', parameters=['thb_peim_densityQ',\n                   'thb_peim_velocity_gseQ', 'thb_peim_ptotQ'], ts=None,\n                   temperature_col=None, para_col=None, perp_cols=None,\n                   velocity_cols=None, speed_col=None, density_col=None),\n                   ion_temp_data:polars.lazyframe.frame.LazyFrame=None, io\n                   n_temp_meta:space_analysis.meta.TempDataset=TempDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset='THB_L2_MOM', parameters=['thb_peim_t3_magQ'],\n                   ts=None, temperature_col=None, para_col='Tz_ion FA MOM\n                   ESA-B', perp_cols=['Tx_ion FA MOM ESA-B', 'Ty_ion FA\n                   MOM ESA-B']),\n                   e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_te\n                   mp_meta:space_analysis.meta.TempDataset=TempDataset(tim\n                   erange=None, variables=None, name=None,\n                   dataset='THB_L2_MOM', parameters=['thb_peem_t3_magQ'],\n                   ts=None, temperature_col=None, para_col='Tz_elec FA MOM\n                   ESA-B', perp_cols=['Tx_elec FA MOM ESA-B', 'Ty_elec FA\n                   MOM ESA-B']), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.",
+    "text": "split_timerange\n\n split_timerange (timerange:list[datetime.datetime], n:int=1)\n\n*Split a timerange into multiple timeranges.\nReference: TimeRange in sunpy.time*\n\n\n\nIDsConfig\n\n IDsConfig (name:str='events',\n            mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta:space\n            _analysis.core.MagVariable=MagVariable(name=None,\n            description=None, unit=None, ts=None, timerange=None,\n            dataset=None, parameter=None, B_cols=None),\n            ts:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            detect_func:Callable=&lt;function detect_variance&gt;,\n            detect_kwargs:dict=&lt;factory&gt;,\n            method:Literal['fit','derivative']='fit',\n            file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runne\n            r/work/discontinuitypy/discontinuitypy/data'),\n            plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_meta\n            :space_analysis.meta.PlasmaDataset=PlasmaDataset(timerange=Non\n            e, variables=None, name=None, dataset=None, parameters=None,\n            ts=None, temperature_col=None, para_col=None, perp_cols=None,\n            velocity_cols=None, speed_col=None, density_col=None),\n            ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp_\n            meta:space_analysis.meta.TempDataset=TempDataset(timerange=Non\n            e, variables=None, name=None, dataset=None, parameters=None,\n            ts=None, temperature_col=None, para_col=None, perp_cols=None),\n            e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_meta\n            :space_analysis.meta.TempDataset=TempDataset(timerange=None,\n            variables=None, name=None, dataset=None, parameters=None,\n            ts=None, temperature_col=None, para_col=None, perp_cols=None),\n            timerange:list[datetime.datetime]=None, split:int=1,\n            tmp:bool=False, **extra_data:Any)\n\n*Extend the IDsDataset class to provide additional functionalities:\n\nSplit data to handle large datasets (thus often requiring getting data lazily)*\n\n\n\n\nSpeasyIDsConfig\n\n SpeasyIDsConfig (name:str='events',\n                  mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta\n                  :space_analysis.core.MagVariable=MagVariable(name=None,\n                  description=None, unit=None, ts=None, timerange=None,\n                  dataset=None, parameter=None, B_cols=None),\n                  ts:datetime.timedelta=None,\n                  events:polars.dataframe.frame.DataFrame=None,\n                  detect_func:Callable=&lt;function detect_variance&gt;,\n                  detect_kwargs:dict=&lt;factory&gt;,\n                  method:Literal['fit','derivative']='fit',\n                  file_fmt:str='arrow', file_path:pathlib.Path=Path('/home\n                  /runner/work/discontinuitypy/discontinuitypy/data'),\n                  plasma_data:polars.lazyframe.frame.LazyFrame=None, plasm\n                  a_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset(t\n                  imerange=None, variables=None, name=None, dataset=None,\n                  parameters=None, ts=None, temperature_col=None,\n                  para_col=None, perp_cols=None, velocity_cols=None,\n                  speed_col=None, density_col=None),\n                  ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion\n                  _temp_meta:space_analysis.meta.TempDataset=TempDataset(t\n                  imerange=None, variables=None, name=None, dataset=None,\n                  parameters=None, ts=None, temperature_col=None,\n                  para_col=None, perp_cols=None),\n                  e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_tem\n                  p_meta:space_analysis.meta.TempDataset=TempDataset(timer\n                  ange=None, variables=None, name=None, dataset=None,\n                  parameters=None, ts=None, temperature_col=None,\n                  para_col=None, perp_cols=None),\n                  timerange:list[datetime.datetime]=None, split:int=1,\n                  tmp:bool=False, provider:str='cda', **extra_data:Any)\n\nBased on speasy Variables to get the data\n\n\n\nget_vars\n\n get_vars (vars:str, timerange:list[datetime.datetime]=None)",
     "crumbs": [
       "Home",
-      "Mission-Ready Configurations",
-      "Themis"
-    ]
-  },
-  {
-    "objectID": "missions/stereo.html",
-    "href": "missions/stereo.html",
-    "title": "discontinuitypy",
-    "section": "",
-    "text": "StereoConfigBase\n\n StereoConfigBase (name:str='STEREO',\n                   mag_data:polars.lazyframe.frame.LazyFrame=None, mag_met\n                   a:space_analysis.meta.MagDataset=MagDataset(timerange=N\n                   one, variables=None, name=None,\n                   dataset='STA_L1_MAG_RTN', parameters=['BFIELD'],\n                   ts=datetime.timedelta(microseconds=125000),\n                   B_cols=['BR', 'BT', 'BN']), ts:datetime.timedelta=None,\n                   events:polars.dataframe.frame.DataFrame=None,\n                   detect_func:Callable=&lt;function detect_variance&gt;,\n                   detect_kwargs:dict=&lt;factory&gt;,\n                   method:Literal['fit','derivative']='fit',\n                   file_fmt:str='arrow', file_path:pathlib.Path=Path('/hom\n                   e/runner/work/discontinuitypy/discontinuitypy/data'),\n                   plasma_data:polars.lazyframe.frame.LazyFrame=None, plas\n                   ma_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset='STA_L2_PLA_1DMAX_1MIN',\n                   parameters=['proton_number_density', 'proton_Vr_RTN',\n                   'proton_Vt_RTN', 'proton_Vn_RTN',\n                   'proton_temperature'], ts=None, temperature_col=None,\n                   para_col=None, perp_cols=None, velocity_cols=['Vr',\n                   'Vt', 'Vn'], speed_col=None, density_col=None,\n                   links=['https://cdaweb.gsfc.nasa.gov/cgi-bin/eval2.cgi?\n                   dataset=STA_L2_PLA_1DMAX_1MIN&index=sp_phys', 'https://\n                   hpde.io/NASA/NumericalData/STEREO-\n                   A/PLASTIC/Protons/PT1M']),\n                   ion_temp_data:polars.lazyframe.frame.LazyFrame=None, io\n                   n_temp_meta:space_analysis.meta.TempDataset=TempDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset=None, parameters=None, ts=None,\n                   temperature_col=None, para_col=None, perp_cols=None),\n                   e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_te\n                   mp_meta:space_analysis.meta.TempDataset=TempDataset(tim\n                   erange=None, variables=None, name=None, dataset=None,\n                   parameters=None, ts=None, temperature_col=None,\n                   para_col=None, perp_cols=None), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.",
-    "crumbs": [
-      "Home",
-      "Mission-Ready Configurations",
-      "Stereo"
-    ]
-  },
-  {
-    "objectID": "index.html#installation",
-    "href": "index.html#installation",
-    "title": "DiscontinuityPy",
-    "section": "Installation",
-    "text": "Installation\npip install discontinuitypy"
-  },
-  {
-    "objectID": "index.html#getting-started",
-    "href": "index.html#getting-started",
-    "title": "DiscontinuityPy",
-    "section": "Getting started",
-    "text": "Getting started\nImport the package\nfrom discontinuitypy.utils.basic import *\nfrom discontinuitypy.core import *"
-  },
-  {
-    "objectID": "index.html#outputs",
-    "href": "index.html#outputs",
-    "title": "DiscontinuityPy",
-    "section": "Outputs",
-    "text": "Outputs\nFor more derivable outputs, please see Discontinuity.jl\n\nt_{us,ds} : moments of time corresponding to upstream and downstream boundaries of the current sheet\nb_mag : mean of magnetic field magnitude across the discontinuity\n\\(|Δ B|/B\\) : Change in magnetic field magnitude over magnetic field magnitude (mean) db_over_b\n\nsee Fig.14 in Tsurutani and Smith (1979)\n\nbn_over_b : \\(\\bar{B}_N/\\bar{B}\\) : Normal component of magnetic field over magnetic field magnitude (mean)\n\\(\\vec{e}_l, \\vec{e}_m, \\vec{e}_n\\) : unit vector in the direction of the maxium, medium, minium variance magnetic field in ANY coordinate system e_{max/med/min}{x,y,z}\n\\(\\vec{n}\\) : normal of the discontinuity plane\n\\(\\vec{n}_{\\text{MVA}}\\) : normal from minimum variance analysis (unit vector in the minium variance direction) n_mva = e_min\n\\(\\vec{n}_{\\text{cross}}\\) : cross product of the magnetic field vector \\(B_u\\) upstream and the field vector \\(B_d\\) downstream of the transition n_cross\n\\(V\\) : Velocity vector in ANY coordinate system V\n\\(V_l\\) : Velocity component along the maximum variance direction V_l\n\\(V_{n,MVA}\\) : Velocity component along the normal direction from minimum variance analysis V_n_mva\n\\(V_{n,cross}\\) : Velocity component along the normal direction from cross product of upstream and downstream magnetic field V_n_cross\nj0{_norm}: current density, in units of \\(nA/m^2\\)"
-  },
-  {
-    "objectID": "detection/02_TS_criterion.html",
-    "href": "detection/02_TS_criterion.html",
-    "title": "Gradient method",
-    "section": "",
-    "text": "Tsurutani and Smith (1979)\n\nOur criteria were applied to 1-min averages of the three field components representing an average vector \\(B_i\\). The vector field change between this vector and the vector averaged 3 min earlier was computed, i.e., \\(ΔB = B_i - B_{i-3}\\), as were the three field magnitude \\(|B_i|\\), \\(|B_{i-3}|\\), and \\(|ΔB|\\). Discontinuities were selected by requiring that the magnitude of the vector change equal or exceed one half the larger of \\(|B_i|\\) and \\(|B_{i-3}|\\), which we call \\(B_L\\); that is, we require that \\(|ΔB|&gt; B_L/2\\).\n\n\n\n\ndetect_gradient\n\n detect_gradient (df:polars.lazyframe.frame.LazyFrame, cols:list[str],\n                  time:str='time',\n                  avg_interval=datetime.timedelta(seconds=60),\n                  window=datetime.timedelta(seconds=180))\n\nIdentifies discontinuities in the averaged vector field and specified criteria: |ΔB| &gt; max(|B_i|, |B_{i-window}|) / 2\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nLazyFrame\n\nDataframe containing the raw vector components.\n\n\ncols\nlist\n\n\n\n\ntime\nstr\ntime\nColumn name for time.\n\n\navg_interval\ntimedelta\n0:01:00\nTime interval for averaging (e.g., ‘1m’ for 1 minute).\n\n\nwindow\ntimedelta\n0:03:00\nTime interval to look back for computing ΔB.\n\n\n\n\n\n\n\n\nReferences\n\nTsurutani, Bruce T., and Edward J. Smith. 1979. “Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 AU.” Journal of Geophysical Research: Space Physics 84 (A6): 2773–87. https://doi.org/10.1029/JA084iA06p02773.",
-    "crumbs": [
-      "Home",
-      "Detection",
-      "Gradient method"
+      "11 Ids Config"
     ]
   },
   {
@@ -87,101 +19,6 @@
     "crumbs": [
       "Home",
       "Plot"
-    ]
-  },
-  {
-    "objectID": "utils/00_dataset.html",
-    "href": "utils/00_dataset.html",
-    "title": "discontinuitypy",
-    "section": "",
-    "text": "keep_good_fit\n\n keep_good_fit (df:polars.dataframe.frame.DataFrame, rsquared=0.9)\n\n\n\n\nunique_events\n\n unique_events (df:polars.dataframe.frame.DataFrame,\n                subset:list[str]=['t_us', 't_ds'])",
-    "crumbs": [
-      "Home",
-      "Utils",
-      "00 Dataset"
-    ]
-  },
-  {
-    "objectID": "utils/00_basic.html",
-    "href": "utils/00_basic.html",
-    "title": "Utilities functions",
-    "section": "",
-    "text": "filter_tranges_df (df:polars.dataframe.frame.DataFrame,\n                    tranges:Tuple[list,list], time_col:str='time')\n\n- Filter data by time ranges\n\n\n\n\n\n filter_tranges (time:polars.series.series.Series,\n                 tranges:Tuple[list,list])\n\n- Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)\n\n\n\n\n\n DataFrame.plot (*args, **kwargs)\n\n\n\n\n\n\n\n\n\n partition_data_by_time\n                         (df:polars.lazyframe.frame.LazyFrame|polars.dataf\n                         rame.frame.DataFrame, method)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. method: The method to partition the data.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year_month (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_ts (df:polars.dataframe.frame.DataFrame,\n                       ts:datetime.timedelta)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. ts: Time interval.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n concat_partitions (partitioned_input:Dict[str,Callable])\n\n*Concatenate input partitions into one DataFrame.\nArgs: partitioned_input: A dictionary with partition ids as keys and load functions as values.*\n\n\n\n\n\n concat_df (dfs:list[typing.Union[polars.dataframe.frame.DataFrame,polars.\n            lazyframe.frame.LazyFrame,pandas.core.frame.DataFrame]])\n\nConcatenate a list of DataFrames into one DataFrame.\n\n\n\n\n\n\n\n\n format_timedelta (time)\n\nFormat timedelta to timedelta\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n calc_vec_mag (vec)\n\n\n\n\n\n\n check_fgm (vec:xarray.core.dataarray.DataArray)",
-    "crumbs": [
-      "Home",
-      "Utils",
-      "Utilities functions"
-    ]
-  },
-  {
-    "objectID": "utils/00_basic.html#polars",
-    "href": "utils/00_basic.html#polars",
-    "title": "Utilities functions",
-    "section": "",
-    "text": "filter_tranges_df (df:polars.dataframe.frame.DataFrame,\n                    tranges:Tuple[list,list], time_col:str='time')\n\n- Filter data by time ranges\n\n\n\n\n\n filter_tranges (time:polars.series.series.Series,\n                 tranges:Tuple[list,list])\n\n- Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)\n\n\n\n\n\n DataFrame.plot (*args, **kwargs)\n\n\n\n\n\n\n\n\n\n partition_data_by_time\n                         (df:polars.lazyframe.frame.LazyFrame|polars.dataf\n                         rame.frame.DataFrame, method)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. method: The method to partition the data.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year_month (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_ts (df:polars.dataframe.frame.DataFrame,\n                       ts:datetime.timedelta)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. ts: Time interval.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n concat_partitions (partitioned_input:Dict[str,Callable])\n\n*Concatenate input partitions into one DataFrame.\nArgs: partitioned_input: A dictionary with partition ids as keys and load functions as values.*\n\n\n\n\n\n concat_df (dfs:list[typing.Union[polars.dataframe.frame.DataFrame,polars.\n            lazyframe.frame.LazyFrame,pandas.core.frame.DataFrame]])\n\nConcatenate a list of DataFrames into one DataFrame.\n\n\n\n\n\n\n\n\n format_timedelta (time)\n\nFormat timedelta to timedelta\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n calc_vec_mag (vec)\n\n\n\n\n\n\n check_fgm (vec:xarray.core.dataarray.DataArray)",
-    "crumbs": [
-      "Home",
-      "Utils",
-      "Utilities functions"
-    ]
-  },
-  {
-    "objectID": "utils/02_ops.html",
-    "href": "utils/02_ops.html",
-    "title": "discontinuitypy",
-    "section": "",
-    "text": "vector_project_pl\n\n vector_project_pl (df:polars.dataframe.frame.DataFrame, v1_cols, v2_cols,\n                    name=None)\n\n\n\n\nvector_project\n\n vector_project (v1:xarray.core.dataarray.DataArray,\n                 v2:xarray.core.dataarray.DataArray, dim='v_dim')",
-    "crumbs": [
-      "Home",
-      "Utils",
-      "02 Ops"
-    ]
-  },
-  {
-    "objectID": "properties/00_duration.html",
-    "href": "properties/00_duration.html",
-    "title": "Duration",
-    "section": "",
-    "text": "They might be multiple ways to define the duration of a discontinuity. Here are some possibilities:\nNotes:\nCaveats:",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Duration"
-    ]
-  },
-  {
-    "objectID": "properties/00_duration.html#maxium-distance-method",
-    "href": "properties/00_duration.html#maxium-distance-method",
-    "title": "Duration",
-    "section": "Maxium distance method",
-    "text": "Maxium distance method\n\n\nts_max_distance\n\n ts_max_distance (ts:xarray.core.dataarray.DataArray, coord:str='time')\n\nCompute the time interval when the timeseries has maxium cumulative variation\n\n\ntest for ts_max_distance function\ntime = pd.date_range(\"2000-01-01\", periods=10)\nx = np.linspace(0, np.pi, 10)\n# generate data circular in three dimensions, so the biggest distance is between the first and the last point\ndata = np.zeros((10, 3))\ndata[:, 0] = np.sin(x)\ndata[:, 1] = np.cos(x)\nts = xr.DataArray(data, coords={\"time\": time}, dims=[\"time\", \"space\"])\nstart, end = ts_max_distance(ts)\nassert start == time[0]\nassert end == time[-1]",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Duration"
-    ]
-  },
-  {
-    "objectID": "properties/00_duration.html#maxium-derivative-method",
-    "href": "properties/00_duration.html#maxium-derivative-method",
-    "title": "Duration",
-    "section": "Maxium derivative method",
-    "text": "Maxium derivative method\n\n\nget_time_from_condition\n\n get_time_from_condition (vec:xarray.core.dataarray.DataArray, threshold,\n                          condition_type)\n\n\n\n\nfind_start_end_times\n\n find_start_end_times (vec_diff_mag:xarray.core.dataarray.DataArray,\n                       d_time, threshold)\n\n\n\n\nts_max_derivative\n\n ts_max_derivative (vec:xarray.core.dataarray.DataArray,\n                    threshold_ratio=0.25)\n\n\n\n\ncalc_duration\n\n calc_duration (ts:xarray.core.dataarray.DataArray,\n                method:Literal['distance','derivative']='distance',\n                **kwargs)\n\n\n\nCode\ndef calc_d_duration(vec: xr.DataArray, d_time, threshold) -&gt; pd.Series:\n    vec_diff = vec.differentiate(\"time\", datetime_unit=\"s\")\n    vec_diff_mag = linalg.norm(vec_diff, dims=\"v_dim\")\n\n    start_time, end_time = find_start_end_times(vec_diff_mag, d_time, threshold)\n\n    return pd.Series(\n        {\n            \"t_us\": start_time,\n            \"t_ds\": end_time,\n        }\n    )\n\n\n\n\nCalibrates candidate duration\nThis calibration is based on the assumption that the magnetic discontinuity is symmetric around the center of time, which is not always true.\nSo instead of calibrating the duration, we drop the events. - Cons: Might influence the statistics of occurrence rate, but - Pros: More robust results about the properties of the magnetic discontinuity.\n\n\nCode\n# def calibrate_candidate_duration(\n#     candidate: pd.Series, data:xr.DataArray, data_resolution, ratio = 3/4\n# ):\n#     \"\"\"\n#     Calibrates the candidate duration.\n#     - If only one of 't_us' or 't_ds' is provided, calculates the missing one based on the provided one and 'd_time'.\n#     - Then if this is not enough points between 't_us' and 't_ds', returns None for both.\n\n\n#     Parameters\n#     ----------\n#     - candidate (pd.Series): The input candidate with potential missing 't_us' or 't_ds'.\n\n#     Returns\n#     -------\n#     - pd.Series: The calibrated candidate.\n#     \"\"\"\n\n#     start_notnull = pd.notnull(candidate['t_us'])\n#     stop_notnull = pd.notnull(candidate['t_ds'])\n\n#     match start_notnull, stop_notnull:\n#         case (True, True):\n#             t_us = candidate['t_us']\n#             t_ds = candidate['t_ds']\n#         case (True, False):\n#             t_us = candidate['t_us']\n#             t_ds = candidate['d_time'] -  candidate['t_us'] + candidate['d_time']\n#         case (False, True):\n#             t_us = candidate['d_time'] -  candidate['t_ds'] + candidate['d_time']\n#             t_ds = candidate['t_ds']\n#         case (False, False):\n#             return pandas.Series({\n#                 't_us': None,\n#                 't_ds': None,\n#             })\n\n#     duration = t_ds - t_us\n#     num_of_points_between = data.time.sel(time=slice(t_us, t_ds)).count().item()\n\n#     if num_of_points_between &lt;= (duration/data_resolution) * ratio:\n#         t_us = None\n#         t_ds = None\n\n#     return pandas.Series({\n#         't_us': t_us,\n#         't_ds': t_ds,\n#     })\n\n\n\n\nCode\n# def calibrate_candidates_duration(candidates, sat_fgm, data_resolution):\n#     # calibrate duration\n\n#     calibrate_duration = pdp.ApplyToRows(\n#         lambda candidate: calibrate_candidate_duration(\n#             candidate, sat_fgm, data_resolution\n#         ),\n#         func_desc=\"calibrating duration parameters if needed\",\n#     )\n\n#     temp_candidates = candidates.loc[\n#         lambda df: df[\"t_us\"].isnull() | df[\"t_ds\"].isnull()\n#     ]  # temp_candidates = candidates.query('t_us.isnull() | t_ds.isnull()') # not implemented in `modin`\n\n#     if not temp_candidates.empty:\n#         temp_candidates_updated = calibrate_duration(sat_fgm, data_resolution).apply(\n#             temp_candidates\n#         )\n#         candidates.update(temp_candidates_updated)\n#     return candidates",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Duration"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This python package is still in beta phrase, and we are actively working on it. If you have any questions or suggestions, please feel free to contact us.",
-    "crumbs": [
-      "Home",
-      "About"
     ]
   },
   {
@@ -218,109 +55,27 @@
     ]
   },
   {
-    "objectID": "00_ids_finder.html",
-    "href": "00_ids_finder.html",
-    "title": "Finding magnetic discontinuities",
-    "section": "",
-    "text": "It can be divided into two parts:",
-    "crumbs": [
-      "Home",
-      "Finding magnetic discontinuities"
-    ]
-  },
-  {
-    "objectID": "00_ids_finder.html#processing-the-whole-dataset",
-    "href": "00_ids_finder.html#processing-the-whole-dataset",
-    "title": "Finding magnetic discontinuities",
-    "section": "Processing the whole dataset",
-    "text": "Processing the whole dataset\nNotes that the candidates only require a small portion of the data so we can compress the data to speed up the processing.\n\n\nids_finder\n\n ids_finder (detection_df:polars.lazyframe.frame.LazyFrame, bcols=None,\n             detect_func:Callable[...,polars.lazyframe.frame.LazyFrame]=&lt;f\n             unction detect_variance&gt;, detect_kwargs:dict={},\n             extract_df:polars.lazyframe.frame.LazyFrame=None, **kwargs)\n\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndetection_df\nLazyFrame\n\ndata used for anomaly dectection (typically low cadence data)\n\n\nbcols\nNoneType\nNone\n\n\n\ndetect_func\nCallable\ndetect_variance\n\n\n\ndetect_kwargs\ndict\n{}\n\n\n\nextract_df\nLazyFrame\nNone\ndata used for feature extraction (typically high cadence data),\n\n\nkwargs\nVAR_KEYWORD",
-    "crumbs": [
-      "Home",
-      "Finding magnetic discontinuities"
-    ]
-  },
-  {
-    "objectID": "tutorials/tutorial.html",
-    "href": "tutorials/tutorial.html",
+    "objectID": "utils/00_dataset.html",
+    "href": "utils/00_dataset.html",
     "title": "discontinuitypy",
     "section": "",
-    "text": "A step-by-step guide to using the package\n\n\nCode\nfrom datetime import timedelta\nfrom space_analysis.utils.speasy import get_polars_ldf\nfrom discontinuitypy.mission.wind import WindConfigBase, wi_mfi_h2_bgse\nfrom discontinuitypy.config import SpeasyIDsConfig\nfrom discontinuitypy.core.pipeline import ids_finder\nfrom discontinuitypy.detection import detect_variance, detect_gradient\nfrom speasy.core.requests_scheduling.request_dispatch import init_cdaweb\nfrom rich import print\n\ninit_cdaweb()\n\n\n2025-02-13 23:35:33,598 INFO worker.py:1841 -- Started a local Ray instance.\n\n\n\n\nCode\ntimerange = [\"2021-05-03\", \"2021-05-04\"]\ntau = timedelta(seconds=30)\n\n\n\n\nCode\ndata = get_polars_ldf(wi_mfi_h2_bgse, 'cda', timerange)\ndata\n\n\n/home/runner/work/discontinuitypy/discontinuitypy/.pixi/envs/default/lib/python3.12/site-packages/speasy/core/data_containers.py:17: UserWarning: no explicit representation of timezones available for np.datetime64\n  return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')\n\n\nnaive plan: (run LazyFrame.explain(optimized=True) to see the optimized plan)\n    \n    DF [\"Bx (GSE)\", \"By (GSE)\", \"Bz (GSE)\", \"time\"]; PROJECT */4 COLUMNS\n\n\n\n\nCode\ndetect_kwargs = {\"tau\": tau}\nids_finder(data, detect_kwargs=detect_kwargs)\n\n\n2025-02-13 23:35:40.601 | INFO     | discontinuitypy.detection.variance:_time_resolution:284 - Time resolution not provided. Using median time difference: 0:00:00.092000\n\n\n\nshape: (179, 33)\n\n\n\ntime\nindex_diff\nlen\nstd\nindex_std\nindex_fluctuation\ntstart\ntstop\nt_us\nt_ds\nfit.vars.amplitude\nfit.vars.sigma\nt.d_time\nd_star\nfit.vars.c\nfit.stat.rsquared\nfit.stat.chisqr\ne_max\ne_min\nb_mag\nb_n\nB.vec.before\nB.vec.after\nB.before\nB.after\ndb_mag\nbn_over_b\ndb_over_b\ndb_over_b_max\ndB_lmn\ndB\nn_cross\nduration\n\n\ndatetime[μs]\nf64\nu32\nf64\nf64\nf64\ndatetime[ns]\ndatetime[μs]\ndatetime[ns]\ndatetime[ns]\nf64\nf64\ndatetime[ns]\nf64\nf64\nf64\nf64\narray[f64, 3]\narray[f64, 3]\nf64\nf64\narray[f64, 3]\narray[f64, 3]\nf64\nf64\nf64\nf64\nf64\nf64\narray[f64, 3]\narray[f64, 3]\narray[f64, 3]\nf64\n\n\n\n\n2021-05-03 00:30:30\n0.125344\n326\n0.6324\n2.345717\n1.298162\n2021-05-03 00:30:15\n2021-05-03 00:30:45\n2021-05-03 00:30:24.214500\n2021-05-03 00:30:38.658500\n1.313742\n1.476119\n2021-05-03 00:30:31.730145047\n0.222499\n5.899705\n0.959526\n1.720214\n[-0.673699, 0.228118, 0.702916]\n[0.456659, -0.619326, 0.638669]\n9.71777\n-0.531629\n[5.675399, -7.288656, -0.50505]\n[7.440135, -6.891409, -0.574069]\n9.251473\n10.157593\n0.90612\n-0.054707\n0.093244\n0.105107\n[-1.764736, -0.397247, 0.069019]\n[-1.45123, 0.146876, 1.072016]\n[0.443778, -0.582931, 0.680626]\n2.952238\n\n\n2021-05-03 00:34:30\n0.208116\n326\n0.992148\n2.78534\n1.870381\n2021-05-03 00:34:15\n2021-05-03 00:34:45\n2021-05-03 00:34:23.414500\n2021-05-03 00:34:40.894500\n-6.408313\n10.905394\n2021-05-03 00:34:28.029424257\n-0.146907\n2.743311\n0.816297\n21.829383\n[-0.816711, -0.489086, 0.306232]\n[-0.356477, 0.84494, 0.398748]\n9.750112\n8.781124\n[1.063286, 4.503267, 8.553347]\n[-2.962921, 3.783238, 8.59017]\n9.724698\n9.842907\n0.118209\n0.900618\n0.012124\n0.097433\n[4.026207, 0.720029, -0.036822]\n[2.948395, 2.156157, -1.840676]\n[-0.690227, 0.48683, -0.535336]\n21.810788\n\n\n2021-05-03 00:39:45\n0.552096\n326\n2.190388\n5.495312\n4.506598\n2021-05-03 00:39:30\n2021-05-03 00:40:00\n2021-05-03 00:39:30.418500\n2021-05-03 00:39:55.350500\n7.710203\n6.123306\n2021-05-03 00:39:46.375026413\n0.314789\n-3.437745\n0.86063\n148.377987\n[-0.616492, -0.671008, 0.411929]\n[-0.374726, 0.710173, 0.596016]\n11.34035\n10.858305\n[-3.969673, 1.634949, 10.270444]\n[3.180624, 2.280405, 10.644852]\n11.131638\n11.341494\n0.209856\n0.957493\n0.018505\n0.059703\n[-7.150297, -0.645457, -0.374409]\n[-4.101444, -4.669544, 3.613455]\n[0.796464, -0.288207, 0.531584]\n12.246613\n\n\n2021-05-03 00:47:00\n0.201195\n326\n0.764962\n2.750701\n1.5489\n2021-05-03 00:46:45\n2021-05-03 00:47:15\n2021-05-03 00:46:57.998500\n2021-05-03 00:47:14.926500\n5.052715\n7.302624\n2021-05-03 00:47:01.640399350\n0.172976\n-3.231779\n0.775804\n28.786461\n[-0.133932, -0.662663, 0.736845]\n[-0.207375, 0.745823, 0.633043]\n12.379368\n12.345059\n[-2.449219, 0.500697, 12.196131]\n[1.716941, -0.054783, 12.269261]\n12.449698\n12.388933\n-0.060765\n0.997229\n0.004909\n0.018874\n[-4.166161, 0.55548, -0.07313]\n[-1.111435, -2.743999, 2.984289]\n[0.945615, -0.030835, 0.323822]\n14.605248\n\n\n2021-05-03 00:52:00\n0.16337\n326\n1.164931\n2.635435\n1.224977\n2021-05-03 00:51:45\n2021-05-03 00:52:15\n2021-05-03 00:51:58.654500\n2021-05-03 00:52:02.610500\n3.296497\n0.13873\n2021-05-03 00:51:58.997959953\n5.940484\n-2.456942\n0.99365\n0.172111\n[-0.041939, -0.824516, 0.564282]\n[-0.407089, 0.529874, 0.743984]\n12.286048\n12.170159\n[-2.230594, 1.312538, 12.16445]\n[0.953278, 1.477694, 12.157318]\n12.436726\n12.283839\n-0.152887\n0.990567\n0.012444\n0.016755\n[-3.183873, -0.165156, 0.007132]\n[0.020068, -2.596148, 1.850402]\n[0.954578, 0.177797, 0.2391]\n0.27746\n\n\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n\n\n2021-05-03 21:38:15\n0.466696\n326\n0.887063\n2.105667\n1.89228\n2021-05-03 21:38:00\n2021-05-03 21:38:30\n2021-05-03 21:38:00.422500\n2021-05-03 21:38:11.186500\n-2.160909\n0.245154\n2021-05-03 21:38:09.971531761\n-2.203624\n0.442165\n0.769161\n14.877331\n[0.529513, 0.158648, 0.833335]\n[-0.847946, 0.070547, 0.525367]\n4.760393\n0.244848\n[1.415673, 4.550119, 0.197403]\n[-2.0199, 4.405272, 0.257623]\n4.769348\n4.853121\n0.083773\n0.051435\n0.017598\n0.085579\n[3.435572, 0.144847, -0.06022]\n[-1.866688, -0.683444, -2.806448]\n[-0.835162, 0.024889, 0.549441]\n0.490308\n\n\n2021-05-03 22:33:30\n0.170299\n326\n0.545855\n2.079462\n1.260535\n2021-05-03 22:33:15\n2021-05-03 22:33:45\n2021-05-03 22:33:24.750500\n2021-05-03 22:33:34.686500\n3.048572\n4.436167\n2021-05-03 22:33:28.742676129\n0.171802\n-1.759264\n0.945931\n1.342413\n[-0.935648, -0.242784, 0.256162]\n[-0.227557, 0.969783, 0.087972]\n4.718245\n4.621603\n[-0.863235, -0.828505, 4.613656]\n[0.798578, -0.774968, 4.605322]\n4.766279\n4.737858\n-0.028421\n0.979517\n0.006024\n0.033057\n[-1.661812, -0.053538, 0.008334]\n[-1.538531, -0.41283, 0.476497]\n[0.255627, 0.149739, 0.955109]\n8.872334\n\n\n2021-05-03 22:50:45\n0.32467\n326\n0.907223\n2.209682\n1.208073\n2021-05-03 22:50:30\n2021-05-03 22:51:00\n2021-05-03 22:50:33.954500\n2021-05-03 22:50:53.090500\n-2.033492\n0.718609\n2021-05-03 22:50:39.467709402\n-0.70744\n1.189105\n0.942473\n8.871784\n[0.994594, 0.003999, 0.103763]\n[-0.004575, 0.999975, 0.005322]\n4.878452\n4.786009\n[1.533312, 0.102907, 4.677923]\n[-1.405932, -0.108679, 4.694377]\n4.923881\n4.901595\n-0.022286\n0.981051\n0.004568\n0.056296\n[2.939245, 0.211586, -0.016454]\n[-2.94538, 0.00348, -0.094455]\n[-0.03206, -0.007056, 0.999461]\n1.437219\n\n\n2021-05-03 22:52:45\n0.310895\n326\n0.797825\n3.197615\n1.347189\n2021-05-03 22:52:30\n2021-05-03 22:53:00\n2021-05-03 22:52:36.590500\n2021-05-03 22:52:46.066500\n-2.489106\n1.558663\n2021-05-03 22:52:40.073399098\n-0.399237\n1.207817\n0.949772\n3.125453\n[-0.556024, -0.026706, 0.830737]\n[-0.009756, 0.999625, 0.025605]\n4.98287\n4.878115\n[0.997896, 0.097368, 4.806209]\n[-1.603642, 0.642649, 4.67341]\n4.909676\n4.982512\n0.072836\n0.978977\n0.014617\n0.048194\n[2.601538, -0.545281, 0.132799]\n[1.901002, -0.066617, -1.861377]\n[-0.696347, 0.074434, -0.713835]\n3.117326\n\n\n2021-05-03 23:40:30\n0.430462\n326\n0.926707\n2.399418\n1.270198\n2021-05-03 23:40:15\n2021-05-03 23:40:45\n2021-05-03 23:40:15.766500\n2021-05-03 23:40:40.054500\n-3.682839\n4.194496\n2021-05-03 23:40:20.731550908\n-0.219504\n2.464244\n0.962084\n8.113988\n[-0.720814, -0.370653, 0.585699]\n[0.667771, -0.597827, 0.443492]\n5.361672\n-3.940375\n[1.937234, -3.358265, -3.662144]\n[-1.431728, -3.455101, -3.837568]\n5.333115\n5.358591\n0.025476\n-0.734915\n0.004751\n0.049321\n[3.368961, 0.096836, 0.175424]\n[2.329242, 1.422418, -1.985299]\n[-0.596089, -0.129799, -0.792357]\n8.388992\n\n\n\n\n\n\n\n\nCode\nclass WindConfig(WindConfigBase, SpeasyIDsConfig):\n    pass\n    \nconfig = WindConfig(\n    timerange = timerange,\n    detect_kwargs=detect_kwargs,\n)\n\n\n\n\nCode\nresult, path = config.produce_or_load()\n\n\n/home/runner/work/discontinuitypy/discontinuitypy/.pixi/envs/default/lib/python3.12/site-packages/speasy/core/data_containers.py:17: UserWarning: no explicit representation of timezones available for np.datetime64\n  return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')\n2025-02-13 23:35:43.812 | INFO     | discontinuitypy.config:_get_mag_data:143 - Setting time resolution to 0:00:00.092000\n\n\nFile /home/runner/work/discontinuitypy/discontinuitypy/data/Wind_tr=20210503-20210504_detect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow does not exist. Producing it now...\n\n\n2025-02-13 23:35:48.529 | INFO     | discontinuitypy.integration:update_events_with_temp_data:193 - Ion temperature data is not available.\n2025-02-13 23:35:48.529 | INFO     | discontinuitypy.integration:update_events_with_temp_data:201 - Electron temperature data is not available.\n\n\nCould not save file. Error: No such file or directory (os error 2): ...tect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow\nFile /home/runner/work/discontinuitypy/discontinuitypy/data/Wind_tr=20210503-20210504_updated_detect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow does not exist. Producing it now...\nCould not save file. Error: No such file or directory (os error 2): ...tect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow\n\n\nInspecting the magnetic data…\n\n\nCode\nconfig.mag_meta.data[0].plot()",
-    "crumbs": [
-      "Home",
-      "Tutorials",
-      "Tutorial"
-    ]
-  },
-  {
-    "objectID": "properties/00_mva.html",
-    "href": "properties/00_mva.html",
-    "title": "Minimum variance analysis (MVA)",
-    "section": "",
-    "text": "Notes:\nThe following method implicitly assumes the data is evenly sampled, otherwise, data resampling is needed.",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Minimum variance analysis (MVA)"
-    ]
-  },
-  {
-    "objectID": "properties/00_mva.html#mva-related-features",
-    "href": "properties/00_mva.html#mva-related-features",
-    "title": "Minimum variance analysis (MVA)",
-    "section": "MVA related features",
-    "text": "MVA related features\n\n\ncalc_mva_features\n\n calc_mva_features (data:numpy.ndarray)\n\n*Compute MVA features based on the given data array.\nParameters: - data (np.ndarray): Input data\nReturns: - List: Computed features*\n\n\n\ncalc_maxiumum_variance_direction\n\n calc_maxiumum_variance_direction (data:xarray.core.dataarray.DataArray,\n                                   datetime_unit='s', **kwargs)",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Minimum variance analysis (MVA)"
-    ]
-  },
-  {
-    "objectID": "properties/00_mva.html#fit-maximum-variance-direction",
-    "href": "properties/00_mva.html#fit-maximum-variance-direction",
-    "title": "Minimum variance analysis (MVA)",
-    "section": "Fit maximum variance direction",
-    "text": "Fit maximum variance direction\n\\[\nf(x; A, \\mu, \\sigma, {\\mathrm{form={}'logistic{}'}}) = A \\left[1 - \\frac{1}{1 + e^{\\alpha}} \\right]\n\\]\nwhere \\(\\alpha = (x - \\mu)/{\\sigma}\\). And the derivative is\n\\[\n\\frac{df}{dx} = \\frac{A}{\\sigma} \\frac{e^{\\alpha}}{(1 + e^{\\alpha})^2}\n\\]\nat center \\(x = \\mu\\), the derivative is\n\\[\n\\frac{df}{dx} = \\frac{A}{4 \\sigma}\n\\]\n\n\nfit_maxiumum_variance_direction\n\n fit_maxiumum_variance_direction (data:xarray.core.dataarray.DataArray,\n                                  datetime_unit='s',\n                                  return_best_fit:bool=False, **kwargs)\n\n*Fit maximum variance direction data by model\nNote: - see datetime_to_numeric in xarray.core.duck_array_ops for more details about converting datetime to numeric - Xarray uses the numpy dtypes datetime64[ns] and timedelta64[ns] to represent datetime data.*\n\n\n\ncalc_mva_features_all\n\n calc_mva_features_all (data:xarray.core.dataarray.DataArray,\n                        method=typing.Literal['fit', 'derivative'],\n                        **kwargs)",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Minimum variance analysis (MVA)"
-    ]
-  },
-  {
-    "objectID": "properties/00_mva.html#fit-examples-and-caveats",
-    "href": "properties/00_mva.html#fit-examples-and-caveats",
-    "title": "Minimum variance analysis (MVA)",
-    "section": "Fit Examples and Caveats",
-    "text": "Fit Examples and Caveats\n\n\n\nimage.png",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Minimum variance analysis (MVA)"
-    ]
-  },
-  {
-    "objectID": "properties/00_mva.html#test",
-    "href": "properties/00_mva.html#test",
-    "title": "Minimum variance analysis (MVA)",
-    "section": "Test",
-    "text": "Test\n\n\ntest for ts_max_distance function\nimport pandas as pd\n\ntime = pd.date_range(\"2000-01-01\", periods=10)\nx = np.linspace(0, np.pi, 10)\n# generate data circular in three dimensions, so the biggest distance is between the first and the last point\ndata = np.zeros((10, 3))\ndata[:, 0] = np.cos(x)\ndata[:, 1] = np.sin(x)\ndata = xr.DataArray(data, coords={\"time\": time}, dims=[\"time\", \"space\"])\nfit_maxiumum_variance_direction(data[:, 0], return_best_fit=True)[\"fit.best_fit\"]\n\n\narray([ 1.01473047,  0.91997617,  0.75951811,  0.51243958,  0.18263172,\n       -0.18270987, -0.51251774, -0.75959627, -0.92005434, -1.01480865])\n\n\n\n\nCode\nmva_features, vrot = calc_mva_features(data)\nvrot.shape\n\n\n(10, 3)\n\n\n\n\nCode\nfrom fastcore.test import test_eq\n\n# Generate synthetic data\nnp.random.seed(42)  # for reproducibility\ndata = np.random.rand(100, 3)  # 100 time points, 3-dimensional data\n# Call the mva_features function\nfeatures, vrot = calc_mva_features(data)\n_features = [\n    0.3631060892452051,\n    0.8978455426527485,\n    -0.24905290500542857,\n    0.09753158579102299,\n    0.086943767300213,\n    0.07393142040422575,\n    1.1760056390752571,\n    0.9609421690770317,\n    0.6152039820297959,\n    -0.5922397773398479,\n    0.6402091632847049,\n    0.61631157045453,\n    1.2956351134759623,\n    0.19091785005728523,\n    0.5182488424049534,\n    0.4957624347593598,\n]\ntest_eq(features, _features)",
-    "crumbs": [
-      "Home",
-      "Properties",
-      "Minimum variance analysis (MVA)"
-    ]
-  },
-  {
-    "objectID": "utils/01_plotting.html",
-    "href": "utils/01_plotting.html",
-    "title": "discontinuitypy",
-    "section": "",
-    "text": "MVA plotting\n\n\n\ntime_stamp\n\n time_stamp (ts)\n\nReturn POSIX timestamp as float.\n\n\n\nts_mva\n\n ts_mva (data:xarray.core.dataarray.DataArray,\n         mva_data:xarray.core.dataarray.DataArray, **kwargs)\n\n\n\n\nsetup_mva_tplot_base\n\n setup_mva_tplot_base (tname:str, mva_tname:str,\n                       mva_tstart:datetime.datetime=None,\n                       mva_tstop:datetime.datetime=None,\n                       calc_magnitude=True)\n\n\n\n\nset_mva_tname_option\n\n set_mva_tname_option (tname, type='B')\n\n\n\n\nsetup_mva_plot\n\n setup_mva_plot (data:xarray.core.dataarray.DataArray,\n                 tstart:datetime.datetime, tstop:datetime.datetime,\n                 mva_tstart:datetime.datetime=None,\n                 mva_tstop:datetime.datetime=None)\n\n\n\n\nplot_candidate\n\n plot_candidate (event:dict, data:xarray.core.dataarray.DataArray,\n                 add_ids_properties=True, plot_current_density=False,\n                 plot_fit_data=False, add_timebars=True,\n                 add_plasma_params=False, **kwargs)\n\n\n\n\nplot_candidates\n\n plot_candidates (indices=None, num=4, random=True, predicate=None,\n                  **kwargs)\n\n\n\n\nplot_event\n\n plot_event (event=None, index=None, **kwargs)",
+    "text": "keep_good_fit\n\n keep_good_fit (df:polars.dataframe.frame.DataFrame, rsquared=0.9)\n\n\n\n\nunique_events\n\n unique_events (df:polars.dataframe.frame.DataFrame,\n                subset:list[str]=['t_us', 't_ds'])",
     "crumbs": [
       "Home",
       "Utils",
-      "MVA plotting"
+      "00 Dataset"
+    ]
+  },
+  {
+    "objectID": "utils/02_ops.html",
+    "href": "utils/02_ops.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "vector_project_pl\n\n vector_project_pl (df:polars.dataframe.frame.DataFrame, v1_cols, v2_cols,\n                    name=None)\n\n\n\n\nvector_project\n\n vector_project (v1:xarray.core.dataarray.DataArray,\n                 v2:xarray.core.dataarray.DataArray, dim='v_dim')",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "02 Ops"
     ]
   },
   {
@@ -345,40 +100,6 @@
       "Home",
       "Utils",
       "Standardization"
-    ]
-  },
-  {
-    "objectID": "plot/alfvenicity.html",
-    "href": "plot/alfvenicity.html",
-    "title": "discontinuitypy",
-    "section": "",
-    "text": "tplot_Alfvenicity\n\n tplot_Alfvenicity (start, end, mag_tname:str, vec_tname:str,\n                    den_tname:str, offset=datetime.timedelta(0))\n\nPlot the candidate event with velocity profiles\n\n\n\ntsplot_Alfvenicity\n\n tsplot_Alfvenicity (mag_da:xarray.core.dataarray.DataArray,\n                     vec_da:xarray.core.dataarray.DataArray,\n                     den_da:xarray.core.dataarray.DataArray,\n                     start:datetime.datetime=None,\n                     end:datetime.datetime=None,\n                     offset=datetime.timedelta(0))\n\nPlot the candidate event with velocity profiles",
-    "crumbs": [
-      "Home",
-      "Plot",
-      "Alfvenicity"
-    ]
-  },
-  {
-    "objectID": "10_datasets.html",
-    "href": "10_datasets.html",
-    "title": "Datasets",
-    "section": "",
-    "text": "Fundamental class\n\n\n\n\n IdsEvents (name:str='events', data:polars.lazyframe.frame.LazyFrame=None,\n            mag_meta:space_analysis.core.MagVariable=MagVariable(name=None\n            , description=None, unit=None, ts=None, timerange=None,\n            dataset=None, parameter=None, B_cols=None),\n            ts:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            detect_func:Callable=&lt;function detect_variance&gt;,\n            detect_kwargs:dict=&lt;factory&gt;,\n            method:Literal['fit','derivative']='fit',\n            file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runne\n            r/work/discontinuitypy/discontinuitypy/data'),\n            **extra_data:Any)\n\nCore class to handle discontinuity events in a dataset.\n\n\n\n\n\n IDsDataset (name:str='events',\n             mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta:spac\n             e_analysis.core.MagVariable=MagVariable(name=None,\n             description=None, unit=None, ts=None, timerange=None,\n             dataset=None, parameter=None, B_cols=None),\n             ts:datetime.timedelta=None,\n             events:polars.dataframe.frame.DataFrame=None,\n             detect_func:Callable=&lt;function detect_variance&gt;,\n             detect_kwargs:dict=&lt;factory&gt;,\n             method:Literal['fit','derivative']='fit',\n             file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runn\n             er/work/discontinuitypy/discontinuitypy/data'),\n             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met\n             a:space_analysis.meta.PlasmaDataset=PlasmaDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None, velocity_cols=None,\n             speed_col=None, density_col=None),\n             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp\n             _meta:space_analysis.meta.TempDataset=TempDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None),\n             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met\n             a:space_analysis.meta.TempDataset=TempDataset(timerange=None,\n             variables=None, name=None, dataset=None, parameters=None,\n             ts=None, temperature_col=None, para_col=None,\n             perp_cols=None), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.\n\n\nCode\nfrom loguru import logger\n\n\ndef log_event_change(event, logger=logger):\n    logger.debug(\n        f\"\"\"CHANGE INFO\n        n.change: {event.get('n.change')}\n        v.ion.change: {event.get('v.ion.change')}\n        T.change: {event.get('T.change')}\n        v.Alfven.change: {event.get('v.Alfven.change')}\n        v.ion.change.l: {event.get('v.ion.change.l')}\n        v.Alfven.change.l: {event.get('v.Alfven.change.l')}\n        \"\"\"\n    )\n\n\n# def overview_plot(\n#     self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs\n# ):\n#     # BUG: to be fixed\n#     start = start or event[\"tstart\"]\n#     stop = stop or event[\"tstop\"]\n\n#     start -= offset\n#     stop += offset\n\n#     _plasma_data = self.plasma_data.filter(\n#         pl.col(\"time\").is_between(start, stop)\n#     ).collect()\n\n#     _mag_data = (\n#         self.data.filter(pl.col(\"time\").is_between(start, stop))\n#         .collect()\n#         .melt(\n#             id_vars=[\"time\"],\n#             value_vars=self.bcols,\n#             variable_name=\"B comp\",\n#             value_name=\"B\",\n#         )\n#     )\n\n#     v_df = _plasma_data.melt(\n#         id_vars=[\"time\"],\n#         value_vars=self.plasma_meta.velocity_cols,\n#         variable_name=\"veloity comp\",\n#         value_name=\"v\",\n#     )\n\n#     panel_mag = _mag_data.hvplot(\n#         x=\"time\", y=\"B\", by=\"B comp\", ylabel=\"Magnetic Field\", **kwargs\n#     )\n#     panel_n = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     ) * _plasma_data.hvplot.scatter(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     )\n\n#     panel_v = v_df.hvplot(\n#         x=\"time\", y=\"v\", by=\"veloity comp\", ylabel=\"Plasma Velocity\", **kwargs\n#     )\n#     panel_temp = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.temperature_col, **kwargs\n#     )\n\n#     mag_vlines = hv.VLine(event[\"t_us\"]) * hv.VLine(event[\"t_ds\"])\n#     plasma_vlines = hv.VLine(event.get(\"time_before\")) * hv.VLine(\n#         event.get(\"time_after\")\n#     )\n\n#     logger.info(f\"Overview plot: {event['tstart']} - {event['tstop']}\")\n#     log_event_change(event)\n\n#     return (\n#         panel_mag * mag_vlines\n#         + panel_n * plasma_vlines\n#         + panel_v * plasma_vlines\n#         + panel_temp * plasma_vlines\n#     ).cols(1)",
-    "crumbs": [
-      "Home",
-      "Datasets"
-    ]
-  },
-  {
-    "objectID": "10_datasets.html#datasets",
-    "href": "10_datasets.html#datasets",
-    "title": "Datasets",
-    "section": "",
-    "text": "Fundamental class\n\n\n\n\n IdsEvents (name:str='events', data:polars.lazyframe.frame.LazyFrame=None,\n            mag_meta:space_analysis.core.MagVariable=MagVariable(name=None\n            , description=None, unit=None, ts=None, timerange=None,\n            dataset=None, parameter=None, B_cols=None),\n            ts:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            detect_func:Callable=&lt;function detect_variance&gt;,\n            detect_kwargs:dict=&lt;factory&gt;,\n            method:Literal['fit','derivative']='fit',\n            file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runne\n            r/work/discontinuitypy/discontinuitypy/data'),\n            **extra_data:Any)\n\nCore class to handle discontinuity events in a dataset.\n\n\n\n\n\n IDsDataset (name:str='events',\n             mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta:spac\n             e_analysis.core.MagVariable=MagVariable(name=None,\n             description=None, unit=None, ts=None, timerange=None,\n             dataset=None, parameter=None, B_cols=None),\n             ts:datetime.timedelta=None,\n             events:polars.dataframe.frame.DataFrame=None,\n             detect_func:Callable=&lt;function detect_variance&gt;,\n             detect_kwargs:dict=&lt;factory&gt;,\n             method:Literal['fit','derivative']='fit',\n             file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runn\n             er/work/discontinuitypy/discontinuitypy/data'),\n             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met\n             a:space_analysis.meta.PlasmaDataset=PlasmaDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None, velocity_cols=None,\n             speed_col=None, density_col=None),\n             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp\n             _meta:space_analysis.meta.TempDataset=TempDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None),\n             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met\n             a:space_analysis.meta.TempDataset=TempDataset(timerange=None,\n             variables=None, name=None, dataset=None, parameters=None,\n             ts=None, temperature_col=None, para_col=None,\n             perp_cols=None), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.\n\n\nCode\nfrom loguru import logger\n\n\ndef log_event_change(event, logger=logger):\n    logger.debug(\n        f\"\"\"CHANGE INFO\n        n.change: {event.get('n.change')}\n        v.ion.change: {event.get('v.ion.change')}\n        T.change: {event.get('T.change')}\n        v.Alfven.change: {event.get('v.Alfven.change')}\n        v.ion.change.l: {event.get('v.ion.change.l')}\n        v.Alfven.change.l: {event.get('v.Alfven.change.l')}\n        \"\"\"\n    )\n\n\n# def overview_plot(\n#     self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs\n# ):\n#     # BUG: to be fixed\n#     start = start or event[\"tstart\"]\n#     stop = stop or event[\"tstop\"]\n\n#     start -= offset\n#     stop += offset\n\n#     _plasma_data = self.plasma_data.filter(\n#         pl.col(\"time\").is_between(start, stop)\n#     ).collect()\n\n#     _mag_data = (\n#         self.data.filter(pl.col(\"time\").is_between(start, stop))\n#         .collect()\n#         .melt(\n#             id_vars=[\"time\"],\n#             value_vars=self.bcols,\n#             variable_name=\"B comp\",\n#             value_name=\"B\",\n#         )\n#     )\n\n#     v_df = _plasma_data.melt(\n#         id_vars=[\"time\"],\n#         value_vars=self.plasma_meta.velocity_cols,\n#         variable_name=\"veloity comp\",\n#         value_name=\"v\",\n#     )\n\n#     panel_mag = _mag_data.hvplot(\n#         x=\"time\", y=\"B\", by=\"B comp\", ylabel=\"Magnetic Field\", **kwargs\n#     )\n#     panel_n = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     ) * _plasma_data.hvplot.scatter(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     )\n\n#     panel_v = v_df.hvplot(\n#         x=\"time\", y=\"v\", by=\"veloity comp\", ylabel=\"Plasma Velocity\", **kwargs\n#     )\n#     panel_temp = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.temperature_col, **kwargs\n#     )\n\n#     mag_vlines = hv.VLine(event[\"t_us\"]) * hv.VLine(event[\"t_ds\"])\n#     plasma_vlines = hv.VLine(event.get(\"time_before\")) * hv.VLine(\n#         event.get(\"time_after\")\n#     )\n\n#     logger.info(f\"Overview plot: {event['tstart']} - {event['tstop']}\")\n#     log_event_change(event)\n\n#     return (\n#         panel_mag * mag_vlines\n#         + panel_n * plasma_vlines\n#         + panel_v * plasma_vlines\n#         + panel_temp * plasma_vlines\n#     ).cols(1)",
-    "crumbs": [
-      "Home",
-      "Datasets"
     ]
   },
   {
@@ -466,14 +187,26 @@
     ]
   },
   {
-    "objectID": "11_ids_config.html",
-    "href": "11_ids_config.html",
-    "title": "discontinuitypy",
+    "objectID": "01_ids_detection.html",
+    "href": "01_ids_detection.html",
+    "title": "ID identification",
     "section": "",
-    "text": "split_timerange\n\n split_timerange (timerange:list[datetime.datetime], n:int=1)\n\n*Split a timerange into multiple timeranges.\nReference: TimeRange in sunpy.time*\n\n\n\nIDsConfig\n\n IDsConfig (name:str='events',\n            mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta:space\n            _analysis.core.MagVariable=MagVariable(name=None,\n            description=None, unit=None, ts=None, timerange=None,\n            dataset=None, parameter=None, B_cols=None),\n            ts:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            detect_func:Callable=&lt;function detect_variance&gt;,\n            detect_kwargs:dict=&lt;factory&gt;,\n            method:Literal['fit','derivative']='fit',\n            file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runne\n            r/work/discontinuitypy/discontinuitypy/data'),\n            plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_meta\n            :space_analysis.meta.PlasmaDataset=PlasmaDataset(timerange=Non\n            e, variables=None, name=None, dataset=None, parameters=None,\n            ts=None, temperature_col=None, para_col=None, perp_cols=None,\n            velocity_cols=None, speed_col=None, density_col=None),\n            ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp_\n            meta:space_analysis.meta.TempDataset=TempDataset(timerange=Non\n            e, variables=None, name=None, dataset=None, parameters=None,\n            ts=None, temperature_col=None, para_col=None, perp_cols=None),\n            e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_meta\n            :space_analysis.meta.TempDataset=TempDataset(timerange=None,\n            variables=None, name=None, dataset=None, parameters=None,\n            ts=None, temperature_col=None, para_col=None, perp_cols=None),\n            timerange:list[datetime.datetime]=None, split:int=1,\n            tmp:bool=False, **extra_data:Any)\n\n*Extend the IDsDataset class to provide additional functionalities:\n\nSplit data to handle large datasets (thus often requiring getting data lazily)*\n\n\n\n\nSpeasyIDsConfig\n\n SpeasyIDsConfig (name:str='events',\n                  mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta\n                  :space_analysis.core.MagVariable=MagVariable(name=None,\n                  description=None, unit=None, ts=None, timerange=None,\n                  dataset=None, parameter=None, B_cols=None),\n                  ts:datetime.timedelta=None,\n                  events:polars.dataframe.frame.DataFrame=None,\n                  detect_func:Callable=&lt;function detect_variance&gt;,\n                  detect_kwargs:dict=&lt;factory&gt;,\n                  method:Literal['fit','derivative']='fit',\n                  file_fmt:str='arrow', file_path:pathlib.Path=Path('/home\n                  /runner/work/discontinuitypy/discontinuitypy/data'),\n                  plasma_data:polars.lazyframe.frame.LazyFrame=None, plasm\n                  a_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset(t\n                  imerange=None, variables=None, name=None, dataset=None,\n                  parameters=None, ts=None, temperature_col=None,\n                  para_col=None, perp_cols=None, velocity_cols=None,\n                  speed_col=None, density_col=None),\n                  ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion\n                  _temp_meta:space_analysis.meta.TempDataset=TempDataset(t\n                  imerange=None, variables=None, name=None, dataset=None,\n                  parameters=None, ts=None, temperature_col=None,\n                  para_col=None, perp_cols=None),\n                  e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_tem\n                  p_meta:space_analysis.meta.TempDataset=TempDataset(timer\n                  ange=None, variables=None, name=None, dataset=None,\n                  parameters=None, ts=None, temperature_col=None,\n                  para_col=None, perp_cols=None),\n                  timerange:list[datetime.datetime]=None, split:int=1,\n                  tmp:bool=False, provider:str='cda', **extra_data:Any)\n\nBased on speasy Variables to get the data\n\n\n\nget_vars\n\n get_vars (vars:str, timerange:list[datetime.datetime]=None)",
+    "text": "There are couple of ways to identify the ID.\n\nVariance method (liuMagneticDiscontinuitiesSolar2022?) : Large variance in the magnetic field compared with neighboring intervals (see notebook)\nPartial variance increment (PVI) method :\n\n(vaskoKineticscaleCurrentSheets2022?)\n\nB-criterion (burlagaTangentialDiscontinuitiesSolar1969?) : a directional change of the magnetic ﬁeld larger than 30° during 60 s\nTS-criterion (Tsurutani and Smith 1979) : \\(|ΔB|/|B| \\geq 0.5\\) within 3 minutes (see notebook)\n\nTraditional methods (B-criterion and TS-criterion) rely on magnetic ﬁeld variations with a certain time lag. B-criterion has, as its main condition. In their methods, the IDs below the thresholds are artiﬁcially abandoned. Therefore, identiﬁcation criteria may affect the statistical results, and there is likely to be a discrepancy between the ﬁndings via B-criterion and TS-criterion.\n\n\n\n\n\nReferences\n\nTsurutani, Bruce T., and Edward J. Smith. 1979. “Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 AU.” Journal of Geophysical Research: Space Physics 84 (A6): 2773–87. https://doi.org/10.1029/JA084iA06p02773.",
     "crumbs": [
       "Home",
-      "11 Ids Config"
+      "ID identification"
+    ]
+  },
+  {
+    "objectID": "missions/themis.html",
+    "href": "missions/themis.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "ThemisConfigBase\n\n ThemisConfigBase (name:str='THEMIS',\n                   mag_data:polars.lazyframe.frame.LazyFrame=None, mag_met\n                   a:space_analysis.meta.MagDataset=MagDataset(timerange=N\n                   one, variables=None, name=None, dataset='THB_L2_FGM',\n                   parameters=['thb_fgl_gse'], ts=None, B_cols=None),\n                   ts:datetime.timedelta=None,\n                   events:polars.dataframe.frame.DataFrame=None,\n                   detect_func:Callable=&lt;function detect_variance&gt;,\n                   detect_kwargs:dict=&lt;factory&gt;,\n                   method:Literal['fit','derivative']='fit',\n                   file_fmt:str='arrow', file_path:pathlib.Path=Path('/hom\n                   e/runner/work/discontinuitypy/discontinuitypy/data'),\n                   plasma_data:polars.lazyframe.frame.LazyFrame=None, plas\n                   ma_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset='THB_L2_MOM', parameters=['thb_peim_densityQ',\n                   'thb_peim_velocity_gseQ', 'thb_peim_ptotQ'], ts=None,\n                   temperature_col=None, para_col=None, perp_cols=None,\n                   velocity_cols=None, speed_col=None, density_col=None),\n                   ion_temp_data:polars.lazyframe.frame.LazyFrame=None, io\n                   n_temp_meta:space_analysis.meta.TempDataset=TempDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset='THB_L2_MOM', parameters=['thb_peim_t3_magQ'],\n                   ts=None, temperature_col=None, para_col='Tz_ion FA MOM\n                   ESA-B', perp_cols=['Tx_ion FA MOM ESA-B', 'Ty_ion FA\n                   MOM ESA-B']),\n                   e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_te\n                   mp_meta:space_analysis.meta.TempDataset=TempDataset(tim\n                   erange=None, variables=None, name=None,\n                   dataset='THB_L2_MOM', parameters=['thb_peem_t3_magQ'],\n                   ts=None, temperature_col=None, para_col='Tz_elec FA MOM\n                   ESA-B', perp_cols=['Tx_elec FA MOM ESA-B', 'Ty_elec FA\n                   MOM ESA-B']), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.",
+    "crumbs": [
+      "Home",
+      "Mission-Ready Configurations",
+      "Themis"
     ]
   },
   {
@@ -489,6 +222,168 @@
     ]
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This python package is still in beta phrase, and we are actively working on it. If you have any questions or suggestions, please feel free to contact us.",
+    "crumbs": [
+      "Home",
+      "About"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html",
+    "href": "properties/00_mva.html",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "",
+    "text": "Notes:\nThe following method implicitly assumes the data is evenly sampled, otherwise, data resampling is needed.",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#mva-related-features",
+    "href": "properties/00_mva.html#mva-related-features",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "MVA related features",
+    "text": "MVA related features\n\n\ncalc_mva_features\n\n calc_mva_features (data:numpy.ndarray)\n\n*Compute MVA features based on the given data array.\nParameters: - data (np.ndarray): Input data\nReturns: - List: Computed features*\n\n\n\ncalc_maxiumum_variance_direction\n\n calc_maxiumum_variance_direction (data:xarray.core.dataarray.DataArray,\n                                   datetime_unit='s', **kwargs)",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#fit-maximum-variance-direction",
+    "href": "properties/00_mva.html#fit-maximum-variance-direction",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "Fit maximum variance direction",
+    "text": "Fit maximum variance direction\n\\[\nf(x; A, \\mu, \\sigma, {\\mathrm{form={}'logistic{}'}}) = A \\left[1 - \\frac{1}{1 + e^{\\alpha}} \\right]\n\\]\nwhere \\(\\alpha = (x - \\mu)/{\\sigma}\\). And the derivative is\n\\[\n\\frac{df}{dx} = \\frac{A}{\\sigma} \\frac{e^{\\alpha}}{(1 + e^{\\alpha})^2}\n\\]\nat center \\(x = \\mu\\), the derivative is\n\\[\n\\frac{df}{dx} = \\frac{A}{4 \\sigma}\n\\]\n\n\nfit_maxiumum_variance_direction\n\n fit_maxiumum_variance_direction (data:xarray.core.dataarray.DataArray,\n                                  datetime_unit='s',\n                                  return_best_fit:bool=False, **kwargs)\n\n*Fit maximum variance direction data by model\nNote: - see datetime_to_numeric in xarray.core.duck_array_ops for more details about converting datetime to numeric - Xarray uses the numpy dtypes datetime64[ns] and timedelta64[ns] to represent datetime data.*\n\n\n\ncalc_mva_features_all\n\n calc_mva_features_all (data:xarray.core.dataarray.DataArray,\n                        method=typing.Literal['fit', 'derivative'],\n                        **kwargs)",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#fit-examples-and-caveats",
+    "href": "properties/00_mva.html#fit-examples-and-caveats",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "Fit Examples and Caveats",
+    "text": "Fit Examples and Caveats\n\n\n\nimage.png",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "properties/00_mva.html#test",
+    "href": "properties/00_mva.html#test",
+    "title": "Minimum variance analysis (MVA)",
+    "section": "Test",
+    "text": "Test\n\n\ntest for ts_max_distance function\nimport pandas as pd\n\ntime = pd.date_range(\"2000-01-01\", periods=10)\nx = np.linspace(0, np.pi, 10)\n# generate data circular in three dimensions, so the biggest distance is between the first and the last point\ndata = np.zeros((10, 3))\ndata[:, 0] = np.cos(x)\ndata[:, 1] = np.sin(x)\ndata = xr.DataArray(data, coords={\"time\": time}, dims=[\"time\", \"space\"])\nfit_maxiumum_variance_direction(data[:, 0], return_best_fit=True)[\"fit.best_fit\"]\n\n\narray([ 1.01473047,  0.91997617,  0.75951811,  0.51243958,  0.18263172,\n       -0.18270987, -0.51251774, -0.75959627, -0.92005434, -1.01480865])\n\n\n\n\nCode\nmva_features, vrot = calc_mva_features(data)\nvrot.shape\n\n\n(10, 3)\n\n\n\n\nCode\nfrom fastcore.test import test_eq\n\n# Generate synthetic data\nnp.random.seed(42)  # for reproducibility\ndata = np.random.rand(100, 3)  # 100 time points, 3-dimensional data\n# Call the mva_features function\nfeatures, vrot = calc_mva_features(data)\n_features = [\n    0.3631060892452051,\n    0.8978455426527485,\n    -0.24905290500542857,\n    0.09753158579102299,\n    0.086943767300213,\n    0.07393142040422575,\n    1.1760056390752571,\n    0.9609421690770317,\n    0.6152039820297959,\n    -0.5922397773398479,\n    0.6402091632847049,\n    0.61631157045453,\n    1.2956351134759623,\n    0.19091785005728523,\n    0.5182488424049534,\n    0.4957624347593598,\n]\ntest_eq(features, _features)",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Minimum variance analysis (MVA)"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "DiscontinuityPy",
+    "section": "Installation",
+    "text": "Installation\npip install discontinuitypy"
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "DiscontinuityPy",
+    "section": "Getting started",
+    "text": "Getting started\nImport the package\nfrom discontinuitypy.utils.basic import *\nfrom discontinuitypy.core import *"
+  },
+  {
+    "objectID": "index.html#outputs",
+    "href": "index.html#outputs",
+    "title": "DiscontinuityPy",
+    "section": "Outputs",
+    "text": "Outputs\nFor more derivable outputs, please see Discontinuity.jl\n\nt_{us,ds} : moments of time corresponding to upstream and downstream boundaries of the current sheet\nb_mag : mean of magnetic field magnitude across the discontinuity\n\\(|Δ B|/B\\) : Change in magnetic field magnitude over magnetic field magnitude (mean) db_over_b\n\nsee Fig.14 in Tsurutani and Smith (1979)\n\nbn_over_b : \\(\\bar{B}_N/\\bar{B}\\) : Normal component of magnetic field over magnetic field magnitude (mean)\n\\(\\vec{e}_l, \\vec{e}_m, \\vec{e}_n\\) : unit vector in the direction of the maxium, medium, minium variance magnetic field in ANY coordinate system e_{max/med/min}{x,y,z}\n\\(\\vec{n}\\) : normal of the discontinuity plane\n\\(\\vec{n}_{\\text{MVA}}\\) : normal from minimum variance analysis (unit vector in the minium variance direction) n_mva = e_min\n\\(\\vec{n}_{\\text{cross}}\\) : cross product of the magnetic field vector \\(B_u\\) upstream and the field vector \\(B_d\\) downstream of the transition n_cross\n\\(V\\) : Velocity vector in ANY coordinate system V\n\\(V_l\\) : Velocity component along the maximum variance direction V_l\n\\(V_{n,MVA}\\) : Velocity component along the normal direction from minimum variance analysis V_n_mva\n\\(V_{n,cross}\\) : Velocity component along the normal direction from cross product of upstream and downstream magnetic field V_n_cross\nj0{_norm}: current density, in units of \\(nA/m^2\\)"
+  },
+  {
+    "objectID": "properties/00_duration.html",
+    "href": "properties/00_duration.html",
+    "title": "Duration",
+    "section": "",
+    "text": "They might be multiple ways to define the duration of a discontinuity. Here are some possibilities:\nNotes:\nCaveats:",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Duration"
+    ]
+  },
+  {
+    "objectID": "properties/00_duration.html#maxium-distance-method",
+    "href": "properties/00_duration.html#maxium-distance-method",
+    "title": "Duration",
+    "section": "Maxium distance method",
+    "text": "Maxium distance method\n\n\nts_max_distance\n\n ts_max_distance (ts:xarray.core.dataarray.DataArray, coord:str='time')\n\nCompute the time interval when the timeseries has maxium cumulative variation\n\n\ntest for ts_max_distance function\ntime = pd.date_range(\"2000-01-01\", periods=10)\nx = np.linspace(0, np.pi, 10)\n# generate data circular in three dimensions, so the biggest distance is between the first and the last point\ndata = np.zeros((10, 3))\ndata[:, 0] = np.sin(x)\ndata[:, 1] = np.cos(x)\nts = xr.DataArray(data, coords={\"time\": time}, dims=[\"time\", \"space\"])\nstart, end = ts_max_distance(ts)\nassert start == time[0]\nassert end == time[-1]",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Duration"
+    ]
+  },
+  {
+    "objectID": "properties/00_duration.html#maxium-derivative-method",
+    "href": "properties/00_duration.html#maxium-derivative-method",
+    "title": "Duration",
+    "section": "Maxium derivative method",
+    "text": "Maxium derivative method\n\n\nget_time_from_condition\n\n get_time_from_condition (vec:xarray.core.dataarray.DataArray, threshold,\n                          condition_type)\n\n\n\n\nfind_start_end_times\n\n find_start_end_times (vec_diff_mag:xarray.core.dataarray.DataArray,\n                       d_time, threshold)\n\n\n\n\nts_max_derivative\n\n ts_max_derivative (vec:xarray.core.dataarray.DataArray,\n                    threshold_ratio=0.25)\n\n\n\n\ncalc_duration\n\n calc_duration (ts:xarray.core.dataarray.DataArray,\n                method:Literal['distance','derivative']='distance',\n                **kwargs)\n\n\n\nCode\ndef calc_d_duration(vec: xr.DataArray, d_time, threshold) -&gt; pd.Series:\n    vec_diff = vec.differentiate(\"time\", datetime_unit=\"s\")\n    vec_diff_mag = linalg.norm(vec_diff, dims=\"v_dim\")\n\n    start_time, end_time = find_start_end_times(vec_diff_mag, d_time, threshold)\n\n    return pd.Series(\n        {\n            \"t_us\": start_time,\n            \"t_ds\": end_time,\n        }\n    )\n\n\n\n\nCalibrates candidate duration\nThis calibration is based on the assumption that the magnetic discontinuity is symmetric around the center of time, which is not always true.\nSo instead of calibrating the duration, we drop the events. - Cons: Might influence the statistics of occurrence rate, but - Pros: More robust results about the properties of the magnetic discontinuity.\n\n\nCode\n# def calibrate_candidate_duration(\n#     candidate: pd.Series, data:xr.DataArray, data_resolution, ratio = 3/4\n# ):\n#     \"\"\"\n#     Calibrates the candidate duration.\n#     - If only one of 't_us' or 't_ds' is provided, calculates the missing one based on the provided one and 'd_time'.\n#     - Then if this is not enough points between 't_us' and 't_ds', returns None for both.\n\n\n#     Parameters\n#     ----------\n#     - candidate (pd.Series): The input candidate with potential missing 't_us' or 't_ds'.\n\n#     Returns\n#     -------\n#     - pd.Series: The calibrated candidate.\n#     \"\"\"\n\n#     start_notnull = pd.notnull(candidate['t_us'])\n#     stop_notnull = pd.notnull(candidate['t_ds'])\n\n#     match start_notnull, stop_notnull:\n#         case (True, True):\n#             t_us = candidate['t_us']\n#             t_ds = candidate['t_ds']\n#         case (True, False):\n#             t_us = candidate['t_us']\n#             t_ds = candidate['d_time'] -  candidate['t_us'] + candidate['d_time']\n#         case (False, True):\n#             t_us = candidate['d_time'] -  candidate['t_ds'] + candidate['d_time']\n#             t_ds = candidate['t_ds']\n#         case (False, False):\n#             return pandas.Series({\n#                 't_us': None,\n#                 't_ds': None,\n#             })\n\n#     duration = t_ds - t_us\n#     num_of_points_between = data.time.sel(time=slice(t_us, t_ds)).count().item()\n\n#     if num_of_points_between &lt;= (duration/data_resolution) * ratio:\n#         t_us = None\n#         t_ds = None\n\n#     return pandas.Series({\n#         't_us': t_us,\n#         't_ds': t_ds,\n#     })\n\n\n\n\nCode\n# def calibrate_candidates_duration(candidates, sat_fgm, data_resolution):\n#     # calibrate duration\n\n#     calibrate_duration = pdp.ApplyToRows(\n#         lambda candidate: calibrate_candidate_duration(\n#             candidate, sat_fgm, data_resolution\n#         ),\n#         func_desc=\"calibrating duration parameters if needed\",\n#     )\n\n#     temp_candidates = candidates.loc[\n#         lambda df: df[\"t_us\"].isnull() | df[\"t_ds\"].isnull()\n#     ]  # temp_candidates = candidates.query('t_us.isnull() | t_ds.isnull()') # not implemented in `modin`\n\n#     if not temp_candidates.empty:\n#         temp_candidates_updated = calibrate_duration(sat_fgm, data_resolution).apply(\n#             temp_candidates\n#         )\n#         candidates.update(temp_candidates_updated)\n#     return candidates",
+    "crumbs": [
+      "Home",
+      "Properties",
+      "Duration"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html",
+    "href": "00_ids_finder.html",
+    "title": "Finding magnetic discontinuities",
+    "section": "",
+    "text": "It can be divided into two parts:",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "00_ids_finder.html#processing-the-whole-dataset",
+    "href": "00_ids_finder.html#processing-the-whole-dataset",
+    "title": "Finding magnetic discontinuities",
+    "section": "Processing the whole dataset",
+    "text": "Processing the whole dataset\nNotes that the candidates only require a small portion of the data so we can compress the data to speed up the processing.\n\n\nids_finder\n\n ids_finder (detection_df:polars.lazyframe.frame.LazyFrame, bcols=None,\n             detect_func:Callable[...,polars.lazyframe.frame.LazyFrame]=&lt;f\n             unction detect_variance&gt;, detect_kwargs:dict={},\n             extract_df:polars.lazyframe.frame.LazyFrame=None, **kwargs)\n\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndetection_df\nLazyFrame\n\ndata used for anomaly dectection (typically low cadence data)\n\n\nbcols\nNoneType\nNone\n\n\n\ndetect_func\nCallable\ndetect_variance\n\n\n\ndetect_kwargs\ndict\n{}\n\n\n\nextract_df\nLazyFrame\nNone\ndata used for feature extraction (typically high cadence data),\n\n\nkwargs\nVAR_KEYWORD",
+    "crumbs": [
+      "Home",
+      "Finding magnetic discontinuities"
+    ]
+  },
+  {
+    "objectID": "missions/stereo.html",
+    "href": "missions/stereo.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "StereoConfigBase\n\n StereoConfigBase (name:str='STEREO',\n                   mag_data:polars.lazyframe.frame.LazyFrame=None, mag_met\n                   a:space_analysis.meta.MagDataset=MagDataset(timerange=N\n                   one, variables=None, name=None,\n                   dataset='STA_L1_MAG_RTN', parameters=['BFIELD'],\n                   ts=datetime.timedelta(microseconds=125000),\n                   B_cols=['BR', 'BT', 'BN']), ts:datetime.timedelta=None,\n                   events:polars.dataframe.frame.DataFrame=None,\n                   detect_func:Callable=&lt;function detect_variance&gt;,\n                   detect_kwargs:dict=&lt;factory&gt;,\n                   method:Literal['fit','derivative']='fit',\n                   file_fmt:str='arrow', file_path:pathlib.Path=Path('/hom\n                   e/runner/work/discontinuitypy/discontinuitypy/data'),\n                   plasma_data:polars.lazyframe.frame.LazyFrame=None, plas\n                   ma_meta:space_analysis.meta.PlasmaDataset=PlasmaDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset='STA_L2_PLA_1DMAX_1MIN',\n                   parameters=['proton_number_density', 'proton_Vr_RTN',\n                   'proton_Vt_RTN', 'proton_Vn_RTN',\n                   'proton_temperature'], ts=None, temperature_col=None,\n                   para_col=None, perp_cols=None, velocity_cols=['Vr',\n                   'Vt', 'Vn'], speed_col=None, density_col=None,\n                   links=['https://cdaweb.gsfc.nasa.gov/cgi-bin/eval2.cgi?\n                   dataset=STA_L2_PLA_1DMAX_1MIN&index=sp_phys', 'https://\n                   hpde.io/NASA/NumericalData/STEREO-\n                   A/PLASTIC/Protons/PT1M']),\n                   ion_temp_data:polars.lazyframe.frame.LazyFrame=None, io\n                   n_temp_meta:space_analysis.meta.TempDataset=TempDataset\n                   (timerange=None, variables=None, name=None,\n                   dataset=None, parameters=None, ts=None,\n                   temperature_col=None, para_col=None, perp_cols=None),\n                   e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_te\n                   mp_meta:space_analysis.meta.TempDataset=TempDataset(tim\n                   erange=None, variables=None, name=None, dataset=None,\n                   parameters=None, ts=None, temperature_col=None,\n                   para_col=None, perp_cols=None), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.",
+    "crumbs": [
+      "Home",
+      "Mission-Ready Configurations",
+      "Stereo"
+    ]
+  },
+  {
     "objectID": "missions/wind.html",
     "href": "missions/wind.html",
     "title": "discontinuitypy",
@@ -498,6 +393,29 @@
       "Home",
       "Mission-Ready Configurations",
       "Wind"
+    ]
+  },
+  {
+    "objectID": "missions/index.html",
+    "href": "missions/index.html",
+    "title": "Mission-Ready Configurations",
+    "section": "",
+    "text": "Re-export all mission base configs",
+    "crumbs": [
+      "Home",
+      "Mission-Ready Configurations"
+    ]
+  },
+  {
+    "objectID": "detection/02_TS_criterion.html",
+    "href": "detection/02_TS_criterion.html",
+    "title": "Gradient method",
+    "section": "",
+    "text": "Tsurutani and Smith (1979)\n\nOur criteria were applied to 1-min averages of the three field components representing an average vector \\(B_i\\). The vector field change between this vector and the vector averaged 3 min earlier was computed, i.e., \\(ΔB = B_i - B_{i-3}\\), as were the three field magnitude \\(|B_i|\\), \\(|B_{i-3}|\\), and \\(|ΔB|\\). Discontinuities were selected by requiring that the magnitude of the vector change equal or exceed one half the larger of \\(|B_i|\\) and \\(|B_{i-3}|\\), which we call \\(B_L\\); that is, we require that \\(|ΔB|&gt; B_L/2\\).\n\n\n\n\ndetect_gradient\n\n detect_gradient (df:polars.lazyframe.frame.LazyFrame, cols:list[str],\n                  time:str='time',\n                  avg_interval=datetime.timedelta(seconds=60),\n                  window=datetime.timedelta(seconds=180))\n\nIdentifies discontinuities in the averaged vector field and specified criteria: |ΔB| &gt; max(|B_i|, |B_{i-window}|) / 2\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\ndf\nLazyFrame\n\nDataframe containing the raw vector components.\n\n\ncols\nlist\n\n\n\n\ntime\nstr\ntime\nColumn name for time.\n\n\navg_interval\ntimedelta\n0:01:00\nTime interval for averaging (e.g., ‘1m’ for 1 minute).\n\n\nwindow\ntimedelta\n0:03:00\nTime interval to look back for computing ΔB.\n\n\n\n\n\n\n\n\nReferences\n\nTsurutani, Bruce T., and Edward J. Smith. 1979. “Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 AU.” Journal of Geophysical Research: Space Physics 84 (A6): 2773–87. https://doi.org/10.1029/JA084iA06p02773.",
+    "crumbs": [
+      "Home",
+      "Detection",
+      "Gradient method"
     ]
   },
   {
@@ -520,6 +438,88 @@
     "crumbs": [
       "Home",
       "ID properties"
+    ]
+  },
+  {
+    "objectID": "utils/00_basic.html",
+    "href": "utils/00_basic.html",
+    "title": "Utilities functions",
+    "section": "",
+    "text": "filter_tranges_df (df:polars.dataframe.frame.DataFrame,\n                    tranges:Tuple[list,list], time_col:str='time')\n\n- Filter data by time ranges\n\n\n\n\n\n filter_tranges (time:polars.series.series.Series,\n                 tranges:Tuple[list,list])\n\n- Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)\n\n\n\n\n\n DataFrame.plot (*args, **kwargs)\n\n\n\n\n\n\n\n\n\n partition_data_by_time\n                         (df:polars.lazyframe.frame.LazyFrame|polars.dataf\n                         rame.frame.DataFrame, method)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. method: The method to partition the data.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year_month (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_ts (df:polars.dataframe.frame.DataFrame,\n                       ts:datetime.timedelta)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. ts: Time interval.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n concat_partitions (partitioned_input:Dict[str,Callable])\n\n*Concatenate input partitions into one DataFrame.\nArgs: partitioned_input: A dictionary with partition ids as keys and load functions as values.*\n\n\n\n\n\n concat_df (dfs:list[typing.Union[polars.dataframe.frame.DataFrame,polars.\n            lazyframe.frame.LazyFrame,pandas.core.frame.DataFrame]])\n\nConcatenate a list of DataFrames into one DataFrame.\n\n\n\n\n\n\n\n\n format_timedelta (time)\n\nFormat timedelta to timedelta\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n calc_vec_mag (vec)\n\n\n\n\n\n\n check_fgm (vec:xarray.core.dataarray.DataArray)",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "Utilities functions"
+    ]
+  },
+  {
+    "objectID": "utils/00_basic.html#polars",
+    "href": "utils/00_basic.html#polars",
+    "title": "Utilities functions",
+    "section": "",
+    "text": "filter_tranges_df (df:polars.dataframe.frame.DataFrame,\n                    tranges:Tuple[list,list], time_col:str='time')\n\n- Filter data by time ranges\n\n\n\n\n\n filter_tranges (time:polars.series.series.Series,\n                 tranges:Tuple[list,list])\n\n- Filter data by time ranges, return the indices of the time that are in the time ranges (left inclusive, right exclusive)\n\n\n\n\n\n DataFrame.plot (*args, **kwargs)\n\n\n\n\n\n\n\n\n\n partition_data_by_time\n                         (df:polars.lazyframe.frame.LazyFrame|polars.dataf\n                         rame.frame.DataFrame, method)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. method: The method to partition the data.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year_month (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_year (df:polars.dataframe.frame.DataFrame)\n\n*Partition the dataset by year\nArgs: df: Input DataFrame.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n partition_data_by_ts (df:polars.dataframe.frame.DataFrame,\n                       ts:datetime.timedelta)\n\n*Partition the dataset by time\nArgs: df: Input DataFrame. ts: Time interval.\nReturns: Partitioned DataFrame.*\n\n\n\n\n\n concat_partitions (partitioned_input:Dict[str,Callable])\n\n*Concatenate input partitions into one DataFrame.\nArgs: partitioned_input: A dictionary with partition ids as keys and load functions as values.*\n\n\n\n\n\n concat_df (dfs:list[typing.Union[polars.dataframe.frame.DataFrame,polars.\n            lazyframe.frame.LazyFrame,pandas.core.frame.DataFrame]])\n\nConcatenate a list of DataFrames into one DataFrame.\n\n\n\n\n\n\n\n\n format_timedelta (time)\n\nFormat timedelta to timedelta\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n resample\n           (df:polars.lazyframe.frame.LazyFrame|polars.dataframe.frame.Dat\n           aFrame, every:datetime.timedelta,\n           period:datetime.timedelta=None, offset:datetime.timedelta=None,\n           shift:datetime.timedelta=None, time_column='time')\n\nResample the DataFrame\n\n\n\n\n\n calc_vec_mag (vec)\n\n\n\n\n\n\n check_fgm (vec:xarray.core.dataarray.DataArray)",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "Utilities functions"
+    ]
+  },
+  {
+    "objectID": "utils/01_plotting.html",
+    "href": "utils/01_plotting.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "MVA plotting\n\n\n\ntime_stamp\n\n time_stamp (ts)\n\nReturn POSIX timestamp as float.\n\n\n\nts_mva\n\n ts_mva (data:xarray.core.dataarray.DataArray,\n         mva_data:xarray.core.dataarray.DataArray, **kwargs)\n\n\n\n\nsetup_mva_tplot_base\n\n setup_mva_tplot_base (tname:str, mva_tname:str,\n                       mva_tstart:datetime.datetime=None,\n                       mva_tstop:datetime.datetime=None,\n                       calc_magnitude=True)\n\n\n\n\nset_mva_tname_option\n\n set_mva_tname_option (tname, type='B')\n\n\n\n\nsetup_mva_plot\n\n setup_mva_plot (data:xarray.core.dataarray.DataArray,\n                 tstart:datetime.datetime, tstop:datetime.datetime,\n                 mva_tstart:datetime.datetime=None,\n                 mva_tstop:datetime.datetime=None)\n\n\n\n\nplot_candidate\n\n plot_candidate (event:dict, data:xarray.core.dataarray.DataArray,\n                 add_ids_properties=True, plot_current_density=False,\n                 plot_fit_data=False, add_timebars=True,\n                 add_plasma_params=False, **kwargs)\n\n\n\n\nplot_candidates\n\n plot_candidates (indices=None, num=4, random=True, predicate=None,\n                  **kwargs)\n\n\n\n\nplot_event\n\n plot_event (event=None, index=None, **kwargs)",
+    "crumbs": [
+      "Home",
+      "Utils",
+      "MVA plotting"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial.html",
+    "href": "tutorials/tutorial.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "A step-by-step guide to using the package\n\n\nCode\nfrom datetime import timedelta\nfrom space_analysis.utils.speasy import get_polars_ldf\nfrom discontinuitypy.mission.wind import WindConfigBase, wi_mfi_h2_bgse\nfrom discontinuitypy.config import SpeasyIDsConfig\nfrom discontinuitypy.core.pipeline import ids_finder\nfrom discontinuitypy.detection import detect_variance, detect_gradient\nfrom speasy.core.requests_scheduling.request_dispatch import init_cdaweb\nfrom rich import print\n\ninit_cdaweb()\n\n\n2025-04-04 22:31:04,341 INFO worker.py:1852 -- Started a local Ray instance.\n\n\n\n\nCode\ntimerange = [\"2021-05-03\", \"2021-05-04\"]\ntau = timedelta(seconds=30)\n\n\n\n\nCode\ndata = get_polars_ldf(wi_mfi_h2_bgse, 'cda', timerange)\ndata\n\n\nnaive plan: (run LazyFrame.explain(optimized=True) to see the optimized plan)\n    \n    DF [\"Bx (GSE)\", \"By (GSE)\", \"Bz (GSE)\", \"time\"]; PROJECT */4 COLUMNS\n\n\n\n\nCode\ndetect_kwargs = {\"tau\": tau}\nids_finder(data, detect_kwargs=detect_kwargs)\n\n\n2025-04-04 22:31:13.775 | INFO     | discontinuitypy.detection.variance:_time_resolution:284 - Time resolution not provided. Using median time difference: 0:00:00.092000\n\n\n\nshape: (179, 33)\n\n\n\ntime\nindex_diff\nlen\nstd\nindex_std\nindex_fluctuation\ntstart\ntstop\nt_us\nt_ds\nfit.vars.amplitude\nfit.vars.sigma\nt.d_time\nd_star\nfit.vars.c\nfit.stat.rsquared\nfit.stat.chisqr\ne_max\ne_min\nb_mag\nb_n\nB.vec.before\nB.vec.after\nB.before\nB.after\ndb_mag\nbn_over_b\ndb_over_b\ndb_over_b_max\ndB_lmn\ndB\nn_cross\nduration\n\n\ndatetime[μs]\nf32\nu32\nf32\nf32\nf32\ndatetime[ns]\ndatetime[μs]\ndatetime[ns]\ndatetime[ns]\nf64\nf64\ndatetime[ns]\nf64\nf64\nf64\nf64\narray[f64, 3]\narray[f64, 3]\nf64\nf64\narray[f64, 3]\narray[f64, 3]\nf64\nf64\nf64\nf64\nf64\nf64\narray[f64, 3]\narray[f32, 3]\narray[f32, 3]\nf64\n\n\n\n\n2021-05-03 00:30:30\n0.125344\n326\n0.6324\n2.345717\n1.298162\n2021-05-03 00:30:15\n2021-05-03 00:30:45\n2021-05-03 00:30:24.214500\n2021-05-03 00:30:38.658500\n1.313736\n1.476094\n2021-05-03 00:30:31.730143750\n0.222502\n5.899874\n0.959527\n1.720184\n[-0.673682, 0.228118, 0.702933]\n[0.45662, -0.619398, 0.638627]\n9.71777\n-0.532399\n[5.675503, -7.288523, -0.505815]\n[7.440231, -6.891242, -0.574831]\n9.251473\n10.157593\n0.90612\n-0.054786\n0.093244\n0.105107\n[-1.764728, -0.397281, 0.069016]\n[-1.451231, 0.146876, 1.072016]\n[0.443778, -0.582931, 0.680626]\n2.952187\n\n\n2021-05-03 00:34:30\n0.208116\n326\n0.992148\n2.785341\n1.870381\n2021-05-03 00:34:15\n2021-05-03 00:34:45\n2021-05-03 00:34:23.414500\n2021-05-03 00:34:40.894500\n-6.399736\n10.928201\n2021-05-03 00:34:28.188584937\n-0.146404\n2.703447\n0.813905\n22.113517\n[-0.816711, -0.489084, 0.306235]\n[-0.356505, 0.844956, 0.39869]\n9.750112\n8.780858\n[1.063321, 4.503835, 8.553044]\n[-2.962887, 3.783818, 8.589926]\n9.724698\n9.842907\n0.118209\n0.90059\n0.012124\n0.097433\n[4.026208, 0.720017, -0.036882]\n[2.948395, 2.156157, -1.840676]\n[-0.690227, 0.48683, -0.535336]\n21.856402\n\n\n2021-05-03 00:39:45\n0.552096\n326\n2.190388\n5.495312\n4.506598\n2021-05-03 00:39:30\n2021-05-03 00:40:00\n2021-05-03 00:39:30.418500\n2021-05-03 00:39:55.350500\n7.663419\n6.119841\n2021-05-03 00:39:46.325366233\n0.313056\n-3.454013\n0.859472\n149.610972\n[-0.616493, -0.671008, 0.411929]\n[-0.374727, 0.710174, 0.596014]\n11.34035\n10.858299\n[-3.96967, 1.634972, 10.270441]\n[3.180627, 2.280433, 10.644845]\n11.131638\n11.341494\n0.209856\n0.957492\n0.018505\n0.059703\n[-7.150297, -0.645461, -0.374404]\n[-4.101444, -4.669544, 3.613455]\n[0.796464, -0.288207, 0.531584]\n12.239682\n\n\n2021-05-03 00:47:00\n0.201195\n326\n0.764962\n2.750701\n1.5489\n2021-05-03 00:46:45\n2021-05-03 00:47:15\n2021-05-03 00:46:57.998500\n2021-05-03 00:47:14.926500\n5.029102\n7.283012\n2021-05-03 00:47:01.718772664\n0.172631\n-3.207533\n0.775725\n28.796488\n[-0.133935, -0.662665, 0.736843]\n[-0.207329, 0.745825, 0.633057]\n12.379368\n12.345074\n[-2.44925, 0.500105, 12.196149]\n[1.716912, -0.055365, 12.269262]\n12.449698\n12.388933\n-0.060765\n0.99723\n0.004909\n0.018874\n[-4.166162, 0.555469, -0.073114]\n[-1.111435, -2.743999, 2.984289]\n[0.945615, -0.030835, 0.323822]\n14.566024\n\n\n2021-05-03 00:52:00\n0.16337\n326\n1.164931\n2.635435\n1.224977\n2021-05-03 00:51:45\n2021-05-03 00:52:15\n2021-05-03 00:51:58.654500\n2021-05-03 00:52:02.610500\n4.678598\n1.62577\n2021-05-03 00:51:57.634132043\n0.719443\n-3.327682\n0.51473\n13.152734\n[-0.04194, -0.824513, 0.564287]\n[-0.40749, 0.529791, 0.743823]\n12.286048\n12.169542\n[-2.23053, 1.317889, 12.163883]\n[0.953343, 1.483039, 12.156662]\n12.436726\n12.283839\n-0.152887\n0.990517\n0.012444\n0.016755\n[-3.183873, -0.16515, 0.007221]\n[0.020068, -2.596148, 1.850402]\n[0.954578, 0.177797, 0.2391]\n3.251541\n\n\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n…\n\n\n2021-05-03 21:38:15\n0.466696\n326\n0.887063\n2.105667\n1.89228\n2021-05-03 21:38:00\n2021-05-03 21:38:30\n2021-05-03 21:38:00.422500\n2021-05-03 21:38:11.186500\n-2.154743\n0.24579\n2021-05-03 21:38:09.967445608\n-2.191651\n0.442164\n0.768822\n14.899145\n[0.529513, 0.158648, 0.833334]\n[-0.847944, 0.070476, 0.52538]\n4.760393\n0.244507\n[1.415677, 4.550132, 0.197072]\n[-2.019896, 4.405292, 0.257302]\n4.769348\n4.853121\n0.083773\n0.051363\n0.017598\n0.085579\n[3.435573, 0.14484, -0.06023]\n[-1.866688, -0.683444, -2.806448]\n[-0.835162, 0.024889, 0.549441]\n0.49158\n\n\n2021-05-03 22:33:30\n0.170299\n326\n0.545855\n2.079463\n1.260535\n2021-05-03 22:33:15\n2021-05-03 22:33:45\n2021-05-03 22:33:24.750500\n2021-05-03 22:33:34.686500\n3.007647\n4.367437\n2021-05-03 22:33:28.737244709\n0.172163\n-1.739605\n0.945921\n1.342651\n[-0.935646, -0.242792, 0.256161]\n[-0.227555, 0.96978, 0.088009]\n4.718245\n4.621572\n[-0.863273, -0.828672, 4.613619]\n[0.79854, -0.775134, 4.605301]\n4.766279\n4.737858\n-0.028421\n0.979511\n0.006024\n0.033057\n[-1.661812, -0.053538, 0.008318]\n[-1.538531, -0.41283, 0.476497]\n[0.255627, 0.149739, 0.955109]\n8.734873\n\n\n2021-05-03 22:50:45\n0.32467\n326\n0.907223\n2.209682\n1.208073\n2021-05-03 22:50:30\n2021-05-03 22:51:00\n2021-05-03 22:50:33.954500\n2021-05-03 22:50:53.090500\n-2.033493\n0.71861\n2021-05-03 22:50:39.467708542\n-0.707439\n1.189104\n0.942473\n8.871784\n[0.994594, 0.003998, 0.103763]\n[-0.004575, 0.999975, 0.005323]\n4.878452\n4.786008\n[1.533312, 0.102912, 4.677923]\n[-1.405933, -0.108674, 4.694377]\n4.923881\n4.901595\n-0.022286\n0.981051\n0.004568\n0.056296\n[2.939245, 0.211586, -0.016454]\n[-2.94538, 0.00348, -0.094455]\n[-0.03206, -0.007056, 0.999461]\n1.437221\n\n\n2021-05-03 22:52:45\n0.310895\n326\n0.797825\n3.197615\n1.347188\n2021-05-03 22:52:30\n2021-05-03 22:53:00\n2021-05-03 22:52:36.590500\n2021-05-03 22:52:46.066500\n-2.489264\n1.558848\n2021-05-03 22:52:40.073351981\n-0.399215\n1.20793\n0.949772\n3.125454\n[-0.556024, -0.026705, 0.830737]\n[-0.00975, 0.999624, 0.025609]\n4.98287\n4.878119\n[0.997898, 0.097332, 4.806209]\n[-1.60364, 0.642614, 4.673415]\n4.909676\n4.982512\n0.072836\n0.978978\n0.014617\n0.048194\n[2.601538, -0.545282, 0.132794]\n[1.901002, -0.066617, -1.861377]\n[-0.696347, 0.074434, -0.713835]\n3.117696\n\n\n2021-05-03 23:40:30\n0.430462\n326\n0.926707\n2.399418\n1.270198\n2021-05-03 23:40:15\n2021-05-03 23:40:45\n2021-05-03 23:40:15.766500\n2021-05-03 23:40:40.054500\n-3.733113\n4.253045\n2021-05-03 23:40:20.619949976\n-0.219438\n2.50897\n0.962259\n8.07653\n[-0.720814, -0.370654, 0.585699]\n[0.667916, -0.597272, 0.444021]\n5.361672\n-3.937635\n[1.93723, -3.361123, -3.659523]\n[-1.431731, -3.458094, -3.83487]\n5.333115\n5.358591\n0.025476\n-0.734404\n0.004751\n0.049321\n[3.368961, 0.096971, 0.175347]\n[2.329242, 1.422418, -1.985299]\n[-0.596089, -0.129799, -0.792357]\n8.506091\n\n\n\n\n\n\n\n\nCode\nclass WindConfig(WindConfigBase, SpeasyIDsConfig):\n    pass\n    \nconfig = WindConfig(\n    timerange = timerange,\n    detect_kwargs=detect_kwargs,\n)\n\n\n\n\nCode\nresult, path = config.produce_or_load()\n\n\n2025-04-04 22:31:17.295 | INFO     | discontinuitypy.config:_get_mag_data:144 - Setting time resolution to 0:00:00.092000\n\n\nFile /home/runner/work/discontinuitypy/discontinuitypy/data/Wind_tr=20210503-20210504_detect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow does not exist. Producing it now...\n\n\n2025-04-04 22:31:24.269 | INFO     | discontinuitypy.integration:update_events_with_temp_data:193 - Ion temperature data is not available.\n2025-04-04 22:31:24.269 | INFO     | discontinuitypy.integration:update_events_with_temp_data:201 - Electron temperature data is not available.\n\n\nCould not save file. Error: No such file or directory (os error 2): ...tect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow\nFile /home/runner/work/discontinuitypy/discontinuitypy/data/Wind_tr=20210503-20210504_updated_detect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow does not exist. Producing it now...\nCould not save file. Error: No such file or directory (os error 2): ...tect_func=detect_variance_detect_kwargs=(tau=0:00:30,ts=0:00:00.092000)_method=fit.arrow\n\n\nInspecting the magnetic data…\n\n\nCode\nconfig.mag_meta.data[0].plot()",
+    "crumbs": [
+      "Home",
+      "Tutorials",
+      "Tutorial"
+    ]
+  },
+  {
+    "objectID": "plot/alfvenicity.html",
+    "href": "plot/alfvenicity.html",
+    "title": "discontinuitypy",
+    "section": "",
+    "text": "tplot_Alfvenicity\n\n tplot_Alfvenicity (start, end, mag_tname:str, vec_tname:str,\n                    den_tname:str, offset=datetime.timedelta(0))\n\nPlot the candidate event with velocity profiles\n\n\n\ntsplot_Alfvenicity\n\n tsplot_Alfvenicity (mag_da:xarray.core.dataarray.DataArray,\n                     vec_da:xarray.core.dataarray.DataArray,\n                     den_da:xarray.core.dataarray.DataArray,\n                     start:datetime.datetime=None,\n                     end:datetime.datetime=None,\n                     offset=datetime.timedelta(0))\n\nPlot the candidate event with velocity profiles",
+    "crumbs": [
+      "Home",
+      "Plot",
+      "Alfvenicity"
+    ]
+  },
+  {
+    "objectID": "10_datasets.html",
+    "href": "10_datasets.html",
+    "title": "Datasets",
+    "section": "",
+    "text": "Fundamental class\n\n\n\n\n IdsEvents (name:str='events', data:polars.lazyframe.frame.LazyFrame=None,\n            mag_meta:space_analysis.core.MagVariable=MagVariable(name=None\n            , description=None, unit=None, ts=None, timerange=None,\n            dataset=None, parameter=None, B_cols=None),\n            ts:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            detect_func:Callable=&lt;function detect_variance&gt;,\n            detect_kwargs:dict=&lt;factory&gt;,\n            method:Literal['fit','derivative']='fit',\n            file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runne\n            r/work/discontinuitypy/discontinuitypy/data'),\n            **extra_data:Any)\n\nCore class to handle discontinuity events in a dataset.\n\n\n\n\n\n IDsDataset (name:str='events',\n             mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta:spac\n             e_analysis.core.MagVariable=MagVariable(name=None,\n             description=None, unit=None, ts=None, timerange=None,\n             dataset=None, parameter=None, B_cols=None),\n             ts:datetime.timedelta=None,\n             events:polars.dataframe.frame.DataFrame=None,\n             detect_func:Callable=&lt;function detect_variance&gt;,\n             detect_kwargs:dict=&lt;factory&gt;,\n             method:Literal['fit','derivative']='fit',\n             file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runn\n             er/work/discontinuitypy/discontinuitypy/data'),\n             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met\n             a:space_analysis.meta.PlasmaDataset=PlasmaDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None, velocity_cols=None,\n             speed_col=None, density_col=None),\n             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp\n             _meta:space_analysis.meta.TempDataset=TempDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None),\n             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met\n             a:space_analysis.meta.TempDataset=TempDataset(timerange=None,\n             variables=None, name=None, dataset=None, parameters=None,\n             ts=None, temperature_col=None, para_col=None,\n             perp_cols=None), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.\n\n\nCode\nfrom loguru import logger\n\n\ndef log_event_change(event, logger=logger):\n    logger.debug(\n        f\"\"\"CHANGE INFO\n        n.change: {event.get('n.change')}\n        v.ion.change: {event.get('v.ion.change')}\n        T.change: {event.get('T.change')}\n        v.Alfven.change: {event.get('v.Alfven.change')}\n        v.ion.change.l: {event.get('v.ion.change.l')}\n        v.Alfven.change.l: {event.get('v.Alfven.change.l')}\n        \"\"\"\n    )\n\n\n# def overview_plot(\n#     self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs\n# ):\n#     # BUG: to be fixed\n#     start = start or event[\"tstart\"]\n#     stop = stop or event[\"tstop\"]\n\n#     start -= offset\n#     stop += offset\n\n#     _plasma_data = self.plasma_data.filter(\n#         pl.col(\"time\").is_between(start, stop)\n#     ).collect()\n\n#     _mag_data = (\n#         self.data.filter(pl.col(\"time\").is_between(start, stop))\n#         .collect()\n#         .melt(\n#             id_vars=[\"time\"],\n#             value_vars=self.bcols,\n#             variable_name=\"B comp\",\n#             value_name=\"B\",\n#         )\n#     )\n\n#     v_df = _plasma_data.melt(\n#         id_vars=[\"time\"],\n#         value_vars=self.plasma_meta.velocity_cols,\n#         variable_name=\"veloity comp\",\n#         value_name=\"v\",\n#     )\n\n#     panel_mag = _mag_data.hvplot(\n#         x=\"time\", y=\"B\", by=\"B comp\", ylabel=\"Magnetic Field\", **kwargs\n#     )\n#     panel_n = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     ) * _plasma_data.hvplot.scatter(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     )\n\n#     panel_v = v_df.hvplot(\n#         x=\"time\", y=\"v\", by=\"veloity comp\", ylabel=\"Plasma Velocity\", **kwargs\n#     )\n#     panel_temp = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.temperature_col, **kwargs\n#     )\n\n#     mag_vlines = hv.VLine(event[\"t_us\"]) * hv.VLine(event[\"t_ds\"])\n#     plasma_vlines = hv.VLine(event.get(\"time_before\")) * hv.VLine(\n#         event.get(\"time_after\")\n#     )\n\n#     logger.info(f\"Overview plot: {event['tstart']} - {event['tstop']}\")\n#     log_event_change(event)\n\n#     return (\n#         panel_mag * mag_vlines\n#         + panel_n * plasma_vlines\n#         + panel_v * plasma_vlines\n#         + panel_temp * plasma_vlines\n#     ).cols(1)",
+    "crumbs": [
+      "Home",
+      "Datasets"
+    ]
+  },
+  {
+    "objectID": "10_datasets.html#datasets",
+    "href": "10_datasets.html#datasets",
+    "title": "Datasets",
+    "section": "",
+    "text": "Fundamental class\n\n\n\n\n IdsEvents (name:str='events', data:polars.lazyframe.frame.LazyFrame=None,\n            mag_meta:space_analysis.core.MagVariable=MagVariable(name=None\n            , description=None, unit=None, ts=None, timerange=None,\n            dataset=None, parameter=None, B_cols=None),\n            ts:datetime.timedelta=None,\n            events:polars.dataframe.frame.DataFrame=None,\n            detect_func:Callable=&lt;function detect_variance&gt;,\n            detect_kwargs:dict=&lt;factory&gt;,\n            method:Literal['fit','derivative']='fit',\n            file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runne\n            r/work/discontinuitypy/discontinuitypy/data'),\n            **extra_data:Any)\n\nCore class to handle discontinuity events in a dataset.\n\n\n\n\n\n IDsDataset (name:str='events',\n             mag_data:polars.lazyframe.frame.LazyFrame=None, mag_meta:spac\n             e_analysis.core.MagVariable=MagVariable(name=None,\n             description=None, unit=None, ts=None, timerange=None,\n             dataset=None, parameter=None, B_cols=None),\n             ts:datetime.timedelta=None,\n             events:polars.dataframe.frame.DataFrame=None,\n             detect_func:Callable=&lt;function detect_variance&gt;,\n             detect_kwargs:dict=&lt;factory&gt;,\n             method:Literal['fit','derivative']='fit',\n             file_fmt:str='arrow', file_path:pathlib.Path=Path('/home/runn\n             er/work/discontinuitypy/discontinuitypy/data'),\n             plasma_data:polars.lazyframe.frame.LazyFrame=None, plasma_met\n             a:space_analysis.meta.PlasmaDataset=PlasmaDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None, velocity_cols=None,\n             speed_col=None, density_col=None),\n             ion_temp_data:polars.lazyframe.frame.LazyFrame=None, ion_temp\n             _meta:space_analysis.meta.TempDataset=TempDataset(timerange=N\n             one, variables=None, name=None, dataset=None,\n             parameters=None, ts=None, temperature_col=None,\n             para_col=None, perp_cols=None),\n             e_temp_data:polars.lazyframe.frame.LazyFrame=None, e_temp_met\n             a:space_analysis.meta.TempDataset=TempDataset(timerange=None,\n             variables=None, name=None, dataset=None, parameters=None,\n             ts=None, temperature_col=None, para_col=None,\n             perp_cols=None), **extra_data:Any)\n\nExtend the IdsEvents class to handle plasma and temperature data.\n\n\nCode\nfrom loguru import logger\n\n\ndef log_event_change(event, logger=logger):\n    logger.debug(\n        f\"\"\"CHANGE INFO\n        n.change: {event.get('n.change')}\n        v.ion.change: {event.get('v.ion.change')}\n        T.change: {event.get('T.change')}\n        v.Alfven.change: {event.get('v.Alfven.change')}\n        v.ion.change.l: {event.get('v.ion.change.l')}\n        v.Alfven.change.l: {event.get('v.Alfven.change.l')}\n        \"\"\"\n    )\n\n\n# def overview_plot(\n#     self, event: dict, start=None, stop=None, offset=timedelta(seconds=1), **kwargs\n# ):\n#     # BUG: to be fixed\n#     start = start or event[\"tstart\"]\n#     stop = stop or event[\"tstop\"]\n\n#     start -= offset\n#     stop += offset\n\n#     _plasma_data = self.plasma_data.filter(\n#         pl.col(\"time\").is_between(start, stop)\n#     ).collect()\n\n#     _mag_data = (\n#         self.data.filter(pl.col(\"time\").is_between(start, stop))\n#         .collect()\n#         .melt(\n#             id_vars=[\"time\"],\n#             value_vars=self.bcols,\n#             variable_name=\"B comp\",\n#             value_name=\"B\",\n#         )\n#     )\n\n#     v_df = _plasma_data.melt(\n#         id_vars=[\"time\"],\n#         value_vars=self.plasma_meta.velocity_cols,\n#         variable_name=\"veloity comp\",\n#         value_name=\"v\",\n#     )\n\n#     panel_mag = _mag_data.hvplot(\n#         x=\"time\", y=\"B\", by=\"B comp\", ylabel=\"Magnetic Field\", **kwargs\n#     )\n#     panel_n = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     ) * _plasma_data.hvplot.scatter(\n#         x=\"time\", y=self.plasma_meta.density_col, **kwargs\n#     )\n\n#     panel_v = v_df.hvplot(\n#         x=\"time\", y=\"v\", by=\"veloity comp\", ylabel=\"Plasma Velocity\", **kwargs\n#     )\n#     panel_temp = _plasma_data.hvplot(\n#         x=\"time\", y=self.plasma_meta.temperature_col, **kwargs\n#     )\n\n#     mag_vlines = hv.VLine(event[\"t_us\"]) * hv.VLine(event[\"t_ds\"])\n#     plasma_vlines = hv.VLine(event.get(\"time_before\")) * hv.VLine(\n#         event.get(\"time_after\")\n#     )\n\n#     logger.info(f\"Overview plot: {event['tstart']} - {event['tstop']}\")\n#     log_event_change(event)\n\n#     return (\n#         panel_mag * mag_vlines\n#         + panel_n * plasma_vlines\n#         + panel_v * plasma_vlines\n#         + panel_temp * plasma_vlines\n#     ).cols(1)",
+    "crumbs": [
+      "Home",
+      "Datasets"
     ]
   }
 ]
